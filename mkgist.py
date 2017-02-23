@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import argparse
-import io
 import os.path
 import requests
 from   ghutil import show_response
@@ -12,7 +11,7 @@ parser.add_argument('-f', '--filename')
 parser.add_argument('file')
 args = parser.parse_args()
 
-with io.open(args.file) as fp:
+with open(args.file) as fp:
     content = fp.read()
 
 if args.filename is not None:
