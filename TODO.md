@@ -1,3 +1,2 @@
-- editrepo.py
 - starring & watching repositories
 - creating pull requests
