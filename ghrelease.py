@@ -31,10 +31,10 @@ class ReleaseData:
     @classmethod
     def from822(cls, txt):
         parser = HeaderParser()
-        parser.add_header('tag', required=True, dest='tag_name')
-        parser.add_header('name', required=True)
-        parser.add_header('draft', type=BOOL, default=True)
-        parser.add_header('prerelease', type=BOOL, default=False)
+        parser.add_field('tag', required=True, dest='tag_name')
+        parser.add_field('name', required=True)
+        parser.add_field('draft', type=BOOL, default=True)
+        parser.add_field('prerelease', type=BOOL, default=False)
         msg = parser.parse_string(txt)
         return cls(body=msg.body or '', **msg)
         ### Should/can an empty body be None?

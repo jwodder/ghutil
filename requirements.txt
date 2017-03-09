@@ -1,5 +1,5 @@
 # Python 3
 attrs
 click
-git+https://github.com/jwodder/headerparser
+git+https://github.com/jwodder/headerparser.git
 requests
