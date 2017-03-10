@@ -69,7 +69,7 @@ def edit_as_mail(obj: dict, fields=None, bodyfield=None):
     ### TODO: Allow the user to delete the body (including separating blank
     ### line) to leave it unchanged?
     if fields is None:
-        fields = list(obj.keys())
+        fields = sorted(obj.keys())
     parser = HeaderParser(body=bodyfield is not None)
     msg = ''
     for f in fields:

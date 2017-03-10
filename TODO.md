@@ -1,2 +1,4 @@
 - starring & watching repositories
+    - <https://developer.github.com/v3/activity/starring/>
 - creating pull requests
+- Convert into a Python package?
