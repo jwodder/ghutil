@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 # <https://developer.github.com/v3/repos/releases/>
 ### TODO: Try to somehow guard against trying to create a release for a tag
 ### that hasn't been pushed yet
@@ -7,7 +6,8 @@ import attr
 import click
 from   headerparser import HeaderParser, BOOL
 import requests
-import ghutil
+from   ..api        import show_response
+from   ..local      import get_github_repo
 
 @attr.s
 class ReleaseData:
@@ -40,7 +40,7 @@ class ReleaseData:
         ### Should/can an empty body be None?
 
 
-@click.command(context_settings={"help_option_names": ["-h", "--help"]})
+@click.command('release')
 #@click.option('--delete', ### flag )
 # -C, --chdir
 # --owner
@@ -48,9 +48,9 @@ class ReleaseData:
 # --remote-name / --remote-url ?
 @click.argument('tag', required=False)
 @click.pass_context
-def ghrelease(ctx, tag):
+def cli(ctx, tag):
     """ Create or edit a GitHub release """
-    owner, repo = ghutil.get_github_repo()
+    owner, repo = get_github_repo()
     relurl = 'https://api.github.com/repos/{}/{}/releases'.format(owner, repo)
     if tag is None:
         ### TODO: Fetch just the name of the latest tag when HEAD isn't tagged
@@ -76,7 +76,7 @@ def ghrelease(ctx, tag):
             body='INSERT LONG DESCRIPTION HERE (optional)',
         )
     else:
-        ghutil.show_response(r)
+        show_response(r)
     edited = click.edit(release.to822())
     if edited is not None:
         newrelease = ReleaseData.from822(edited)
@@ -88,7 +88,4 @@ def ghrelease(ctx, tag):
     else:
         r = s.patch('{}/{}'.format(relurl, relid), json=newrelease.to_payload())
     if not r.ok:
-        ghutil.show_response(r)
-
-if __name__ == '__main__':
-    ghrelease()
+        show_response(r)

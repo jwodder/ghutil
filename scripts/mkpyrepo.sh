@@ -11,7 +11,7 @@ python setup.py check
 # <http://unix.stackexchange.com/q/23026/11006>
 NAME="$(python setup.py --name)"
 DESC="$(python setup.py --description)"
-SSH_URL="$(python3 "$(dirname $0)"/mkrepo.py -d "$DESC" "$NAME" | jq -r .ssh_url)"
+SSH_URL="$(gh new -d "$DESC" "$NAME" | jq -r .ssh_url)"
 
 git remote | grep -qvx origin || git remote rm origin
 git remote add origin "$SSH_URL"
