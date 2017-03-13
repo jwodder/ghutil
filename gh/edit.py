@@ -12,7 +12,10 @@ def edit_as_mail(obj: dict, fields=None, bodyfield=None):
     for f in fields:
         dispname = f.replace('_', '-').title()
         val = obj[f]
-        if isinstance(val, bool):
+        if val is None:
+            msg += '{}: \n'.format(dispname, val)
+            parser.add_field(dispname, dest=f)
+        elif isinstance(val, bool):
             msg += '{}: {}\n'.format(dispname, 'yes' if val else 'no')
             parser.add_field(dispname, type=BOOL, dest=f)
         elif isinstance(val, str):
@@ -30,6 +33,6 @@ def edit_as_mail(obj: dict, fields=None, bodyfield=None):
     if bodyfield is not None:
         newobj[bodyfield] = data.body
     for k,v in list(newobj.items()):
-        if obj[k] == v:
+        if obj[k] == v or obj[k] is None and v == '':
             del newobj[k]
     return newobj
