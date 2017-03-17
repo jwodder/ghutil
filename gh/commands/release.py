@@ -36,8 +36,8 @@ class ReleaseData:
         parser.add_field('draft', type=BOOL, default=True)
         parser.add_field('prerelease', type=BOOL, default=False)
         msg = parser.parse_string(txt)
+        # When communicating with GitHub, "body" cannot be None.
         return cls(body=msg.body or '', **msg)
-        ### Should/can an empty body be None?
 
 
 @click.command('release')

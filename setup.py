@@ -36,12 +36,8 @@ setup(
     install_requires=[
         'attrs~=16.3',
         'click~=6.5',
-        'headerparser',
+        'headerparser~=0.1.0',
         'requests>=2.4.2,<3',
-    ],
-
-    dependency_links=[
-        'git+https://github.com/jwodder/headerparser.git#egg=headerparser-0.1.0'
     ],
 
     classifiers=[
