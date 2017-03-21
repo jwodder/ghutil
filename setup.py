@@ -3,7 +3,7 @@ from   os.path    import dirname, join
 import re
 from   setuptools import setup, find_packages
 
-with open(join(dirname(__file__), 'gh', '__init__.py')) as fp:
+with open(join(dirname(__file__), 'ghutil', '__init__.py')) as fp:
     for line in fp:
         m = re.search(r'^\s*__version__\s*=\s*([\'"])([^\'"]+)\1\s*$', line)
         if m:
@@ -22,16 +22,16 @@ except EnvironmentError as e:
         raise
 
 setup(
-    name='gh',
+    name='ghutil',
     version=version,
     packages=find_packages(),
     license='MIT',
     author='John Thorvald Wodder II',
-    author_email='gh@varonathe.org',
+    author_email='ghutil@varonathe.org',
     ###keywords='',
-    description='$SHORT_DESCRIPTION',
+    ###description='$SHORT_DESCRIPTION',
     long_description=long_desc,
-    #url='https://github.com/jwodder/gh',
+    #url='https://github.com/jwodder/ghutil',
 
     install_requires=[
         'attrs~=16.3',
@@ -59,7 +59,7 @@ setup(
 
     entry_points={
         "console_scripts": [
-            'gh = gh.__main__:cli',
+            'gh = ghutil.__main__:cli',
         ]
     },
 )

@@ -20,10 +20,10 @@
 - Add a `gh clone {<repo> | <owner>/<repo>} [<dir>]` command?
 - Add a command that echos the repository's owner and name in sh-compatible
   form
+- Give `fork` an option for cloning the new repository
 
-- Rename the package to `ghutil`?
 - Rename `gist` and/or `gists` so that they're not so similar
 - Make `release` use `edit_as_mail`
 - Consolidate the API-calling code
     - Use a third-party GitHub API library?
-- Use <https://pypi.python.org/pypi/giturlparse.py>?
+        - <http://pygithub.readthedocs.io>?
