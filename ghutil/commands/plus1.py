@@ -7,7 +7,7 @@ from   ..api import show_response
 @click.command('plus1')
 @click.argument('url', nargs=-1)
 def cli(url):
-    """ Give a thumbs-up to GitHub issues, PRs, or comments thereon """
+    """ Thumb-up issues, PRs, or comments thereon """
     for u in url:
         m = re.match(r'^(?:https?://)?(?:www\.)?github\.com'
                      r'/(?P<owner>[^/]+)'

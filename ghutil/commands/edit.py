@@ -17,7 +17,7 @@ def cli():
     edited = edit_as_mail(about, 'name private description homepage'
                                  ' default_branch has_wiki has_issues'.split())
     if not edited:
-        print('No modifications made; exiting')
+        click.echo('No modifications made; exiting')
     else:
         r = s.patch(url, json=edited)
         if not r.ok:

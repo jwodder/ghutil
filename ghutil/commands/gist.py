@@ -20,5 +20,4 @@ def cli(description, private, filename, file):
     }
     if description is not None:
         data["description"] = description
-    # requests uses .netrc automatically
     show_response(requests.post('https://api.github.com/gists', json=data))

@@ -18,8 +18,6 @@
 - Give `new` an option for setting the local repository's origin to the new
   repository
 - Add a `gh clone {<repo> | <owner>/<repo>} [<dir>]` command?
-- Add a command that echos the repository's owner and name in sh-compatible
-  form
 - Give `fork` an option for cloning the new repository
 
 - Rename `gist` and/or `gists` so that they're not so similar
@@ -27,3 +25,6 @@
 - Consolidate the API-calling code
     - Use a third-party GitHub API library?
         - <http://pygithub.readthedocs.io>?
+
+- Add a README
+- Upload to GitHub
