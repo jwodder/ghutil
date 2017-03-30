@@ -13,6 +13,7 @@ NAME="$(python setup.py --name)"
 DESC="$(python setup.py --description)"
 SSH_URL="$(gh new -d "$DESC" "$NAME" | jq -r .ssh_url)"
 
-git remote | grep -qvx origin || git remote rm origin
+! git remote | grep -qx origin || git remote rm origin
+# `grep -v` won't work here, as that makes grep check if any line != "origin"
 git remote add origin "$SSH_URL"
 git push -u origin master

@@ -21,7 +21,7 @@ def show_response(r):
         else:
             msg = '{0.status_code} Unknown Error: {0.reason} for url: {0.url}'
         print(msg.format(r), file=sys.stderr)
-        show_body(r, file=sys.stderr)
+        show_body(r, out=sys.stderr)
         sys.exit(1)
 
 def show_body(r, out=None):
