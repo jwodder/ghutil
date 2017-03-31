@@ -1,6 +1,7 @@
 import click
 import requests
-from   ..api import show_response
+from   ..api     import show_response
+from   ..showing import print_json, repo_info
 
 @click.command('fork')
 @click.argument('owner')
@@ -10,6 +11,7 @@ def cli(owner, repo):
     r = requests.post(
         'https://api.github.com/repos/{}/{}/forks'.format(owner, repo)
     )
-    # TODO: When `r.ok`, only show the "name" & "ssh_url" (and "html_url"?)
-    # fields
-    show_response(r)
+    if r.ok:
+        print_json(repo_info(r.json()))
+    else:
+        show_response(r)

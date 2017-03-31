@@ -15,4 +15,4 @@ def cli():
         ('CLONE_URL', 'https://github.com/{}/{}.git'.format(owner, repo)),
         ('GIT_URL',   'git://github.com/{}/{}.git'.format(owner, repo)),
         ('SSH_URL',   'git@github.com:{}/{}.git'.format(owner, repo)),
-    ]: click.echo('{}={}'.format(key, quote(value)))
+    ]: click.echo('{}={}'.format(key, quote(value)))  # noqa

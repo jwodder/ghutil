@@ -1,14 +1,8 @@
-import json
 import click
-from   ..api import paginate
+from   ..api     import paginate
+from   ..showing import print_json, repo_info
 
 @click.command('list')
 def cli():
     """ List your GitHub repositories """
-    click.echo(json.dumps(
-        ### Also show html_url?
-        [{"name": repo["name"], "ssh_url": repo["ssh_url"]}
-         for repo in paginate('https://api.github.com/user/repos')],
-        sort_keys=True,
-        indent=4,
-    ))
+    print_json(map(repo_info, paginate('https://api.github.com/user/repos')))

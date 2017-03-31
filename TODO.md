@@ -23,8 +23,6 @@
 - Rename `gist` and/or `gists` so that they're not so similar
 - Make `release` use `edit_as_mail`
 - Consolidate the API-calling code
-    - Use <https://github3py.readthedocs.io>? (It's apparently the only Python
-      GitHub library that doesn't suck)
 - cf. <https://github.com/whiteinge/ok.sh>
 
 - Add a README
