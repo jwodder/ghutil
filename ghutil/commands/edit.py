@@ -19,6 +19,11 @@ def cli():
     if not edited:
         click.echo('No modifications made; exiting')
     else:
+        # DO NOT default the name to `repo`, as that will differ from
+        # `about["name"]` when the GitHub repository has been renamed (leaving
+        # a redirect) but the local repository's remote URLs haven't been
+        # updated yet.
+        edited.setdefault("name", about["name"])
         r = s.patch(url, json=edited)
         if not r.ok:
             show_response(r)
