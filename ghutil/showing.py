@@ -29,8 +29,9 @@ def gist_info(gist):
         "id": gist["id"],
         "url": gist["url"],
         "git_push_url": gist["git_push_url"],
-        "files": gist["files"],
-        ### TODO: Remove files[].content (Only present in the return value for
-        ### creating a gist)
+        "files": {
+            fname: {k:v for k,v in about.items() if k != 'content'}
+            for fname, about in gist["files"].items()
+        },
         "public": gist["public"],
     }

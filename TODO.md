@@ -6,7 +6,7 @@
         - cf. <https://github.com/stephencelis/ghi>
     - listing users that are watching/have starred given repositories
     - listing a repository's forks
-    - deleting gists & repositories
+    - deleting gists, repositories, and releases
     - deleting branches?
 
 - When creating a new release, prepopulate the release message/body with the
