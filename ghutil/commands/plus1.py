@@ -1,6 +1,5 @@
 import re
 import click
-from   ..api import github_root
 
 @click.command('plus1')
 @click.argument('url', nargs=-1)
@@ -18,7 +17,7 @@ def cli(ctx, url):
             click.echo('{}: could not parse {!r}'.format(ctx.command_path, u),
                        err=True)
             continue
-        endpoint = github_root().repos[m.group('owner')][m.group('repo')].issues
+        endpoint = ctx.obj.repos[m.group('owner')][m.group('repo')].issues
         if m.group('comment') is None:
             endpoint = endpoint[m.group('issue')].reactions
         else:

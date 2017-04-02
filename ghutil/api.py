@@ -1,9 +1,28 @@
 import attr
 import click
 import requests
+from   .local   import get_github_repo, parse_github_remote
 from   .showing import print_json
 
 ENDPOINT = 'https://api.github.com'
+
+class GitHub:
+    def __init__(self):
+        self.session = requests.Session()
+
+    def __getattr__(self, key):
+        return self[key]
+
+    def __getitem__(self, name):
+        return GHResource(self.session, ENDPOINT, name)
+
+    def repository(self, url=None):
+        if url is None:
+            owner, repo = get_github_repo()
+        else:
+            owner, repo = parse_github_remote(url)
+        return self.repos[owner][repo]
+
 
 @attr.s
 class GHResource:
@@ -45,9 +64,6 @@ class GHResource:
                 break
             r = self.session.get(url)
 
-
-def github_root():
-    return GHResource(requests.Session(), ENDPOINT, '')
 
 def die(r):
     if 400 <= r.status_code < 500:

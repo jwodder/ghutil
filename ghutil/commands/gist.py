@@ -1,6 +1,5 @@
 import os.path
 import click
-from   ..api     import github_root
 from   ..showing import print_json, gist_info
 
 @click.command('gist')
@@ -8,7 +7,8 @@ from   ..showing import print_json, gist_info
 @click.option('-f', '--filename')
 @click.option('-P', '--private', is_flag=True)
 @click.argument('file', type=click.Path(exists=True, dir_okay=False, readable=True, allow_dash=False))
-def cli(description, private, filename, file):
+@click.pass_obj
+def cli(gh, description, private, filename, file):
     """ Convert a file into a gist """
     with open(file) as fp:  ### Use `click.open_file` instead?
         content = fp.read()
@@ -20,4 +20,4 @@ def cli(description, private, filename, file):
     }
     if description is not None:
         data["description"] = description
-    print_json(gist_info(github_root().gists.post(json=data)))
+    print_json(gist_info(gh.gists.post(json=data)))

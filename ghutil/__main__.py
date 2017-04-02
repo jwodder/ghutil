@@ -2,6 +2,7 @@ from   importlib import import_module
 import os
 from   os.path   import abspath, dirname, join
 import click
+from   .api      import GitHub
 
 # Derived from <https://github.com/pallets/click/blob/master/examples/complex/complex/cli.py>
 
@@ -30,8 +31,9 @@ class ComplexCLI(click.MultiCommand):
     cls=ComplexCLI,
     context_settings={"help_option_names": ["-h", "--help"]},
 )
-def cli():
-    pass
+@click.pass_context
+def cli(ctx):
+    ctx.obj = GitHub()
 
 if __name__ == '__main__':
     cli()

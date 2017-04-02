@@ -5,8 +5,6 @@ import subprocess
 import attr
 import click
 from   headerparser import HeaderParser, BOOL
-from   ..api        import github_root
-from   ..local      import get_github_repo
 
 @attr.s
 class ReleaseData:
@@ -49,14 +47,12 @@ class ReleaseData:
 @click.pass_context
 def cli(ctx, tag):
     """ Create or edit a GitHub release """
-    owner, repo = get_github_repo()
     if tag is None:
         ### TODO: Fetch just the name of the latest tag when HEAD isn't tagged
         tag = subprocess.check_output(
             ['git', 'describe'], universal_newlines=True,
         ).strip()
-
-    endpoint = github_root().repos[owner][repo].releases
+    endpoint = ctx.obj.repository().releases
     data = endpoint.tags[tag].get(maybe=True)
     if data is not None:
         relid = data["id"]

@@ -1,5 +1,4 @@
 import click
-from   ..api     import github_root
 from   ..showing import print_json, repo_info
 
 @click.command('new')
@@ -7,7 +6,8 @@ from   ..showing import print_json, repo_info
 @click.option('-H', '--homepage')
 @click.option('-P', '--private', is_flag=True)
 @click.argument('name')
-def cli(description, homepage, private, name):
+@click.pass_obj
+def cli(gh, description, homepage, private, name):
     """ Create a new GitHub repository """
     data = {
         "name": name,
@@ -17,4 +17,4 @@ def cli(description, homepage, private, name):
         data["description"] = description
     if homepage is not None:
         data["homepage"] = homepage
-    print_json(repo_info(github_root().user.repos.post(json=data)))
+    print_json(repo_info(gh.user.repos.post(json=data)))
