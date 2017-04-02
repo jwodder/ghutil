@@ -22,6 +22,9 @@ def repo_info(repo):
         "homepage": repo["homepage"],
         "private": repo["private"],
         "default_branch": repo["default_branch"],
+        "created_at": repo["created_at"],
+        "updated_at": repo["updated_at"],
+        "pushed_at": repo["pushed_at"],
     }
 
 def gist_info(gist):
@@ -34,4 +37,9 @@ def gist_info(gist):
             for fname, about in gist["files"].items()
         },
         "public": gist["public"],
+        "html_url": gist["html_url"],
+        "owner": gist["owner"]["login"],
+        "description": gist["description"],
+        "created_at": gist["created_at"],
+        "updated_at": gist["updated_at"],
     }
