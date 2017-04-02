@@ -1,8 +1,13 @@
-- Support more of the GitHub API
+- Add more commands for more of the GitHub API:
     - starring & watching repositories
         - <https://developer.github.com/v3/activity/starring/>
     - creating pull requests
     - creating & interacting with issues
+        - cf. <https://github.com/stephencelis/ghi>
+    - listing users that are watching/have starred given repositories
+    - listing a repository's forks
+    - deleting gists & repositories
+    - deleting branches?
 
 - When creating a new release, prepopulate the release message/body with the
   tagged commit's commit message
@@ -17,13 +22,12 @@
       current user
 - Give `new` an option for setting the local repository's origin to the new
   repository and pushing everything to it
-- Add a `gh clone {<repo> | <owner>/<repo>} [<dir>]` command?
+- Add a `gh clone {<repo> | <owner>/<repo>} [<dir>]` command
 - Give `fork` an option for cloning the new repository
 
 - Rename `gist` and/or `gists` so that they're not so similar
-- Make `release` use `edit_as_mail`
-- Consolidate the API-calling code
-- cf. <https://github.com/whiteinge/ok.sh>
+- Make `release` use `edit_as_mail()`
 
 - Add a README
 - Upload to GitHub
+- cf. <https://github.com/whiteinge/ok.sh>

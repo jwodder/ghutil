@@ -1,6 +1,5 @@
 import click
-import requests
-from   ..api     import show_response
+from   ..api     import github_root
 from   ..showing import print_json, repo_info
 
 @click.command('new')
@@ -18,8 +17,4 @@ def cli(description, homepage, private, name):
         data["description"] = description
     if homepage is not None:
         data["homepage"] = homepage
-    r = requests.post('https://api.github.com/user/repos', json=data)
-    if r.ok:
-        print_json(repo_info(r.json()))
-    else:
-        show_response(r)
+    print_json(repo_info(github_root().user.repos.post(json=data)))

@@ -5,8 +5,7 @@ import subprocess
 import attr
 import click
 from   headerparser import HeaderParser, BOOL
-import requests
-from   ..api        import show_response
+from   ..api        import github_root
 from   ..local      import get_github_repo
 
 @attr.s
@@ -51,23 +50,22 @@ class ReleaseData:
 def cli(ctx, tag):
     """ Create or edit a GitHub release """
     owner, repo = get_github_repo()
-    relurl = 'https://api.github.com/repos/{}/{}/releases'.format(owner, repo)
     if tag is None:
         ### TODO: Fetch just the name of the latest tag when HEAD isn't tagged
         tag = subprocess.check_output(
             ['git', 'describe'], universal_newlines=True,
         ).strip()
-    s = requests.Session()
-    r = s.get('{}/tags/{}'.format(relurl, tag))
-    if r.ok:
-        data = r.json()
+
+    endpoint = github_root().repos[owner][repo].releases
+    data = endpoint.tags[tag].get(maybe=True)
+    if data is not None:
         relid = data["id"]
         release = ReleaseData(**{
             f.name: data[f.name]
             for f in attr.fields(ReleaseData)
             if f.name in data
         })
-    elif r.status_code == 404:
+    else:
         relid = None
         release = ReleaseData(
             tag_name=tag,
@@ -75,8 +73,6 @@ def cli(ctx, tag):
                 .format(tag.lstrip('v')),
             body='INSERT LONG DESCRIPTION HERE (optional)',
         )
-    else:
-        show_response(r)
     edited = click.edit(release.to822())
     if edited is not None:
         newrelease = ReleaseData.from822(edited)
@@ -84,8 +80,6 @@ def cli(ctx, tag):
         click.echo('No modifications made; exiting')
         ctx.exit()
     if relid is None:
-        r = s.post(relurl, json=newrelease.to_payload())
+        endpoint.post(json=newrelease.to_payload())
     else:
-        r = s.patch('{}/{}'.format(relurl, relid), json=newrelease.to_payload())
-    if not r.ok:
-        show_response(r)
+        endpoint[relid].patch(json=newrelease.to_payload())

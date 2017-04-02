@@ -1,12 +1,11 @@
 import re
-import sys
 import click
-import requests
-from   ..api import show_response
+from   ..api import github_root
 
 @click.command('plus1')
 @click.argument('url', nargs=-1)
-def cli(url):
+@click.pass_context
+def cli(ctx, url):
     """ Thumb-up issues, PRs, or comments thereon """
     for u in url:
         m = re.match(r'^(?:https?://)?(?:www\.)?github\.com'
@@ -16,17 +15,15 @@ def cli(url):
                      r'/(?P<issue>\d+)'
                      r'(?:#issuecomment-(?P<comment>\d+))?$', u)
         if not m:
-            click.echo('{}: could not parse {!r}'.format(sys.argv[0], u),
+            click.echo('{}: could not parse {!r}'.format(ctx.command_path, u),
                        err=True)
             continue
+        endpoint = github_root().repos[m.group('owner')][m.group('repo')].issues
         if m.group('comment') is None:
-            target = '/repos/{owner}/{repo}/issues/{issue}/reactions'
+            endpoint = endpoint[m.group('issue')].reactions
         else:
-            target = '/repos/{owner}/{repo}/issues/comments/{comment}/reactions'
-        r = requests.post(
-            'https://api.github.com' + target.format(**m.groupdict()),
+            endpoint = endpoint.comments[m.group('comment')].reactions
+        endpoint.post(
             headers={"Accept": "application/vnd.github.squirrel-girl-preview"},
             json={"content": "+1"},
         )
-        if not r.ok:
-            show_response(r)

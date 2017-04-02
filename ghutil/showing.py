@@ -2,10 +2,11 @@ from   collections.abc import Iterator
 import json
 import click
 
-def print_json(obj):
+def print_json(obj, err=False):
     if isinstance(obj, Iterator):
         obj = list(obj)
-    click.echo(json.dumps(obj, sort_keys=True, indent=4, ensure_ascii=False))
+    click.echo(json.dumps(obj, sort_keys=True, indent=4, ensure_ascii=False),
+               err=err)
 
 def repo_info(repo):
     return {
@@ -29,5 +30,7 @@ def gist_info(gist):
         "url": gist["url"],
         "git_push_url": gist["git_push_url"],
         "files": gist["files"],
+        ### TODO: Remove files[].content (Only present in the return value for
+        ### creating a gist)
         "public": gist["public"],
     }

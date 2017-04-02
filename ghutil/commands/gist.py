@@ -1,7 +1,6 @@
 import os.path
 import click
-import requests
-from   ..api     import show_response
+from   ..api     import github_root
 from   ..showing import print_json, gist_info
 
 @click.command('gist')
@@ -21,8 +20,4 @@ def cli(description, private, filename, file):
     }
     if description is not None:
         data["description"] = description
-    r = requests.post('https://api.github.com/gists', json=data)
-    if r.ok:
-        print_json(gist_info(r.json()))
-    else:
-        show_response(r)
+    print_json(gist_info(github_root().gists.post(json=data)))
