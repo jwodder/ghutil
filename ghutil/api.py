@@ -40,7 +40,6 @@ class GHResource:
         return self.__class__(self.session, url, name)
 
     def __call__(self, decode=True, maybe=False, **kwargs):
-        ### Allow passing params as kwargs???
         # Use self.name as HTTP method (case insensitive); this allows for
         # supporting URLs ending in, say, `/get` (e.g., because someone named
         # their repository that)

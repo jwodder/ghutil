@@ -3,11 +3,10 @@ from   headerparser import HeaderParser, BOOL
 
 def edit_as_mail(obj: dict, fields=None, bodyfield=None):
     # Returns only the fields that changed
-    ### TODO: Allow the user to delete the body (including separating blank
-    ### line) to leave it unchanged?
+    # Fields that the user deletes are considered unchanged
     if fields is None:
         fields = sorted(obj.keys())
-    parser = HeaderParser(body=bodyfield is not None)
+    parser = HeaderParser(body=False if bodyfield is None else None)
     msg = ''
     for f in fields:
         dispname = f.replace('_', '-').title()
@@ -30,7 +29,7 @@ def edit_as_mail(obj: dict, fields=None, bodyfield=None):
         return {}
     data = parser.parse_string(msg)
     newobj = dict(data)
-    if bodyfield is not None:
+    if data.body is not None:
         newobj[bodyfield] = data.body
     for k,v in list(newobj.items()):
         if obj[k] == v or obj[k] is None and v == '':
