@@ -1,18 +1,19 @@
 from   shlex   import quote
 import click
-from   ..local import get_github_repo
+from   ..local import get_remote_url
+from   ..types import GHRepo
 
 @click.command('remote')
-def cli():
+@click.argument('repo', type=GHRepo(), default=get_remote_url)
+def cli(repo):
     """ Show repo's remote URLs in sh format """
-    owner, repo = get_github_repo()
+    about = repo.get()
     for key, value in [
-        ('OWNER', owner),
-        ('REPO', repo),
-        ### Make an API call to get these URLs?
-        ('API_URL',   'https://api.github.com/repos/{}/{}'.format(owner, repo)),
-        ('HTML_URL',  'https://github.com/{}/{}'.format(owner, repo)),
-        ('CLONE_URL', 'https://github.com/{}/{}.git'.format(owner, repo)),
-        ('GIT_URL',   'git://github.com/{}/{}.git'.format(owner, repo)),
-        ('SSH_URL',   'git@github.com:{}/{}.git'.format(owner, repo)),
+        ('OWNER',     about["owner"]["login"]),
+        ('REPO',      about["name"]),
+        ('API_URL',   about["url"]),
+        ('HTML_URL',  about["html_url"]),
+        ('CLONE_URL', about["clone_url"]),
+        ('GIT_URL',   about["git_url"]),
+        ('SSH_URL',   about["ssh_url"]),
     ]: click.echo('{}={}'.format(key, quote(value)))  # noqa

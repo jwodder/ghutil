@@ -22,10 +22,9 @@ def parse_github_remote(url):
     else:
         raise ValueError(url)
 
-def get_github_repo(chdir=None, remote='origin'):
-    s = subprocess.check_output(
+def get_remote_url(chdir=None, remote='origin'):
+    return subprocess.check_output(
         ['git', 'remote', 'get-url', remote],
         cwd=chdir,
         universal_newlines=True,
-    )
-    return parse_github_remote(s.strip())
+    ).strip()

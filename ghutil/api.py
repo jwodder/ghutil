@@ -1,7 +1,7 @@
 import attr
 import click
 import requests
-from   .local   import get_github_repo, parse_github_remote
+from   .local   import get_remote_url, parse_github_remote
 from   .showing import print_json
 
 ENDPOINT = 'https://api.github.com'
@@ -18,9 +18,8 @@ class GitHub:
 
     def repository(self, url=None):
         if url is None:
-            owner, repo = get_github_repo()
-        else:
-            owner, repo = parse_github_remote(url)
+            url = get_remote_url()
+        owner, repo = parse_github_remote(url)
         return self.repos[owner][repo]
 
 

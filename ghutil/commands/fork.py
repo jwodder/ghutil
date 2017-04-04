@@ -1,10 +1,9 @@
 import click
 from   ..showing import print_json, repo_info
+from   ..types   import GHRepo
 
 @click.command('fork')
-@click.argument('owner')
-@click.argument('repo')
-@click.pass_obj
-def cli(gh, owner, repo):
+@click.argument('repo', type=GHRepo())
+def cli(repo):
     """ Fork a GitHub repository """
-    print_json(repo_info(gh.repos[owner][repo].forks.post()))
+    print_json(repo_info(repo.forks.post()))
