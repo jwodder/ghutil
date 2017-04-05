@@ -34,7 +34,6 @@
 - Give `fork` an option for cloning the new repository
 - Rename "`gh gist list`" to "`gh gist show`" and use the "`list`" name for
   just showing the names/IDs of gists?  (cf. `git stash`)
-- Eliminate `gh remote` and give `show` (et alii?) a `--sh` option
 
 - Add a README
 - Fill in the rest of `setup.py`
