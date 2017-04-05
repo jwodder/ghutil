@@ -6,7 +6,6 @@ import click
 from   ghutil.edit import edit_as_mail
 
 @click.command()
-#@click.option('--delete', is_flag=True)
 @click.argument('tag', required=False)
 @click.pass_obj
 def cli(gh, tag):
