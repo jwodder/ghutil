@@ -32,7 +32,6 @@
 - Add a `gh repo clone <repo> [<dir>]` command
 - Add a `gh gist clone <id> [<dir>]` command
 - Give `fork` an option for cloning the new repository
-- Make `list` the default action for `gh repo` and `gh gist`
 - Rename the "`list`" commands to "`show`" and use the "`list`" name for just
   showing the names/IDs of objects?  (cf. `git stash`)
     - Let "`show`" take an argument (required?) for which repository to show

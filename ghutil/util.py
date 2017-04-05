@@ -16,3 +16,7 @@ def package_group(package, filepath, **kwargs):
                 cli.add_command(submod.cli, modname.replace('_', '-'))
         return cli
     return wrapper
+
+def default_command(ctx, cmdname):
+    if ctx.invoked_subcommand is None:
+        ctx.invoke(ctx.command.commands[cmdname])
