@@ -1,7 +1,6 @@
 import click
 from   ghutil.edit  import edit_as_mail
-from   ghutil.local import get_remote_url
-from   ghutil.types import GHRepo
+from   ghutil.repos import GHRepo, get_remote_url
 
 @click.command()
 @click.argument('repo', type=GHRepo(), default=get_remote_url)

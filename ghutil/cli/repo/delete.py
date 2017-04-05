@@ -1,6 +1,5 @@
 import click
-from   ghutil.local import get_remote_url
-from   ghutil.types import GHRepo
+from   ghutil.repos import GHRepo, get_remote_url
 
 @click.command()
 @click.confirmation_option(prompt='Delete this repository?')

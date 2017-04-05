@@ -1,6 +1,6 @@
 import click
 from   ghutil.showing import print_json, repo_info
-from   ghutil.types   import GHRepo
+from   ghutil.repos   import GHRepo
 
 @click.command()
 @click.argument('repos', type=GHRepo(), nargs=-1)

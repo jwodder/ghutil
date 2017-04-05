@@ -1,7 +1,7 @@
 import attr
 import click
 import requests
-from   .local   import get_remote_url, parse_github_remote
+from   .repos   import get_remote_url, parse_github_remote
 from   .showing import print_json
 
 ENDPOINT = 'https://api.github.com'
