@@ -7,7 +7,7 @@
     - listing users that are watching/have starred given repositories
     - listing a repository's forks
         - showing a tree of forks?
-    - deleting gists, repositories, and releases
+    - deleting gists and releases
     - deleting branches?
     - listing all issues & PRs (and commits to others' repositories?) you
       created
@@ -34,6 +34,8 @@
 - Give `fork` an option for cloning the new repository
 - Rename "`gh gist list`" to "`gh gist show`" and use the "`list`" name for
   just showing the names/IDs of gists?  (cf. `git stash`)
+- Get `gh repo delete`'s prompt to show the full name of the repository (This
+  will probably require changes in Click)
 
 - Add a README
 - Fill in the rest of `setup.py`

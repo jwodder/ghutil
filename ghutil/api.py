@@ -46,7 +46,13 @@ class GHResource:
         if self.name.lower() == 'get' and 'next' in r.links:
             return self._paginate(r)
         elif r.ok:
-            return r.json() if decode else r
+            if decode:
+                if r.status_code == 204:
+                    return None
+                else:
+                    return r.json()
+            else:
+                return r
         elif r.status_code == 404 and maybe:
             return None if decode else r
         else:
