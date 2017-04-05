@@ -3,9 +3,9 @@
 ### that hasn't been pushed yet
 import subprocess
 import click
-from   .edit import edit_as_mail
+from   ghutil.edit import edit_as_mail
 
-@click.command('release')
+@click.command()
 #@click.option('--delete', is_flag=True)
 @click.argument('tag', required=False)
 @click.pass_obj

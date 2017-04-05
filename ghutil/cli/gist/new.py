@@ -1,8 +1,8 @@
 import os.path
 import click
-from   ..showing import print_json, gist_info
+from   ghutil.showing import print_json, gist_info
 
-@click.command('gist')
+@click.command()
 @click.option('-d', '--description')
 @click.option('-f', '--filename')
 @click.option('-P', '--private', is_flag=True)

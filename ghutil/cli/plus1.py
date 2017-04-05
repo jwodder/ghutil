@@ -1,7 +1,7 @@
 import re
 import click
 
-@click.command('plus1')
+@click.command()
 @click.argument('url', nargs=-1)
 @click.pass_context
 def cli(ctx, url):

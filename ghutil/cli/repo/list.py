@@ -1,7 +1,7 @@
 import click
-from   ..showing import print_json, repo_info
+from   ghutil.showing import print_json, repo_info
 
-@click.command('list')
+@click.command()
 @click.pass_obj
 def cli(gh):
     """ List your GitHub repositories """

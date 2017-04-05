@@ -1,9 +1,9 @@
 from   shlex   import quote
 import click
-from   ..local import get_remote_url
-from   ..types import GHRepo
+from   ghutil.local import get_remote_url
+from   ghutil.types import GHRepo
 
-@click.command('remote')
+@click.command()
 @click.argument('repo', type=GHRepo(), default=get_remote_url)
 def cli(repo):
     """ Show repo's remote URLs in sh format """

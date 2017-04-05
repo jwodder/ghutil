@@ -18,28 +18,21 @@
 - Either rename `parse_github_remote()` or split apart its URL parsing code
   from its `owner/repo` parsing code
 - Support specifying a repository as a path to a local clone
-    - Should `fork` support this?
+    - Should `gh repo fork` support this?
 - Support specifying a repository owned by the current user as just the
   repository name?
-    - Should `fork` support this?
+    - Should `gh repo fork` support this?
 - `release`: Allow specifying the repository on the command line (and handle
   the case when a tag isn't also specified)
-- `gist`:
+- `gh gist new`:
     - Allow creating a gist containing more than one file
     - Allow reading the file from stdin
-- Give `new` an option for setting the local repository's origin to the new
-  repository and pushing everything to it
-- Add a `gh clone <repo> [<dir>]` command
+- Give `gh repo new` an option for setting the local repository's origin to the
+  new repository and pushing everything to it
+- Add a `gh repo clone <repo> [<dir>]` command
 - Add a `gh gist clone <id> [<dir>]` command
 - Give `fork` an option for cloning the new repository
-- Rename `gist` and/or `gists` so that they're not so similar
-- Consider reorganizing the commands as follows:
-    - `gh list`  → `gh repo [list]`
-    - `gh new`   → `gh repo new`
-    - `gh edit`  → `gh repo edit`
-    - `gh fork`  → `gh repo fork` ?
-    - `gh gists` → `gh gist [list]`
-    - `gh gist`  → `gh gist new`
+- Make `list` the default action for `gh repo` and `gh gist`
 - Rename the "`list`" commands to "`show`" and use the "`list`" name for just
   showing the names/IDs of objects?  (cf. `git stash`)
     - Let "`show`" take an argument (required?) for which repository to show

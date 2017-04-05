@@ -59,7 +59,7 @@ setup(
 
     entry_points={
         "console_scripts": [
-            'gh = ghutil.__main__:cli',
+            'gh = ghutil.cli.__main__:cli',
         ]
     },
 )

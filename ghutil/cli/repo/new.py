@@ -1,7 +1,7 @@
 import click
-from   ..showing import print_json, repo_info
+from   ghutil.showing import print_json, repo_info
 
-@click.command('new')
+@click.command()
 @click.option('-d', '--description')
 @click.option('-H', '--homepage')
 @click.option('-P', '--private', is_flag=True)

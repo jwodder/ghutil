@@ -1,0 +1,18 @@
+from   importlib import import_module
+import os
+from   os.path   import dirname, exists, join, splitext
+import click
+
+def package_group(package, filepath, **kwargs):
+    def wrapper(f):
+        dirpath = dirname(filepath)
+        cli = click.group(**kwargs)(f)
+        for fname in os.listdir(dirpath):
+            modname, ext = splitext(fname)
+            if modname.isidentifier() and not modname.startswith('_') and \
+                    (ext == '' and exists(join(dirpath, fname, '__init__.py'))
+                        or ext == '.py'):
+                submod = import_module('.' + modname, package)
+                cli.add_command(submod.cli, modname.replace('_', '-'))
+        return cli
+    return wrapper

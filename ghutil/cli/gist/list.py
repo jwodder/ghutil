@@ -1,7 +1,7 @@
 import click
-from   ..showing import print_json, gist_info
+from   ghutil.showing import print_json, gist_info
 
-@click.command('gists')
+@click.command()
 @click.pass_obj
 def cli(gh):
     """ List your gists """
