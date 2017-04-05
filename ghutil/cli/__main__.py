@@ -8,6 +8,7 @@ from   ghutil.util import package_group
 )
 @click.pass_context
 def cli(ctx):
+    """ Interact with GitHub from the command line """
     ctx.obj = GitHub()
 
 if __name__ == '__main__':

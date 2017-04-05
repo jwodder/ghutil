@@ -29,7 +29,7 @@ setup(
     author='John Thorvald Wodder II',
     author_email='ghutil@varonathe.org',
     ###keywords='',
-    ###description='$SHORT_DESCRIPTION',
+    description='Interact with GitHub from the command line',
     long_description=long_desc,
     #url='https://github.com/jwodder/ghutil',
 

@@ -8,7 +8,7 @@ from   ghutil.showing import print_json, repo_info
 @click.argument('name')
 @click.pass_obj
 def cli(gh, description, homepage, private, name):
-    """ Create a new GitHub repository """
+    """ Create a new repository """
     data = {
         "name": name,
         "private": private,

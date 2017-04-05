@@ -5,5 +5,5 @@ from   ghutil.types   import GHRepo
 @click.command()
 @click.argument('repo', type=GHRepo())
 def cli(repo):
-    """ Fork a GitHub repository """
+    """ Fork a repository """
     print_json(repo_info(repo.forks.post()))
