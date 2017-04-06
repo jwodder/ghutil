@@ -7,6 +7,6 @@ import click
 @click.option('-s', '--state', type=click.Choice(['open', 'closed', 'all']),
               default='open')
 @click.pass_obj
-def cli(gh, filter, state):
+def cli(gh, filter, state):  # noqa: B002
     for issue in gh.issues.get(params={"filter": filter, "state": state}):
         click.echo(issue["html_url"])

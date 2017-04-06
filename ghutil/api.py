@@ -1,4 +1,5 @@
 from   itertools import chain
+import re
 import attr
 import click
 import requests
@@ -23,9 +24,19 @@ class GitHub:
         owner, repo = parse_github_remote(url)
         return self.repos[owner][repo]
 
-    def search(self, type, q, **params):
+    def search(self, objtype, *terms, **params):
+        q = ''
+        for t in terms:
+            if ' ' in t:
+                if re.match(r'^\w+:', t):
+                    t = '{0}:"{2}"'.format(*t.partition(':'))
+                else:
+                    t = '"' + t + '"'
+            if q:
+                q += ' '
+            q += t
         r = self.session.get(
-            ENDPOINT + '/search/' + type,
+            ENDPOINT + '/search/' + objtype,
             params=dict(params, q=q),
         )
         for page in paginate(self.session, r):
