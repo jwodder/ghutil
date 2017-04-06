@@ -1,8 +1,9 @@
+from   itertools import chain
 import attr
 import click
 import requests
-from   .repos   import get_remote_url, parse_github_remote
-from   .showing import print_json
+from   .repos    import get_remote_url, parse_github_remote
+from   .showing  import print_json
 
 ENDPOINT = 'https://api.github.com'
 
@@ -21,6 +22,16 @@ class GitHub:
             url = get_remote_url()
         owner, repo = parse_github_remote(url)
         return self.repos[owner][repo]
+
+    def search(self, type, q, **params):
+        r = self.session.get(
+            ENDPOINT + '/search/' + type,
+            params=dict(params, q=q),
+        )
+        for page in paginate(self.session, r):
+            yield from page["items"]
+        ### Return total_count?
+        ### Do something on incomplete_results?
 
 
 @attr.s
@@ -44,7 +55,7 @@ class GHResource:
         # their repository that)
         r = self.session.request(self.name, self.url, **kwargs)
         if self.name.lower() == 'get' and 'next' in r.links:
-            return self._paginate(r)
+            return chain.from_iterable(paginate(self.session, r))
         elif r.ok:
             if decode:
                 if r.status_code == 204:
@@ -58,16 +69,16 @@ class GHResource:
         else:
             die(r)
 
-    def _paginate(self, r):
-        while True:
-            if not r.ok:
-                die(r)
-            yield from r.json()
-            url = r.links.get('next', {}).get('url')
-            if url is None:
-                break
-            r = self.session.get(url)
 
+def paginate(session, r):
+    while True:
+        if not r.ok:
+            die(r)
+        yield r.json()
+        url = r.links.get('next', {}).get('url')
+        if url is None:
+            break
+        r = session.get(url)
 
 def die(r):
     if 400 <= r.status_code < 500:

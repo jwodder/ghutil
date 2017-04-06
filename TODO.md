@@ -10,8 +10,7 @@
     - deleting gists
     - deleting releases
     - deleting branches?
-    - listing all issues & PRs (and commits to others' repositories?) you
-      created
+    - listing all commits to others' repositories you created?
     - show recent activity on a repository/issue?
 
 - Support specifying a repository as a path to a local clone
