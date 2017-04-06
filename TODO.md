@@ -13,7 +13,6 @@
     - listing all issues & PRs (and commits to others' repositories?) you
       created
     - show recent activity on a repository/issue?
-    - a generic "`gh request [-X <method>] /path`" command
 
 - Support specifying a repository as a path to a local clone
     - Should `gh repo fork` support this?
@@ -48,6 +47,12 @@
     - Add a `gh gist clone <id> [<dir>]` command
     - Rename "`gh gist list`" to "`gh gist show`" and use the "`list`" name for
       just showing the names/IDs of gists?  (cf. `git stash`)
+
+- `gh request`:
+    - Add an `-H`/`--header` option
+    - Add support for `--data` reading from a file
+    - Add a `--param key=value` option for setting query parameters (and/or
+      JSON body elements?)
 
 - Add a README
 - Fill in the rest of `setup.py`
