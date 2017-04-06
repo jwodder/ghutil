@@ -5,4 +5,4 @@ import click
 def cli(gh):
     """ List your repositories """
     for repo in gh.user.repos.get():
-        print(repo["full_name"])
+        click.echo(repo["full_name"])
