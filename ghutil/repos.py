@@ -12,26 +12,26 @@ class GHRepo(click.ParamType):
             self.fail('Invalid GitHub URL: ' + value, param, ctx)
 
 
-def parse_github_remote(url):
+def parse_repo_spec(s):
     """
-    Given a remote URL ``url`` pointing to a GitHub repository or a string of
-    the form ``"owner/repo"``, return the repository's owner and name.
+    Given a remote GitHub repository URL or a string of the form
+    ``"owner/repo"``, return the repository's owner and name.
 
-    >>> parse_github_remote('git@github.com:jwodder/headerparser.git')
+    >>> parse_repo_spec('git@github.com:jwodder/headerparser.git')
     ('jwodder', 'headerparser')
 
-    >>> parse_github_remote('https://github.com/jwodder/headerparser.git')
+    >>> parse_repo_spec('https://github.com/jwodder/headerparser.git')
     ('jwodder', 'headerparser')
 
-    >>> parse_github_remote('jwodder/headerparser')
+    >>> parse_repo_spec('jwodder/headerparser')
     ('jwodder', 'headerparser')
     """
-    m = re.match(r'^(?:https://github\.com/|git@github\.com:)?'
-                 r'([^/]+)/([^/]+?)(?:\.git)?$', url, flags=re.I)
+    m = re.match(r'^(?:https?://github\.com/|git@github\.com:)?'
+                 r'([^/]+)/([^/]+?)(?:\.git)?$', s, flags=re.I)
     if m:
         return m.groups()
     else:
-        raise ValueError(url)
+        raise ValueError(s)
 
 def get_remote_url(chdir=None, remote='origin'):
     return subprocess.check_output(

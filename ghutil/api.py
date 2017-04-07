@@ -3,7 +3,7 @@ import re
 import attr
 import click
 import requests
-from   .repos    import get_remote_url, parse_github_remote
+from   .repos    import get_remote_url, parse_repo_spec
 from   .showing  import print_json
 
 ENDPOINT = 'https://api.github.com'
@@ -21,13 +21,14 @@ class GitHub:
     def repository(self, url=None):
         if url is None:
             url = get_remote_url()
-        owner, repo = parse_github_remote(url)
+        owner, repo = parse_repo_spec(url)
         return self.repos[owner][repo]
 
     def search(self, objtype, *terms, **params):
         q = ''
         for t in terms:
             if ' ' in t:
+                ### TODO: Don't add quotes when they're already there
                 if re.match(r'^\w+:', t):
                     t = '{0}:"{2}"'.format(*t.partition(':'))
                 else:

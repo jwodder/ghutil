@@ -18,8 +18,10 @@
 - Support specifying a repository owned by the current user as just the
   repository name?
     - Should `gh repo fork` support this?
-- Either rename `parse_github_remote()` or split apart its URL parsing code
-  from its `owner/repo` parsing code
+- Give the `search` commands an option for outputting JSON objects instead of
+  names?
+- Give all commands that output JSON options for showing all fields returned by
+  the API instead of selected fields
 
 - `gh repo`:
     - Give `gh repo new` an option for setting the local repository's origin to
@@ -52,6 +54,13 @@
     - Add support for `--data` reading from a file
     - Add a `--param key=value` option for setting query parameters (and/or
       JSON body elements?)
+
+- `gh issue`:
+    - Allow specifying issues on the command line in the following forms:
+        - `https://github.com/:owner/:repo/{issues|pull}/:id`
+        - `:owner/:repo/:id`
+        - `:repo/:id` (for repositories owned by the current user) ?
+        - `:id` (for issues of the local repository)
 
 - Add a README
 - Fill in the rest of `setup.py`
