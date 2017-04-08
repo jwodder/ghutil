@@ -1,4 +1,3 @@
-import errno
 from   os.path    import dirname, join
 import re
 from   setuptools import setup, find_packages
@@ -15,11 +14,8 @@ with open(join(dirname(__file__), 'ghutil', '__init__.py')) as fp:
 try:
     with open(join(dirname(__file__), 'README.rst')) as fp:
         long_desc = fp.read()
-except EnvironmentError as e:
-    if e.errno == errno.ENOENT:
-        long_desc = None
-    else:
-        raise
+except FileNotFoundError:
+    long_desc = None
 
 setup(
     name='ghutil',
