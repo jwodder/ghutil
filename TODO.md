@@ -22,6 +22,9 @@
   names?
 - Give all commands that output JSON options for showing all fields returned by
   the API instead of selected fields
+- Set User Agent
+- Tag the code at each point it was stable?
+    - Use `setuptools_scm` for managing the version number?
 
 - `gh repo`:
     - Give `gh repo new` an option for setting the local repository's origin to

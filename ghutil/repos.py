@@ -23,15 +23,22 @@ def parse_repo_spec(s):
     >>> parse_repo_spec('https://github.com/jwodder/headerparser.git')
     ('jwodder', 'headerparser')
 
+    >>> parse_repo_spec('https://api.github.com/repos/jwodder/headerparser')
+    ('jwodder', 'headerparser')
+
     >>> parse_repo_spec('jwodder/headerparser')
     ('jwodder', 'headerparser')
     """
-    m = re.match(r'^(?:https?://github\.com/|git@github\.com:)?'
-                 r'([^/]+)/([^/]+?)(?:\.git)?$', s, flags=re.I)
-    if m:
-        return m.groups()
-    else:
-        raise ValueError(s)
+    for rgx in [
+        r'^(?:https?://github\.com/|git@github\.com:)([^/]+)/([^/]+?)(?:\.git)?$',
+        r'^https?://api\.github\.com/repos/([^/]+)/([^/]+)$',
+        r'^([^/]+)/([^/]+)$',
+
+    ]:
+        m = re.match(rgx, s, flags=re.I)
+        if m:
+            return m.groups()
+    raise ValueError(s)
 
 def get_remote_url(chdir=None, remote='origin'):
     return subprocess.check_output(

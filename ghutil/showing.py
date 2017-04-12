@@ -8,9 +8,12 @@ def print_json(obj, err=False):
     click.echo(json.dumps(obj, sort_keys=True, indent=4, ensure_ascii=False),
                err=err)
 
+def maybe_user(obj):
+    return None if obj is None else obj["login"]
+
 def repo_info(repo):
     return {
-        "owner": repo["owner"]["login"],
+        "owner": maybe_user(repo["owner"]),
         "name": repo["name"],
         "url": repo["url"],
         "html_url": repo["html_url"],
@@ -38,8 +41,31 @@ def gist_info(gist):
         },
         "public": gist["public"],
         "html_url": gist["html_url"],
-        "owner": gist["owner"]["login"],
+        "owner": maybe_user(gist["owner"]),
         "description": gist["description"],
         "created_at": gist["created_at"],
         "updated_at": gist["updated_at"],
+    }
+
+def issue_info(issue):
+    return {
+        "assignee": maybe_user(issue["assignee"]),
+        "assignees": list(map(maybe_user, issue["assignees"])),
+        "closed_at": issue["closed_at"],
+        "closed_by": maybe_user(issue["closed_by"]),
+        "comments": issue["comments"],
+        "created_at": issue["created_at"],
+        "html_url": issue["html_url"],
+        "id": issue["id"],
+        "labels": [l["name"] for l in issue["labels"]],
+        "locked": issue["locked"],
+        "milestone": issue["milestone"]["title"] if issue["milestone"] is not None else None,
+        "number": issue["number"],
+        "state": issue["state"],
+        "title": issue["title"],
+        "updated_at": issue["updated_at"],
+        "url": issue["url"],
+        "user": maybe_user(issue["user"]),
+        "repository_url": issue["repository_url"],
+        ### pull_request
     }

@@ -58,7 +58,10 @@ class GHResource:
     def __getitem__(self, name):
         url = self.url
         if self.name:
-            url = self.url.rstrip('/') + '/' + str(self.name).lstrip('/')
+            if str(self.name).lower().startswith(('http://', 'https://')):
+                url = self.name
+            else:
+                url = self.url.rstrip('/') + '/' + str(self.name).lstrip('/')
         return self.__class__(self.session, url, name)
 
     def __call__(self, decode=True, maybe=False, **kwargs):
