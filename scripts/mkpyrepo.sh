@@ -11,7 +11,7 @@ python setup.py check
 # <http://unix.stackexchange.com/q/23026/11006>
 NAME="$(python setup.py --name)"
 DESC="$(python setup.py --description)"
-SSH_URL="$(gh new -d "$DESC" "$NAME" | jq -r .ssh_url)"
+SSH_URL="$(gh repo new -d "$DESC" "$NAME" | jq -r .ssh_url)"
 
 ! git remote | grep -qx origin || git remote rm origin
 # `grep -v` won't work here, as that makes grep check if any line != "origin"
