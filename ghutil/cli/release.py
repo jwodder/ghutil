@@ -11,9 +11,9 @@ from   ghutil.edit import edit_as_mail
 def cli(gh, tag):
     """ Create or edit a GitHub release """
     if tag is None:
-        ### TODO: Fetch just the name of the latest tag when HEAD isn't tagged
         tag = subprocess.check_output(
-            ['git', 'describe'], universal_newlines=True,
+            ['git', 'describe', '--abbrev=0', '--tags'],
+            universal_newlines=True,
         ).strip()
     endpoint = gh.repository().releases
     data = endpoint.tags[tag].get(maybe=True)
