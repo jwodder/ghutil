@@ -37,6 +37,8 @@
     - Give `gh repo list` filtering & sorting options
     - Give `gh repo edit` options for setting everything via the command line
         - Only launch an editor if no options are given
+    - Include a description of how to specify repositories on the command line
+      in the `gh repo` help
 
 - `gh release`:
     - When creating a new release, prepopulate the release message/body with
@@ -66,10 +68,6 @@
         - `:repo/:id` (for repositories owned by the current user) ?
         - `:id` (for issues of the local repository)
 
-- Add a README
-- Fill in the rest of `setup.py`
-    - Add a `python_requires` field
-    - Move contents to `setup.cfg`
-- Upload to GitHub
+- Expand README
 - cf. <https://github.com/whiteinge/ok.sh>
 - cf. <https://github.com/github/hub>
