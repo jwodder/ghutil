@@ -13,6 +13,7 @@ def maybe_user(obj):
 
 def repo_info(repo):
     return {
+        ### TODO: Include fork information
         "owner": maybe_user(repo["owner"]),
         "name": repo["name"],
         "url": repo["url"],

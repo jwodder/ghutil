@@ -20,11 +20,12 @@
     - Should `gh repo fork` support this?
 - Give the `search` commands an option for outputting JSON objects instead of
   names?
-- Give all commands that output JSON options for showing all fields returned by
-  the API instead of selected fields
+- Give all commands that output JSON options (`--full`? `--raw`?) for showing
+  all fields returned by the API instead of just selected fields
 - Set User Agent
 - Tag the code at each point it was stable?
     - Use `setuptools_scm` for managing the version number?
+- Add a `--version` option
 
 - `gh repo`:
     - Give `gh repo new` an option for setting the local repository's origin to
@@ -67,5 +68,8 @@
 
 - Add a README
 - Fill in the rest of `setup.py`
+    - Add a `python_requires` field
+    - Move contents to `setup.cfg`
 - Upload to GitHub
 - cf. <https://github.com/whiteinge/ok.sh>
+- cf. <https://github.com/github/hub>

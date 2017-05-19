@@ -10,7 +10,6 @@ def cli(gh):
         #click.echo(issue["html_url"])
         click.echo(
             '{:40}  #{:<5}  [{}]'.format(
-                #gh.repository(issue["repository_url"]).get()["full_name"],
                 '{}/{}'.format(*parse_repo_spec(issue["repository_url"])),
                 issue["number"],
                 issue["state"].upper(),
