@@ -24,8 +24,6 @@
   all fields returned by the API instead of just selected fields
 - Set User Agent
 - Tag the code at each point it was stable?
-    - Use `setuptools_scm` for managing the version number?
-- Add a `--version` option
 
 - `gh repo`:
     - Give `gh repo new` an option for setting the local repository's origin to
