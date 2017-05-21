@@ -11,6 +11,7 @@ ENDPOINT = 'https://api.github.com'
 class GitHub:
     def __init__(self):
         self.session = requests.Session()
+        self._me = None
 
     def __getattr__(self, key):
         return self[key]
@@ -22,6 +23,8 @@ class GitHub:
         if url is None:
             url = get_remote_url()
         owner, repo = parse_repo_spec(url)
+        if owner is None:
+            owner = self.me
         return self.repos[owner][repo]
 
     def search(self, objtype, *terms, **params):
@@ -44,6 +47,12 @@ class GitHub:
             yield from page["items"]
         ### Return total_count?
         ### Do something on incomplete_results?
+
+    @property
+    def me(self):
+        if self._me is None:
+            self._me = self.user.get()["login"]
+        return self._me
 
 
 @attr.s

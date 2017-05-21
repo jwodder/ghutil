@@ -13,11 +13,6 @@
     - listing all commits to others' repositories you created?
     - show recent activity on a repository/issue?
 
-- Support specifying a repository as a path to a local clone
-    - Should `gh repo fork` support this?
-- Support specifying a repository owned by the current user as just the
-  repository name?
-    - Should `gh repo fork` support this?
 - Give the `search` commands an option for outputting JSON objects instead of
   names?
 - Give all commands that output JSON options (`--full`? `--raw`?) for showing
