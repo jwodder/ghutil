@@ -33,8 +33,8 @@ def parse_repo_spec(s):
 
     - A string of the form ``owner/repo``
 
-    - A local path (beginning with either ``/`` or ``./``) pointing to a local
-      clone of a GitHub repository
+    - A local path (beginning with ``/``, ``./``, or ``../``) pointing to a
+      local clone of a GitHub repository
 
     - A bare repository name (not containing any slashes).  The name of the
       owner will be set to `None`; `GitHub.repository` will treat this as a
@@ -57,7 +57,7 @@ def parse_repo_spec(s):
     """
     if '/' not in s:
         return (None, s)
-    elif s.startswith(('./', '/')):
+    elif re.match(r'^\.\.?(/|$)', s):
         # Filepath pointing to a local repository
         return parse_repo_url(get_remote_url(chdir=s))
     else:
