@@ -19,11 +19,11 @@
   all fields returned by the API instead of just selected fields
 - Set User Agent
 - Tag the code at each point it was stable?
+- Add docstrings and `help` strings to everything
 
 - `gh repo`:
     - Give `gh repo new` an option for setting the local repository's origin to
       the new repository and pushing everything to it
-    - Add a `gh repo clone <repo> [<dir>]` command
     - Give `fork` an option for cloning the new repository
     - Get `gh repo delete`'s prompt to show the full name of the repository
       (This will probably require changes to Click)
@@ -46,7 +46,7 @@
     - `new`: Allow reading the file from stdin
     - Add a `gh gist clone <id> [<dir>]` command
     - Rename "`gh gist list`" to "`gh gist show`" and use the "`list`" name for
-      just showing the names/IDs of gists?  (cf. `git stash`)
+      just showing the names/IDs of gists  (cf. `git stash`)
 
 - `gh request`:
     - Add an `-H`/`--header` option
