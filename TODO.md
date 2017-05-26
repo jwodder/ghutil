@@ -55,8 +55,6 @@
 - `gh issue`:
     - Allow specifying issues as
       `https://github.com/:owner/:repo/{issues|pull}/:id`
-    - Include a description of how to specify issues on the command line in the
-      `gh issue` help
 
 - Expand README
 - cf. <https://github.com/whiteinge/ok.sh>
