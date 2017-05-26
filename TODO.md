@@ -30,8 +30,6 @@
     - Give `gh repo list` filtering & sorting options
     - Give `gh repo edit` options for setting everything via the command line
         - Only launch an editor if no options are given
-    - Include a description of how to specify repositories on the command line
-      in the `gh repo` help
 
 - `gh release`:
     - When creating a new release, prepopulate the release message/body with
