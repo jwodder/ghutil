@@ -17,11 +17,14 @@ are present may have their interface modified at any time.
 
 Installation
 ============
-``ghutil`` requires Python 3.3 or higher.  Just use version 6.0 or higher of
-`pip <https://pip.pypa.io/>`_ for Python 3 (You have pip, right?) to install
-``ghutil`` and its dependencies::
+``ghutil`` requires Python 3.3 or higher to run and `pip
+<https://pip.pypa.io>`_ 6.0+, `Setuptools <https://setuptools.readthedocs.io>`_
+30.3.0+, & `wheel <https://pypi.python.org/pypi/wheel>`_ to install.  `Once you
+have those
+<https://packaging.python.org/installing/#install-pip-setuptools-and-wheel>`_,
+you can install ``ghutil`` and its dependencies by running::
 
-    pip3 install git+https://github.com/jwodder/ghutil.git
+    python3 -m pip install git+https://github.com/jwodder/ghutil.git
 
 
 Basic Usage
