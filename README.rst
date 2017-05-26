@@ -7,4 +7,87 @@
     :target: https://opensource.org/licenses/MIT
     :alt: MIT License
 
-Interact with GitHub from the command line
+The ``ghutil`` package provides a command-line program for interacting with &
+managing GitHub repositories, issues, gists, etc.
+
+This is a work in progress; while the program should be usable at any given
+point in time, many API features are not yet present, and those features that
+are present may have their interface modified at any time.
+
+
+Installation
+============
+``ghutil`` requires Python 3.3 or higher.  Just use version 6.0 or higher of
+`pip <https://pip.pypa.io/>`_ for Python 3 (You have pip, right?) to install
+``ghutil`` and its dependencies::
+
+    pip3 install git+https://github.com/jwodder/ghutil.git
+
+
+Basic Usage
+===========
+
+Authentication
+--------------
+Store your GitHub username & password in ``~/.netrc`` like so::
+
+    machine api.github.com
+    login YOUR_USERNAME_HERE
+    password YOUR_PASSWORD_HERE
+
+(Make sure the file permissions on ``~/.netrc`` are set to 0600!)
+
+Commands
+--------
+
+``gh gist list``
+   List your gists
+
+``gh gist new [-d <description>] [-f <filename>] [-P|--private] <file>``
+   Create a gist from a given file
+
+``gh issue new [-T <title>] [--body <file>] [-a <assignee>] [-l <label>] [-m <milestone>] [<repo>]``
+   Create an issue in the given repository
+
+``gh issue show <issue> ...``
+   Show details on the given issues
+
+``gh issue list [--filter assigned|created|mentioned|subscribed|all] [--state open|closed|all]``
+   List your issues
+
+``gh plus1 <issue_url>|<comment_url> ...``
+   Give a thumbs-up to an issue, pull request, or comment thereon
+
+``gh release [<tag>]``
+   Create or edit the release for the given tag (default: the most recent
+   reachable tag)
+
+``gh repo clone <repo> [<dir>]``
+   Locally clone a GitHub repository
+
+``gh repo delete [<repo>]``
+   Delete a GitHub repository
+
+``gh repo edit [<repo>]``
+   Edit a GitHub repository's details
+
+``gh repo fans [<repo>]``
+   List users that have forked or starred the given repository
+
+``gh repo fork <repo>``
+   Fork the given repository
+
+``gh repo list``
+   List your repositories
+
+``gh repo new [-d <description>] [-H <homepage>] [-P|--private] <name>``
+   Create a new repository
+
+``gh repo search <search-term> ...``
+   Search for repositories on GitHub
+
+``gh repo show [<repo> ...]``
+   Show details on the given repositories
+
+``gh request [--accept <MIME type>] [--data <data>] [-X <method>] <path>``
+   Make an arbitrary GitHub API request to ``<path>``

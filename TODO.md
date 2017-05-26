@@ -56,6 +56,5 @@
     - Allow specifying issues as
       `https://github.com/:owner/:repo/{issues|pull}/:id`
 
-- Expand README
 - cf. <https://github.com/whiteinge/ok.sh>
 - cf. <https://github.com/github/hub>

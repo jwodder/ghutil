@@ -2,7 +2,7 @@ import click
 from   ghutil.showing import print_json
 
 @click.command()
-@click.option('-a', '--accept', multiple=True)
+@click.option('-a', '--accept', multiple=True, metavar='MIME_TYPE')
 @click.option('-d', '--data')
 @click.option(
     '-X', '--method',
