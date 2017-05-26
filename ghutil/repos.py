@@ -55,11 +55,11 @@ def parse_repo_spec(s):
     >>> parse_repo_spec('headerparser')
     (None, 'headerparser')
     """
-    if '/' not in s:
-        return (None, s)
-    elif re.match(r'^\.\.?(/|$)', s):
+    if re.match(r'^\.\.?(/|$)', s):
         # Filepath pointing to a local repository
         return parse_repo_url(get_remote_url(chdir=s))
+    elif '/' not in s:
+        return (None, s)
     else:
         m = re.match('^({})/({})$'.format(GH_USER_RGX, GH_REPO_RGX), s)
         if m:
