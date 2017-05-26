@@ -2,7 +2,7 @@
     - starring & watching repositories
         - <https://developer.github.com/v3/activity/starring/>
     - creating pull requests
-    - creating & interacting with issues
+    - interacting with issues
         - cf. <https://github.com/stephencelis/ghi>
     - listing users that are watching/have starred given repositories
     - listing a repository's forks
