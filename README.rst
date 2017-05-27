@@ -75,7 +75,7 @@ Commands
    Edit a GitHub repository's details
 
 ``gh repo fans [<repo>]``
-   List users that have forked or starred the given repository
+   List users that have forked, starred, or watched the given repository
 
 ``gh repo fork <repo>``
    Fork the given repository

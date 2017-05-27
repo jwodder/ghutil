@@ -4,7 +4,6 @@
     - creating pull requests
     - interacting with issues
         - cf. <https://github.com/stephencelis/ghi>
-    - listing users that are watching/have starred given repositories
     - listing a repository's forks
         - showing a tree of forks?
     - deleting gists
