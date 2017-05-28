@@ -1,16 +1,27 @@
 from   itertools import chain
+import platform
 import re
 import attr
 import click
 import requests
+from   .         import __url__, __version__
 from   .repos    import get_remote_url, parse_repo_spec
 from   .showing  import print_json
 
 ENDPOINT = 'https://api.github.com'
 
+USER_AGENT = 'ghutil/{} ({}) requests/{} {}/{}'.format(
+    __version__,
+    __url__,
+    requests.__version__,
+    platform.python_implementation(),
+    platform.python_version(),
+)
+
 class GitHub:
     def __init__(self):
         self.session = requests.Session()
+        self.session.headers["User-Agent"] = USER_AGENT
         self._me = None
 
     def __getattr__(self, key):

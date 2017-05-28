@@ -16,9 +16,11 @@
   names?
 - Give all commands that output JSON options (`--full`? `--raw`?) for showing
   all fields returned by the API instead of just selected fields
-- Set User Agent
 - Tag the code at each point it was stable?
 - Add docstrings and `help` strings to everything
+- Instead of assuming the GitHub remote for a local repository is always
+  "origin", get all remotes with `git config --get-regexp 'remote\..*\.url'`
+  and check for one that's a GitHub URL?
 
 - `gh repo`:
     - Give `gh repo new` an option for setting the local repository's origin to
@@ -43,7 +45,7 @@
     - `new`: Allow reading the file from stdin
     - Add a `gh gist clone <id> [<dir>]` command
     - Rename "`gh gist list`" to "`gh gist show`" and use the "`list`" name for
-      just showing the names/IDs of gists  (cf. `git stash`)
+      just showing the names/IDs of gists (cf. `git stash`)
 
 - `gh request`:
     - Add an `-H`/`--header` option
