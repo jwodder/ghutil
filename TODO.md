@@ -1,26 +1,59 @@
-- Add more commands for more of the GitHub API:
-    - starring & watching repositories
-        - <https://developer.github.com/v3/activity/starring/>
-    - creating pull requests
-    - interacting with issues
-        - cf. <https://github.com/stephencelis/ghi>
-    - listing a repository's forks
-        - showing a tree of forks?
-    - deleting gists
-    - deleting releases
-    - deleting branches?
-    - listing all commits to others' repositories you created?
-    - show recent activity on a repository/issue?
+- Add docstrings and `help` strings to everything
+- Tag the code at each point it was stable?
+- Instead of assuming the GitHub remote for a local repository is always
+  "origin", get all remotes with `git config --get-regexp 'remote\..*\.url'`
+  and check for one that's a GitHub URL?
 
+- cf. <https://github.com/whiteinge/ok.sh>
+- cf. <https://github.com/github/hub>
+- cf. <https://github.com/stephencelis/ghi>
+
+API Completeness
+================
+- Repositories:
+    - starring
+        - <https://developer.github.com/v3/activity/starring/>
+    - watching
+    - listing forks
+        - showing a tree of forks?
+    - deleting branches?
+
+- Issues & pull requests:
+    - creating pull requests
+    - searching issues
+    - comments
+        - viewing comments
+        - commenting
+        - more reactions
+        - viewing issue, PR, and comment reactions
+    - reviewing PRs
+    - merging PRs
+    - assigning
+    - labelling & milestones
+    - closing
+
+- Releases:
+    - deleting
+    - adding, editing, & deleting release assets
+
+- Gists:
+    - starring
+    - forking
+    - commenting on gists
+    - deleting
+
+- Projects?
+- Organizations?
+- listing all commits you made to others' repositories?
+- showing recent activity on a repository/issue?
+- getting data about users
+
+Interface Improvements
+======================
 - Give the `search` commands an option for outputting JSON objects instead of
   names?
 - Give all commands that output JSON options (`--full`? `--raw`?) for showing
   all fields returned by the API instead of just selected fields
-- Tag the code at each point it was stable?
-- Add docstrings and `help` strings to everything
-- Instead of assuming the GitHub remote for a local repository is always
-  "origin", get all remotes with `git config --get-regexp 'remote\..*\.url'`
-  and check for one that's a GitHub URL?
 
 - `gh repo`:
     - Give `gh repo new` an option for setting the local repository's origin to
@@ -56,6 +89,3 @@
 - `gh issue`:
     - Allow specifying issues as
       `https://github.com/:owner/:repo/{issues|pull}/:id`
-
-- cf. <https://github.com/whiteinge/ok.sh>
-- cf. <https://github.com/github/hub>
