@@ -11,8 +11,6 @@
 API Completeness
 ================
 - Repositories:
-    - starring
-        - <https://developer.github.com/v3/activity/starring/>
     - watching
     - listing forks
         - showing a tree of forks?

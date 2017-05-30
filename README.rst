@@ -92,5 +92,11 @@ Commands
 ``gh repo show [<repo> ...]``
    Show details on the given repositories
 
+``gh repo star [<repo> ...]``
+   Star the given repositories
+
+``gh repo unstar [<repo> ...]``
+   Unstar the given repositories
+
 ``gh request [--accept <MIME type>] [--data <data>] [-X <method>] <path>``
    Make an arbitrary GitHub API request to ``<path>``
