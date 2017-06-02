@@ -62,6 +62,7 @@ Interface Improvements
     - Give `gh repo list` filtering & sorting options
     - Give `gh repo edit` options for setting everything via the command line
         - Only launch an editor if no options are given
+    - Give `starred` sorting options?
 
 - `gh release`:
     - When creating a new release, prepopulate the release message/body with

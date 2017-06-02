@@ -95,6 +95,9 @@ Commands
 ``gh repo star [<repo> ...]``
    Star the given repositories
 
+``gh repo starred``
+   List starred repositories
+
 ``gh repo unstar [<repo> ...]``
    Unstar the given repositories
 
