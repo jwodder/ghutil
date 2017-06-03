@@ -43,7 +43,7 @@ Store your GitHub username & password in ``~/.netrc`` like so::
 Commands
 --------
 
-``gh gist list``
+``gh gist [list]``
    List your gists
 
 ``gh gist new [-d <description>] [-f <filename>] [-P|--private] <file>``
@@ -55,7 +55,7 @@ Commands
 ``gh issue show <issue> ...``
    Show details on the given issues
 
-``gh issue list [--filter assigned|created|mentioned|subscribed|all] [--state open|closed|all]``
+``gh issue [list [--filter assigned|created|mentioned|subscribed|all] [--state open|closed|all]]``
    List your issues
 
 ``gh plus1 <issue_url>|<comment_url> ...``
@@ -80,7 +80,7 @@ Commands
 ``gh repo fork <repo>``
    Fork the given repository
 
-``gh repo list``
+``gh repo [list]``
    List your repositories
 
 ``gh repo new [-d <description>] [-H <homepage>] [-P|--private] <name>``
