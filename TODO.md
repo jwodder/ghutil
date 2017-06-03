@@ -14,7 +14,10 @@ API Completeness
     - watching
     - listing forks
         - showing a tree of forks?
+            - Try to include how many commits behind/ahead each fork is from
+              the starting repository
     - deleting branches?
+    - showing subscribers?
 
 - Issues & pull requests:
     - creating pull requests

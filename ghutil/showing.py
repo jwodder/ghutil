@@ -29,6 +29,16 @@ def repo_info(repo):
         "created_at": repo["created_at"],
         "updated_at": repo["updated_at"],
         "pushed_at": repo["pushed_at"],
+        "fork": repo["fork"],
+        "forks_count": repo["forks_count"],
+        "watchers_count": repo["watchers_count"],
+        "size": repo["size"],
+        "subscribers_count": repo["subscribers_count"],
+        "stargazers_count": repo["stargazers_count"],
+        "id": repo["id"],
+        "language": repo["language"],
+        "network_count": repo["network_count"],
+        "open_issues_count": repo["open_issues_count"],
     }
 
 def gist_info(gist):
