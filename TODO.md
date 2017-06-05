@@ -55,6 +55,7 @@ Interface Improvements
   names?
 - Give all commands that output JSON options (`--full`? `--raw`?) for showing
   all fields returned by the API instead of just selected fields
+- Give the `list` subcommands `--format` options
 
 - `gh repo`:
     - Give `gh repo new` an option for setting the local repository's origin to

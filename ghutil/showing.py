@@ -33,7 +33,6 @@ def show_fields(*fields):
     return show
 
 repo_info = show_fields(
-    ### TODO: Include fork information
     ("owner", "login"),
     "name",
     "url",
@@ -59,6 +58,8 @@ repo_info = show_fields(
     "language",
     "network_count",
     "open_issues_count",
+    ("parent", "full_name"),
+    ("source", "full_name"),
 )
 
 gist_info = show_fields(
