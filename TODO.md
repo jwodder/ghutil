@@ -13,11 +13,11 @@ API Completeness
 - Repositories:
     - watching
     - listing forks
-        - showing a tree of forks?
-            - Try to include how many commits behind/ahead each fork is from
-              the starting repository
     - deleting branches?
     - showing subscribers?
+        - Are subscribers already listed by the /repos/:owner/:repo/subscribers
+          endpoint despite the documentation saying it lists watchers?  If so,
+          how are watchers fetched?
 
 - Issues & pull requests:
     - creating pull requests
