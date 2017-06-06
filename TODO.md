@@ -12,7 +12,6 @@ API Completeness
 ================
 - Repositories:
     - watching
-    - listing forks
     - deleting branches?
     - showing subscribers?
         - Are subscribers already listed by the /repos/:owner/:repo/subscribers
@@ -67,6 +66,7 @@ Interface Improvements
     - Give `gh repo edit` options for setting everything via the command line
         - Only launch an editor if no options are given
     - Give `starred` sorting options?
+    - Come up with a better name for "`list-forks`"
 
 - `gh release`:
     - When creating a new release, prepopulate the release message/body with

@@ -84,6 +84,9 @@ Most commands output JSON.
 ``gh repo [list]``
    List your repositories
 
+``gh repo list-forks [<repo>]``
+   List a repository's forks
+
 ``gh repo network [<repo> ...]``
    Show a repository's network of forks as a tree
 
