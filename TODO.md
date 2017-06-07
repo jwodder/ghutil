@@ -80,8 +80,9 @@ Interface Improvements
     - `new`: Allow creating a gist containing more than one file
     - `new`: Allow reading the file from stdin
     - Add a `gh gist clone <id> [<dir>]` command
-    - Rename "`gh gist list`" to "`gh gist show`" and use the "`list`" name for
-      just showing the names/IDs of gists (cf. `git stash`)
+    - Improve the output format of `list`
+    - When no arguments are given to `show`, use the current repository
+    - Support specifying gists as paths to local clones
 
 - `gh request`:
     - Add an `-H`/`--header` option

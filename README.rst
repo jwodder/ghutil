@@ -47,6 +47,9 @@ Most commands output JSON.
 ``gh gist [list]``
    List your gists
 
+``gh gist show <gist-id> ...``
+   Show gist details
+
 ``gh gist new [-d <description>] [-f <filename>] [-P|--private] <file>``
    Create a gist from a given file
 
