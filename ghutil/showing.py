@@ -76,6 +76,9 @@ gist_info = show_fields(
     "description",
     "created_at",
     "updated_at",
+    "comments",
+    ("fork_of", "id"),
+    ("forks", "id"),
 )
 
 issue_info = show_fields(

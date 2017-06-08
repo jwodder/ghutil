@@ -55,6 +55,11 @@ Interface Improvements
 - Give all commands that output JSON options (`--full`? `--raw`?) for showing
   all fields returned by the API instead of just selected fields
 - Give the `list` subcommands `--format` options
+- Support configuring the following through a config file:
+    - credentials
+    - API endpoint (including overriding `https://api.github.com` in URL
+      regexes)
+    - `gh * list` formats
 
 - `gh repo`:
     - Give `gh repo new` an option for setting the local repository's origin to
