@@ -8,9 +8,10 @@ from   ghutil.showing import print_json, issue_info
 @click.option('-l', '--label', multiple=True, metavar='LABEL')
 @click.option('-m', '--milestone', metavar='ID|TITLE')
 @click.option('-T', '--title')
+@click.option('-v', '--verbose', is_flag=True)
 @click.argument('repo', type=GHRepo(), default=get_remote_url)
 @click.pass_context
-def cli(ctx, repo, title, body, label, assignee, milestone):
+def cli(ctx, repo, title, body, label, assignee, milestone, verbose):
     """ Create a new issue """
     ### TODO: Open editor if title isn't given
     data = {
@@ -29,4 +30,4 @@ def cli(ctx, repo, title, body, label, assignee, milestone):
                     break
             else:
                 ctx.fail("Unknown milestone: " + milestone)
-    print_json(issue_info(repo.issues.post(json=data)))
+    print_json(issue_info(repo.issues.post(json=data), verbose))

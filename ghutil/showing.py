@@ -9,7 +9,9 @@ def print_json(obj, err=False):
                err=err)
 
 def show_fields(*fields):
-    def show(obj):
+    def show(obj, verbose=False):
+        if verbose:
+            return obj
         about = {}
         for entry in fields:
             if isinstance(entry, str):

@@ -1,3 +1,4 @@
+- Rename package back to `gh`?
 - Add docstrings and `help` strings to everything
 - Tag the code at each point it was stable?
 - Instead of assuming the GitHub remote for a local repository is always
@@ -52,8 +53,6 @@ Interface Improvements
 ======================
 - Give the `search` commands an option for outputting JSON objects instead of
   names?
-- Give all commands that output JSON options (`--full`? `--raw`?) for showing
-  all fields returned by the API instead of just selected fields
 - Give the `list` subcommands `--format` options
 - Support configuring the following through a config file:
     - credentials

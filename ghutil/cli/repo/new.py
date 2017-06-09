@@ -5,9 +5,10 @@ from   ghutil.showing import print_json, repo_info
 @click.option('-d', '--description')
 @click.option('-H', '--homepage')
 @click.option('-P', '--private', is_flag=True)
+@click.option('-v', '--verbose', is_flag=True)
 @click.argument('name')
 @click.pass_obj
-def cli(gh, description, homepage, private, name):
+def cli(gh, description, homepage, private, name, verbose):
     """ Create a new repository """
     data = {
         "name": name,
@@ -17,4 +18,4 @@ def cli(gh, description, homepage, private, name):
         data["description"] = description
     if homepage is not None:
         data["homepage"] = homepage
-    print_json(repo_info(gh.user.repos.post(json=data)))
+    print_json(repo_info(gh.user.repos.post(json=data), verbose))
