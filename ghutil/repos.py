@@ -55,7 +55,7 @@ def parse_repo_spec(s):
     >>> parse_repo_spec('headerparser')
     (None, 'headerparser')
     """
-    if re.match(r'^\.\.?(/|$)', s):
+    if s.startswith('/') or re.match(r'^\.\.?(/|$)', s):
         # Filepath pointing to a local repository
         return parse_repo_url(get_remote_url(chdir=s))
     elif '/' not in s:
