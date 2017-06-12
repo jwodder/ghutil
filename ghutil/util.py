@@ -1,6 +1,7 @@
-from   importlib import import_module
+from   importlib  import import_module
 import os
-from   os.path   import dirname, exists, join, splitext
+from   os.path    import dirname, exists, join, splitext
+from   subprocess import check_output
 import click
 
 def package_group(package, filepath, **kwargs):
@@ -20,3 +21,6 @@ def package_group(package, filepath, **kwargs):
 def default_command(ctx, cmdname):
     if ctx.invoked_subcommand is None:
         ctx.invoke(ctx.command.commands[cmdname])
+
+def cmdline(*args, **kwargs):
+    return check_output(args, universal_newlines=True, **kwargs).strip()

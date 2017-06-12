@@ -1,9 +1,9 @@
 # <https://developer.github.com/v3/repos/releases/>
 ### TODO: Try to somehow guard against trying to create a release for a tag
 ### that hasn't been pushed yet
-import subprocess
 import click
 from   ghutil.edit import edit_as_mail
+from   ghutil.util import cmdline
 
 @click.command()
 @click.argument('tag', required=False)
@@ -11,10 +11,7 @@ from   ghutil.edit import edit_as_mail
 def cli(gh, tag):
     """ Create or edit a GitHub release """
     if tag is None:
-        tag = subprocess.check_output(
-            ['git', 'describe', '--abbrev=0', '--tags'],
-            universal_newlines=True,
-        ).strip()
+        tag = cmdline('git', 'describe', '--abbrev=0', '--tags')
     endpoint = gh.repository().releases
     data = endpoint.tags[tag].get(maybe=True)
     if data is None:

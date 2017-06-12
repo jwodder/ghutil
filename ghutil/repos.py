@@ -1,6 +1,6 @@
 import re
-import subprocess
 import click
+from   .util import cmdline
 
 # As of 2017-05-21, trying to sign up to GitHub with an invalid username gives
 # the message "Username may only contain alphanumeric characters or single
@@ -91,8 +91,4 @@ def parse_repo_url(s):
     raise ValueError(s)
 
 def get_remote_url(chdir=None, remote='origin'):
-    return subprocess.check_output(
-        ['git', 'remote', 'get-url', remote],
-        cwd=chdir,
-        universal_newlines=True,
-    ).strip()
+    return cmdline('git', 'remote', 'get-url', remote, cwd=chdir)
