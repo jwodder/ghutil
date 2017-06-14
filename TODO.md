@@ -20,7 +20,6 @@ API Completeness
           how are watchers fetched?
 
 - Issues & pull requests:
-    - creating pull requests
     - searching issues
     - comments
         - viewing comments
@@ -87,6 +86,8 @@ Interface Improvements
     - Improve the output format of `list`
     - When no arguments are given to `show`, use the current repository
     - Support specifying gists as paths to local clones
+    - Include a description of how to specify gists on the command line in the
+      `gh gist` help
 
 - `gh request`:
     - Add an `-H`/`--header` option
@@ -97,3 +98,6 @@ Interface Improvements
 - `gh issue`:
     - Allow specifying issues as
       `https://github.com/:owner/:repo/{issues|pull}/:id`
+
+- `gh pr`:
+    - Improve the syntax of `new`
