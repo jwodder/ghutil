@@ -1,11 +1,10 @@
 import click
 from   ghutil.edit  import edit_as_mail
-from   ghutil.repos import GHRepo, get_remote_url
+from   ghutil.repos import repo_arg
 
 @click.command()
-@click.argument('repo', type=GHRepo(), default=get_remote_url)
-@click.pass_obj
-def cli(gh, repo):
+@repo_arg
+def cli(repo):
     """ Edit repository details """
     about = repo.get()
     edited = edit_as_mail(about, 'name private description homepage'

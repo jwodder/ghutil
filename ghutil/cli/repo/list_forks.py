@@ -1,8 +1,8 @@
 import click
-from   ghutil.repos import GHRepo, get_remote_url
+from   ghutil.repos import repo_arg
 
 @click.command()
-@click.argument('repo', type=GHRepo(), default=get_remote_url)
+@repo_arg
 def cli(repo):
     """ List a repository's forks """
     for fork in repo.forks.get():

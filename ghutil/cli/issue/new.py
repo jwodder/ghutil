@@ -1,5 +1,5 @@
 import click
-from   ghutil.repos   import GHRepo, get_remote_url
+from   ghutil.repos   import repo_arg
 from   ghutil.showing import print_json, issue_info
 
 @click.command()
@@ -9,7 +9,7 @@ from   ghutil.showing import print_json, issue_info
 @click.option('-m', '--milestone', metavar='ID|TITLE')
 @click.option('-T', '--title')
 @click.option('-v', '--verbose', is_flag=True)
-@click.argument('repo', type=GHRepo(), default=get_remote_url)
+@repo_arg
 @click.pass_context
 def cli(ctx, repo, title, body, label, assignee, milestone, verbose):
     """ Create a new issue """

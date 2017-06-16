@@ -1,11 +1,10 @@
 import click
-from   ghutil.repos   import GHRepo, get_remote_url
+from   ghutil.repos   import repo_arg
 from   ghutil.showing import print_json
 
 @click.command()
-@click.argument('repo', type=GHRepo(), default=get_remote_url)
-@click.pass_obj
-def cli(gh, repo):
+@repo_arg
+def cli(repo):
     """ List forkers, stargazers, & watchers """
     print_json({
         "forkers": [f["owner"]["login"] for f in repo.forks.get()],

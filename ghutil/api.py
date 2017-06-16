@@ -82,7 +82,7 @@ class GHResource:
                 url = self.name
             else:
                 url = self.url.rstrip('/') + '/' + str(self.name).lstrip('/')
-        return self.__class__(self.session, url, name)
+        return type(self)(self.session, url, name)
 
     def __call__(self, decode=True, maybe=False, **kwargs):
         # Use self.name as HTTP method (case insensitive); this allows for

@@ -92,3 +92,10 @@ def parse_repo_url(s):
 
 def get_remote_url(chdir=None, remote='origin'):
     return cmdline('git', 'remote', 'get-url', remote, cwd=chdir)
+
+repo_arg = click.argument('repo', type=GHRepo(), default=get_remote_url)
+
+repos_list_arg = click.argument(
+    'repos', type=GHRepo(), nargs=-1,
+    callback=lambda ctx, param, value: value or [ctx.obj.repository()],
+)
