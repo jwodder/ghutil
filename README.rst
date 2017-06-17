@@ -84,7 +84,7 @@ Most commands output JSON.
 ``gh repo fork <repo>``
    Fork the given repository
 
-``gh repo [list]``
+``gh repo [list [--type all|owner|public|private|member] [--sort created|updated|pushed|full_name] [--asc|--desc]]``
    List your repositories
 
 ``gh repo list-forks [<repo>]``

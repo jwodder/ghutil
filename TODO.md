@@ -4,6 +4,7 @@
 - Instead of assuming the GitHub remote for a local repository is always
   "origin", get all remotes with `git config --get-regexp 'remote\..*\.url'`
   and check for one that's a GitHub URL?
+- Write tests (somehow)
 
 - cf. <https://github.com/whiteinge/ok.sh>
 - cf. <https://github.com/github/hub>
@@ -58,6 +59,7 @@ Interface Improvements
     - API endpoint (including overriding `https://api.github.com` in URL
       regexes)
     - `gh * list` formats
+    - command aliases
 
 - `gh repo`:
     - Give `gh repo new` an option for setting the local repository's origin to
@@ -65,7 +67,6 @@ Interface Improvements
     - Give `fork` an option for cloning the new repository
     - Get `gh repo delete`'s prompt to show the full name of the repository
       (This will probably require changes to Click)
-    - Give `gh repo list` filtering & sorting options
     - Give `gh repo edit` options for setting everything via the command line
         - Only launch an editor if no options are given
     - Give `starred` sorting options?
