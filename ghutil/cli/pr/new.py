@@ -22,7 +22,7 @@ def cli(gh, source, dest, title, body, maintainer_can_modify):
         raise ValueError(dest)  #####
     dest_repo = gh.repository(dest_repo)
 
-    ### TODO: Open editor if title isn't given
+    ### TODO: Open editor if either title or body is absent
     data = {
         "title": title,
         "body": body.read() if body is not None else None,

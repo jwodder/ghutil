@@ -103,3 +103,47 @@ issue_info = show_fields(
     "repository_url",
     ### pull_request
 )
+
+show_pr_repo = show_fields(
+    "label",
+    "ref",
+    ("repo", "full_name"),
+    "sha",
+    ("user", "login"),
+)
+
+pr_info = show_fields(
+    ("assignees", "login"),
+    ("user", "login"),
+    "title",
+    "html_url",
+    "id",
+    "issue_url",
+    "locked",
+    "maintainer_can_modify",
+    "changed_files",
+    "closed_at",
+    "comments",
+    "commits",
+    "additions",
+    "deletions",
+    "created_at",
+    "diff_url",
+    "milestone",
+    "number",
+    "updated_at",
+    "url",
+    "patch_url",
+    "rebaseable",
+    "review_comments",
+    "state",
+    ("base", show_pr_repo),
+    ("head", show_pr_repo),
+    "mergeable",
+    "mergeable_state",
+    "merged",
+    "merged_at",
+    "merge_commit_sha",
+    ("merged_by", "login"),
+    ("requested_reviewers", "login"),  ### Double-check this one
+)

@@ -60,6 +60,8 @@ Interface Improvements
       regexes)
     - `gh * list` formats
     - command aliases
+- Allow specifying issues & pull requests as
+  `https://github.com/:owner/:repo/{issues|pull}/:id` (and also as API URLs)
 
 - `gh repo`:
     - Give `gh repo new` an option for setting the local repository's origin to
@@ -71,6 +73,8 @@ Interface Improvements
         - Only launch an editor if no options are given
     - Give `starred` sorting options?
     - Come up with a better name for "`list-forks`"
+    - Let `fans` take more than one repository at a time?
+    - Let `list-forks` take more than one repository at a time?
 
 - `gh release`:
     - When creating a new release, prepopulate the release message/body with
@@ -96,9 +100,5 @@ Interface Improvements
     - Add a `--param key=value` option for setting query parameters (and/or
       JSON body elements?)
 
-- `gh issue`:
-    - Allow specifying issues as
-      `https://github.com/:owner/:repo/{issues|pull}/:id`
-
 - `gh pr`:
-    - Improve the syntax of `new`
+    - Improve the syntax of `new` and then document it in the docstring

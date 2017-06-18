@@ -65,6 +65,12 @@ Most commands output JSON.
 ``gh plus1 <issue_url>|<comment_url> ...``
    Give a thumbs-up to an issue, pull request, or comment thereon
 
+``gh pr new [-T <title>] [--body <file>] [--maintainer-can-modify] <source> <dest>``
+   Create a pull request
+
+``gh pr show <pull request> ...``
+   Show details on the given pull requests
+
 ``gh release [<tag>]``
    Create or edit the release for the given tag (default: the most recent
    reachable tag)
