@@ -21,7 +21,7 @@ Installation
 <https://pip.pypa.io>`_ 6.0+, `Setuptools <https://setuptools.readthedocs.io>`_
 30.3.0+, & `wheel <https://pypi.python.org/pypi/wheel>`_ to install.  `Once you
 have those
-<https://packaging.python.org/installing/#install-pip-setuptools-and-wheel>`_,
+<https://packaging.python.org/tutorials/installing-packages/#install-pip-setuptools-and-wheel>`_,
 you can install ``ghutil`` and its dependencies by running::
 
     python3 -m pip install git+https://github.com/jwodder/ghutil.git
