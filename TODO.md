@@ -4,7 +4,7 @@
 - Instead of assuming the GitHub remote for a local repository is always
   "origin", get all remotes with `git config --get-regexp 'remote\..*\.url'`
   and check for one that's a GitHub URL?
-- Write tests (somehow)
+- Write more tests (somehow)
 
 - cf. <https://github.com/whiteinge/ok.sh>
 - cf. <https://github.com/github/hub>

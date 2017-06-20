@@ -1,4 +1,5 @@
 import click
+from   ghutil.edit    import edit_as_mail
 from   ghutil.repos   import repo_arg
 from   ghutil.showing import print_json, issue_info
 
@@ -13,21 +14,30 @@ from   ghutil.showing import print_json, issue_info
 @click.pass_context
 def cli(ctx, repo, title, body, label, assignee, milestone, verbose):
     """ Create a new issue """
-    ### TODO: Open editor if title isn't given
     data = {
         "title": title,
         "body": body.read() if body is not None else None,
         "labels": label,
         "assignees": assignee,
+        "milestone": milestone,
     }
-    if milestone is not None:
+    if title is None or body is None:
+        if repo.get()["permissions"]["push"]:
+            fields = 'title labels assignees milestone'
+        else:
+            fields = 'title'
+        data.update(edit_as_mail(data, fields, 'body'))
+        if data["title"] is None:  # or body is None?
+            click.echo('Aborting issue due to empty title')
+            return
+    if data["milestone"] is not None:
         try:
-            data["milestone"] = int(milestone)
+            data["milestone"] = int(data["milestone"])
         except ValueError:
             for ms in repo.milestones.get():
-                if ms["title"] == milestone:
+                if ms["title"] == data["milestone"]:
                     data["milestone"] = ms["id"]
                     break
             else:
-                ctx.fail("Unknown milestone: " + milestone)
+                ctx.fail("Unknown milestone: " + data["milestone"])
     print_json(issue_info(repo.issues.post(json=data), verbose))

@@ -1,3 +1,4 @@
+import re
 import click
 from   headerparser import HeaderParser, BOOL
 
@@ -6,6 +7,8 @@ def edit_as_mail(obj: dict, fields=None, bodyfield=None):
     # Fields that the user deletes are considered unchanged
     if fields is None:
         fields = sorted(obj.keys())
+    elif isinstance(fields, str):
+        fields = fields.split()
     parser = HeaderParser(body=False if bodyfield is None else None)
     msg = ''
     for f in fields:
@@ -20,10 +23,13 @@ def edit_as_mail(obj: dict, fields=None, bodyfield=None):
         elif isinstance(val, str):
             msg += '{}: {}\n'.format(dispname, val)
             parser.add_field(dispname, dest=f)
+        elif isinstance(val, (list, tuple)):
+            msg += '{}: {}\n'.format(dispname, ', '.join(map(str, val)))
+            parser.add_field(dispname, type=LIST, dest=f)
         else:
-            raise TypeError('only string and boolean fields supported')
+            raise TypeError('only string, boolean, and list fields supported')
     if bodyfield is not None:
-        msg += '\n' + obj[bodyfield]
+        msg += '\n' + (obj[bodyfield] or '')
     msg = click.edit(msg)
     if msg is None:
         return {}
@@ -32,6 +38,13 @@ def edit_as_mail(obj: dict, fields=None, bodyfield=None):
     if data.body is not None:
         newobj[bodyfield] = data.body
     for k,v in list(newobj.items()):
-        if obj[k] == v or obj[k] is None and v == '':
+        if (list(obj[k]) if isinstance(obj[k], tuple) else obj[k]) == v or \
+                obj[k] is None and v == '':
             del newobj[k]
     return newobj
+
+def LIST(value):
+    if not value or value.isspace():
+        return []
+    else:
+        return re.split(r'\s*,\s*', value)
