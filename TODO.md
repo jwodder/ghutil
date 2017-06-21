@@ -1,4 +1,3 @@
-- Rename package back to `gh`?
 - Add docstrings and `help` strings to everything
 - Tag the code at each point it was stable?
 - Instead of assuming the GitHub remote for a local repository is always
@@ -60,6 +59,7 @@ Interface Improvements
       regexes)
     - `gh * list` formats
     - command aliases
+    - `Accept:` headers to send
 - Allow specifying issues & pull requests as
   `https://github.com/:owner/:repo/{issues|pull}/:id` (and also as API URLs)
 
