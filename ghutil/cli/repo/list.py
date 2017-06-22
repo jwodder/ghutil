@@ -12,4 +12,4 @@ def cli(gh, type, sort, direction):  # noqa: B002
     """ List your repositories """
     for repo in gh.user.repos.get(params={
         "type": type, "sort": sort, "direction": direction,
-    }): click.echo(repo["full_name"])
+    }): click.echo(repo["full_name"])  # noqa: E701
