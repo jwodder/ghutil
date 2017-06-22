@@ -81,7 +81,7 @@ Most commands output JSON.
 ``gh repo delete [<repo>]``
    Delete a GitHub repository
 
-``gh repo edit [<repo>]``
+``gh repo edit [<options>] [<repo>]``
    Edit a GitHub repository's details
 
 ``gh repo fans [<repo>]``

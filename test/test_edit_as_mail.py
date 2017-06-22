@@ -50,3 +50,4 @@ def test_edit_as_mail(mocker, obj, fields, bodyfield, edit_in, edit_out, ret):
 # list field filled in with whitespace
 # list field filled with a single item (no commas)
 # list field with trailing comma?
+# leaving a boolean field blank

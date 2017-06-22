@@ -69,8 +69,6 @@ Interface Improvements
     - Give `fork` an option for cloning the new repository
     - Get `gh repo delete`'s prompt to show the full name of the repository
       (This will probably require changes to Click)
-    - Give `gh repo edit` options for setting everything via the command line
-        - Only launch an editor if no options are given
     - Give `starred` sorting options?
     - Come up with a better name for "`list-forks`"
     - Let `fans` take more than one repository at a time?
@@ -81,7 +79,7 @@ Interface Improvements
       the tagged commit's commit message
     - Allow specifying the repository on the command line (and handle the case
       when a tag isn't also specified)
-    - Split into `gh release new` and `gh release edit`?
+    - Split into `gh release new` and `gh release edit`
     - Add options for setting everything via the command line
 
 - `gh gist`:
