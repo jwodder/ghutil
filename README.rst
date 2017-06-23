@@ -47,20 +47,23 @@ Most commands output JSON.
 ``gh gist [list]``
    List your gists
 
+``gh gist new [-d <description>] [-f <filename>] [-P|--private] <file>``
+   Create a gist from a given file
+
 ``gh gist show <gist-id> ...``
    Show gist details
 
-``gh gist new [-d <description>] [-f <filename>] [-P|--private] <file>``
-   Create a gist from a given file
+``gh issue [list [--filter assigned|created|mentioned|subscribed|all] [--state open|closed|all]]``
+   List your issues
 
 ``gh issue new [-T <title>] [--body <file>] [-a <assignee>] [-l <label>] [-m <milestone>] [<repo>]``
    Create an issue in the given repository
 
+``gh issue search <search-term> ...``
+   Search for issues and/or pull requests
+
 ``gh issue show <issue> ...``
    Show details on the given issues
-
-``gh issue [list [--filter assigned|created|mentioned|subscribed|all] [--state open|closed|all]]``
-   List your issues
 
 ``gh plus1 <issue_url>|<comment_url> ...``
    Give a thumbs-up to an issue, pull request, or comment thereon
@@ -112,7 +115,7 @@ Most commands output JSON.
    Star the given repositories
 
 ``gh repo starred``
-   List starred repositories
+   List repositories you've starred
 
 ``gh repo unstar [<repo> ...]``
    Unstar the given repositories

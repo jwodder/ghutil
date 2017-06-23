@@ -20,7 +20,6 @@ API Completeness
           how are watchers fetched?
 
 - Issues & pull requests:
-    - searching issues
     - comments
         - viewing comments
         - commenting
@@ -52,12 +51,12 @@ Interface Improvements
 ======================
 - Give the `search` commands an option for outputting JSON objects instead of
   names?
-- Give the `list` subcommands `--format` options
+- Give the `list` and `search` subcommands `--format` options
 - Support configuring the following through a config file:
     - credentials
     - API endpoint (including overriding `https://api.github.com` in URL
       regexes)
-    - `gh * list` formats
+    - `gh * list`/`search` formats
     - command aliases
     - `Accept:` headers to send
 - Allow specifying issues & pull requests as
@@ -97,6 +96,9 @@ Interface Improvements
     - Add support for `--data` reading from a file
     - Add a `--param key=value` option for setting query parameters (and/or
       JSON body elements?)
+
+- `gh issue`:
+    - Make `list` and `search` list issues in the form `:owner/:repo/:id`
 
 - `gh pr`:
     - Improve the syntax of `new` and then document it in the docstring
