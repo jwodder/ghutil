@@ -7,40 +7,45 @@ from   ghutil.showing import print_json, pr_info
 @click.option('-M', '--maintainer-can-modify', is_flag=True)
 @click.option('-T', '--title')
 @click.option('-v', '--verbose', is_flag=True)
-@click.argument('source')
-@click.argument('dest')
-@click.pass_obj
-def cli(gh, source, dest, title, body, maintainer_can_modify, verbose):
-    """ Create a new pull request """
+@click.argument('base')
+@click.argument('head')
+@click.pass_context
+def cli(ctx, head, base, title, body, maintainer_can_modify, verbose):
+    """
+    Create a new pull request.
 
-    src_repo, sep, src_branch = source.rpartition(':')
-    if not sep:
-        raise ValueError(source)  ##### TODO: Be more informative
-    src_repo = gh.repository(src_repo)
+    `gh pr new alice/repo:master bob/repo:patch` creates a pull request in
+    alice/repo asking bob/repo:patch to be merged into master.
+    """
 
-    dest_repo, sep, dest_branch = dest.rpartition(':')
+    head_repo, sep, head_branch = head.rpartition(':')
     if not sep:
-        raise ValueError(dest)  ##### TODO: Be more informative
-    dest_repo = gh.repository(dest_repo)
+        ctx.fail('Invalid repo:branch identifier: ' + head)
+    head_repo = ctx.obj.repository(head_repo)
+
+    base_repo, sep, base_branch = base.rpartition(':')
+    if not sep:
+        ctx.fail('Invalid repo:branch identifier: ' + base)
+    base_repo = ctx.obj.repository(base_repo)
 
     data = {
         "title": title,
         "body": body.read() if body is not None else None,
         "maintainer_can_modify": maintainer_can_modify,
-        "base": dest_branch,
+        "base": base_branch,
     }
     if title is None or body is None:
-        ### TODO: Also let the user edit the source & destination?
+        ### TODO: Also let the user edit the head & base?
         data.update(edit_as_mail(data, 'title maintainer_can_modify', 'body'))
         if data["title"] is None:  # or body is None?
             click.echo('Aborting pull request due to empty title')
             return
 
-    src_data = src_repo.get()
-    if src_data["full_name"] == dest_repo.get()["full_name"]:
-        data["head"] = src_branch
+    head_data = head_repo.get()
+    if head_data["full_name"] == base_repo.get()["full_name"]:
+        data["head"] = head_branch
     else:
         ### TODO: Check that the repositories are in the same network?
-        data["head"] = src_data["owner"]["login"] + ':' + src_branch
+        data["head"] = head_data["owner"]["login"] + ':' + head_branch
 
-    print_json(pr_info(dest_repo.pulls.post(json=data), verbose))
+    print_json(pr_info(base_repo.pulls.post(json=data), verbose))
