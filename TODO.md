@@ -87,8 +87,6 @@ Interface Improvements
     - Improve the output format of `list`
     - When no arguments are given to `show`, use the current repository
     - Support specifying gists as paths to local clones
-    - Include a description of how to specify gists on the command line in the
-      `gh gist` help
 
 - `gh request`:
     - Add an `-H`/`--header` option
