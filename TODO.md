@@ -84,7 +84,6 @@ Interface Improvements
 - `gh gist`:
     - `new`: Allow creating a gist containing more than one file
     - `new`: Allow reading the file from stdin
-    - Add a `gh gist clone <id> [<dir>]` command
     - Improve the output format of `list`
     - When no arguments are given to `show`, use the current repository
     - Support specifying gists as paths to local clones

@@ -44,6 +44,9 @@ Commands
 --------
 Most commands output JSON.
 
+``gh gist clone <gist-id> [<dir>]``
+   Locally clone a gist
+
 ``gh gist [list]``
    List your gists
 

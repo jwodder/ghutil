@@ -67,7 +67,7 @@ repo_info = show_fields(
 gist_info = show_fields(
     "id",
     "url",
-    "git_push_url",
+    "git_pull_url",
     ("files", lambda files: {
         fname: {k:v for k,v in about.items() if k != 'content'}
         for fname, about in files.items()
