@@ -30,10 +30,18 @@ class GitHub:
     def __getitem__(self, name):
         return GHResource(self.session, ENDPOINT, name)
 
-    def repository(self, url=None):
-        if url is None:
-            url = get_remote_url()
-        owner, repo = parse_repo_spec(url)
+    def repository(self, *args):
+        if not args:
+            args = (None,)
+        if len(args) == 1:
+            url, = args
+            if url is None:
+                url = get_remote_url()
+            owner, repo = parse_repo_spec(url)
+        elif len(args) == 2:
+            owner, repo = args
+        else:
+            raise TypeError('GitHub.repository() takes one or two arguments')
         if owner is None:
             owner = self.me
         return self.repos[owner][repo]

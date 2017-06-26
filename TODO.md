@@ -59,8 +59,6 @@ Interface Improvements
     - `gh * list`/`search` formats
     - command aliases
     - `Accept:` headers to send
-- Allow specifying issues & pull requests as
-  `https://github.com/:owner/:repo/{issues|pull}/:id` (and also as API URLs)
 
 - `gh repo`:
     - Give `gh repo new` an option for setting the local repository's origin to

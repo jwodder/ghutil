@@ -14,5 +14,7 @@ def cli(ctx):
         $OWNER/$REPO/$ID
         $REPO/$ID        # for repositories owned by the current user
         $ID              # for issues of the locally-cloned repository
+        https://github.com/$OWNER/$REPO/issues/$ID
+        https://api.github.com/repos/$OWNER/$REPO/issues/$ID
     """
     default_command(ctx, 'list')

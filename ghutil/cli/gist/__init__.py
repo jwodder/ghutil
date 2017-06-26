@@ -6,7 +6,7 @@ from   ghutil.util import package_group, default_command
 def cli(ctx):
     """
     Manage gists.
-    
+
     Gists may be specified on the command line using any of the following
     formats:
 
