@@ -41,6 +41,8 @@ API Completeness
     - forking
     - commenting on gists
     - deleting
+    - searching (not in the API?)
+    - getting raw contents?
 
 - Projects?
 - Organizations?
@@ -92,6 +94,7 @@ Interface Improvements
     - Add support for `--data` reading from a file
     - Add a `--param key=value` option for setting query parameters (and/or
       JSON body elements?)
+    - Add an option for dumping response headers?
 
 - `gh issue`:
     - `list`: Allow specifying `--since` in human-friendly formats like

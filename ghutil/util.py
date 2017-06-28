@@ -1,7 +1,7 @@
 from   importlib  import import_module
 import os
 from   os.path    import dirname, exists, join, splitext
-from   subprocess import check_output
+from   subprocess import check_output, CalledProcessError
 import click
 
 def package_group(package, filepath, **kwargs):
@@ -23,4 +23,7 @@ def default_command(ctx, cmdname):
         ctx.invoke(ctx.command.commands[cmdname])
 
 def cmdline(*args, **kwargs):
-    return check_output(args, universal_newlines=True, **kwargs).strip()
+    try:
+        return check_output(args, universal_newlines=True, **kwargs).strip()
+    except CalledProcessError as e:
+        click.get_current_context().exit(e.returncode)
