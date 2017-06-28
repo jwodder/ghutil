@@ -1,5 +1,6 @@
 import click
-from   ghutil.repos import repo_arg
+from   ghutil.issues import parse_issue_url
+from   ghutil.repos  import repo_arg
 
 @click.command()
 @click.option('-a', '--assignee', metavar='USER')
@@ -19,4 +20,4 @@ def cli(repo, **params):
     if params.get('label'):
         params['label'] = ','.join(params['label'])
     for issue in repo.issues.get(params=params):
-        click.echo(issue["html_url"])
+        click.echo('/'.join(map(str, parse_issue_url(issue["url"]))))

@@ -94,7 +94,6 @@ Interface Improvements
       JSON body elements?)
 
 - `gh issue`:
-    - Make `list` and `search` list issues in the form `:owner/:repo/:id`
     - `list`: Allow specifying `--since` in human-friendly formats like
       `2017-06-28` and `1h`
 
