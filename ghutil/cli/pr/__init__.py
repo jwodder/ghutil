@@ -1,6 +1,8 @@
-from   ghutil.util import package_group
+import click
+from   ghutil.util import package_group, default_command
 
-@package_group(__package__, __file__)
-def cli():
+@package_group(__package__, __file__, invoke_without_command=True)
+@click.pass_context
+def cli(ctx):
     """ Manage pull requests """
-    pass
+    default_command(ctx, 'list')

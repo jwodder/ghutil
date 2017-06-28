@@ -30,7 +30,6 @@ API Completeness
     - assigning
     - labelling & milestones
     - closing
-    - listing open PRs
 
 - Releases:
     - deleting
