@@ -56,8 +56,8 @@ Most commands output JSON.
 ``gh gist show <gist-id> ...``
    Show gist details
 
-``gh issue [list [--filter assigned|created|mentioned|subscribed|all] [--state open|closed|all]]``
-   List your issues
+``gh issue [list [<options>] [<repo>]]``
+   List issues for a repository
 
 ``gh issue new [-T <title>] [--body <file>] [-a <assignee>] [-l <label>] [-m <milestone>] [<repo>]``
    Create an issue in the given repository

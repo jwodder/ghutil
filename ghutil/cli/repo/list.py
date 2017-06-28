@@ -8,8 +8,7 @@ import click
 @click.option('-t', '--type',
               type=click.Choice(['all','owner','public','private','member']))
 @click.pass_obj
-def cli(gh, type, sort, direction):  # noqa: B002
+def cli(gh, **params):
     """ List your repositories """
-    for repo in gh.user.repos.get(params={
-        "type": type, "sort": sort, "direction": direction,
-    }): click.echo(repo["full_name"])  # noqa: E701
+    for repo in gh.user.repos.get(params=params):
+        click.echo(repo["full_name"])

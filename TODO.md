@@ -30,6 +30,7 @@ API Completeness
     - assigning
     - labelling & milestones
     - closing
+    - listing open PRs
 
 - Releases:
     - deleting
@@ -94,6 +95,8 @@ Interface Improvements
 
 - `gh issue`:
     - Make `list` and `search` list issues in the form `:owner/:repo/:id`
+    - `list`: Allow specifying `--since` in human-friendly formats like
+      `2017-06-28` and `1h`
 
 - `gh pr`:
     - Improve the syntax of `new` and then document it in the docstring
