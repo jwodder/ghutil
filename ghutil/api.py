@@ -22,6 +22,7 @@ class GitHub:
     def __init__(self):
         self.session = requests.Session()
         self.session.headers["User-Agent"] = USER_AGENT
+        self.session.headers["Accept"] = 'application/vnd.github.v3+json'
         self._me = None
 
     def __getattr__(self, key):
