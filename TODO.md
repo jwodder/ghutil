@@ -22,10 +22,10 @@ API Completeness
 - Issues & pull requests:
     - comments
         - viewing comments
-        - commenting on PRs
         - more reactions
         - viewing issue, PR, and comment reactions
     - reviewing PRs
+        - review comments
     - merging PRs
     - assigning
     - labelling & milestones

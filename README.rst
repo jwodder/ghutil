@@ -63,7 +63,7 @@ Most commands output JSON.
    Create an issue in the given repository
 
 ``gh issue reply <issue> [<file>]``
-   Comment on an issue
+   Comment on an issue or pull request
 
 ``gh issue search <search-term> ...``
    Search for issues and/or pull requests
@@ -79,6 +79,9 @@ Most commands output JSON.
 
 ``gh pr new [-T <title>] [--body <file>] [--maintainer-can-modify] <base> <head>``
    Create a pull request
+
+``gh pr reply <issue> [<file>]``
+   Comment on an issue or pull request
 
 ``gh pr show <pull request> ...``
    Show details on the given pull requests

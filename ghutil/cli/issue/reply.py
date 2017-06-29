@@ -5,7 +5,7 @@ from   ghutil.issues import GHIssue
 @click.argument('issue', type=GHIssue())
 @click.argument('file', type=click.File(), required=False)
 def cli(issue, file):
-    """ Comment on an issue """
+    """ Comment on an issue/PR """
     if file is None:
         body = click.edit()
         if body is None:
