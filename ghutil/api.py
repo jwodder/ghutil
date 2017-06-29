@@ -22,7 +22,9 @@ class GitHub:
     def __init__(self):
         self.session = requests.Session()
         self.session.headers["User-Agent"] = USER_AGENT
-        self.session.headers["Accept"] = 'application/vnd.github.v3+json'
+        self.session.headers["Accept"] = \
+            'application/vnd.github.v3+json; ' \
+            'application/vnd.github.squirrel-girl-preview'
         self._me = None
 
     def __getattr__(self, key):

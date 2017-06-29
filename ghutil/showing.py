@@ -101,6 +101,9 @@ issue_info = show_fields(
     "url",
     ("user", "login"),
     "repository_url",
+    ("reactions", lambda react: {
+        k:v for k,v in react.items() if k not in ('total_count', 'url') and v
+    })
     ### pull_request
 )
 

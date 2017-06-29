@@ -22,8 +22,9 @@ API Completeness
 - Issues & pull requests:
     - comments
         - viewing comments
-        - more reactions
-        - viewing issue, PR, and comment reactions
+        - editing comments
+    - more reactions
+    - listing individual users' reactions?
     - reviewing PRs
         - review comments
     - merging PRs
