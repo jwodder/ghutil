@@ -22,7 +22,7 @@ API Completeness
 - Issues & pull requests:
     - comments
         - viewing comments
-        - commenting
+        - commenting on PRs
         - more reactions
         - viewing issue, PR, and comment reactions
     - reviewing PRs
@@ -98,6 +98,10 @@ Interface Improvements
 - `gh issue`:
     - `list`: Allow specifying `--since` in human-friendly formats like
       `2017-06-28` and `1h`
+    - `reply`:
+        - Add an option for including the quoted contents of a previous comment
+          in the editor
+        - Make sure that the issue exists before opening the editor?
 
 - `gh pr`:
     - Improve the syntax of `new` and then document it in the docstring

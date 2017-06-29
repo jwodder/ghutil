@@ -62,6 +62,9 @@ Most commands output JSON.
 ``gh issue new [-T <title>] [--body <file>] [-a <assignee>] [-l <label>] [-m <milestone>] [<repo>]``
    Create an issue in the given repository
 
+``gh issue reply <issue> [<file>]``
+   Comment on an issue
+
 ``gh issue search <search-term> ...``
    Search for issues and/or pull requests
 
