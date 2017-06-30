@@ -7,6 +7,9 @@
     :target: https://opensource.org/licenses/MIT
     :alt: MIT License
 
+.. contents::
+    :backlinks: top
+
 The ``ghutil`` package provides a command-line program for interacting with &
 managing GitHub repositories, issues, gists, etc.
 
@@ -44,6 +47,9 @@ Commands
 --------
 Most commands output JSON.
 
+Gists
+^^^^^
+
 ``gh gist clone <gist-id> [<dir>]``
    Locally clone a gist
 
@@ -65,6 +71,9 @@ Most commands output JSON.
 ``gh gist unstar [<gist-id> ...]``
    Unstar the given gists
 
+Issues
+^^^^^^
+
 ``gh issue [list [<options>] [<repo>]]``
    List issues for a repository
 
@@ -80,8 +89,8 @@ Most commands output JSON.
 ``gh issue show <issue> ...``
    Show details on the given issues
 
-``gh plus1 <issue_url>|<comment_url> ...``
-   Give a thumbs-up to an issue, pull request, or comment thereon
+Pull Requests
+^^^^^^^^^^^^^
 
 ``gh pr [list [<options>] [<repo>]]``
    List pull requests for a repository
@@ -95,9 +104,15 @@ Most commands output JSON.
 ``gh pr show <pull request> ...``
    Show details on the given pull requests
 
+Releases
+^^^^^^^^
+
 ``gh release [<tag>]``
    Create or edit the release for the given tag (default: the most recent
    reachable tag)
+
+Repositories
+^^^^^^^^^^^^
 
 ``gh repo clone <repo> [<dir>]``
    Locally clone a GitHub repository
@@ -140,6 +155,12 @@ Most commands output JSON.
 
 ``gh repo unstar [<repo> ...]``
    Unstar the given repositories
+
+Other
+^^^^^
+
+``gh plus1 <issue_url>|<comment_url> ...``
+   Give a thumbs-up to an issue, pull request, or comment thereon
 
 ``gh request [--accept <MIME type>] [--data <data>] [-X <method>] <path>``
    Make an arbitrary GitHub API request to ``<path>``
