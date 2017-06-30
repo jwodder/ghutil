@@ -104,7 +104,6 @@ issue_info = show_fields(
     ("reactions", lambda react: {
         k:v for k,v in react.items() if k not in ('total_count', 'url') and v
     })
-    ### pull_request
 )
 
 show_pr_repo = show_fields(

@@ -56,6 +56,15 @@ Most commands output JSON.
 ``gh gist show <gist-id> ...``
    Show gist details
 
+``gh gist star [<gist-id> ...]``
+   Star the given gists
+
+``gh gist starred``
+   List gists you've starred
+
+``gh gist unstar [<gist-id> ...]``
+   Unstar the given gists
+
 ``gh issue [list [<options>] [<repo>]]``
    List issues for a repository
 

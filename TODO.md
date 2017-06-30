@@ -37,7 +37,6 @@ API Completeness
     - adding, editing, & deleting release assets
 
 - Gists:
-    - starring
     - forking
     - commenting on gists
     - deleting
@@ -49,12 +48,14 @@ API Completeness
 - listing all commits you made to others' repositories?
 - showing recent activity on a repository/issue?
 - getting data about users
+- searching code
+- searching commits
 
 Interface Improvements
 ======================
 - Give the `search` commands an option for outputting JSON objects instead of
   names?
-- Give the `list` and `search` subcommands `--format` options
+- Give the `list` and `search` (and `starred`?) subcommands `--format` options
 - Support configuring the following through a config file:
     - credentials
     - API endpoint (including overriding `https://api.github.com` in URL
@@ -85,8 +86,8 @@ Interface Improvements
 - `gh gist`:
     - `new`: Allow creating a gist containing more than one file
     - `new`: Allow reading the file from stdin
-    - Improve the output format of `list`
-    - When no arguments are given to `show`, use the current repository
+    - When no arguments are given to `show`, `star`, or `unstar`, use the
+      current repository
     - Support specifying gists as paths to local clones
 
 - `gh request`:
@@ -106,3 +107,4 @@ Interface Improvements
 
 - `gh pr`:
     - Improve the syntax of `new` and then document it in the docstring
+    - Add a `search` command that just does `gh issue search type:pr ...`?
