@@ -38,10 +38,11 @@ API Completeness
 
 - Gists:
     - forking
+    - listing forks
     - commenting on gists
-    - deleting
-    - searching (not in the API?)
     - getting raw contents?
+    - searching (not in the API?)
+    - listing users who starred a gist (not in the API?)
 
 - Projects?
 - Organizations?
@@ -86,9 +87,11 @@ Interface Improvements
 - `gh gist`:
     - `new`: Allow creating a gist containing more than one file
     - `new`: Allow reading the file from stdin
-    - When no arguments are given to `show`, `star`, or `unstar`, use the
-      current repository
+    - When no arguments are given to `show`, `star`, `unstar`, or `delete`, use
+      the current repository
     - Support specifying gists as paths to local clones
+    - Get `delete`'s prompt to show the full ID(?) of the gist (This will
+      probably require changes to Click)
 
 - `gh request`:
     - Add an `-H`/`--header` option

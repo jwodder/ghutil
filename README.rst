@@ -53,6 +53,9 @@ Gists
 ``gh gist clone <gist-id> [<dir>]``
    Locally clone a gist
 
+``gh gist delete <gist-id>``
+   Delete a gist
+
 ``gh gist [list]``
    List your gists
 
