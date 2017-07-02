@@ -1,6 +1,6 @@
 import re
 import click
-from   .repos import GH_USER_RGX
+from   .repos import GH_USER_RGX, get_remote_url
 
 class GHGist(click.ParamType):
     name = 'gist'
@@ -17,3 +17,19 @@ class GHGist(click.ParamType):
             if m:
                 return ctx.obj.gists[m.group(1)]
         self.fail('Invalid GitHub gist: ' + value, param, ctx)
+
+
+def gist_arg(cmd=None, implicit=True):
+    if implicit:
+        dec = click.argument('gist', type=GHGist(), default=get_remote_url)
+    else:
+        dec = click.argument('gist', type=GHGist())
+    if cmd:
+        return dec(cmd)
+    else:
+        return dec
+
+gists_list_arg = click.argument(
+    'gists', type=GHGist(), nargs=-1,
+    callback=lambda ctx, param, value: value or [param.type.convert(get_remote_url(), param, ctx)],
+)

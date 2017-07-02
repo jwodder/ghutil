@@ -1,8 +1,8 @@
 import click
-from   ghutil.gists import GHGist
+from   ghutil.gists import gists_list_arg
 
 @click.command()
-@click.argument('gists', type=GHGist(), nargs=-1)
+@gists_list_arg
 @click.pass_obj
 def cli(gh, gists):
     """ Star gists """

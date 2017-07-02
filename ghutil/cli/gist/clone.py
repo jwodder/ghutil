@@ -1,11 +1,11 @@
 import subprocess
 import click
-from   ghutil.gists import GHGist
+from   ghutil.gists import gist_arg
 
 @click.command()
 @click.option('--https', 'url', flag_value='https')
 @click.option('--ssh', 'url', flag_value='ssh', default=True)
-@click.argument('gist', type=GHGist())
+@gist_arg(implicit=False)
 @click.argument('dir', required=False)
 @click.pass_context
 def cli(ctx, gist, dir, url):  # noqa: B002

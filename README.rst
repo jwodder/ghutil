@@ -53,7 +53,7 @@ Gists
 ``gh gist clone <gist-id> [<dir>]``
    Locally clone a gist
 
-``gh gist delete <gist-id>``
+``gh gist delete [<gist-id>]``
    Delete a gist
 
 ``gh gist [list]``
@@ -62,7 +62,7 @@ Gists
 ``gh gist new [-d <description>] [-f <filename>] [-P|--private] <file>``
    Create a gist from a given file
 
-``gh gist show <gist-id> ...``
+``gh gist show [<gist-id> ...]``
    Show gist details
 
 ``gh gist star [<gist-id> ...]``
