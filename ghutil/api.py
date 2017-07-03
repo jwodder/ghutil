@@ -22,9 +22,11 @@ class GitHub:
     def __init__(self):
         self.session = requests.Session()
         self.session.headers["User-Agent"] = USER_AGENT
+        # squirrel-girl needs to be listed before v3 in order for requests to
+        # reaction URLs to be accepted.
         self.session.headers["Accept"] = \
-            'application/vnd.github.v3+json; ' \
-            'application/vnd.github.squirrel-girl-preview'
+            'application/vnd.github.squirrel-girl-preview; ' \
+            'application/vnd.github.v3+json'
         self._me = None
 
     def __getattr__(self, key):

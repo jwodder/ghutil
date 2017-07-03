@@ -22,7 +22,4 @@ def cli(ctx, url):
             endpoint = endpoint[m.group('issue')].reactions
         else:
             endpoint = endpoint.comments[m.group('comment')].reactions
-        endpoint.post(
-            headers={"Accept": "application/vnd.github.squirrel-girl-preview"},
-            json={"content": "+1"},
-        )
+        endpoint.post(json={"content": "+1"})
