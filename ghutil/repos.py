@@ -58,14 +58,11 @@ def parse_repo_spec(s):
     if s.startswith('/') or re.match(r'^\.\.?(/|$)', s):
         # Filepath pointing to a local repository
         return parse_repo_url(get_remote_url(chdir=s))
-    elif '/' not in s:
-        return (None, s)
+    m = re.match('^(?:({})/)?({})$'.format(GH_USER_RGX, GH_REPO_RGX), s)
+    if m:
+        return m.groups()
     else:
-        m = re.match('^({})/({})$'.format(GH_USER_RGX, GH_REPO_RGX), s)
-        if m:
-            return m.groups()
-        else:
-            return parse_repo_url(s)
+        return parse_repo_url(s)
 
 def parse_repo_url(s):
     """
