@@ -45,7 +45,6 @@ Store your GitHub username & password in ``~/.netrc`` like so::
 
 Commands
 --------
-Most commands output JSON.
 
 Gists
 ^^^^^
@@ -59,8 +58,8 @@ Gists
 ``gh gist [list]``
    List your gists
 
-``gh gist new [-d <description>] [-f <filename>] [-P|--private] <file>``
-   Create a gist from a given file
+``gh gist new [-d <description>] [-f <filename>] [-P|--private] [<file>]``
+   Create a gist from a file
 
 ``gh gist show [<gist-id> ...]``
    Show gist details

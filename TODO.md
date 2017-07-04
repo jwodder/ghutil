@@ -1,5 +1,4 @@
 - Add docstrings and `help` strings to everything
-- Tag the code at each point it was stable?
 - Instead of assuming the GitHub remote for a local repository is always
   "origin", get all remotes with `git config --get-regexp 'remote\..*\.url'`
   and check for one that's a GitHub URL?
@@ -75,6 +74,8 @@ Interface Improvements
     - Come up with a better name for "`list-forks`"
     - Let `fans` take more than one repository at a time?
     - Let `list-forks` take more than one repository at a time?
+    - Remove the `repo` command level and move all repository commands to `gh
+      new`, `gh list`, `gh show`, etc.?
 
 - `gh release`:
     - When creating a new release, prepopulate the release message/body with
@@ -86,7 +87,7 @@ Interface Improvements
 
 - `gh gist`:
     - `new`: Allow creating a gist containing more than one file
-    - `new`: Allow reading the file from stdin
+    - `new`: Add an `--encoding` option?
     - Support specifying gists as paths to local clones
     - Get `delete`'s prompt to show the full ID(?) of the gist (This will
       probably require changes to Click)
