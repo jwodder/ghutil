@@ -15,7 +15,7 @@ def cli(gh, path, method, accept, data):
     """ Make an arbitrary API request """
     headers = {}
     if accept:
-        headers["Accept"] = '; '.join(accept)
+        headers["Accept"] = ','.join(accept)
     ret = gh[path][method](data=data, headers=headers)
     if ret is not None:
         print_json(ret)

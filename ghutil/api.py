@@ -25,7 +25,7 @@ class GitHub:
         # squirrel-girl needs to be listed before v3 in order for requests to
         # reaction URLs to be accepted.
         self.session.headers["Accept"] = \
-            'application/vnd.github.squirrel-girl-preview; ' \
+            'application/vnd.github.squirrel-girl-preview,'\
             'application/vnd.github.v3+json'
         self._me = None
 
