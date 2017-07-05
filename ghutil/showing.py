@@ -62,6 +62,8 @@ repo_info = show_fields(
     "open_issues_count",
     ("parent", "full_name"),
     ("source", "full_name"),
+    "topics",
+    ("license", "spdx_id"),
 )
 
 gist_info = show_fields(

@@ -11,10 +11,10 @@ def cli(ctx):
     following formats:
 
     \b
-        $OWNER/$REPO/$ID
-        $REPO/$ID        # for repositories owned by the current user
-        $ID              # for issues of the locally-cloned repository
-        https://github.com/$OWNER/$REPO/issues/$ID
-        https://api.github.com/repos/$OWNER/$REPO/issues/$ID
+        $OWNER/$REPO/$NUMBER
+        $REPO/$NUMBER    # for repositories owned by the current user
+        $NUMBER          # for issues of the locally-cloned repository
+        https://github.com/$OWNER/$REPO/issues/$NUMBER
+        https://api.github.com/repos/$OWNER/$REPO/issues/$NUMBER
     """
     default_command(ctx, 'list')

@@ -10,6 +10,15 @@ from   .showing  import print_json
 
 ENDPOINT = 'https://api.github.com'
 
+ACCEPT = ','.join([
+    # Due to what appears to be a bug in the GitHub API, drax-preview is only
+    # honored if it is listed first.
+    'application/vnd.github.drax-preview',           # Licenses
+    'application/vnd.github.mercy-preview',          # Topics
+    'application/vnd.github.squirrel-girl-preview',  # Reactions
+    'application/vnd.github.v3+json',
+])
+
 USER_AGENT = 'ghutil/{} ({}) requests/{} {}/{}'.format(
     __version__,
     __url__,
@@ -21,12 +30,8 @@ USER_AGENT = 'ghutil/{} ({}) requests/{} {}/{}'.format(
 class GitHub:
     def __init__(self):
         self.session = requests.Session()
+        self.session.headers["Accept"] = ACCEPT
         self.session.headers["User-Agent"] = USER_AGENT
-        # squirrel-girl needs to be listed before v3 in order for requests to
-        # reaction URLs to be accepted.
-        self.session.headers["Accept"] = \
-            'application/vnd.github.squirrel-girl-preview,'\
-            'application/vnd.github.v3+json'
         self._me = None
 
     def __getattr__(self, key):

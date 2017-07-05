@@ -12,11 +12,12 @@ API Completeness
 ================
 - Repositories:
     - watching
-    - deleting branches?
     - showing subscribers?
         - Are subscribers already listed by the /repos/:owner/:repo/subscribers
           endpoint despite the documentation saying it lists watchers?  If so,
           how are watchers fetched?
+    - deleting branches
+    - protecting branches
 
 - Issues & pull requests:
     - comments
@@ -63,6 +64,7 @@ Interface Improvements
     - `gh * list`/`search` formats
     - command aliases
     - `Accept:` headers to send
+- Add debug logging
 
 - `gh repo`:
     - Give `gh repo new` an option for setting the local repository's origin to
@@ -98,6 +100,7 @@ Interface Improvements
     - Add a `--param key=value` option for setting query parameters (and/or
       JSON body elements?)
     - Add an option for dumping response headers?
+    - Support non-JSON responses
 
 - `gh issue`:
     - `list`: Allow specifying `--since` in human-friendly formats like
