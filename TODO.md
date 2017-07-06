@@ -65,6 +65,8 @@ Interface Improvements
     - command aliases
     - `Accept:` headers to send
 - Add debug logging
+- Ensure that the results of `get_remote_url()` are only ever passed to
+  `parse_repo_url()`, not `parse_repo_spec()`
 
 - `gh repo`:
     - Give `gh repo new` an option for setting the local repository's origin to

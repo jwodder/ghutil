@@ -47,4 +47,4 @@ def LIST(value):
     if not value or value.isspace():
         return []
     else:
-        return re.split(r'\s*,\s*', value)
+        return list(filter(None, re.split(r'\s*,\s*', value)))
