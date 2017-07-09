@@ -22,21 +22,46 @@ def cli(issue, since):
     # echo_via_pager adds a newline, so remove the "extra" newline at the end
     click.echo_via_pager(output.rstrip('\r\n'))
 
-def show_comment(comment):
+def show_comment(obj):
     # Based on the output format of "git log"
-    output = 'comment {id}\n' \
-             'Author: {user[login]}\n' \
-             'Date:   {created_at}'.format(**comment)
-    if comment.get("updated_at") is not None and \
-            comment["updated_at"] != comment["created_at"]:
-        output += '  (last edited {updated_at})'.format(**comment)
-    output += '\n'
+    headers = []
+    if "title" in obj:
+        # Must be the actual issue object
+        headers.append(('Title:', obj["title"]))
+        headers.append((
+            'State:',
+            obj["state"] + (' [LOCKED]' if obj["locked"] else '')
+        ))
+    else:
+        # Must be just a comment
+        headers.append(('comment', obj["id"]))
+    headers.append(('Author:', obj["user"]["login"]))
+    date = obj["created_at"]
+    if obj.get("updated_at") is not None and \
+            obj["updated_at"] != obj["created_at"]:
+        date += '  (last updated {updated_at})'.format(**obj)
+    headers.append(('Date:', date))
+    if "title" in obj:
+        headers.append(('Labels:',', '.join(l["name"] for l in obj["labels"])))
+        headers.append((
+            'Assignees:',
+            ', '.join(u["login"] for u in obj["assignees"])
+        ))
+        if obj["milestone"] is not None:
+            headers.append(('Milestone:', obj["milestone"]["title"]))
+        if obj["closed_at"] is not None:
+            headers.append((
+                'Closed:',
+                '{closed_at} by {closed_by[login]}'.format(**obj)
+            ))
     reactions = []
-    for k,v in comment.get("reactions", {}).items():
+    for k,v in sorted(obj.get("reactions", {}).items()):
         if k not in ('total_count', 'url') and v:
             symbol = EMOJI.get(k, ':' + k + ':')
             reactions.append('{} {}'.format(symbol, v))
     if reactions:
-        output += '  '.join(reactions) + '\n'
-    output += '\n' + indent(comment["body"], ' ' * 4).rstrip('\r\n') + '\n'
-    return output
+        headers.append(('Reactions:', '  '.join(reactions)))
+    width = max(len(k) for k,v in headers)
+    return ''.join(
+        '{:{width}} {}\n'.format(k, v, width=width) for k,v in headers
+    ) + '\n' + indent(obj["body"], ' ' * 4).rstrip('\r\n') + '\n'
