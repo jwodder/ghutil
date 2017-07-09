@@ -21,7 +21,7 @@ API Completeness
 
 - Issues & pull requests:
     - comments
-        - viewing comments
+        - viewing individual comments as JSON?
         - editing comments
     - more reactions
     - listing individual users' reactions?
@@ -30,6 +30,7 @@ API Completeness
     - merging PRs
     - assigning
     - labelling & milestones
+    - editing
     - closing
 
 - Releases:
@@ -51,6 +52,7 @@ API Completeness
 - getting data about users
 - searching code
 - searching commits
+- statuses? <https://developer.github.com/v3/repos/statuses/>
 
 Interface Improvements
 ======================
@@ -64,6 +66,12 @@ Interface Improvements
     - `gh * list`/`search` formats
     - command aliases
     - `Accept:` headers to send
+    - `Time-Zone:` header to send
+    - whether `--verbose` should be on by default?
+    - whether `--maintainer-can-modify` should be set on `gh pr new` by
+      default?
+    - timestamp format for `gh issue read`?
+    - pager & editor programs to use?
 - Add debug logging
 - Ensure that the results of `get_remote_url()` are only ever passed to
   `parse_repo_url()`, not `parse_repo_spec()`
@@ -111,7 +119,13 @@ Interface Improvements
         - Add an option for including the quoted contents of a previous comment
           in the editor
         - Make sure that the issue exists before opening the editor?
+    - `read`:
+        - Make the main issue "comment" respect `--since`?
+        - Add an option for listing comments in reverse chronological order
+        - Include users' display names? (would require extra API calls)
+        - Convert timestamps to local timezone?
 
 - `gh pr`:
     - Improve the syntax of `new` and then document it in the docstring
     - Add a `search` command that just does `gh issue search type:pr ...`?
+    - `new`: Should `--maintainer-can-modify` be on by default?

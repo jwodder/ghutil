@@ -82,6 +82,9 @@ Issues
 ``gh issue new [-T <title>] [--body <file>] [-a <assignee>] [-l <label>] [-m <milestone>] [<repo>]``
    Create an issue in the given repository
 
+``gh issue read [--since <timestamp>] <issue>``
+   Read an issue/PR and its comments
+
 ``gh issue reply <issue> [<file>]``
    Comment on an issue or pull request
 
@@ -99,6 +102,9 @@ Pull Requests
 
 ``gh pr new [-T <title>] [--body <file>] [--maintainer-can-modify] <base> <head>``
    Create a pull request
+
+``gh pr read [--since <timestamp>] <issue>``
+   Read an issue/PR and its comments
 
 ``gh pr reply <issue> [<file>]``
    Comment on an issue or pull request

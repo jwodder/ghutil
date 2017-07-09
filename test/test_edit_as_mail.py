@@ -159,4 +159,5 @@ def test_edit_as_mail(mocker, obj, fields, bodyfield, edit_in, edit_out, ret):
 
 # Errors:
 # - adding a body
+# - adding a header
 # - deleting header-body interstitial blank line
