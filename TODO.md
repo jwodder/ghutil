@@ -105,7 +105,6 @@ Interface Improvements
       probably require changes to Click)
 
 - `gh request`:
-    - Add an `-H`/`--header` option
     - Add support for `--data` reading from a file
     - Add a `--param key=value` option for setting query parameters (and/or
       JSON body elements?)
@@ -122,7 +121,6 @@ Interface Improvements
     - `read`:
         - Make the main issue "comment" respect `--since`?
         - Add an option for listing comments in reverse chronological order
-        - Include users' display names? (would require extra API calls)
         - Convert timestamps to local timezone?
 
 - `gh pr`:
