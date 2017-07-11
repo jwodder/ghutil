@@ -5,7 +5,7 @@ from   .util import cmdline
 # As of 2017-05-21, trying to sign up to GitHub with an invalid username gives
 # the message "Username may only contain alphanumeric characters or single
 # hyphens, and cannot begin or end with a hyphen"
-GH_USER_RGX = r'[A-Za-z0-9](?:[-A-Za-z0-9]*[A-Za-z0-9])?'
+GH_USER_RGX = r'[A-Za-z0-9](?:-?[A-Za-z0-9])*'
 
 # Testing as of 2017-05-21 indicates that repository names can be composed of
 # alphanumeric ASCII characters, hyphens, periods, and/or underscores, with the
