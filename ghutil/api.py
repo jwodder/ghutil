@@ -11,8 +11,6 @@ from   .showing  import print_json
 ENDPOINT = 'https://api.github.com'
 
 ACCEPT = ','.join([
-    # Due to what appears to be a bug in the GitHub API, drax-preview is only
-    # honored if it is listed first.
     'application/vnd.github.drax-preview',           # Licenses
     'application/vnd.github.mercy-preview',          # Topics
     'application/vnd.github.squirrel-girl-preview',  # Reactions

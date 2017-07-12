@@ -22,10 +22,4 @@ def cli(ctx, url):
             endpoint = endpoint[m.group('issue')].reactions
         else:
             endpoint = endpoint.comments[m.group('comment')].reactions
-        # Due to what appears to be a bug in the GitHub API, requests to
-        # reaction URLs need to list squirrel-girl-preview as the first (or
-        # only) media type in the Accept header
-        endpoint.post(
-            headers={"Accept": "application/vnd.github.squirrel-girl-preview"},
-            json={"content": "+1"},
-        )
+        endpoint.post(json={"content": "+1"})
