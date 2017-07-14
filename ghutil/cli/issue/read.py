@@ -27,7 +27,10 @@ def show_comment(obj):
     headers = []
     if "title" in obj:
         # Must be the actual issue object
-        headers.append(('Title:', obj["title"]))
+        headers.append((
+            'PR:' if obj.get("pull_request") else 'Issue:',
+            obj["title"],
+        ))
         headers.append((
             'State:',
             obj["state"] + (' [LOCKED]' if obj["locked"] else '')
