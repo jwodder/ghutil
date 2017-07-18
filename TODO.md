@@ -18,6 +18,7 @@ API Completeness
           how are watchers fetched?
     - deleting branches
     - protecting branches
+    - editing topics
 
 - Issues & pull requests:
     - comments
@@ -56,11 +57,10 @@ API Completeness
 
 Interface Improvements
 ======================
-- Give the `search` commands an option for outputting JSON objects instead of
-  names?
+- Give the `search` (and `list`?) commands an option for outputting JSON
+  objects instead of names?
 - Give the `list` and `search` (and `starred`?) subcommands `--format` options
-- Support configuring the following through a config file:
-    - credentials
+- Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
       regexes)
     - `gh * list`/`search` formats
@@ -70,8 +70,8 @@ Interface Improvements
     - whether `--verbose` should be on by default?
     - whether `--maintainer-can-modify` should be set on `gh pr new` by
       default?
-    - timestamp format for `gh issue read`?
-    - pager & editor programs to use?
+    - timestamp format for `gh issue read`
+    - editor program to use
 - Add debug logging
 - Ensure that the results of `get_remote_url()` are only ever passed to
   `parse_repo_url()`, not `parse_repo_spec()`

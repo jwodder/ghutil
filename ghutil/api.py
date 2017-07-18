@@ -26,10 +26,15 @@ USER_AGENT = 'ghutil/{} ({}) requests/{} {}/{}'.format(
 )
 
 class GitHub:
-    def __init__(self):
+    def __init__(self, username=None, password=None, token=None):
         self.session = requests.Session()
         self.session.headers["Accept"] = ACCEPT
         self.session.headers["User-Agent"] = USER_AGENT
+        if token is not None:
+            self.session.headers["Authorization"] = "token " + token
+        elif username is not None and password is not None:
+            self.session.auth = (username, password)
+        ### Do something if only one of (username, password) is non-None?
         self._me = None
 
     def __getattr__(self, key):
