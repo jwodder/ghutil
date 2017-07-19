@@ -46,8 +46,8 @@ def parse_issue_spec(s):
       clone of a GitHub repository from which the issue's repository's owner &
       name will be taken.
     """
-    m = re.match(r'^(?:(?:({user})/)?({repo})[/#])?(\d+)$'
-                 .format(user=GH_USER_RGX, repo=GH_REPO_RGX), s, flags=re.I)
+    m = re.fullmatch(r'(?:(?:({user})/)?({repo})[/#])?(\d+)'
+                     .format(user=GH_USER_RGX, repo=GH_REPO_RGX), s, flags=re.I)
     if m:
         user, repo, num = m.groups()
         if not repo:
@@ -62,11 +62,11 @@ def parse_issue_url(s):
     owner & name of the associated repository and the number of the issue/PR.
     """
     for rgx in [
-        r'^https?://github\.com/({user})/({repo})/(?:issues|pull)/(\d+)$',
-        r'^https?://api\.github\.com/repos/({user})/({repo})/(?:issues|pulls)/(\d+)$',
+        r'https?://github\.com/({user})/({repo})/(?:issues|pull)/(\d+)',
+        r'https?://api\.github\.com/repos/({user})/({repo})/(?:issues|pulls)/(\d+)',
     ]:
-        m = re.match(rgx.format(user=GH_USER_RGX, repo=GH_REPO_RGX), s,
-                     flags=re.I)
+        m = re.fullmatch(rgx.format(user=GH_USER_RGX, repo=GH_REPO_RGX), s,
+                         flags=re.I)
         if m:
             user, repo, num = m.groups()
             return (user, repo, int(num))

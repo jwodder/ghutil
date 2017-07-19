@@ -20,7 +20,7 @@ are present may have their interface modified at any time.
 
 Installation
 ============
-``ghutil`` requires Python 3.3 or higher to run and `pip
+``ghutil`` requires Python 3.4 or higher to run and `pip
 <https://pip.pypa.io>`_ 6.0+, `Setuptools <https://setuptools.readthedocs.io>`_
 30.3.0+, & `wheel <https://pypi.python.org/pypi/wheel>`_ to install.  `Once you
 have those

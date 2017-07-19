@@ -13,7 +13,7 @@ from   ghutil.repos import GH_USER_RGX, GH_REPO_RGX
     'peridot-2F5L-5XG',
 ])
 def test_good_users(name):
-    assert bool(re.match('^{}$'.format(GH_USER_RGX), name))
+    assert bool(re.fullmatch(GH_USER_RGX, name))
 
 @pytest.mark.parametrize('name', [
     '-steven',
@@ -28,7 +28,7 @@ def test_good_users(name):
     '',
 ])
 def test_bad_users(name):
-    assert re.match('^{}$'.format(GH_USER_RGX), name) is None
+    assert re.fullmatch(GH_USER_RGX, name) is None
 
 @pytest.mark.parametrize('repo', [
     'steven-universe',
@@ -56,7 +56,7 @@ def test_bad_users(name):
     '_',
 ])
 def test_good_repos(repo):
-    assert bool(re.match('^{}$'.format(GH_REPO_RGX), repo))
+    assert bool(re.fullmatch(GH_REPO_RGX, repo))
 
 @pytest.mark.parametrize('repo', [
     'steven-univerß',
@@ -69,4 +69,4 @@ def test_good_repos(repo):
     'steven.git',
 ])
 def test_bad_repos(repo):
-    assert re.match('^{}$'.format(GH_REPO_RGX), repo) is None
+    assert re.fullmatch(GH_REPO_RGX, repo) is None

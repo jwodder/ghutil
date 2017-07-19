@@ -7,12 +7,12 @@ import click
 def cli(ctx, url):
     """ Thumb-up issues, PRs, or comments thereon """
     for u in url:
-        m = re.match(r'^(?:https?://)?(?:www\.)?github\.com'
-                     r'/(?P<owner>[^/]+)'
-                     r'/(?P<repo>[^/]+)'
-                     r'/(?:issues|pull)'
-                     r'/(?P<issue>\d+)'
-                     r'(?:#issuecomment-(?P<comment>\d+))?$', u)
+        m = re.fullmatch(r'(?:https?://)?(?:www\.)?github\.com'
+                         r'/(?P<owner>[^/]+)'
+                         r'/(?P<repo>[^/]+)'
+                         r'/(?:issues|pull)'
+                         r'/(?P<issue>\d+)'
+                         r'(?:#issuecomment-(?P<comment>\d+))?', u)
         if not m:
             click.echo('{}: could not parse {!r}'.format(ctx.command_path, u),
                        err=True)

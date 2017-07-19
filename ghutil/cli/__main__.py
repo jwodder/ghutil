@@ -1,4 +1,4 @@
-import os.path
+from   pathlib     import Path
 import click
 from   ghutil      import __version__
 from   ghutil.api  import GitHub
@@ -9,7 +9,7 @@ from   ghutil.util import package_group
     context_settings={"help_option_names": ["-h", "--help"]},
 )
 @click.option('-c', '--config', type=click.Path(dir_okay=False),
-              default=os.path.expanduser('~/.config/ghutil.cfg'))
+              default=str(Path.home() / '.config' / 'ghutil.cfg'))
 @click.version_option(__version__, '-V', '--version',
                       message='%(prog)s %(version)s')
 @click.pass_context

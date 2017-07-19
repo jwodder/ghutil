@@ -58,7 +58,7 @@ def parse_repo_spec(s):
     if s.startswith('/') or re.match(r'^\.\.?(/|$)', s):
         # Filepath pointing to a local repository
         return parse_repo_url(get_remote_url(chdir=s))
-    m = re.match('^(?:({})/)?({})$'.format(GH_USER_RGX, GH_REPO_RGX), s)
+    m = re.fullmatch('(?:({})/)?({})'.format(GH_USER_RGX, GH_REPO_RGX), s)
     if m:
         return m.groups()
     else:
@@ -79,10 +79,10 @@ def parse_repo_url(s):
     ('jwodder', 'headerparser')
     """
     for rgx in [
-        r'^(?:https?://github\.com/|git@github\.com:)({})/({})(?:\.git)?$',
-        r'^https?://api\.github\.com/repos/({})/({})$',
+        r'(?:https?://github\.com/|git@github\.com:)({})/({})(?:\.git)?',
+        r'https?://api\.github\.com/repos/({})/({})',
     ]:
-        m = re.match(rgx.format(GH_USER_RGX, GH_REPO_RGX), s, flags=re.I)
+        m = re.fullmatch(rgx.format(GH_USER_RGX, GH_REPO_RGX), s, flags=re.I)
         if m:
             return m.groups()
     raise ValueError(s)

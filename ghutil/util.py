@@ -1,18 +1,17 @@
 from   importlib  import import_module
-import os
-from   os.path    import dirname, exists, join, splitext
+from   pathlib    import Path
 from   subprocess import check_output, CalledProcessError
 import click
 
 def package_group(package, filepath, **kwargs):
     def wrapper(f):
-        dirpath = dirname(filepath)
+        dirpath = Path(filepath).parent
         cli = click.group(**kwargs)(f)
-        for fname in os.listdir(dirpath):
-            modname, ext = splitext(fname)
+        for fpath in dirpath.iterdir():
+            modname = fpath.stem
             if modname.isidentifier() and not modname.startswith('_') and \
-                    (ext == '' and exists(join(dirpath, fname, '__init__.py'))
-                        or ext == '.py'):
+                    (fpath.suffix == '' and (fpath / '__init__.py').exists()
+                        or fpath.suffix == '.py'):
                 submod = import_module('.' + modname, package)
                 cli.add_command(submod.cli, modname.replace('_', '-'))
         return cli
