@@ -127,9 +127,11 @@ Pull Requests
 Releases
 ^^^^^^^^
 
-``gh release [<tag>]``
-   Create or edit the release for the given tag (default: the most recent
-   reachable tag)
+``gh release edit [<tag>]``
+   Edit the release for the given tag (default: the most recent reachable tag)
+
+``gh release new [<tag>]``
+   Create a release for the given tag (default: the most recent reachable tag)
 
 Repositories
 ^^^^^^^^^^^^

@@ -3,6 +3,8 @@
   "origin", get all remotes with `git config --get-regexp 'remote\..*\.url'`
   and check for one that's a GitHub URL?
 - Write more tests (somehow)
+- Ensure that the results of `get_remote_url()` are only ever passed to
+  `parse_repo_url()`, not `parse_repo_spec()`
 
 - cf. <https://github.com/whiteinge/ok.sh>
 - cf. <https://github.com/github/hub>
@@ -73,8 +75,6 @@ Interface Improvements
     - timestamp format for `gh issue read`
     - editor program to use
 - Add debug logging
-- Ensure that the results of `get_remote_url()` are only ever passed to
-  `parse_repo_url()`, not `parse_repo_spec()`
 
 - `gh repo`:
     - Give `gh repo new` an option for setting the local repository's origin to
@@ -90,12 +90,12 @@ Interface Improvements
       new`, `gh list`, `gh show`, etc.?
 
 - `gh release`:
-    - When creating a new release, prepopulate the release message/body with
-      the tagged commit's commit message
+    - When creating a new release, (add an option to) prepopulate the release
+      message/body with the tagged commit's commit message
     - Allow specifying the repository on the command line (and handle the case
       when a tag isn't also specified)
-    - Split into `gh release new` and `gh release edit`
-    - Add options for setting everything via the command line
+    - `new` and `edit`: Add options for setting everything via the command line
+    - Support setting `target_commitish` when creating/editing a release
 
 - `gh gist`:
     - `new`: Allow creating a gist containing more than one file
