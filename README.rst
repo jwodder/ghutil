@@ -130,6 +130,9 @@ Releases
 ``gh release edit [<tag>]``
    Edit the release for the given tag (default: the most recent reachable tag)
 
+``gh release [list [<repo>]]``
+   List releases for a repository
+
 ``gh release new [<tag>]``
    Create a release for the given tag (default: the most recent reachable tag)
 
