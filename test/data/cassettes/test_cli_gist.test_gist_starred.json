@@ -1,0 +1,59 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-07-20T21:10:18",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.1 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/gists/starred"
+      },
+      "response": {
+        "body": {
+          "base64_string": "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",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Thu, 20 Jul 2017 21:10:18 GMT",
+          "ETag": "W/\"8e003c82d3c4d9b964ef53b512eaef9f\"",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "9E28:2C6C:461182:9BD287:59711C3A",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4975",
+          "X-RateLimit-Reset": "1500586496",
+          "X-Runtime-rack": "0.086325",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/gists/starred"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

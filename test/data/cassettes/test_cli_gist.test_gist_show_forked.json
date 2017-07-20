@@ -1,0 +1,60 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-07-20T21:10:18",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.1 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/gists/89ffe32783f89f403bba96bd7bcd1263"
+      },
+      "response": {
+        "body": {
+          "base64_string": "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",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Thu, 20 Jul 2017 21:10:18 GMT",
+          "ETag": "W/\"ee6a4a955580bdc7e6cae71c994aee37\"",
+          "Last-Modified": "Sat, 15 Jul 2017 20:38:13 GMT",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "9E26:2C6B:4445C2:8C75A8:59711C3A",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4976",
+          "X-RateLimit-Reset": "1500586496",
+          "X-Runtime-rack": "0.144603",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/gists/89ffe32783f89f403bba96bd7bcd1263"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

@@ -1,0 +1,114 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-07-20T19:10:51",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.1 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/vinta/awesome-python/issues/875"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAAA81XTW/bOBD9K4R6qJ3alu02bWJs0BbYPfRS9NDFApsUMiXRFhuJVEnKtmzkv+8byvJHXCSbbA8bIBZNzTzODGfejDdBZfJgEmTOlXYShryUg7l0WRUPEl2ERpTahgupHA/5UlhdiH5Zu0yrUFpbCRtevDsPeoGXk06bOnomHkByHovcPhfgwKCwQdqEihfiDshwpRDK/RLsFguwYvGrQBskQGauyO9F4OA6fnoRZZXn22uQaTAZj0eXF8PXo/NeoKoiFiaY4I56gZMuF7jpj2nKuHPG4rTK0utNkOu5VHj3fanTFFu9gJAuL8bDd72AL7jj5v61+E072iYLASVaOcTD500VeuX3i6s3AJubLQahBnTuQzlHWDbcm/JwSPZyM53negnd+6Yep/QRfLhTglXNWqr50wGgtAm1ywTiBPMp5+bSPpZwx6Z4hU1Ij0imBGERYiPSp5izVYExSwU7Nr6CPVYV28TI0kmtnhShI0UAaTPnSq75k4GgSDnnqeIpLnkFKP6bajuOaKOxCUsjFzypKQxGJEIuENOno91TBZirS6qoP6mKEGHpRMTTgippxnMr7lpKCybX3/xtOhLXpVAQz3VyK1APXhRVZq2cKwEBhXref7eNciFzYZ1Wu/c7GpqMwW9GADuNuAP+eDh61x++6Y/Ov45fT84vJ6PR3zivKtP7Muf98ZBkRm8n50OSSXJttzCNFcQtkRE/wPSA3jxcuA80C8Jpe8XD9fwYxaVyNnsmQQ5IF16W3CXZczG8coCrjXVaI9ovXrC/Mu6YtMxl+PjiuyMrjf4uEvf+xtwo+p96yp0yThxlWa0r5jRLRZJzI+irYVha+9IyqZApKhGepWVcOWGZxvce4ypl0uEcoZjjt9hPSFvP2Fyg2lGSak5vWayRLqbMceFsGkVSSRdF0x6txY92hesyfi1cMmCFgN2pZTNtyJwec5VRDZ60k50b0yktZ0YXbFapxGmdw+Ki1AZ2acfzSBt0ECiS3IfTLe8l+6IxUrz+vaNjilLX4zP8pWLGWns7VuSzHlv1WN1j670MydGrwYpdsVWrudutsVuf7K6xu2692J/UxMCfdHyAEeQ/828GUeStjiKsaKSIIvbq8ATCo7/OTdBZXW3uYLH/XOOzexMMENOCuwYL7nhM+OSf6263e2oX3dLWf99Vjo2TM6Y0pVybKh0vtEXcWXusRAZuvfqs3aeizAXNRCI99OTI7VNT2dUVa84a4KU/lBxpFuuf+JEj7/6Pfvz2mBvTJtEpNshU7Wv7fhVs057KlOQ+0GJgaflwklPeelkZd3zM6GoobU82KWuPNg/M+mPF6Q49ESjmK/LaM1CMaY6hZTomVg4zUUsKC2kceJzoYstG3zrt2D/P6zIbuCVmD5EiV41c+TkOveRtOLwIPXsNiLm7bGmkw6DH4tpzDa9AHIZQr782+nvYU0BneBJ2B23Gb9kTrEdQxM/CCOK+WLilIJo75VRPg1aiI3Icq4TdkexXYGiV101CthzMcnmLMBGQI6b+9LJgfLklTmxeT5OMwywH2rJOJtODsOx/CWW1ErfhsWS3x5aZTLLDOPAY5sGqlPi96cttuD2zC57uvO/32zh8VDV0gKYZnxuBW1ri6MZo6p2oXN+DWaKrPGULDWInpkY3wDXwNKVL5mzyajShc6VrmkVlKzQcVChFt+D0M06iUQAckIUwc0EIS+onBGlxDIc7Z2fj4dnZYD8QxOh0zUBAAn7y+y/TwP6nI8bTFg/jlO8f8FBh1hgNe8GrUfPs44mvOa/mmV9lWhsOm7DEr44Zpj4MUrQvuIHu8O7uHw6Vf0TYDgAA",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Thu, 20 Jul 2017 19:10:51 GMT",
+          "ETag": "W/\"e00604d9afe83414c8782bf05654723f\"",
+          "Last-Modified": "Wed, 19 Jul 2017 20:03:19 GMT",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "B578:2C6C:2F7FE8:6929F2:5971003B",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4983",
+          "X-RateLimit-Reset": "1500578760",
+          "X-Runtime-rack": "0.080844",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/vinta/awesome-python/issues/875"
+      }
+    },
+    {
+      "recorded_at": "2017-07-20T19:10:51",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.1 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/vinta/awesome-python/issues/875/comments"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAAA7WW3Y6bMBSEX6VyLzeswZCfRaqqvsP2plUVOeCAJYKRf4hSlHfvsUOzkHSpnGSvQMTzMZ74TPKzQ0ZWKEWl1o1KMaYNfy64Ls3mORM7LFkjFG55rSmme6bEjgXNQZeixlwpwxSGVTtWa4XJy2IZhnMSoRnQdtV6DB5A/4lrTFXh1XL+2XF7ajCEug8uqN524Q3gj+coPaNnyCgmUdqhShS8hjAarjNRq37hIkqSKJwh2lJN5aUB91DFfWiWBFINibj8DD6pv7ZfEsAVsodYAwgeTIZvYQq/mZlO9W3dVlSV2IP20uv4ux3h8VkErk73vC78ASDqsNAlg6DA/tFumivtZcUJOmwva55bhIKMJct97PQSMLOvwUfnjrJjmY3KJG80h6/YizgUAkjIgtb8N/UGgdCeLTdbPgacAISstQPnozwpOtxI3tLsYGOQLGO8hUz9aRdSgOlDw+BAf7dzBAlzzdY039lZ2tJKseMMZZJRDW+jGtaRMFoGYRKQ5DWapxFJE/IDdKbJ/7tmI/IDED6lT1HqdkEzl78d38lhuqXJ4Mz8xcMehabVOhOmhi1AHTxF7hKcLhU1RekelEJICh7hFppgC1MAs26fMyqt8nicPc5qHJKXMFnEMWQxXQ8epTuEPrh0z+jr0uUbtqfa7Cnk2zf0ahWTKI6nqzd8t3pJr7+jfMemphMer/Uq4YH09iK+htxTxkPaXYU8BD2ulEfUe4t5CPMt56HWv6CH6seU9NjPqONvLep5QMJXEqfRIp2H7xT11Zq+qL+5P42nn7sPqOpzn3xQVf/6A/aP5rAhCwAA",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Thu, 20 Jul 2017 19:10:51 GMT",
+          "ETag": "W/\"8c04398f3bf9164e7342b112bc166f54\"",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "B578:2C6C:2F8001:692A1C:5971003B",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4982",
+          "X-RateLimit-Reset": "1500578760",
+          "X-Runtime-rack": "0.071294",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/vinta/awesome-python/issues/875/comments"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

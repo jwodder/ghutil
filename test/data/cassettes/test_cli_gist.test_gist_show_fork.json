@@ -1,0 +1,60 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-07-20T21:10:18",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.1 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/gists/4bf350e2d72b547b22dc9de52148ccbe"
+      },
+      "response": {
+        "body": {
+          "base64_string": "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",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Thu, 20 Jul 2017 21:10:18 GMT",
+          "ETag": "W/\"f277591dc4d43e3f4bda8461b8d54b13\"",
+          "Last-Modified": "Wed, 19 Jul 2017 20:03:19 GMT",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "9E24:2C69:24FBB3:523350:59711C3A",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4977",
+          "X-RateLimit-Reset": "1500586496",
+          "X-Runtime-rack": "0.151434",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/gists/4bf350e2d72b547b22dc9de52148ccbe"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

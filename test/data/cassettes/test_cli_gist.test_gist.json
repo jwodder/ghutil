@@ -1,0 +1,59 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-07-20T21:09:41",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.1 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/gists"
+      },
+      "response": {
+        "body": {
+          "base64_string": "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",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Thu, 20 Jul 2017 21:09:41 GMT",
+          "ETag": "W/\"dbc9a4ed28e66f3eb7d714b8192b3322\"",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "9E18:2C6A:32D0DC:6C9441:59711C15",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4989",
+          "X-RateLimit-Reset": "1500586496",
+          "X-Runtime-rack": "0.142970",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/gists"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

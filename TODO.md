@@ -3,6 +3,8 @@
   "origin", get all remotes with `git config --get-regexp 'remote\..*\.url'`
   and check for one that's a GitHub URL?
 - Write more tests (somehow)
+    - Somewhere test that credentials are being redacted from cassettes
+    - Test that the correct User-Agent and Accept headers are being sent?
 - Ensure that the results of `get_remote_url()` are only ever passed to
   `parse_repo_url()`, not `parse_repo_spec()`
 
