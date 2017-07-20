@@ -1,12 +1,13 @@
-from   itertools import chain
+from   configparser import ConfigParser, ExtendedInterpolation
+from   itertools    import chain
 import platform
 import re
 import attr
 import click
 import requests
-from   .         import __url__, __version__
-from   .repos    import get_remote_url, parse_repo_spec
-from   .showing  import print_json
+from   .            import __url__, __version__
+from   .repos       import get_remote_url, parse_repo_spec
+from   .showing     import print_json
 
 ENDPOINT = 'https://api.github.com'
 
@@ -26,16 +27,24 @@ USER_AGENT = 'ghutil/{} ({}) requests/{} {}/{}'.format(
 )
 
 class GitHub:
-    def __init__(self, username=None, password=None, token=None):
-        self.session = requests.Session()
+    def __init__(self, session=None):
+        self.session = session or requests.Session()
         self.session.headers["Accept"] = ACCEPT
         self.session.headers["User-Agent"] = USER_AGENT
-        if token is not None:
-            self.session.headers["Authorization"] = "token " + token
-        elif username is not None and password is not None:
-            self.session.auth = (username, password)
-        ### Do something if only one of (username, password) is non-None?
         self._me = None
+
+    def configure(self, cfg_file):
+        parser = ConfigParser(interpolation=ExtendedInterpolation())
+        parser.read(cfg_file)
+        try:
+            auth = parser['api.auth']
+        except KeyError:
+            auth = {}
+        if 'token' in auth:
+            self.session.headers["Authorization"] = "token " + auth['token']
+        elif 'username' in auth and 'password' in auth:
+            self.session.auth = (auth['username'], auth['password'])
+        ### Do something if only one of (username, password) is set?
 
     def __getattr__(self, key):
         return self[key]
