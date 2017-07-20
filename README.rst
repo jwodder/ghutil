@@ -136,6 +136,9 @@ Releases
 ``gh release new [<tag>]``
    Create a release for the given tag (default: the most recent reachable tag)
 
+``gh release show <tag> ...``
+   Show details on the given releases
+
 Repositories
 ^^^^^^^^^^^^
 

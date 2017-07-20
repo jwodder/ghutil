@@ -2,13 +2,14 @@
 ### that hasn't been pushed yet or that already has a release
 import click
 from   ghutil.edit    import edit_as_mail
-from   ghutil.showing import print_json
+from   ghutil.showing import print_json, release_info
 from   ghutil.util    import get_last_tag
 
 @click.command()
+@click.option('-v', '--verbose', is_flag=True)
 @click.argument('tag', default=get_last_tag)
 @click.pass_obj
-def cli(gh, tag):
+def cli(gh, tag, verbose):
     """ Create a GitHub release """
     data = {
         "tag_name": tag,
@@ -23,5 +24,7 @@ def cli(gh, tag):
     if not data["tag_name"]:
         click.echo('Aborting release due to empty tag name')
     else:
-        ### TODO: Add custom showing and verbosity
-        print_json(gh.repository().releases.post(json=data))
+        print_json(release_info(
+            gh.repository().releases.post(json=data),
+            verbose,
+        ))

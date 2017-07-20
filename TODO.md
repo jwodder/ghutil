@@ -76,40 +76,12 @@ Interface Improvements
     - editor program to use
 - Add debug logging
 
-- `gh repo`:
-    - Give `gh repo new` an option for setting the local repository's origin to
-      the new repository and pushing everything to it
-    - Give `fork` an option for cloning the new repository
-    - Get `gh repo delete`'s prompt to show the full name of the repository
-      (This will probably require changes to Click)
-    - Give `starred` sorting options?
-    - Come up with a better name for "`list-forks`"
-    - Let `fans` take more than one repository at a time?
-    - Let `list-forks` take more than one repository at a time?
-    - Remove the `repo` command level and move all repository commands to `gh
-      new`, `gh list`, `gh show`, etc.?
-
-- `gh release`:
-    - When creating a new release, (add an option to) prepopulate the release
-      message/body with the tagged commit's commit message
-    - Allow specifying the repository on the command line (and handle the case
-      when a tag isn't also specified)
-    - `new` and `edit`: Add options for setting everything via the command line
-    - Support setting `target_commitish` when creating/editing a release
-
 - `gh gist`:
     - `new`: Allow creating a gist containing more than one file
     - `new`: Add an `--encoding` option?
     - Support specifying gists as paths to local clones
     - Get `delete`'s prompt to show the full ID(?) of the gist (This will
       probably require changes to Click)
-
-- `gh request`:
-    - Add support for `--data` reading from a file
-    - Add a `--param key=value` option for setting query parameters (and/or
-      JSON body elements?)
-    - Add an option for dumping response headers?
-    - Support non-JSON responses
 
 - `gh issue`:
     - `list`: Allow specifying `--since` in human-friendly formats like
@@ -127,3 +99,33 @@ Interface Improvements
     - Improve the syntax of `new` and then document it in the docstring
     - Add a `search` command that just does `gh issue search type:pr ...`?
     - `new`: Should `--maintainer-can-modify` be on by default?
+
+- `gh release`:
+    - When creating a new release, (add an option to) prepopulate the release
+      message/body with the tagged commit's commit message
+    - Allow specifying the repository on the command line (and handle the case
+      when a tag isn't also specified)
+    - `new` and `edit`: Add options for setting everything via the command line
+    - Support setting `target_commitish` when creating/editing a release
+    - `show`: When no release is specified, default to the most recent tag of
+      the current repository
+
+- `gh repo`:
+    - Give `gh repo new` an option for setting the local repository's origin to
+      the new repository and pushing everything to it
+    - Give `fork` an option for cloning the new repository
+    - Get `gh repo delete`'s prompt to show the full name of the repository
+      (This will probably require changes to Click)
+    - Give `starred` sorting options?
+    - Come up with a better name for "`list-forks`"
+    - Let `fans` take more than one repository at a time?
+    - Let `list-forks` take more than one repository at a time?
+    - Remove the `repo` command level and move all repository commands to `gh
+      new`, `gh list`, `gh show`, etc.?
+
+- `gh request`:
+    - Add support for `--data` reading from a file
+    - Add a `--param key=value` option for setting query parameters (and/or
+      JSON body elements?)
+    - Add an option for dumping response headers?
+    - Support non-JSON responses

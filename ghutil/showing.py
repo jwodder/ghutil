@@ -1,5 +1,6 @@
 from   collections.abc import Iterator
 import json
+from   operator        import itemgetter
 import click
 
 def print_json(obj, err=False):
@@ -22,14 +23,14 @@ def show_fields(*fields):
             except KeyError:
                 continue
             for sp in subpath:
+                if not callable(sp):
+                    sp = itemgetter(sp)
                 if value is None:
                     break
-                elif callable(sp):
-                    value = sp(value)
                 elif isinstance(value, list):
-                    value = [v and v[sp] for v in value]
+                    value = [v and sp(v) for v in value]
                 else:
-                    value = value[sp]
+                    value = sp(value)
             about[name] = value
         return about
     return show
@@ -150,4 +151,34 @@ pr_info = show_fields(
     "merge_commit_sha",
     ("merged_by", "login"),
     ("requested_reviewers", "login"),  ### Double-check this one
+)
+
+release_info = show_fields(
+    "id",
+    "name",
+    "tag_name",
+    ("author", "login"),
+    "prerelease",
+    "published_at",
+    "created_at",
+    "draft",
+    "target_commitish",
+    "html_url",
+    "url",
+    "tarball_url",
+    "zipball_url",
+    ("assets", show_fields(
+        "browser_download_url",
+        "content_type",
+        "created_at",
+        "download_count",
+        "id",
+        "label",
+        "name",
+        "size",
+        "state",
+        "updated_at",
+        ("uploader", "login"),
+        "url",
+    )),
 )
