@@ -1,15 +1,13 @@
 from   configparser import ConfigParser, ExtendedInterpolation
-from   itertools    import chain
 import platform
 import re
-import attr
-import click
 import requests
-from   .            import __url__, __version__
-from   .repos       import get_remote_url, parse_repo_spec
-from   .showing     import print_json
+from   ghutil       import __url__, __version__
+from   ghutil.repos import get_remote_url, parse_repo_spec
+from   .util        import paginate
+from   .endpoint    import GHEndpoint
 
-ENDPOINT = 'https://api.github.com'
+API_ENDPOINT = 'https://api.github.com'
 
 ACCEPT = ','.join([
     'application/vnd.github.drax-preview',           # Licenses
@@ -50,7 +48,7 @@ class GitHub:
         return self[key]
 
     def __getitem__(self, name):
-        return GHResource(self.session, ENDPOINT, name)
+        return GHEndpoint(self.session, API_ENDPOINT, name)
 
     def repository(self, *args):
         if not args:
@@ -81,7 +79,7 @@ class GitHub:
                 q += ' '
             q += t
         r = self.session.get(
-            ENDPOINT + '/search/' + objtype,
+            API_ENDPOINT + '/search/' + objtype,
             params=dict(params, q=q),
         )
         for page in paginate(self.session, r):
@@ -94,70 +92,3 @@ class GitHub:
         if self._me is None:
             self._me = self.user.get()["login"]
         return self._me
-
-
-@attr.s
-class GHResource:
-    session = attr.ib()
-    url     = attr.ib()  # actually the "parent" URL
-    name    = attr.ib()
-
-    def __getattr__(self, key):
-        return self[key]
-
-    def __getitem__(self, name):
-        url = self.url
-        if self.name:
-            if str(self.name).lower().startswith(('http://', 'https://')):
-                url = self.name
-            else:
-                url = self.url.rstrip('/') + '/' + str(self.name).lstrip('/')
-        return type(self)(self.session, url, name)
-
-    def __call__(self, decode=True, maybe=False, **kwargs):
-        # Use self.name as HTTP method (case insensitive); this allows for
-        # supporting URLs ending in, say, `/get` (e.g., because someone named
-        # their repository that)
-        r = self.session.request(self.name, self.url, **kwargs)
-        if self.name.lower() == 'get' and 'next' in r.links:
-            return chain.from_iterable(paginate(self.session, r))
-        elif r.ok:
-            if decode:
-                if r.status_code == 204:
-                    return None
-                else:
-                    return r.json()
-            else:
-                return r
-        elif r.status_code == 404 and maybe:
-            return None if decode else r
-        else:
-            die(r)
-
-
-def paginate(session, r):
-    while True:
-        if not r.ok:
-            die(r)
-        yield r.json()
-        url = r.links.get('next', {}).get('url')
-        if url is None:
-            break
-        r = session.get(url)
-
-def die(r):
-    if 400 <= r.status_code < 500:
-        msg = '{0.status_code} Client Error: {0.reason} for url: {0.url}'
-    elif 500 <= r.status_code < 600:
-        msg = '{0.status_code} Server Error: {0.reason} for url: {0.url}'
-    else:
-        msg = '{0.status_code} Unknown Error: {0.reason} for url: {0.url}'
-    click.echo(msg.format(r), err=True)
-    try:
-        resp = r.json()
-    except ValueError:
-        click.echo(r.text, err=True)
-    else:
-        ### Format based on <https://developer.github.com/v3/#client-errors>?
-        print_json(resp, err=True)
-    click.get_current_context().exit(1)
