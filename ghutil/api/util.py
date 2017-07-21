@@ -1,6 +1,8 @@
 import click
 from   ghutil.showing import print_json
 
+API_ENDPOINT = 'https://api.github.com'
+
 def paginate(session, r):
     while True:
         if not r.ok:

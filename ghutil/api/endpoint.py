@@ -1,32 +1,37 @@
 from   itertools import chain
-import attr
-from   .util     import die, paginate
+from   .util     import API_ENDPOINT, die, paginate
 
-@attr.s
 class GHEndpoint:
-    session = attr.ib()
-    url     = attr.ib()  # actually the "parent" URL
-    name    = attr.ib()
+    def __init__(self, session, *path):
+        self.__session = session
+        #: A tuple of the path components of the URL (strings and/or integers).
+        #: An absolute URL element will cause all components before it to be
+        #: discarded; if there is no absolute URL in `__path`, then
+        #: `API_ENDPOINT` will be prepended when making a request.  When a
+        #: `GHEndpoint` is called (but not before!), the last element of
+        #: `__path` is removed and used as the HTTP method (case insensitive);
+        #: this allows using, say, "get" as both a path component (e.g., if
+        #: someone named their repository that) and a request method.
+        self.__path = path
 
     def __getattr__(self, key):
         return self[key]
 
     def __getitem__(self, name):
-        url = self.url
-        if self.name:
-            if str(self.name).lower().startswith(('http://', 'https://')):
-                url = self.name
-            else:
-                url = self.url.rstrip('/') + '/' + str(self.name).lstrip('/')
-        return type(self)(self.session, url, name)
+        return type(self)(self.__session, *self.__path, name)
 
     def __call__(self, decode=True, maybe=False, **kwargs):
-        # Use self.name as HTTP method (case insensitive); this allows for
-        # supporting URLs ending in, say, `/get` (e.g., because someone named
-        # their repository that)
-        r = self.session.request(self.name, self.url, **kwargs)
-        if self.name.lower() == 'get' and 'next' in r.links:
-            return chain.from_iterable(paginate(self.session, r))
+        *path, method = self.__path
+        url = API_ENDPOINT
+        for p in path:
+            p = str(p)
+            if p.lower().startswith(('http://', 'https://')):
+                url = p
+            else:
+                url = url.rstrip('/') + '/' + p.lstrip('/')
+        r = self.__session.request(method, url, **kwargs)
+        if method.lower() == 'get' and 'next' in r.links:
+            return chain.from_iterable(paginate(self.__session, r))
         elif r.ok:
             if decode:
                 if r.status_code == 204:

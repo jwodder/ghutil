@@ -4,10 +4,8 @@ import re
 import requests
 from   ghutil       import __url__, __version__
 from   ghutil.repos import get_remote_url, parse_repo_spec
-from   .util        import paginate
+from   .util        import API_ENDPOINT, paginate
 from   .endpoint    import GHEndpoint
-
-API_ENDPOINT = 'https://api.github.com'
 
 ACCEPT = ','.join([
     'application/vnd.github.drax-preview',           # Licenses
@@ -48,7 +46,7 @@ class GitHub:
         return self[key]
 
     def __getitem__(self, name):
-        return GHEndpoint(self.session, API_ENDPOINT, name)
+        return GHEndpoint(self.session, name)
 
     def repository(self, *args):
         if not args:
