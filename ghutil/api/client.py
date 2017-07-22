@@ -3,7 +3,7 @@ import platform
 import re
 import requests
 from   ghutil       import __url__, __version__
-from   ghutil.types import Repository
+from   ghutil.types import Issue, PullRequest, Repository
 from   ghutil.util  import cacheable
 from   .util        import API_ENDPOINT, paginate
 from   .endpoint    import GHEndpoint
@@ -76,7 +76,19 @@ class GitHub:
     def repository(self, obj=None):
         if obj is None:
             return Repository.default(self)
-        if isinstance(obj, str):
+        elif isinstance(obj, str):
             return Repository.from_arg(self, obj)
         else:
             return Repository.from_data(self, obj)
+
+    def issue(self, obj):
+        if isinstance(obj, str):
+            return Issue.from_arg(self, obj)
+        else:
+            return Issue.from_data(self, obj)
+
+    def pull_request(self, obj):
+        if isinstance(obj, str):
+            return PullRequest.from_arg(self, obj)
+        else:
+            return PullRequest.from_data(self, obj)

@@ -1,6 +1,5 @@
 import click
-from   ghutil.issues import parse_issue_url
-from   ghutil.types  import Repository
+from   ghutil.types import Repository
 
 @click.command()
 @click.option('-a', '--assignee', metavar='USER')
@@ -15,9 +14,10 @@ from   ghutil.types  import Repository
 @click.option('-S', '--sort',
               type=click.Choice(['created', 'updated', 'comments']))
 @Repository.argument('repo')
-def cli(repo, **params):
+@click.pass_obj
+def cli(gh, repo, **params):
     """ List issues for a repository """
     if params.get('label'):
         params['label'] = ','.join(params['label'])
     for issue in repo.issues.get(params=params):
-        click.echo('/'.join(map(str, parse_issue_url(issue["url"]))))
+        click.echo(str(gh.issue(issue)))

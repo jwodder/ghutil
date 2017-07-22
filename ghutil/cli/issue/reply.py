@@ -1,8 +1,8 @@
 import click
-from   ghutil.issues import GHIssue
+from   ghutil.types import Issue
 
 @click.command()
-@click.argument('issue', type=GHIssue())
+@Issue.argument('issue')
 @click.argument('file', type=click.File(), required=False)
 def cli(issue, file):
     """ Comment on an issue/PR """

@@ -98,6 +98,9 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
         (e.g., when only the name of a repository is specified, the owner may
         be set to the name of the current user).
 
+        This method should accept params that include extra keys in order to
+        support constructing a URL path recursively.
+
         :type gh: GitHub
         :type params: dict
         :return: sequence of `str` and/or `int` values
@@ -247,6 +250,7 @@ class ResourceParamType(click.ParamType):
             try:
                 return self.resource_type.from_arg(ctx.obj, value)
             except ValueError:
+                ### TODO: Prepend 'Invalid GitHub <type>: ' to failure message?
                 self.fail(value, param, ctx)
         else:
             # `value` was returned by `default_params()`

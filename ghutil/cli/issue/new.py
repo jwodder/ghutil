@@ -1,7 +1,7 @@
 import click
 from   ghutil.edit    import edit_as_mail
 from   ghutil.types   import Repository
-from   ghutil.showing import print_json, issue_info
+from   ghutil.showing import print_json
 
 @click.command()
 @click.option('-a', '--assignee', multiple=True, metavar='USER')
@@ -40,4 +40,4 @@ def cli(ctx, repo, title, body, label, assignee, milestone, verbose):
                     break
             else:
                 ctx.fail("Unknown milestone: " + data["milestone"])
-    print_json(issue_info(repo.issues.post(json=data), verbose))
+    print_json(ctx.obj.issue(repo.issues.post(json=data)), verbose)

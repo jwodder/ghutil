@@ -1,10 +1,10 @@
 import click
-from   ghutil.showing import print_json, pr_info
-from   ghutil.issues  import GHPull
+from   ghutil.showing import print_json
+from   ghutil.types   import PullRequest
 
 @click.command()
 @click.option('-v', '--verbose', is_flag=True)
-@click.argument('pull_requests', type=GHPull(), nargs=-1)
+@PullRequest.argument_list('pull_requests')
 def cli(pull_requests, verbose):
     """ Show pull request details """
-    print_json([pr_info(p.get(), verbose) for p in pull_requests])
+    print_json(pull_requests, verbose)

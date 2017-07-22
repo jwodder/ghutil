@@ -1,6 +1,5 @@
 import click
-from   ghutil.issues import parse_issue_url
-from   ghutil.types  import Repository
+from   ghutil.types import Repository
 
 @click.command()
 @click.option('--base', metavar='BRANCH')
@@ -11,7 +10,8 @@ from   ghutil.types  import Repository
 @click.option('-S', '--sort',
               type=click.Choice(['created', 'updated', 'popularity', 'long-running']))
 @Repository.argument('repo')
-def cli(repo, **params):
+@click.pass_obj
+def cli(gh, repo, **params):
     """ List pull requests for a repository """
     for pr in repo.pulls.get(params=params):
-        click.echo('/'.join(map(str, parse_issue_url(pr["url"]))))
+        click.echo(str(gh.pull_request(pr)))

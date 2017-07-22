@@ -1,3 +1,8 @@
-from .repo import Repository
+from .issue import Issue, PullRequest
+from .repo  import Repository
 
-__all__ = ['Repository']
+__all__ = [
+    'Issue',
+    'PullRequest',
+    'Repository',
+]

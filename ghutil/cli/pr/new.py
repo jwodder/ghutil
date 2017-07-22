@@ -1,6 +1,6 @@
 import click
 from   ghutil.edit    import edit_as_mail
-from   ghutil.showing import print_json, pr_info
+from   ghutil.showing import print_json
 
 @click.command()
 @click.option('-b', '--body', type=click.File())
@@ -41,11 +41,10 @@ def cli(ctx, head, base, title, body, maintainer_can_modify, verbose):
             click.echo('Aborting pull request due to empty title')
             return
 
-    head_data = head_repo.get()
-    if head_data["full_name"] == base_repo.get()["full_name"]:
+    if head_repo.data["full_name"] == base_repo.data["full_name"]:
         data["head"] = head_branch
     else:
         ### TODO: Check that the repositories are in the same network?
-        data["head"] = head_data["owner"]["login"] + ':' + head_branch
+        data["head"] = head_repo.data["owner"]["login"] + ':' + head_branch
 
-    print_json(pr_info(base_repo.pulls.post(json=data), verbose))
+    print_json(ctx.obj.pull_request(base_repo.pulls.post(json=data)), verbose)

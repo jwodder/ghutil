@@ -6,7 +6,6 @@ from   ghutil.types import Repository
 @click.pass_obj
 def cli(gh):
     for issue in gh.search('issues', "author:" + gh.me):
-        #click.echo(issue["html_url"])
         click.echo(
             '{!s:40}  #{:<5}  [{}]'.format(
                 Repository.from_url(issue["repository_url"]),

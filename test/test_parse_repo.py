@@ -26,3 +26,5 @@ def test_parse_arg(arg, params):
 @pytest.mark.parametrize('url,params', REPO_URLS)
 def test_parse_url(url, params):
     assert Repository.parse_url(url) == params
+
+# TODO: Test parsing bad repository args/URLs

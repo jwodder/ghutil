@@ -1,6 +1,6 @@
-from   textwrap      import indent
+from   textwrap     import indent
 import click
-from   ghutil.issues import GHIssue
+from   ghutil.types import Issue
 
 EMOJI = {
     '+1': '\U0001F44D',
@@ -13,10 +13,10 @@ EMOJI = {
 
 @click.command()
 @click.option('--since', metavar='TIMESTAMP')
-@click.argument('issue', type=GHIssue())
+@Issue.argument('issue')
 def cli(issue, since):
     """ View comments on an issue/PR """
-    output = show_comment(issue.get())
+    output = show_comment(issue.data)
     for comment in issue.comments.get(params={"since": since}):
         output += '\n' + show_comment(comment)
     # echo_via_pager adds a newline, so remove the "extra" newline at the end

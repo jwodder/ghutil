@@ -1,10 +1,10 @@
 import click
-from   ghutil.showing import print_json, issue_info
-from   ghutil.issues  import GHIssue
+from   ghutil.showing import print_json
+from   ghutil.types   import Issue
 
 @click.command()
 @click.option('-v', '--verbose', is_flag=True)
-@click.argument('issues', type=GHIssue(), nargs=-1)
+@Issue.argument_list('issues')
 def cli(issues, verbose):
     """ Show issue details """
-    print_json([issue_info(i.get(), verbose) for i in issues])
+    print_json(issues, verbose)
