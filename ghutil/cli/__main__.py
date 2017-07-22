@@ -1,15 +1,18 @@
-from   pathlib     import Path
+import os.path
 import click
 from   ghutil      import __version__
 from   ghutil.api  import GitHub
 from   ghutil.util import package_group
+
+#DEFAULT_CFG = str(pathlib.Path.home() / '.config' / 'ghutil.cfg')  # Py3.5+
+DEFAULT_CFG = os.path.join(os.path.expanduser('~'), '.config', 'ghutil.cfg')
 
 @package_group(
     __package__, __file__,
     context_settings={"help_option_names": ["-h", "--help"]},
 )
 @click.option('-c', '--config', type=click.Path(dir_okay=False),
-              default=str(Path.home() / '.config' / 'ghutil.cfg'))
+              default=DEFAULT_CFG)
 @click.version_option(__version__, '-V', '--version',
                       message='%(prog)s %(version)s')
 @click.pass_context
