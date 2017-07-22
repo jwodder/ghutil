@@ -3,6 +3,12 @@
     :alt: Project Status: WIP — Initial development is in progress, but there
           has not yet been a stable, usable release suitable for the public.
 
+.. image:: https://travis-ci.org/jwodder/ghutil.svg?branch=master
+    :target: https://travis-ci.org/jwodder/ghutil
+
+.. image:: https://coveralls.io/repos/github/jwodder/ghutil/badge.svg?branch=master
+    :target: https://coveralls.io/github/jwodder/ghutil?branch=master
+
 .. image:: https://img.shields.io/github/license/jwodder/ghutil.svg?maxAge=2592000
     :target: https://opensource.org/licenses/MIT
     :alt: MIT License
