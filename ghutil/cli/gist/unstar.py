@@ -1,8 +1,8 @@
 import click
-from   ghutil.gists import gists_list_arg
+from   ghutil.types import Gist
 
 @click.command()
-@gists_list_arg
+@Gist.argument_list('gists')
 @click.pass_obj
 def cli(gh, gists):
     """ Unstar gists """

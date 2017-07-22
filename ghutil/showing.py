@@ -52,25 +52,6 @@ def show_fields(*fields):
         return about
     return show
 
-gist_info = show_fields(
-    "id",
-    "url",
-    "git_pull_url",
-    ("files", lambda files: {
-        fname: {k:v for k,v in about.items() if k != 'content'}
-        for fname, about in files.items()
-    }),
-    "public",
-    "html_url",
-    ("owner", "login"),
-    "description",
-    "created_at",
-    "updated_at",
-    "comments",
-    ("fork_of", "id"),
-    ("forks", "id"),
-)
-
 release_info = show_fields(
     "id",
     "name",

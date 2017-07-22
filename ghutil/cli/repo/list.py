@@ -11,4 +11,4 @@ import click
 def cli(gh, **params):
     """ List your repositories """
     for repo in gh.user.repos.get(params=params):
-        click.echo(repo["full_name"])
+        click.echo(str(gh.repository(repo)))

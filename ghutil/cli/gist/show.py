@@ -1,11 +1,11 @@
 import click
-from   ghutil.gists   import gists_list_arg
-from   ghutil.showing import print_json, gist_info
+from   ghutil.showing import print_json
+from   ghutil.types   import Gist
 
 @click.command()
 @click.option('-v', '--verbose', is_flag=True)
-@gists_list_arg
+@Gist.argument_list('gists')
 @click.pass_obj
 def cli(gh, gists, verbose):
     """ Show gist details """
-    print_json([gist_info(g.get(), verbose) for g in gists])
+    print_json(gists, verbose)

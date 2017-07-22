@@ -1,6 +1,6 @@
 import os.path
 import click
-from   ghutil.showing import print_json, gist_info
+from   ghutil.showing import print_json
 
 @click.command()
 @click.option('-d', '--description')
@@ -20,4 +20,4 @@ def cli(gh, description, private, filename, file, verbose):
     }
     if description is not None:
         data["description"] = description
-    print_json(gist_info(gh.gists.post(json=data), verbose))
+    print_json(gh.gist(gh.gists.post(json=data)), verbose)

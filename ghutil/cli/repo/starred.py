@@ -5,4 +5,4 @@ import click
 def cli(gh):
     """ List starred repositories """
     for repo in gh.user.starred.get():
-        click.echo(repo["full_name"])
+        click.echo(str(gh.repository(repo)))

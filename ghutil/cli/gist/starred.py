@@ -5,4 +5,4 @@ import click
 def cli(gh):
     """ List starred gists """
     for gist in gh.gists.starred.get():
-        click.echo(gist["id"])
+        click.echo(str(gh.gist(gist)))

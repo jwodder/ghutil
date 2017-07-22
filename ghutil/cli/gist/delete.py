@@ -1,9 +1,9 @@
 import click
-from   ghutil.gists import gist_arg
+from   ghutil.types import Gist
 
 @click.command()
 @click.confirmation_option(prompt='Delete this gist?')
-@gist_arg
+@Gist.argument('gist')
 @click.pass_obj
 def cli(gh, gist):
     """ Delete a gist """
