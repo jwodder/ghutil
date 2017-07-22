@@ -6,4 +6,4 @@ import click
 def cli(gh, terms):
     """ Search repositories """
     for repo in gh.search('repositories', *terms):
-        click.echo(repo["full_name"])
+        click.echo(str(gh.repository(repo)))

@@ -6,4 +6,4 @@ from   ghutil.types import Repository
 def cli(repo):
     """ List a repository's forks """
     for fork in repo.forks.get():
-        click.echo(fork["full_name"])
+        click.echo(str(gh.repository(fork)))

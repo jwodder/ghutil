@@ -1,6 +1,6 @@
 import click
-from   ghutil.types   import Repository
 from   ghutil.showing import print_json
+from   ghutil.types   import Repository
 
 @click.command()
 @Repository.argument('repo')
