@@ -1,5 +1,5 @@
 import click
-from   ghutil.showing import print_json, repo_info
+from   ghutil.showing import print_json
 
 @click.command()
 @click.option('-d', '--description')
@@ -18,4 +18,4 @@ def cli(gh, description, homepage, private, name, verbose):
         data["description"] = description
     if homepage is not None:
         data["homepage"] = homepage
-    print_json(repo_info(gh.user.repos.post(json=data), verbose))
+    print_json(gh.repository(gh.user.repos.post(json=data)), verbose)

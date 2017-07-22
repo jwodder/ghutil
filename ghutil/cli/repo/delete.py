@@ -1,9 +1,9 @@
 import click
-from   ghutil.repos import repo_arg
+from   ghutil.types import Repository
 
 @click.command()
 @click.confirmation_option(prompt='Delete this repository?')
-@repo_arg
+@Repository.argument('repo')
 @click.pass_obj
 def cli(gh, repo):
     """ Delete a repository """

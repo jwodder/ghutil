@@ -1,6 +1,6 @@
 import click
 from   ghutil.edit    import edit_as_mail
-from   ghutil.repos   import repo_arg
+from   ghutil.types   import Repository
 from   ghutil.showing import print_json, issue_info
 
 @click.command()
@@ -10,7 +10,7 @@ from   ghutil.showing import print_json, issue_info
 @click.option('-m', '--milestone', metavar='ID|TITLE')
 @click.option('-T', '--title')
 @click.option('-v', '--verbose', is_flag=True)
-@repo_arg
+@Repository.argument('repo')
 @click.pass_context
 def cli(ctx, repo, title, body, label, assignee, milestone, verbose):
     """ Create a new issue """
@@ -22,7 +22,7 @@ def cli(ctx, repo, title, body, label, assignee, milestone, verbose):
         "milestone": milestone,
     }
     if title is None or body is None:
-        if repo.get()["permissions"]["push"]:
+        if repo.data["permissions"]["push"]:
             fields = 'title labels assignees milestone'
         else:
             fields = 'title'

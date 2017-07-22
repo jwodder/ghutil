@@ -1,6 +1,6 @@
 import click
 from   ghutil.edit import edit_as_mail
-from   ghutil.util import get_last_tag
+from   ghutil.git  import get_last_tag
 
 @click.command()
 @click.argument('tag', default=get_last_tag)

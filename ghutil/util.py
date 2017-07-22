@@ -1,7 +1,21 @@
-from   importlib  import import_module
-from   pathlib    import Path
-from   subprocess import check_output, CalledProcessError
+from   importlib        import import_module
+from   pathlib          import Path
 import click
+from   property_manager import cached_property
+
+# As of 2017-05-21, trying to sign up to GitHub with an invalid username gives
+# the message "Username may only contain alphanumeric characters or single
+# hyphens, and cannot begin or end with a hyphen"
+GH_USER_RGX = r'[A-Za-z0-9](?:-?[A-Za-z0-9])*'
+
+# Testing as of 2017-05-21 indicates that repository names can be composed of
+# alphanumeric ASCII characters, hyphens, periods, and/or underscores, with the
+# names ``.`` and ``..`` being reserved and names ending with ``.git``
+# forbidden.
+GH_REPO_RGX = r'(?:\.?[-A-Za-z0-9_][-A-Za-z0-9_.]*|\.\.[-A-Za-z0-9_.]+)'\
+              r'(?<!\.git)'
+
+OWNER_REPO_RGX = r'(?P<owner>{})/(?P<repo>{})'.format(GH_USER_RGX, GH_REPO_RGX)
 
 def package_group(package, filepath, **kwargs):
     def wrapper(f):
@@ -21,11 +35,4 @@ def default_command(ctx, cmdname):
     if ctx.invoked_subcommand is None:
         ctx.invoke(ctx.command.commands[cmdname])
 
-def cmdline(*args, **kwargs):
-    try:
-        return check_output(args, universal_newlines=True, **kwargs).strip()
-    except CalledProcessError as e:
-        click.get_current_context().exit(e.returncode)
-
-def get_last_tag(chdir=None):
-    return cmdline('git', 'describe', '--abbrev=0', '--tags', cwd=chdir)
+cacheable = cached_property(writable=True)

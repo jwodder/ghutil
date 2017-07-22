@@ -3,7 +3,8 @@ import platform
 import re
 import requests
 from   ghutil       import __url__, __version__
-from   ghutil.repos import get_remote_url, parse_repo_spec
+from   ghutil.types import Repository
+from   ghutil.util  import cacheable
 from   .util        import API_ENDPOINT, paginate
 from   .endpoint    import GHEndpoint
 
@@ -27,7 +28,6 @@ class GitHub:
         self.session = session or requests.Session()
         self.session.headers["Accept"] = ACCEPT
         self.session.headers["User-Agent"] = USER_AGENT
-        self._me = None
 
     def configure(self, cfg_file):
         parser = ConfigParser(interpolation=ExtendedInterpolation())
@@ -48,21 +48,9 @@ class GitHub:
     def __getitem__(self, name):
         return GHEndpoint(self.session, name)
 
-    def repository(self, *args):
-        if not args:
-            args = (None,)
-        if len(args) == 1:
-            url, = args
-            if url is None:
-                url = get_remote_url()
-            owner, repo = parse_repo_spec(url)
-        elif len(args) == 2:
-            owner, repo = args
-        else:
-            raise TypeError('GitHub.repository() takes one or two arguments')
-        if owner is None:
-            owner = self.me
-        return self.repos[owner][repo]
+    @cacheable
+    def me(self):
+        return self.user.get()["login"]
 
     def search(self, objtype, *terms, **params):
         q = ''
@@ -85,8 +73,10 @@ class GitHub:
         ### Return total_count?
         ### Do something on incomplete_results?
 
-    @property
-    def me(self):
-        if self._me is None:
-            self._me = self.user.get()["login"]
-        return self._me
+    def repository(self, obj=None):
+        if obj is None:
+            return Repository.default(self)
+        if isinstance(obj, str):
+            return Repository.from_arg(self, obj)
+        else:
+            return Repository.from_data(self, obj)

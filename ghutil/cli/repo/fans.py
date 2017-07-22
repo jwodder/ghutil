@@ -1,9 +1,9 @@
 import click
-from   ghutil.repos   import repo_arg
+from   ghutil.types   import Repository
 from   ghutil.showing import print_json
 
 @click.command()
-@repo_arg
+@Repository.argument('repo')
 def cli(repo):
     """ List forkers, stargazers, & watchers """
     print_json({

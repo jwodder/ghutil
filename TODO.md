@@ -6,7 +6,9 @@
     - Somewhere test that credentials are being redacted from cassettes
     - Test that the correct User-Agent and Accept headers are being sent?
 - Ensure that the results of `get_remote_url()` are only ever passed to
-  `parse_repo_url()`, not `parse_repo_spec()`
+  `Respository.parse_url()`, not `Repository.parse_arg()`
+- Support repository URLs in "`git_url`" format (e.g.,
+  `git://github.com/jwodder/qypi.git`)
 
 - cf. <https://github.com/whiteinge/ok.sh>
 - cf. <https://github.com/github/hub>

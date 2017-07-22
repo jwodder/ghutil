@@ -1,8 +1,8 @@
 import click
-from   ghutil.repos import repo_arg
+from   ghutil.types import Repository
 
 @click.command()
-@repo_arg
+@Repository.argument('repo')
 def cli(repo):
     """ List a repository's forks """
     for fork in repo.forks.get():

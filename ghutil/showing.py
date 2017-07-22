@@ -1,13 +1,30 @@
 from   collections.abc import Iterator
+from   inspect         import signature
 import json
 from   operator        import itemgetter
 import click
 
-def print_json(obj, err=False):
-    if isinstance(obj, Iterator):
-        obj = list(obj)
-    click.echo(json.dumps(obj, sort_keys=True, indent=4, ensure_ascii=False),
-               err=err)
+def print_json(obj, verbose=False, err=False):
+    def default(obj):
+        if hasattr(obj, 'for_json'):
+            if 'verbose' in signature(obj.for_json).parameters:
+                return obj.for_json(verbose=verbose)
+            else:
+                return obj.for_json()
+        elif isinstance(obj, Iterator):
+            obj = list(obj)
+        else:
+            try:
+                data = vars(obj).copy()
+            except TypeError:
+                data = {"__repr__": repr(obj)}
+            data["__class__"] = type(obj).__name__
+            return data
+    click.echo(
+        json.dumps(obj, sort_keys=True, indent=4, ensure_ascii=False,
+                        default=default),
+        err=err,
+    )
 
 def show_fields(*fields):
     def show(obj, verbose=False):
@@ -34,38 +51,6 @@ def show_fields(*fields):
             about[name] = value
         return about
     return show
-
-repo_info = show_fields(
-    ("owner", "login"),
-    "name",
-    "url",
-    "html_url",
-    "clone_url",
-    "git_url",
-    "ssh_url",
-    "full_name",
-    "description",
-    "homepage",
-    "private",
-    "default_branch",
-    "created_at",
-    "updated_at",
-    "pushed_at",
-    "fork",
-    "forks_count",
-    "watchers_count",
-    "size",
-    "subscribers_count",
-    "stargazers_count",
-    "id",
-    "language",
-    "network_count",
-    "open_issues_count",
-    ("parent", "full_name"),
-    ("source", "full_name"),
-    "topics",
-    ("license", "spdx_id"),
-)
 
 gist_info = show_fields(
     "id",

@@ -1,6 +1,7 @@
 import re
 import click
-from   .repos import GH_USER_RGX, get_remote_url
+from   .util import GH_USER_RGX
+from   .git  import get_remote_url
 
 class GHGist(click.ParamType):
     name = 'gist'

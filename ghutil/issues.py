@@ -1,6 +1,8 @@
 import re
 import click
-from   .repos import GH_USER_RGX, GH_REPO_RGX, get_remote_url, parse_repo_url
+from   .git   import get_remote_url
+from   .types import Repository
+from   .util  import GH_USER_RGX, GH_REPO_RGX
 
 class GHIssue(click.ParamType):
     name = 'issue'
@@ -11,7 +13,10 @@ class GHIssue(click.ParamType):
         except ValueError:
             self.fail('Invalid GitHub issue: ' + value, param, ctx)
         else:
-            return ctx.obj.repository(owner, repo).issues[num]
+            return Repository.from_params(
+                ctx.obj,
+                {"owner": owner, "repo": repo},
+            ).issues[num]
 
 
 class GHPull(click.ParamType):
@@ -23,7 +28,10 @@ class GHPull(click.ParamType):
         except ValueError:
             self.fail('Invalid GitHub pull request: ' + value, param, ctx)
         else:
-            return ctx.obj.repository(owner, repo).pulls[num]
+            return Repository.from_params(
+                ctx.obj,
+                {"owner": owner, "repo": repo},
+            ).pulls[num]
 
 
 def parse_issue_spec(s):
@@ -51,7 +59,9 @@ def parse_issue_spec(s):
     if m:
         user, repo, num = m.groups()
         if not repo:
-            user, repo = parse_repo_url(get_remote_url())
+            params = Repository.parse_url(get_remote_url())
+            user = params["owner"]
+            repo = params["repo"]
         return (user, repo, int(num))
     else:
         return parse_issue_url(s)

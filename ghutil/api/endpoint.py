@@ -18,7 +18,7 @@ class GHEndpoint:
         return self[key]
 
     def __getitem__(self, name):
-        return type(self)(self.__session, *self.__path, name)
+        return GHEndpoint(self.__session, *self.__path, name)
 
     def __call__(self, decode=True, maybe=False, **kwargs):
         *path, method = self.__path

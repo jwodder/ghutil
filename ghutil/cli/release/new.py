@@ -3,7 +3,7 @@
 import click
 from   ghutil.edit    import edit_as_mail
 from   ghutil.showing import print_json, release_info
-from   ghutil.util    import get_last_tag
+from   ghutil.git     import get_last_tag
 
 @click.command()
 @click.option('-v', '--verbose', is_flag=True)

@@ -1,8 +1,8 @@
 import click
-from   ghutil.repos import repo_arg
+from   ghutil.types import Repository
 
 @click.command()
-@repo_arg
+@Repository.argument('repo')
 def cli(repo):
     """ List releases for a repository """
     for rel in repo.releases.get():

@@ -1,7 +1,7 @@
 from   asciitree         import LeftAligned
 from   asciitree.drawing import BoxStyle, BOX_LIGHT
 import click
-from   ghutil.repos      import repos_list_arg
+from   ghutil.types      import Repository
 
 class ForkTraversal:
     def __init__(self, gh, highlighted: [dict]):
@@ -24,11 +24,11 @@ class ForkTraversal:
 
 
 @click.command()
-@repos_list_arg
+@Repository.argument_list('repos')
 @click.pass_obj
 def cli(gh, repos):
     """ Show a tree of forks """
-    repos = [r.get() for r in repos]
+    repos = [r.data for r in repos]
     traverser = ForkTraversal(gh, repos)
     tree = LeftAligned(draw=BoxStyle(gfx=BOX_LIGHT), traverse=traverser)
     first = True

@@ -1,6 +1,6 @@
 import re
 import pytest
-from   ghutil.repos import GH_USER_RGX, GH_REPO_RGX
+from   ghutil.util import GH_USER_RGX, GH_REPO_RGX
 
 @pytest.mark.parametrize('name', [
     'steven-universe',
@@ -54,6 +54,9 @@ def test_bad_users(name):
     'git',
     '-',
     '_',
+    '---',
+    '.---',
+    '.steven',
 ])
 def test_good_repos(repo):
     assert bool(re.fullmatch(GH_REPO_RGX, repo))
