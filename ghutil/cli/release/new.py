@@ -2,8 +2,8 @@
 ### that hasn't been pushed yet or that already has a release
 import click
 from   ghutil.edit    import edit_as_mail
-from   ghutil.showing import print_json, release_info
 from   ghutil.git     import get_last_tag
+from   ghutil.showing import print_json, release_info
 
 @click.command()
 @click.option('-v', '--verbose', is_flag=True)

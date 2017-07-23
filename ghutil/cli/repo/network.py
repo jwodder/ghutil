@@ -1,5 +1,5 @@
 from   asciitree         import LeftAligned
-from   asciitree.drawing import BoxStyle, BOX_LIGHT
+from   asciitree.drawing import BOX_LIGHT, BoxStyle
 import click
 from   ghutil.types      import Repository
 

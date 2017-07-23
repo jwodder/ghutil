@@ -1,6 +1,6 @@
 import re
 import click
-from   headerparser import HeaderParser, BOOL
+from   headerparser import BOOL, HeaderParser
 
 def edit_as_mail(obj: dict, fields=None, bodyfield=None):
     # Returns only the fields that changed

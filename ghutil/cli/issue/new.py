@@ -1,7 +1,7 @@
 import click
 from   ghutil.edit    import edit_as_mail
-from   ghutil.types   import Repository
 from   ghutil.showing import print_json
+from   ghutil.types   import Repository
 
 @click.command()
 @click.option('-a', '--assignee', multiple=True, metavar='USER')

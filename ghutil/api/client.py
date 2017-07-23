@@ -5,8 +5,8 @@ import requests
 from   ghutil       import __url__, __version__
 from   ghutil.types import Gist, Issue, PullRequest, Repository
 from   ghutil.util  import cacheable
-from   .util        import API_ENDPOINT, paginate
 from   .endpoint    import GHEndpoint
+from   .util        import API_ENDPOINT, paginate
 
 ACCEPT = ','.join([
     'application/vnd.github.drax-preview',           # Licenses

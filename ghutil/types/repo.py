@@ -1,6 +1,6 @@
 import re
 from   ghutil.git  import get_remote_url
-from   ghutil.util import GH_USER_RGX, GH_REPO_RGX, OWNER_REPO_RGX
+from   ghutil.util import GH_REPO_RGX, GH_USER_RGX, OWNER_REPO_RGX
 from   .util       import Resource, cacheable
 
 class Repository(Resource):
