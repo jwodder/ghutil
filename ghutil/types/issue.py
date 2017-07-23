@@ -1,5 +1,5 @@
+from   ghutil.regex   import GH_REPO_RGX, GH_USER_RGX, OWNER_REPO_RGX
 from   ghutil.showing import show_fields
-from   ghutil.util    import GH_REPO_RGX, GH_USER_RGX, OWNER_REPO_RGX
 from   .repo          import Repository
 from   .util          import Resource, cacheable
 

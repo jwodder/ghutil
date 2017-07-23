@@ -1,7 +1,7 @@
 import re
-from   ghutil.git  import get_remote_url
-from   ghutil.util import GH_USER_RGX
-from   .util       import Resource, cacheable
+from   ghutil.git   import get_remote_url
+from   ghutil.regex import GH_USER_RGX
+from   .util        import Resource, cacheable
 
 GIST_ID_RGX = r'(?P<id>[A-Fa-f0-9]+)'
 

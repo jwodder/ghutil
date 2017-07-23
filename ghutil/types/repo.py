@@ -1,8 +1,8 @@
 import re
 import click
-from   ghutil.git  import get_remote_url
-from   ghutil.util import GH_REPO_RGX, GH_USER_RGX, OWNER_REPO_RGX
-from   .util       import Resource, cacheable
+from   ghutil.git   import get_remote_url
+from   ghutil.regex import GH_REPO_RGX, GH_USER_RGX, OWNER_REPO_RGX
+from   .util        import Resource, cacheable
 
 class Repository(Resource):
     """
