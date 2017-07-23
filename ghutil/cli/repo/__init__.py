@@ -13,6 +13,7 @@ def cli(ctx):
     \b
         $OWNER/$REPO
         $REPO                                # when owned by current user
+        git://github.com/$OWNER/$REPO.git    # with or without trailing `.git`
         git@github.com:$OWNER/$REPO.git      # with or without trailing `.git`
         https://github.com/$OWNER/$REPO.git  # with or without trailing `.git`
         https://api.github.com/repos/$OWNER/$REPO

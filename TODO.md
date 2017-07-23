@@ -7,8 +7,6 @@
     - Test that the correct User-Agent and Accept headers are being sent?
 - Ensure that the results of `get_remote_url()` are only ever passed to
   `Respository.parse_url()`, not `Repository.parse_arg()`
-- Support repository URLs in "`git_url`" format (e.g.,
-  `git://github.com/jwodder/qypi.git`)
 
 - cf. <https://github.com/whiteinge/ok.sh>
 - cf. <https://github.com/github/hub>

@@ -3,15 +3,31 @@ from   ghutil.types import Repository
 
 REPO_URLS = [
     (
+        'git://github.com/jwodder/headerparser',
+        {"owner": "jwodder", "repo": "headerparser"},
+    ),
+    (
+        'git://github.com/jwodder/headerparser.git',
+        {"owner": "jwodder", "repo": "headerparser"},
+    ),
+    (
+        'git@github.com:jwodder/headerparser',
+        {"owner": "jwodder", "repo": "headerparser"},
+    ),
+    (
         'git@github.com:jwodder/headerparser.git',
         {"owner": "jwodder", "repo": "headerparser"},
     ),
     (
-        'https://github.com/jwodder/headerparser.git',
+        'https://api.github.com/repos/jwodder/headerparser',
         {"owner": "jwodder", "repo": "headerparser"},
     ),
     (
-        'https://api.github.com/repos/jwodder/headerparser',
+        'https://github.com/jwodder/headerparser',
+        {"owner": "jwodder", "repo": "headerparser"},
+    ),
+    (
+        'https://github.com/jwodder/headerparser.git',
         {"owner": "jwodder", "repo": "headerparser"},
     ),
 ]
