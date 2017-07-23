@@ -1,4 +1,4 @@
-from   subprocess import CalledProcessError, check_output
+from   subprocess import CalledProcessError, call, check_output
 import click
 
 def cmdline(*args, **kwargs):
@@ -12,3 +12,11 @@ def get_remote_url(chdir=None, remote='origin'):
 
 def get_last_tag(chdir=None):
     return cmdline('git', 'describe', '--abbrev=0', '--tags', cwd=chdir)
+
+def clone_repo(url, target_dir=None):
+    args = ['git', 'clone', url]
+    if target_dir is not None:
+        args.append(target_dir)
+    r = call(args)
+    if r != 0:
+        click.get_current_context().exit(r)

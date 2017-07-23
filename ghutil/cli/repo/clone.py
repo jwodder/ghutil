@@ -1,5 +1,5 @@
-import subprocess
 import click
+from   ghutil.git   import clone_repo
 from   ghutil.types import Repository
 
 @click.command()
@@ -11,7 +11,4 @@ from   ghutil.types import Repository
 @click.pass_context
 def cli(ctx, repo, dir, url):  # noqa: B002
     """ Clone a GitHub repository """
-    args = ['git', 'clone', repo.data[url]]
-    if dir is not None:
-        args.append(dir)
-    ctx.exit(subprocess.call(args))
+    clone_repo(repo.data[url], dir)

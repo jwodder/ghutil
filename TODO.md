@@ -5,8 +5,8 @@
 - Write more tests (somehow)
     - Somewhere test that credentials are being redacted from cassettes
     - Test that the correct User-Agent and Accept headers are being sent?
-- Ensure that the results of `get_remote_url()` are only ever passed to
-  `Respository.parse_url()`, not `Repository.parse_arg()`
+    - Test that calling `Repository.default_params()` when `get_remote_url()`
+      returns a local path always fails
 
 - cf. <https://github.com/whiteinge/ok.sh>
 - cf. <https://github.com/github/hub>

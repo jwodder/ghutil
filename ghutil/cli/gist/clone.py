@@ -1,5 +1,5 @@
-import subprocess
 import click
+from   ghutil.git   import clone_repo
 from   ghutil.types import Gist
 
 @click.command()
@@ -15,7 +15,4 @@ def cli(ctx, gist, dir, url):  # noqa: B002
     elif url == 'ssh':
         # Why isn't this URL returned by the API?
         clone_url = 'git@gist.github.com:{}.git'.format(gist.id)
-    args = ['git', 'clone', clone_url]
-    if dir is not None:
-        args.append(dir)
-    ctx.exit(subprocess.call(args))
+    clone_repo(clone_url, dir)
