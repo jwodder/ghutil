@@ -77,6 +77,7 @@ Interface Improvements
     - timestamp format for `gh issue read`
     - editor program to use
 - Add debug logging
+- Support bash completion
 
 - `gh gist`:
     - `new`: Allow creating a gist containing more than one file

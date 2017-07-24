@@ -172,7 +172,7 @@ Repositories
 ``gh repo network [<repo> ...]``
    Show a repository's network of forks as a tree
 
-``gh repo new [-d <description>] [-H <homepage>] [-P|--private] <name>``
+``gh repo new [<options>] <name>``
    Create a new repository
 
 ``gh repo search <search-term> ...``
