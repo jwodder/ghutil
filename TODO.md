@@ -7,6 +7,10 @@
     - Test that the correct User-Agent and Accept headers are being sent?
     - Test that calling `Repository.default_params()` when `get_remote_url()`
       returns a local path always fails
+    - `--verbose`
+    - Specifying an issue, PR, or release without a repository name, with
+      `get_remote_url()` mocked
+    - `show`ing more than one object at once
 
 - cf. <https://github.com/whiteinge/ok.sh>
 - cf. <https://github.com/github/hub>
@@ -78,6 +82,7 @@ Interface Improvements
     - editor program to use
 - Add debug logging
 - Support bash completion
+- Add a command for showing rate limit information?
 
 - `gh gist`:
     - `new`: Allow creating a gist containing more than one file
@@ -106,8 +111,7 @@ Interface Improvements
 - `gh release`:
     - When creating a new release, (add an option to) prepopulate the release
       message/body with the tagged commit's commit message
-    - Allow specifying the repository on the command line (and handle the case
-      when a tag isn't also specified)
+    - Allow specifying the repository on the command line
     - `new` and `edit`: Add options for setting everything via the command line
     - Support setting `target_commitish` when creating/editing a release
     - `show`: When no release is specified, default to the most recent tag of

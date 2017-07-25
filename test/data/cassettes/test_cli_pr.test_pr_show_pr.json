@@ -1,0 +1,60 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-07-25T14:46:54",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.1 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/vinta/awesome-python/pulls/875"
+      },
+      "response": {
+        "body": {
+          "base64_string": "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",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Tue, 25 Jul 2017 14:46:54 GMT",
+          "ETag": "W/\"1c8fb0716c6dcb110055100d99ebfa3e\"",
+          "Last-Modified": "Wed, 19 Jul 2017 20:03:19 GMT",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "C924:14EC:8DE4F0:11A5E2A:597759DE",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4969",
+          "X-RateLimit-Reset": "1500996127",
+          "X-Runtime-rack": "0.119062",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/vinta/awesome-python/pulls/875"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

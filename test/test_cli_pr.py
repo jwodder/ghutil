@@ -93,4 +93,59 @@ pypa/packaging/87
 pypa/packaging/82
 '''
 
-# pr show
+def test_pr_show_pr(cmd):
+    r = cmd('pr', 'show', 'vinta/awesome-python/875')
+    assert r.exit_code == 0
+    assert r.output == '''\
+[
+    {
+        "additions": 1,
+        "assignees": [],
+        "base": {
+            "label": "vinta:master",
+            "ref": "master",
+            "repo": "vinta/awesome-python",
+            "sha": "f39ced29541fdf90ed226084c34afc8c7c704e3f",
+            "user": "vinta"
+        },
+        "changed_files": 1,
+        "closed_at": null,
+        "comments": 2,
+        "commits": 1,
+        "created_at": "2017-04-15T23:59:11Z",
+        "deletions": 0,
+        "diff_url": "https://github.com/vinta/awesome-python/pull/875.diff",
+        "head": {
+            "label": "jwodder:attrs",
+            "ref": "attrs",
+            "repo": "jwodder/awesome-python",
+            "sha": "b1145c8eb15c82f984239c3835be08355886a4fa",
+            "user": "jwodder"
+        },
+        "html_url": "https://github.com/vinta/awesome-python/pull/875",
+        "id": 116043173,
+        "issue_url": "https://api.github.com/repos/vinta/awesome-python/issues/875",
+        "locked": false,
+        "maintainer_can_modify": true,
+        "merge_commit_sha": "251407e453093a531065a38e9bcd14e3d771b2dd",
+        "mergeable": true,
+        "mergeable_state": "clean",
+        "merged": false,
+        "merged_at": null,
+        "merged_by": null,
+        "milestone": null,
+        "number": 875,
+        "patch_url": "https://github.com/vinta/awesome-python/pull/875.patch",
+        "rebaseable": true,
+        "requested_reviewers": [],
+        "review_comments": 0,
+        "state": "open",
+        "title": "Add attrs",
+        "updated_at": "2017-05-20T23:16:50Z",
+        "url": "https://api.github.com/repos/vinta/awesome-python/pulls/875",
+        "user": "jwodder"
+    }
+]
+'''
+
+# pr show <issue> = error

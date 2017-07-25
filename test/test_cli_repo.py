@@ -169,6 +169,98 @@ rakudo/star
 perl6/book
 '''
 
-# repo list-forks
-# repo network
+def test_repo_network(cmd):
+    ### TODO: Try to preserve (and test) the bolding of the command-line
+    ### argument
+    r = cmd('repo', 'network', 'sgillies/Fiona')
+    assert r.exit_code == 0
+    assert r.output == '''\
+Toblerity/Fiona
+ ├── johnbickmore/Fiona
+ ├── Python3pkg/Fiona
+ ├── leijiancd/Fiona
+ ├── JesseCrocker/Fiona
+ ├── QuLogic/Fiona
+ ├── youngpm/Fiona
+ ├── zandy19/Fiona
+ ├── rouault/Fiona
+ ├── sunnyk-skk456/Fiona
+ ├── wesky93/Fiona
+ ├── chefren/Fiona
+ ├── shiweihappy/Fiona
+ ├── sposs/Fiona
+ ├── qinfeng/Fiona
+ ├── smnorris/Fiona
+ ├── aashish24/Fiona
+ ├── imagingearth/Fiona
+ ├── techtronics/Fiona
+ ├── paladin74/Fiona
+ ├── SIGISLV/Fiona
+ ├── sebastic/Fiona
+ ├── perrygeo/Fiona
+ ├── gislite/Fiona
+ ├── eotp/Fiona
+ ├── antmd/Fiona
+ ├── groutr/Fiona
+ ├── MatthewArrott/Fiona
+ ├── idonglei/Fiona
+ ├── cjthomas730/Fiona
+ ├── hroncok/Fiona
+ ├── geowurster/Fiona
+ ├── visr/Fiona
+ ├── jdmcbr/Fiona
+ ├── dmkent/Fiona
+ ├── johanvdw/Fiona
+ ├── citterio/Fiona
+ ├── jlivni/Fiona
+ ├── barrycug/Fiona
+ ├── shannonyu/Fiona
+ ├── dimlev/Fiona
+ ├── rbuffat/Fiona
+ ├── mwtoews/Fiona
+ ├── walkerjeffd/Fiona
+ ├── snorfalorpagus/Fiona
+ ├── brendan-ward/Fiona
+ ├── kod3r/Fiona
+ ├── jonathanrocher/Fiona
+ ├── jwass/Fiona
+ ├── kjordahl/Fiona
+ │   └── mukolx/Fiona
+ ├── shakythesherpa/Fiona
+ ├── WeatherGod/Fiona
+ ├── justb4/Fiona
+ ├── wilsaj/Fiona
+ ├── igiroux/Fiona
+ ├── prologic/Fiona
+ ├── ldgeo/Fiona
+ ├── fgcartographix/Fiona
+ ├── davidmarcus/Fiona
+ ├── gridcell/Fiona
+ ├── lordi/Fiona
+ ├── dandye/Fiona
+ ├── olt/Fiona
+ ├── paulsmith/Fiona
+ ├── steko/Fiona
+ ├── ingenieroariel/Fiona
+ ├── fredj/Fiona
+ ├── aaronr/Fiona
+ ├── drwelby/Fiona
+ ├── mweisman/Fiona
+ └── sgillies/Fiona
+     ├── taoteg/Fiona
+     ├── wyom/Fiona
+     ├── Joe-Blabbah/Fiona
+     └── yuanshankongmeng/Fiona
+'''
+
+def test_repo_list_forks(cmd):
+    r = cmd('repo', 'list-forks', 'sgillies/Fiona')
+    assert r.exit_code == 0
+    assert r.output == '''\
+taoteg/Fiona
+wyom/Fiona
+Joe-Blabbah/Fiona
+yuanshankongmeng/Fiona
+'''
+
 # repo search

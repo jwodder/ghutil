@@ -1,0 +1,59 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-07-25T15:32:32",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.1 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/sgillies/Fiona/forks"
+      },
+      "response": {
+        "body": {
+          "base64_string": "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",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Tue, 25 Jul 2017 15:32:32 GMT",
+          "ETag": "W/\"9c6c873c2ba5a1bbb5fe5f731ce38a00\"",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "C964:14EC:967404:12C75E6:59776490",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4762",
+          "X-RateLimit-Reset": "1501000229",
+          "X-Runtime-rack": "0.124660",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/sgillies/Fiona/forks"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

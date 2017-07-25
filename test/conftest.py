@@ -1,3 +1,4 @@
+import os
 from   pathlib                         import Path
 from   betamax                         import Betamax
 from   betamax.cassette.cassette       import Placeholder
@@ -40,7 +41,7 @@ def cmd(betamax_session):
     def runner(*args):
         return CliRunner().invoke(
             cli,
-            ['-c', '/dev/null'] + list(args),
+            ['-c', os.devnull] + list(args),
             obj=GitHub(betamax_session),
         )
     return runner
