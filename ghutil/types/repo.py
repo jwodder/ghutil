@@ -20,7 +20,7 @@ class Repository(Resource):
     """
 
     URL_REGEXES = [
-        r'(?i)(?:(?:https?|git)://github\.com/|git@github\.com:){}(?:\.git)?'
+        r'(?i)(?:(?:https?|git)://github\.com/|git@github\.com:){}(?:\.git)?/?'
             .format(OWNER_REPO_RGX),
         r'(?i)https?://api\.github\.com/repos/{}'.format(OWNER_REPO_RGX),
     ]

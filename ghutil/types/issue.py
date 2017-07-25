@@ -21,7 +21,7 @@ class Issue(Resource):
     """
 
     URL_REGEXES = [
-        r'(?i)https?://github\.com/{}/(?:issues|pull)/(?P<i_number>\d+)'
+        r'(?i)https?://github\.com/{}/(?:issues|pull)/(?P<i_number>\d+)/?'
             .format(OWNER_REPO_RGX),
         r'(?i)https?://api\.github\.com/repos/{}/(?:issues|pulls)/(?P<i_number>\d+)'
             .format(OWNER_REPO_RGX),
