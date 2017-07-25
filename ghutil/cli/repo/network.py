@@ -13,7 +13,10 @@ class ForkTraversal:
         return repo.get("source", repo)
 
     def get_children(self, repo: dict) -> [dict]:
-        return list(self.gh[repo["forks_url"]].get())
+        if repo["forks_count"]:
+            return list(self.gh[repo["forks_url"]].get())
+        else:
+            return []
 
     def get_text(self, repo: dict) -> str:
         txt = repo["full_name"]
