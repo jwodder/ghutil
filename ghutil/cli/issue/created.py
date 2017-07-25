@@ -8,7 +8,7 @@ def cli(gh):
     for issue in gh.search('issues', "author:" + gh.me):
         click.echo(
             '{!s:40}  #{:<5}  [{}]'.format(
-                Repository.from_url(issue["repository_url"]),
+                Repository.from_url(gh, issue["repository_url"]),
                 issue["number"],
                 issue["state"].upper(),
             )
