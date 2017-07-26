@@ -198,3 +198,10 @@ Other
 
 ``gh request [--accept <MIME type>] [--data <data>] [-H <header>] [-X <method>] <path>``
    Make an arbitrary GitHub API request to ``<path>``
+
+
+Related Prior Art
+=================
+- https://github.com/github/hub
+- https://github.com/stephencelis/ghi
+- https://github.com/whiteinge/ok.sh

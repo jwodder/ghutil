@@ -12,10 +12,6 @@
       `get_remote_url()` mocked
     - `show`ing more than one object at once
 
-- cf. <https://github.com/whiteinge/ok.sh>
-- cf. <https://github.com/github/hub>
-- cf. <https://github.com/stephencelis/ghi>
-
 API Completeness
 ================
 - Repositories:
