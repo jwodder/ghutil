@@ -196,7 +196,7 @@ Other
 ``gh plus1 <issue_url>|<comment_url> ...``
    Give a thumbs-up to an issue, pull request, or comment thereon
 
-``gh request [--accept <MIME type>] [--data <data>] [-H <header>] [-X <method>] <path>``
+``gh request [--data <data>] [-H <header>] [-X <method>] <path>``
    Make an arbitrary GitHub API request to ``<path>``
 
 
