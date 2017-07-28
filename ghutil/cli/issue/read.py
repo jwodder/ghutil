@@ -12,7 +12,8 @@ EMOJI = {
 }
 
 @click.command()
-@click.option('--since', metavar='TIMESTAMP')
+@click.option('--since', metavar='TIMESTAMP',
+              help='Only show comments newer than the given timestamp')
 @Issue.argument('issue')
 def cli(issue, since):
     """ View comments on an issue/PR """

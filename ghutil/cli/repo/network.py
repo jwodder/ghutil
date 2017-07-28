@@ -30,7 +30,7 @@ class ForkTraversal:
 @Repository.argument_list('repos')
 @click.pass_obj
 def cli(gh, repos):
-    """ Show a tree of forks """
+    """ Show a tree of a repository's forks """
     repos = [r.data for r in repos]
     traverser = ForkTraversal(gh, repos)
     tree = LeftAligned(draw=BoxStyle(gfx=BOX_LIGHT), traverse=traverser)

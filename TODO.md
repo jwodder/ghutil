@@ -1,4 +1,4 @@
-- Add docstrings and `help` strings to everything
+- Add docstrings to everything
 - Instead of assuming the GitHub remote for a local repository is always
   "origin", get all remotes with `git config --get-regexp 'remote\..*\.url'`
   and check for one that's a GitHub URL?
@@ -22,6 +22,7 @@ API Completeness
           how are watchers fetched?
     - deleting branches
     - protecting branches
+    - editing all options
     - editing topics
 
 - Issues & pull requests:
@@ -64,6 +65,16 @@ Interface Improvements
 - Give the `search` (and `list`?) commands an option for outputting JSON
   objects instead of names?
 - Give the `list` and `search` (and `starred`?) subcommands `--format` options
+- Add debug logging
+    - Rename `--verbose` to something like `--full`(?) and use `--verbose` to
+      control logging level
+- Support bash completion
+- Add a command for showing rate limit information?
+- Default to HTTPS when cloning repositories/gists you don't have push access
+  to?
+- `edit_as_mail()`: Set temporary file extension to `.eml`?
+- Die gracefully when 'origin' is a non-GitHub URL
+
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
       regexes)
@@ -76,9 +87,7 @@ Interface Improvements
       default?
     - timestamp format for `gh issue read`
     - editor program to use
-- Add debug logging
-- Support bash completion
-- Add a command for showing rate limit information?
+    - default protocol to use when cloning repositories/gists
 
 - `gh gist`:
     - `new`: Allow creating a gist containing more than one file
@@ -90,19 +99,22 @@ Interface Improvements
 - `gh issue`:
     - `list`: Allow specifying `--since` in human-friendly formats like
       `2017-06-28` and `1h`
+    - `list`: Correct the handling of `--milestone`
     - `reply`:
-        - Add an option for including the quoted contents of a previous comment
-          in the editor
+        - Add an option for including the quoted (or commented-out?) contents
+          of a previous comment in the editor
         - Make sure that the issue exists before opening the editor?
     - `read`:
         - Make the main issue "comment" respect `--since`?
         - Add an option for listing comments in reverse chronological order
         - Convert timestamps to local timezone?
+    - `new`: Abort if the user closes the editor without saving?
 
 - `gh pr`:
     - Improve the syntax of `new` and then document it in the docstring
     - Add a `search` command that just does `gh issue search type:pr ...`?
     - `new`: Should `--maintainer-can-modify` be on by default?
+    - `new`: Abort if the user closes the editor without saving?
 
 - `gh release`:
     - When creating a new release, (add an option to) prepopulate the release
@@ -112,19 +124,22 @@ Interface Improvements
     - Support setting `target_commitish` when creating/editing a release
     - `show`: When no release is specified, default to the most recent tag of
       the current repository
+    - `new`: Abort if the user closes the editor without saving?
 
 - `gh repo`:
-    - Give `gh repo new` an option for setting the local repository's origin to
-      the new repository and pushing everything to it
-    - Give `fork` an option for cloning the new repository
-    - Get `gh repo delete`'s prompt to show the full name of the repository
-      (This will probably require changes to Click)
+    - Give `new` an option for setting the local repository's origin to the new
+      repository and pushing everything to it
+    - Give `fork` (and `new`?) an option for cloning the new repository
+    - Get `delete`'s prompt to show the full name of the repository (This will
+      probably require changes to Click)
     - Give `starred` sorting options?
     - Come up with a better name for "`list-forks`"
     - Let `fans` take more than one repository at a time?
     - Let `list-forks` take more than one repository at a time?
     - Remove the `repo` command level and move all repository commands to `gh
       new`, `gh list`, `gh show`, etc.?
+    - `new`: Add a `--public` option à la `gh repo edit`
+    - `list`: Add visibility and affiliation options?
 
 - `gh request`:
     - Add support for `--data` reading from a file

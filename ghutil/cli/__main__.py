@@ -12,7 +12,8 @@ DEFAULT_CFG = os.path.join(os.path.expanduser('~'), '.config', 'ghutil.cfg')
     context_settings={"help_option_names": ["-h", "--help"]},
 )
 @click.option('-c', '--config', type=click.Path(dir_okay=False),
-              default=DEFAULT_CFG)
+              default=DEFAULT_CFG, show_default=True,
+              help='Use the specified configuration file')
 @click.version_option(__version__, '-V', '--version',
                       message='%(prog)s %(version)s')
 @click.pass_context

@@ -2,7 +2,7 @@ import click
 from   ghutil.showing import print_json, release_info
 
 @click.command()
-@click.option('-v', '--verbose', is_flag=True)
+@click.option('-v', '--verbose', is_flag=True, help='Show full response body')
 @click.argument('tags', nargs=-1)
 @click.pass_obj
 def cli(gh, tags, verbose):

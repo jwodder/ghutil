@@ -3,8 +3,9 @@ from   ghutil.git   import clone_repo
 from   ghutil.types import Gist
 
 @click.command()
-@click.option('--https', 'url', flag_value='https')
-@click.option('--ssh', 'url', flag_value='ssh', default=True)
+@click.option('--https', 'url', flag_value='https', help='Clone over HTTPS')
+@click.option('--ssh', 'url', flag_value='ssh', default=True,
+              help='Clone over SSH [default]')
 @Gist.argument('gist', implicit=False)
 @click.argument('dir', required=False)
 @click.pass_context

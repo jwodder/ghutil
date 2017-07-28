@@ -6,7 +6,7 @@ from   ghutil.git     import get_last_tag
 from   ghutil.showing import print_json, release_info
 
 @click.command()
-@click.option('-v', '--verbose', is_flag=True)
+@click.option('-v', '--verbose', is_flag=True, help='Show full response body')
 @click.argument('tag', default=get_last_tag)
 @click.pass_obj
 def cli(gh, tag, verbose):

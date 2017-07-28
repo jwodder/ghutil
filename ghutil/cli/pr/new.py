@@ -3,10 +3,11 @@ from   ghutil.edit    import edit_as_mail
 from   ghutil.showing import print_json
 
 @click.command()
-@click.option('-b', '--body', type=click.File())
-@click.option('-M', '--maintainer-can-modify', is_flag=True)
-@click.option('-T', '--title')
-@click.option('-v', '--verbose', is_flag=True)
+@click.option('-b', '--body', type=click.File(), help='File containing PR body')
+@click.option('-M', '--maintainer-can-modify', is_flag=True,
+              help='Allow maintainers on the base repository to modify the PR')
+@click.option('-T', '--title', help='Pull request title')
+@click.option('-v', '--verbose', is_flag=True, help='Show full response body')
 @click.argument('base')
 @click.argument('head')
 @click.pass_context
@@ -16,6 +17,10 @@ def cli(ctx, head, base, title, body, maintainer_can_modify, verbose):
 
     `gh pr new alice/repo:master bob/repo:patch` creates a pull request in
     alice/repo asking bob/repo:patch to be merged into master.
+
+    Unless both an issue title and a file containing an issue body are
+    specified on the command line, an editor will be opened for you to provide
+    the missing details.
     """
 
     head_repo, sep, head_branch = head.rpartition(':')

@@ -3,7 +3,7 @@ from   ghutil.showing import print_json
 from   ghutil.types   import PullRequest
 
 @click.command()
-@click.option('-v', '--verbose', is_flag=True)
+@click.option('-v', '--verbose', is_flag=True, help='Show full response body')
 @PullRequest.argument_list('pull_requests')
 def cli(pull_requests, verbose):
     """ Show pull request details """
