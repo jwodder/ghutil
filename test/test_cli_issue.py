@@ -97,7 +97,6 @@ def test_issue_show_issue(cmd):
         "milestone": null,
         "number": 1,
         "reactions": {},
-        "repository_url": "https://api.github.com/repos/jwodder/ghutil",
         "state": "open",
         "title": "click plugins / cache / local datastore",
         "updated_at": "2017-06-29T16:33:16Z",
@@ -127,7 +126,6 @@ def test_issue_show_pr(cmd):
         "reactions": {
             "+1": 10
         },
-        "repository_url": "https://api.github.com/repos/vinta/awesome-python",
         "state": "open",
         "title": "Add attrs",
         "updated_at": "2017-05-20T23:16:50Z",

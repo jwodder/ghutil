@@ -124,7 +124,6 @@ def test_pr_show_pr(cmd):
         },
         "html_url": "https://github.com/vinta/awesome-python/pull/875",
         "id": 116043173,
-        "issue_url": "https://api.github.com/repos/vinta/awesome-python/issues/875",
         "locked": false,
         "maintainer_can_modify": true,
         "merge_commit_sha": "251407e453093a531065a38e9bcd14e3d771b2dd",
