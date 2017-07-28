@@ -80,6 +80,7 @@ release_info = show_fields(
         ("uploader", "login"),
         "url",
     )),
+    "body",
 )
 
 comment_info = show_fields(

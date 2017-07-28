@@ -52,7 +52,8 @@ class Issue(Resource):
         ("reactions", lambda react: {
             k:v for k,v in react.items()
                 if k not in ('total_count', 'url') and v
-        })
+        }),
+        "body",
     ]
 
     @cacheable
@@ -121,6 +122,7 @@ class PullRequest(Issue):
         "merge_commit_sha",
         ("merged_by", "login"),
         ("requested_reviewers", "login"),  ### TODO: Double-check this one
+        "body",
     ]
 
     @cacheable
