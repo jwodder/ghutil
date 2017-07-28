@@ -29,5 +29,7 @@ def cli(gh, repo, **params):
     """ List issues for a repository """
     if params.get('label'):
         params['label'] = ','.join(params['label'])
+    if params["milestone"] not in ('none', '*'):
+        params["milestone"] = repo.parse_milestone(params["milestone"])
     for issue in repo.issues.get(params=params):
         click.echo(str(gh.issue(issue)))

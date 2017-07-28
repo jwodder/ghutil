@@ -44,14 +44,5 @@ def cli(ctx, repo, title, body, label, assignee, milestone, verbose):
         if data["title"] is None:  # or body is None?
             click.echo('Aborting issue due to empty title')
             return
-    if data["milestone"] is not None:
-        try:
-            data["milestone"] = int(data["milestone"])
-        except ValueError:
-            for ms in repo.milestones.get():
-                if ms["title"] == data["milestone"]:
-                    data["milestone"] = ms["id"]
-                    break
-            else:
-                ctx.fail("Unknown milestone: " + data["milestone"])
+    data["milestone"] = repo.parse_milestone(data["milestone"])
     print_json(ctx.obj.issue(repo.issues.post(json=data)), verbose)

@@ -98,7 +98,6 @@ Interface Improvements
 - `gh issue`:
     - `list`: Allow specifying `--since` in human-friendly formats like
       `2017-06-28` and `1h`
-    - `list`: Correct the handling of `--milestone`
     - `reply`:
         - Add an option for including the quoted (or commented-out?) contents
           of a previous comment in the editor
@@ -108,6 +107,8 @@ Interface Improvements
         - Add an option for listing comments in reverse chronological order
         - Convert timestamps to local timezone?
     - `new`: Abort if the user closes the editor without saving?
+    - Should user-supplied milestones always be interpreted as milestone names
+      instead of numbers?
 
 - `gh pr`:
     - Improve the syntax of `new` and then document it in the docstring

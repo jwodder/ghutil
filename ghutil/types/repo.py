@@ -1,4 +1,5 @@
 import re
+import click
 from   ghutil.git  import get_remote_url
 from   ghutil.util import GH_REPO_RGX, GH_USER_RGX, OWNER_REPO_RGX
 from   .util       import Resource, cacheable
@@ -89,3 +90,16 @@ class Repository(Resource):
             return cls.parse_url(get_remote_url(chdir=arg))
         else:
             return super().parse_arg(arg)
+
+    def parse_milestone(self, milestone):
+        if milestone is None:
+            return None
+        try:
+            return int(milestone)
+        except ValueError:
+            for ms in self.milestones.get():
+                if ms["title"] == milestone:
+                    return ms["number"]
+            else:
+                click.get_current_context()\
+                     .fail("Unknown milestone: " + milestone)
