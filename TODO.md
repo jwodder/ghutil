@@ -27,7 +27,7 @@ API Completeness
 
 - Issues & pull requests:
     - comments
-        - viewing individual comments as JSON?
+        - showing individual comments as JSON?
         - editing comments
     - more reactions
     - listing individual users' reactions?
@@ -54,7 +54,7 @@ API Completeness
 - Projects?
 - Organizations?
 - listing all commits you made to others' repositories?
-- showing recent activity on a repository/issue?
+- showing recent activity on a repository/issue
 - getting data about users
 - searching code
 - searching commits
@@ -62,8 +62,8 @@ API Completeness
 
 Interface Improvements
 ======================
-- Give the `search` (and `list`?) commands an option for outputting JSON
-  objects instead of names?
+- Give the `list` and `search` commands an option for outputting JSON objects
+  instead of names
 - Give the `list` and `search` (and `starred`?) subcommands `--format` options
 - Add debug logging
     - Rename `--verbose` to something like `--full`(?) and use `--verbose` to

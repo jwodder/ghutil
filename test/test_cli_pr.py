@@ -147,4 +147,39 @@ def test_pr_show_pr(cmd):
 ]
 '''
 
+PR_COMMENTS = '''\
+[
+    {
+        "body": " :+1:",
+        "created_at": "2017-04-24T15:12:42Z",
+        "html_url": "https://github.com/vinta/awesome-python/pull/875#issuecomment-296700521",
+        "id": 296700521,
+        "reactions": {},
+        "updated_at": "2017-04-24T15:12:42Z",
+        "url": "https://api.github.com/repos/vinta/awesome-python/issues/comments/296700521",
+        "user": "pitcons"
+    },
+    {
+        "body": "Awesoms",
+        "created_at": "2017-05-20T23:16:50Z",
+        "html_url": "https://github.com/vinta/awesome-python/pull/875#issuecomment-302904633",
+        "id": 302904633,
+        "reactions": {},
+        "updated_at": "2017-05-20T23:16:50Z",
+        "url": "https://api.github.com/repos/vinta/awesome-python/issues/comments/302904633",
+        "user": "ibewatuwant"
+    }
+]
+'''
+
+def test_issue_comments_pr(cmd):
+    r = cmd('issue', 'comments', 'vinta/awesome-python/875')
+    assert r.exit_code == 0
+    assert r.output == PR_COMMENTS
+
+def test_pr_comments_pr(cmd):
+    r = cmd('pr', 'comments', 'vinta/awesome-python/875')
+    assert r.exit_code == 0
+    assert r.output == PR_COMMENTS
+
 # pr show <issue> = error

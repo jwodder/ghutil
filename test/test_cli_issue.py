@@ -135,4 +135,29 @@ def test_issue_show_pr(cmd):
 ]
 '''
 
+ISSUE_COMMENTS = '''\
+[
+    {
+        "body": "I do not currently have any plans for supporting plugins, and any such plans would be very far down on my to-do list for this project.\\n",
+        "created_at": "2017-06-29T16:31:32Z",
+        "html_url": "https://github.com/jwodder/ghutil/issues/1#issuecomment-312021247",
+        "id": 312021247,
+        "reactions": {},
+        "updated_at": "2017-06-29T16:31:32Z",
+        "url": "https://api.github.com/repos/jwodder/ghutil/issues/comments/312021247",
+        "user": "jwodder"
+    }
+]
+'''
+
+def test_issue_comments_issue(cmd):
+    r = cmd('issue', 'comments', 'ghutil/1')
+    assert r.exit_code == 0
+    assert r.output == ISSUE_COMMENTS
+
+def test_pr_comments_issue(cmd):
+    r = cmd('pr', 'comments', 'ghutil/1')
+    assert r.exit_code == 0
+    assert r.output == ISSUE_COMMENTS
+
 # issue search

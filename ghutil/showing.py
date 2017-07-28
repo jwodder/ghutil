@@ -12,7 +12,7 @@ def print_json(obj, verbose=False, err=False):
             else:
                 return obj.for_json()
         elif isinstance(obj, Iterator):
-            obj = list(obj)
+            return list(obj)
         else:
             try:
                 data = vars(obj).copy()
@@ -80,4 +80,18 @@ release_info = show_fields(
         ("uploader", "login"),
         "url",
     )),
+)
+
+comment_info = show_fields(
+    "body",
+    "created_at",
+    "html_url",
+    "id",
+    ("reactions", lambda react: {
+        k:v for k,v in react.items()
+            if k not in ('total_count', 'url') and v
+    }),
+    "url",
+    ("user", "login"),
+    "updated_at",
 )

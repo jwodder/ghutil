@@ -94,6 +94,9 @@ Gists
 Issues
 ^^^^^^
 
+``gh issue comments [--since <timestamp>] <issue>``
+   Show comments on an issue/PR as JSON
+
 ``gh issue [list [<options>] [<repo>]]``
    List issues for a repository
 
@@ -114,6 +117,9 @@ Issues
 
 Pull Requests
 ^^^^^^^^^^^^^
+
+``gh pr comments [--since <timestamp>] <issue>``
+   Show comments on an issue/PR as JSON
 
 ``gh pr [list [<options>] [<repo>]]``
    List pull requests for a repository
