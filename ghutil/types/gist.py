@@ -1,3 +1,4 @@
+import re
 from   ghutil.git  import get_remote_url
 from   ghutil.util import GH_USER_RGX
 from   .util       import Resource, cacheable
@@ -47,3 +48,11 @@ class Gist(Resource):
     @classmethod
     def default_params(cls):
         return cls.parse_url(get_remote_url())
+
+    @classmethod
+    def parse_arg(cls, arg):
+        if arg.startswith('/') or re.match(r'^\.\.?(/|$)', arg):
+            # Filepath pointing to a local repository
+            return cls.parse_url(get_remote_url(chdir=arg))
+        else:
+            return super().parse_arg(arg)

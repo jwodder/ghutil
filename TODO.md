@@ -92,7 +92,6 @@ Interface Improvements
 - `gh gist`:
     - `new`: Allow creating a gist containing more than one file
     - `new`: Add an `--encoding` option?
-    - Support specifying gists as paths to local clones
     - Get `delete`'s prompt to show the full ID(?) of the gist (This will
       probably require changes to Click)
 

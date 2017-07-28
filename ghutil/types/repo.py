@@ -83,7 +83,7 @@ class Repository(Resource):
         return cls.parse_url(get_remote_url())
 
     @classmethod
-    def parse_arg(cls, arg):  # returns a "params" dict
+    def parse_arg(cls, arg):
         if arg.startswith('/') or re.match(r'^\.\.?(/|$)', arg):
             # Filepath pointing to a local repository
             return cls.parse_url(get_remote_url(chdir=arg))
