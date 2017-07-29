@@ -29,7 +29,8 @@ from   ghutil.showing import print_json
               help='Create an initial commit with the given license')
 @click.option('-O', '--organization',
               help='Create the repository in the given organization')
-@click.option('-P', '--private', is_flag=True, help='Make repository private')
+@click.option('-P/-p', '--private/--public', default=False,
+              help='Make repository private/public [default: public]')
 @click.option('-v', '--verbose', is_flag=True, help='Show full response body')
 ### TODO: team_id
 @click.argument('name')

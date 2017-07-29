@@ -9,7 +9,7 @@ import pytest
 from   ghutil.api                      import GitHub
 from   ghutil.cli.__main__             import cli
 
-CASSETTE_DIR = Path(__file__).parent / 'data' / 'cassettes'
+CASSETTE_DIR = Path(__file__).with_name('data') / 'cassettes'
 try:
     # Path.mkdir() only got `exist_ok` in Python 3.5.
     CASSETTE_DIR.mkdir(parents=True)

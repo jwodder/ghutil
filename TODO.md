@@ -44,6 +44,7 @@ API Completeness
     - adding, editing, & deleting release assets
 
 - Gists:
+    - editing
     - forking
     - listing forks
     - commenting on gists
@@ -138,7 +139,6 @@ Interface Improvements
     - Let `list-forks` take more than one repository at a time?
     - Remove the `repo` command level and move all repository commands to `gh
       new`, `gh list`, `gh show`, etc.?
-    - `new`: Add a `--public` option à la `gh repo edit`
     - `list`: Add visibility and affiliation options?
 
 - `gh request`:

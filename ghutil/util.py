@@ -19,9 +19,8 @@ OWNER_REPO_RGX = r'(?P<owner>{})/(?P<repo>{})'.format(GH_USER_RGX, GH_REPO_RGX)
 
 def package_group(package, filepath, **kwargs):
     def wrapper(f):
-        dirpath = Path(filepath).parent
         cli = click.group(**kwargs)(f)
-        for fpath in dirpath.iterdir():
+        for fpath in Path(filepath).parent.iterdir():
             modname = fpath.stem
             if modname.isidentifier() and not modname.startswith('_') and \
                     (fpath.suffix == '' and (fpath / '__init__.py').exists()
