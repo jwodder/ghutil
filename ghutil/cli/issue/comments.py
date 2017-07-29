@@ -1,5 +1,5 @@
 import click
-from   ghutil.showing import print_json, comment_info
+from   ghutil.showing import print_json
 from   ghutil.types   import Issue
 
 @click.command()
@@ -7,9 +7,10 @@ from   ghutil.types   import Issue
               help='Only show comments newer than the given timestamp')
 @click.option('-v', '--verbose', is_flag=True, help='Show full response body')
 @Issue.argument('issue')
-def cli(issue, since, verbose):
+@click.pass_obj
+def cli(gh, issue, since, verbose):
     """ Show comments on an issue/PR as JSON"""
     print_json(
-        comment_info(c, verbose)
-        for c in issue.comments.get(params={"since": since})
+        map(gh.comment, issue.comments.get(params={"since": since})),
+        verbose,
     )

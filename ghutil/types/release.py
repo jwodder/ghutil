@@ -101,4 +101,6 @@ class Release(Resource):
     def endpoint(self):
         ### TODO: Confirm that `/tags/*` and `/latest` endpoints can't be used
         ### for anything other than GETting
+        ### TODO: Replace this method with `post`, `put`, and `delete`
+        ### overloads?
         return self[API_ENDPOINT].repos[self.owner][self.repo].releases[self.id]

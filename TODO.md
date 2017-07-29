@@ -78,6 +78,8 @@ Interface Improvements
 - `edit_as_mail()`: Set temporary file extension to `.eml`?
 - Die gracefully when 'origin' is a non-GitHub URL
 - When no arguments are given to a `show` subcommand, output an empty list?
+- Allow web URLs to start with "https://www.github.com", "github.com", or
+  "www.github.com"
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL

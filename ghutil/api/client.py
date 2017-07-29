@@ -3,7 +3,7 @@ import platform
 import re
 import requests
 from   ghutil       import __url__, __version__
-from   ghutil.types import Gist, Issue, PullRequest, Release, Repository
+from   ghutil       import types
 from   ghutil.util  import cacheable
 from   .endpoint    import GHEndpoint
 from   .util        import API_ENDPOINT, paginate
@@ -75,36 +75,42 @@ class GitHub:
 
     def repository(self, obj=None):
         if obj is None:
-            return Repository.default(self)
+            return types.Repository.default(self)
         elif isinstance(obj, str):
-            return Repository.from_arg(self, obj)
+            return types.Repository.from_arg(self, obj)
         else:
-            return Repository.from_data(self, obj)
+            return types.Repository.from_data(self, obj)
 
     def issue(self, obj):
         if isinstance(obj, str):
-            return Issue.from_arg(self, obj)
+            return types.Issue.from_arg(self, obj)
         else:
-            return Issue.from_data(self, obj)
+            return types.Issue.from_data(self, obj)
 
     def pull_request(self, obj):
         if isinstance(obj, str):
-            return PullRequest.from_arg(self, obj)
+            return types.PullRequest.from_arg(self, obj)
         else:
-            return PullRequest.from_data(self, obj)
+            return types.PullRequest.from_data(self, obj)
 
     def gist(self, obj=None):
         if obj is None:
-            return Gist.default(self)
+            return types.Gist.default(self)
         elif isinstance(obj, str):
-            return Gist.from_arg(self, obj)
+            return types.Gist.from_arg(self, obj)
         else:
-            return Gist.from_data(self, obj)
+            return types.Gist.from_data(self, obj)
 
     def release(self, obj=None):
         if obj is None:
-            return Release.default(self)
+            return types.Release.default(self)
         elif isinstance(obj, str):
-            return Release.from_arg(self, obj)
+            return types.Release.from_arg(self, obj)
         else:
-            return Release.from_data(self, obj)
+            return types.Release.from_data(self, obj)
+
+    def comment(self, obj):
+        if isinstance(obj, str):
+            return types.Comment.from_arg(self, obj)
+        else:
+            return types.Comment.from_data(self, obj)
