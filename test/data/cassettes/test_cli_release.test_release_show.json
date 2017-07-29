@@ -1,0 +1,60 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-07-29T19:52:15",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.2 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/stedolan/jq/releases/latest"
+      },
+      "response": {
+        "body": {
+          "base64_string": "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",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Sat, 29 Jul 2017 19:52:15 GMT",
+          "ETag": "W/\"7a301cc656d89a7825d1991101717c03\"",
+          "Last-Modified": "Tue, 18 Aug 2015 04:25:13 GMT",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "DAD8:3088:966163:11E19E7:597CE76F",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4984",
+          "X-RateLimit-Reset": "1501359388",
+          "X-Runtime-rack": "0.067653",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/stedolan/jq/releases/latest"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

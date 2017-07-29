@@ -1,0 +1,59 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-07-29T19:52:15",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.2 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/stedolan/jq/releases"
+      },
+      "response": {
+        "body": {
+          "base64_string": "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",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Sat, 29 Jul 2017 19:52:15 GMT",
+          "ETag": "W/\"d6608810491c6079494f5871dda9c42f\"",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "DAD6:3088:96614B:11E19B4:597CE76F",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4985",
+          "X-RateLimit-Reset": "1501359388",
+          "X-Runtime-rack": "0.090455",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/stedolan/jq/releases"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

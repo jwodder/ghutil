@@ -3,14 +3,14 @@
 import click
 from   ghutil.edit    import edit_as_mail
 from   ghutil.git     import get_last_tag
-from   ghutil.showing import print_json, release_info
+from   ghutil.showing import print_json
 
 @click.command()
 @click.option('-v', '--verbose', is_flag=True, help='Show full response body')
 @click.argument('tag', default=get_last_tag)
 @click.pass_obj
 def cli(gh, tag, verbose):
-    """ Create a GitHub release """
+    """ Convert a tag into a GitHub release """
     data = {
         "tag_name": tag,
         "name": '',
@@ -24,7 +24,7 @@ def cli(gh, tag, verbose):
     if not data["tag_name"]:
         click.echo('Aborting release due to empty tag name')
     else:
-        print_json(release_info(
-            gh.repository().releases.post(json=data),
+        print_json(
+            gh.release(gh.repository().releases.post(json=data)),
             verbose,
-        ))
+        )

@@ -52,37 +52,6 @@ def show_fields(*fields):
         return about
     return show
 
-release_info = show_fields(
-    "id",
-    "name",
-    "tag_name",
-    ("author", "login"),
-    "prerelease",
-    "published_at",
-    "created_at",
-    "draft",
-    "target_commitish",
-    "html_url",
-    "url",
-    "tarball_url",
-    "zipball_url",
-    ("assets", show_fields(
-        "browser_download_url",
-        "content_type",
-        "created_at",
-        "download_count",
-        "id",
-        "label",
-        "name",
-        "size",
-        "state",
-        "updated_at",
-        ("uploader", "login"),
-        "url",
-    )),
-    "body",
-)
-
 comment_info = show_fields(
     "body",
     "created_at",

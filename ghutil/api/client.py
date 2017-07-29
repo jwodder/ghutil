@@ -3,7 +3,7 @@ import platform
 import re
 import requests
 from   ghutil       import __url__, __version__
-from   ghutil.types import Gist, Issue, PullRequest, Repository
+from   ghutil.types import Gist, Issue, PullRequest, Release, Repository
 from   ghutil.util  import cacheable
 from   .endpoint    import GHEndpoint
 from   .util        import API_ENDPOINT, paginate
@@ -100,3 +100,11 @@ class GitHub:
             return Gist.from_arg(self, obj)
         else:
             return Gist.from_data(self, obj)
+
+    def release(self, obj=None):
+        if obj is None:
+            return Release.default(self)
+        elif isinstance(obj, str):
+            return Release.from_arg(self, obj)
+        else:
+            return Release.from_data(self, obj)

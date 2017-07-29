@@ -8,7 +8,7 @@
     - Test that calling `Repository.default_params()` when `get_remote_url()`
       returns a local path always fails
     - `--verbose`
-    - Specifying an issue, PR, or release without a repository name, with
+    - Specifying an issue or PR without a repository name, with
       `get_remote_url()` mocked
     - `show`ing more than one object at once
 - It appears that not all URL path components are treated case-insensitively by
@@ -77,6 +77,7 @@ Interface Improvements
   to?
 - `edit_as_mail()`: Set temporary file extension to `.eml`?
 - Die gracefully when 'origin' is a non-GitHub URL
+- When no arguments are given to a `show` subcommand, output an empty list?
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
@@ -112,6 +113,8 @@ Interface Improvements
     - `new`: Abort if the user closes the editor without saving?
     - Should user-supplied milestones always be interpreted as milestone names
       instead of numbers?
+    - Allow specifying the repository as a local path if `:` (or `#`?) is used
+      as the repo-issue separator?
 
 - `gh pr`:
     - Improve the syntax of `new` and then document it in the docstring
@@ -122,12 +125,11 @@ Interface Improvements
 - `gh release`:
     - When creating a new release, (add an option to) prepopulate the release
       message/body with the tagged commit's commit message
-    - Allow specifying the repository on the command line
+    - `new`: Allow specifying the repository on the command line
     - `new` and `edit`: Add options for setting everything via the command line
     - Support setting `target_commitish` when creating/editing a release
-    - `show`: When no release is specified, default to the most recent tag of
-      the current repository
     - `new`: Abort if the user closes the editor without saving?
+    - Allow specifying the repository as a local path?
 
 - `gh repo`:
     - Give `new` an option for setting the local repository's origin to the new

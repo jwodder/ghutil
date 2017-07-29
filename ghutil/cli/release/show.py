@@ -1,11 +1,10 @@
 import click
-from   ghutil.showing import print_json, release_info
+from   ghutil.showing import print_json
+from   ghutil.types   import Release
 
 @click.command()
 @click.option('-v', '--verbose', is_flag=True, help='Show full response body')
-@click.argument('tags', nargs=-1)
-@click.pass_obj
-def cli(gh, tags, verbose):
+@Release.argument_list('releases')
+def cli(releases, verbose):
     """ Show release details """
-    endpoint = gh.repository().releases.tags
-    print_json([release_info(endpoint[t].get(), verbose) for t in tags])
+    print_json(releases, verbose)

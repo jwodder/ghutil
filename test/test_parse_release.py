@@ -78,6 +78,10 @@ BAD_RELEASES = [
     ('v0.1.0', {"owner": None, "repo": None, "tag_name": "v0.1.0"}),
     (':v0.1.0', {"owner": None, "repo": None, "tag_name": "v0.1.0"}),
     (
+        'jwodder/headerparser',
+        {"owner": None, "repo": None, "tag_name": "jwodder/headerparser"},
+    ),
+    (
         ':jwodder/headerparser',
         {"owner": None, "repo": None, "tag_name": "jwodder/headerparser"},
     ),

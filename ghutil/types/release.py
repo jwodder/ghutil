@@ -62,11 +62,11 @@ class Release(Resource):
 
     @cacheable
     def owner(self):
-        return self.data["owner"]["login"]
+        return self.parse_url(self.data["url"])["owner"]
 
     @cacheable
     def repo(self):
-        return self.data["name"]
+        return self.parse_url(self.data["url"])["repo"]
 
     @cacheable
     def id(self):

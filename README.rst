@@ -139,8 +139,8 @@ Pull Requests
 Releases
 ^^^^^^^^
 
-``gh release edit [<tag>]``
-   Edit the release for the given tag (default: the most recent reachable tag)
+``gh release edit [[<repo>:]<tag>]``
+   Edit a release
 
 ``gh release [list [<repo>]]``
    List releases for a repository
@@ -148,7 +148,7 @@ Releases
 ``gh release new [<tag>]``
    Create a release for the given tag (default: the most recent reachable tag)
 
-``gh release show <tag> ...``
+``gh release show [[<repo>:]<tag> ...]``
    Show details on the given releases
 
 Repositories
