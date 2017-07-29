@@ -11,6 +11,8 @@
     - Specifying an issue, PR, or release without a repository name, with
       `get_remote_url()` mocked
     - `show`ing more than one object at once
+- It appears that not all URL path components are treated case-insensitively by
+  GitHub (just the variable/user-defined ones?).  Fix the regexes to match.
 
 API Completeness
 ================

@@ -264,7 +264,7 @@ def typed_match(rgx, s):
     params = {}
     for k,v in m.groupdict().items():
         if k.startswith('i_'):
-            params[k[2:]] = int(v)
+            params[k[2:]] = int(v) if v is not None else None
         else:
             params[k] = v
     return params
