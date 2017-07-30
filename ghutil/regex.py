@@ -25,9 +25,9 @@ _REF_COMPONENT = r'(?!\.)[^\x00-\x20/~^:?*[\\\x7F]+(?<!\.lock)'
 
 #: Regular expression for a (possibly one-level) valid normalized Git refname
 #: (e.g., a branch or tag name) as specified in
-#: :manpage:`git-check-ref-format(1)`
-#: <https://git-scm.com/docs/git-check-ref-format> as of 2017-07-23 (Git
-#: 2.13.1)
+#: :manpage:`git-check-ref-format(1)` [git-scm]_ as of 2017-07-23 (Git 2.13.1)
+#:
+#: .. [git-scm] https://git-scm.com/docs/git-check-ref-format
 GIT_REFNAME_RGX = r'(?!@/?$)(?!.*(?:\.\.|@\{{)){0}(?:/{0})*(?<!\.)'\
                   .format(_REF_COMPONENT)
 
