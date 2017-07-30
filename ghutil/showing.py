@@ -1,4 +1,5 @@
 from   collections.abc import Iterator
+from   functools       import partial
 from   inspect         import signature
 import json
 from   operator        import itemgetter
@@ -26,28 +27,26 @@ def print_json(obj, verbose=False, err=False):
         err=err,
     )
 
-def show_fields(*fields):
-    def show(obj, verbose=False):
-        if verbose:
-            return obj
-        about = {}
-        for entry in fields:
-            if isinstance(entry, str):
-                entry = (entry,)
-            name, *subpath = entry
-            try:
-                value = obj[name]
-            except KeyError:
-                continue
-            for sp in subpath:
-                if not callable(sp):
-                    sp = itemgetter(sp)
-                if value is None:
-                    break
-                elif isinstance(value, list):
-                    value = [v and sp(v) for v in value]
-                else:
-                    value = sp(value)
-            about[name] = value
-        return about
-    return show
+def show_fields(fields, obj):
+    about = {}
+    for entry in fields:
+        if isinstance(entry, str):
+            entry = (entry,)
+        name, *subpath = entry
+        try:
+            value = obj[name]
+        except KeyError:
+            continue
+        for sp in subpath:
+            if value is None:
+                break
+            if isinstance(sp, (list, tuple)):
+                sp = partial(show_fields, sp)
+            elif not callable(sp):
+                sp = itemgetter(sp)
+            if isinstance(value, list):
+                value = [v and sp(v) for v in value]
+            else:
+                value = sp(value)
+        about[name] = value
+    return about

@@ -1,5 +1,4 @@
 from   ghutil.api.util import API_ENDPOINT
-from   ghutil.showing  import show_fields
 from   ghutil.regex    import GH_REPO_RGX, GH_USER_RGX, OWNER_REPO_RGX, \
                                 GIT_REFNAME_RGX
 from   .repo           import Repository
@@ -43,7 +42,7 @@ class Release(Resource):
         "url",
         "tarball_url",
         "zipball_url",
-        ("assets", show_fields(
+        ("assets", (
             "browser_download_url",
             "content_type",
             "created_at",

@@ -237,7 +237,7 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
         if verbose:
             return self.data
         else:
-            return show_fields(*self.DISPLAY_FIELDS)(self.data)
+            return show_fields(self.DISPLAY_FIELDS, self.data)
 
 
 class ResourceParamType(click.ParamType):

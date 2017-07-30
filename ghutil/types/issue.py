@@ -1,7 +1,6 @@
-from   ghutil.regex   import GH_REPO_RGX, GH_USER_RGX, OWNER_REPO_RGX
-from   ghutil.showing import show_fields
-from   .repo          import Repository
-from   .util          import Resource, cacheable
+from   ghutil.regex import GH_REPO_RGX, GH_USER_RGX, OWNER_REPO_RGX
+from   .repo        import Repository
+from   .util        import Resource, cacheable
 
 class Issue(Resource):
     """
@@ -80,7 +79,7 @@ class Issue(Resource):
     default_params = None
 
 
-show_pr_repo = show_fields(
+PR_REPO_FIELDS = (
     "label",
     "ref",
     ("repo", "full_name"),
@@ -113,8 +112,8 @@ class PullRequest(Issue):
         "rebaseable",
         "review_comments",
         "state",
-        ("base", show_pr_repo),
-        ("head", show_pr_repo),
+        ("base", PR_REPO_FIELDS),
+        ("head", PR_REPO_FIELDS),
         "mergeable",
         "mergeable_state",
         "merged",
