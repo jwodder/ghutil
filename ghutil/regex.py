@@ -2,8 +2,10 @@
 #: 2017-07-23, trying to sign up to GitHub with an invalid username or create
 #: an organization with an invalid name gives the message "Username may only
 #: contain alphanumeric characters or single hyphens, and cannot begin or end
-#: with a hyphen".
-GH_USER_RGX = r'[A-Za-z0-9](?:-?[A-Za-z0-9])*'
+#: with a hyphen".  Additionally, trying to create a user named "none" (case
+#: insensitive) gives the message "Username name 'none' is a reserved word."
+GH_USER_RGX = r'(?![Nn][Oo][Nn][Ee]($|[^-A-Za-z0-9]))'\
+              r'[A-Za-z0-9](?:-?[A-Za-z0-9])*'
 
 #: Regular expression for a valid GitHub repository name.  Testing as of
 #: 2017-05-21 indicates that repository names can be composed of alphanumeric
@@ -23,5 +25,5 @@ _REF_COMPONENT = r'(?!\.)[^\x00-\x20/~^:?*[\\\x7F]+(?<!\.lock)'
 #: :manpage:`git-check-ref-format(1)`
 #: <https://git-scm.com/docs/git-check-ref-format> as of 2017-07-23 (Git
 #: 2.13.1)
-GIT_REFNAME_RGX = r'(?!@$)(?!.*(?:\.\.|@\{{)){0}(?:/{0})*(?<!\.)'\
+GIT_REFNAME_RGX = r'(?!@/?$)(?!.*(?:\.\.|@\{{)){0}(?:/{0})*(?<!\.)'\
                   .format(_REF_COMPONENT)

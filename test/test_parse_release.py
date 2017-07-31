@@ -51,6 +51,8 @@ RELEASE_URLS = [
 BAD_RELEASES = [
     'https://api.github.com/repos/jwodder/headerparser/releases/v0.1.0',
     'https://api.github.com/repos/jwodder/headerparser/releases/tags/@',
+    'https://github.com/jwodder/headerparser/releases/@',
+    'https://github.com/jwodder/headerparser/releases/@/',
     ':jwodder/headerparser:v0.1.0',
 ]
 

@@ -11,6 +11,12 @@ from   ghutil.regex import GH_USER_RGX, GH_REPO_RGX, GIT_REFNAME_RGX
     's-t-e-v-e-n',
     's-t-eeeeee-v-e-n',
     'peridot-2F5L-5XG',
+    'nonely',
+    'none-one',
+    'none-none',
+    'nonenone',
+    'none0',
+    '0none',
 ])
 def test_good_users(name):
     assert bool(re.fullmatch(GH_USER_RGX, name))
@@ -26,6 +32,9 @@ def test_good_users(name):
     's--u',
     '-',
     '',
+    'none-',
+    'none',
+    'NONE',
 ])
 def test_bad_users(name):
     assert re.fullmatch(GH_USER_RGX, name) is None
