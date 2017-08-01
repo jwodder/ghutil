@@ -24,19 +24,18 @@ def cli(repo, **opts):
     modify the repository's details as a text file.
     """
     edited = {k:v for k,v in opts.items() if v is not None}
-    # The repository may have been renamed, leaving a redirect at the old name,
-    # and so the name supplied by the user might not equal the current one.
-    # Thus, get the repository's name from the API via `repo.data["name"]`
-    # instead of from the user via `repo.repo`.
-    if edited:
-        if 'name' not in edited:
-            edited['name'] = repo.data["name"]
-        repo.patch(json=edited)
-    else:
+    if not edited:
         edited = edit_as_mail(repo.data, 'name private description homepage'
                                          ' default_branch has_wiki has_issues')
         if not edited:
             click.echo('No modifications made; exiting')
-        else:
-            edited.setdefault("name", repo.data["name"])
-            repo.patch(json=edited)
+            return
+    # The GitHub API requires submitting the repository name when editing, even
+    # if the name hasn't been changed.  However, the repository may have been
+    # renamed previously, leaving a redirect at the old name, and so the name
+    # supplied by the user, despite working, might not equal the current one.
+    # Thus, in order to avoid accidentally un-renaming the repository, get its
+    # name from the API via `repo.data["name"]` instead of using the one
+    # supplied by the user via `repo.repo`.
+    edited.setdefault("name", repo.data["name"])
+    repo.patch(json=edited)
