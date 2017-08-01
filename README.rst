@@ -70,7 +70,7 @@ Gists
 ``gh gist clone <gist-id> [<dir>]``
    Locally clone a gist
 
-``gh gist delete [<gist-id>]``
+``gh gist delete [--force] [<gist-id>]``
    Delete a gist
 
 ``gh gist [list]``

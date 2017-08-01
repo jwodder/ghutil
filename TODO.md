@@ -102,8 +102,8 @@ Interface Improvements
 - `gh gist`:
     - `new`: Allow creating a gist containing more than one file
     - `new`: Add an `--encoding` option?
-    - Get `delete`'s prompt to show the full ID(?) of the gist (This will
-      probably require changes to Click)
+    - `show` etc.: Die gracefully when used without arguments in a non-gist
+      repository
 
 - `gh issue`:
     - `list`: Allow specifying `--since` in human-friendly formats like
