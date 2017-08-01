@@ -81,6 +81,9 @@ Interface Improvements
 - When no arguments are given to a `show` subcommand, output an empty list?
 - Allow web URLs to start with "https://www.github.com", "github.com", or
   "www.github.com"
+- Change resources' `__str__` methods to use `self.data` instead of
+  user-supplied params in order to ensure redirects over renames are taken into
+  account (cf. `gh repo delete`)
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
@@ -137,8 +140,6 @@ Interface Improvements
     - Give `new` an option for setting the local repository's origin to the new
       repository and pushing everything to it
     - Give `fork` (and `new`?) an option for cloning the new repository
-    - Get `delete`'s prompt to show the full name of the repository (This will
-      probably require changes to Click)
     - Give `starred` sorting options?
     - Come up with a better name for "`list-forks`"
     - Let `fans` take more than one repository at a time?

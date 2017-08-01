@@ -157,7 +157,7 @@ Repositories
 ``gh repo clone <repo> [<dir>]``
    Locally clone a GitHub repository
 
-``gh repo delete [<repo>]``
+``gh repo delete [--force] [<repo>]``
    Delete a GitHub repository
 
 ``gh repo edit [<options>] [<repo>]``
