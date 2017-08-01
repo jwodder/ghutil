@@ -11,6 +11,7 @@
     - Specifying an issue or PR without a repository name, with
       `get_remote_url()` mocked
     - `show`ing more than one object at once
+    - Editing a renamed repository
 - It appears that not all URL path components are treated case-insensitively by
   GitHub (just the variable/user-defined ones?).  Fix the regexes to match.
 
@@ -128,7 +129,7 @@ Interface Improvements
     - When creating a new release, (add an option to) prepopulate the release
       message/body with the tagged commit's commit message
     - `new`: Allow specifying the repository on the command line
-    - `new` and `edit`: Add options for setting everything via the command line
+    - `edit`: Add options for setting everything via the command line
     - Support setting `target_commitish` when creating/editing a release
     - `new`: Abort if the user closes the editor without saving?
     - Allow specifying the repository as a local path?

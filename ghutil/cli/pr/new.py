@@ -18,7 +18,7 @@ def cli(ctx, head, base, title, body, maintainer_can_modify, verbose):
     `gh pr new alice/repo:master bob/repo:patch` creates a pull request in
     alice/repo asking bob/repo:patch to be merged into master.
 
-    Unless both an issue title and a file containing an issue body are
+    Unless both a pull request title and a file containing a PR body are
     specified on the command line, an editor will be opened for you to provide
     the missing details.
     """

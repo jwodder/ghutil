@@ -100,7 +100,7 @@ Issues
 ``gh issue [list [<options>] [<repo>]]``
    List issues for a repository
 
-``gh issue new [-T <title>] [--body <file>] [-a <assignee>] [-l <label>] [-m <milestone>] [<repo>]``
+``gh issue new [<options>] [<repo>]``
    Create an issue in the given repository
 
 ``gh issue read [--since <timestamp>] <issue>``
@@ -145,7 +145,7 @@ Releases
 ``gh release [list [<repo>]]``
    List releases for a repository
 
-``gh release new [<tag>]``
+``gh release new [<options>] [<tag>]``
    Create a release for the given tag (default: the most recent reachable tag)
 
 ``gh release show [[<repo>:]<tag> ...]``

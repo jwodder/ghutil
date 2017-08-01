@@ -26,6 +26,7 @@ def test_good_users(name):
     'steven-'
     '-steven-',
     'steven.universe',
+    'steven-universe@beachcity.dv',
     'steven_universe',
     'steven-univerß',
     'steven--universe',
