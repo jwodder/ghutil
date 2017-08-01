@@ -42,7 +42,7 @@ def cli(gh, tag, name, body, draft, prerelease, verbose):
     # respectively, in their stead), but it does not allow them to be null.
     if name is None or body is None:
         data.update(
-            edit_as_mail(data, 'tag_name name draft prerelease'.split(), 'body')
+            edit_as_mail(data, 'tag_name name draft prerelease', 'body')
         )
         if not data["tag_name"]:
             click.echo('Aborting release due to empty tag name')

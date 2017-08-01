@@ -139,7 +139,7 @@ Pull Requests
 Releases
 ^^^^^^^^
 
-``gh release edit [[<repo>:]<tag>]``
+``gh release edit [<options>] [[<repo>:]<tag>]``
    Edit a release
 
 ``gh release [list [<repo>]]``

@@ -3,7 +3,6 @@ from   ghutil.edit  import edit_as_mail
 from   ghutil.types import Repository
 
 @click.command()
-@click.option('-n', '--name', help='Rename repository')
 @click.option('-b', '--default-branch',
               help="Change the repository's default branch")
 @click.option('-d', '--description', help='Set repository description')
@@ -12,6 +11,7 @@ from   ghutil.types import Repository
 @click.option('--has-wiki/--no-wiki', default=None,
               help="Enable/disable the repository's wiki")
 @click.option('-H', '--homepage', metavar='URL', help='Set repository homepage')
+@click.option('-n', '--name', help='Rename repository')
 @click.option('-P/-p', '--private/--public', default=None,
               help='Make repository private/public')
 @Repository.argument('repo')

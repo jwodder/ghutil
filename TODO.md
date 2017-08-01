@@ -129,7 +129,6 @@ Interface Improvements
     - When creating a new release, (add an option to) prepopulate the release
       message/body with the tagged commit's commit message
     - `new`: Allow specifying the repository on the command line
-    - `edit`: Add options for setting everything via the command line
     - Support setting `target_commitish` when creating/editing a release
     - `new`: Abort if the user closes the editor without saving?
     - Allow specifying the repository as a local path?
