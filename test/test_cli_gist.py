@@ -1,3 +1,8 @@
+from io      import BytesIO
+from pathlib import Path
+
+FILEDIR = Path(__file__).with_name('data') / 'files'
+
 GIST_LIST = '''\
 8b229cd59365b98ab5172b9d1e0904f6
 4bf350e2d72b547b22dc9de52148ccbe
@@ -112,4 +117,365 @@ def test_gist_starred(cmd):
 5823693
 3331384
 674099
+'''
+
+def test_gist_new_noargs(cmd):
+    r = cmd('gist', 'new')
+    assert r.exit_code != 0
+    ### TODO: Get this usage message to say "gh" instead of "cli" when testing
+    assert r.output == '''\
+Usage: cli gist new [OPTIONS] [FILES]...
+
+Error: No files specified
+'''
+
+def test_gist_new_unnamed(cmd):
+    r = cmd('gist', 'new', '-d', 'A file', str(FILEDIR/'lorem.txt'))
+    assert r.exit_code == 0
+    assert r.output == '''\
+{
+    "comments": 0,
+    "created_at": "2017-08-02T18:23:41Z",
+    "description": "A file",
+    "files": {
+        "lorem.txt": {
+            "filename": "lorem.txt",
+            "language": "Text",
+            "raw_url": "https://gist.githubusercontent.com/jwodder/db3b6873d3c9f7c7cab76cc3f2d1cd93/raw/ebe3d387302051a9d40f5cd9e09b9b2af7a8db40/lorem.txt",
+            "size": 450,
+            "truncated": false,
+            "type": "text/plain"
+        }
+    },
+    "forks": [],
+    "git_pull_url": "https://gist.github.com/db3b6873d3c9f7c7cab76cc3f2d1cd93.git",
+    "html_url": "https://gist.github.com/db3b6873d3c9f7c7cab76cc3f2d1cd93",
+    "id": "db3b6873d3c9f7c7cab76cc3f2d1cd93",
+    "owner": "jwodder",
+    "public": true,
+    "updated_at": "2017-08-02T18:23:41Z",
+    "url": "https://api.github.com/gists/db3b6873d3c9f7c7cab76cc3f2d1cd93"
+}
+'''
+
+def test_gist_new_two_unnamed(cmd):
+    r = cmd(
+        'gist', 'new', '-d', 'Two files',
+        str(FILEDIR/'lorem.txt'),
+        str(FILEDIR/'life.py'),
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+{
+    "comments": 0,
+    "created_at": "2017-08-02T18:23:42Z",
+    "description": "Two files",
+    "files": {
+        "life.py": {
+            "filename": "life.py",
+            "language": "Python",
+            "raw_url": "https://gist.githubusercontent.com/jwodder/46b547788a193f706ca66b9519780e58/raw/f3e251d5db162c0fb419bd3179b120f522c6ee83/life.py",
+            "size": 600,
+            "truncated": false,
+            "type": "application/x-python"
+        },
+        "lorem.txt": {
+            "filename": "lorem.txt",
+            "language": "Text",
+            "raw_url": "https://gist.githubusercontent.com/jwodder/46b547788a193f706ca66b9519780e58/raw/ebe3d387302051a9d40f5cd9e09b9b2af7a8db40/lorem.txt",
+            "size": 450,
+            "truncated": false,
+            "type": "text/plain"
+        }
+    },
+    "forks": [],
+    "git_pull_url": "https://gist.github.com/46b547788a193f706ca66b9519780e58.git",
+    "html_url": "https://gist.github.com/46b547788a193f706ca66b9519780e58",
+    "id": "46b547788a193f706ca66b9519780e58",
+    "owner": "jwodder",
+    "public": true,
+    "updated_at": "2017-08-02T18:23:42Z",
+    "url": "https://api.github.com/gists/46b547788a193f706ca66b9519780e58"
+}
+'''
+
+def test_gist_new_named(cmd):
+    r = cmd(
+        'gist', 'new', '-d', 'A named file',
+        '-f', 'not-lorem.txt', str(FILEDIR/'lorem.txt'),
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+{
+    "comments": 0,
+    "created_at": "2017-08-02T18:23:43Z",
+    "description": "A named file",
+    "files": {
+        "not-lorem.txt": {
+            "filename": "not-lorem.txt",
+            "language": "Text",
+            "raw_url": "https://gist.githubusercontent.com/jwodder/51d9d530c04470c6edc18a80418a8cae/raw/ebe3d387302051a9d40f5cd9e09b9b2af7a8db40/not-lorem.txt",
+            "size": 450,
+            "truncated": false,
+            "type": "text/plain"
+        }
+    },
+    "forks": [],
+    "git_pull_url": "https://gist.github.com/51d9d530c04470c6edc18a80418a8cae.git",
+    "html_url": "https://gist.github.com/51d9d530c04470c6edc18a80418a8cae",
+    "id": "51d9d530c04470c6edc18a80418a8cae",
+    "owner": "jwodder",
+    "public": true,
+    "updated_at": "2017-08-02T18:23:43Z",
+    "url": "https://api.github.com/gists/51d9d530c04470c6edc18a80418a8cae"
+}
+'''
+
+def test_gist_new_named_unnamed(cmd):
+    r = cmd(
+        'gist', 'new',
+        '-f', 'lorem2.txt', str(FILEDIR/'subdir'/'lorem.txt'),
+        str(FILEDIR/'lorem.txt'),
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+{
+    "comments": 0,
+    "created_at": "2017-08-02T18:23:44Z",
+    "description": null,
+    "files": {
+        "lorem.txt": {
+            "filename": "lorem.txt",
+            "language": "Text",
+            "raw_url": "https://gist.githubusercontent.com/jwodder/4729d6a1d2ea65be4e471d8683620e2d/raw/ebe3d387302051a9d40f5cd9e09b9b2af7a8db40/lorem.txt",
+            "size": 450,
+            "truncated": false,
+            "type": "text/plain"
+        },
+        "lorem2.txt": {
+            "filename": "lorem2.txt",
+            "language": "Text",
+            "raw_url": "https://gist.githubusercontent.com/jwodder/4729d6a1d2ea65be4e471d8683620e2d/raw/8102356d848536c9ff5ed0ea189d565f165fe662/lorem2.txt",
+            "size": 1171,
+            "truncated": false,
+            "type": "text/plain"
+        }
+    },
+    "forks": [],
+    "git_pull_url": "https://gist.github.com/4729d6a1d2ea65be4e471d8683620e2d.git",
+    "html_url": "https://gist.github.com/4729d6a1d2ea65be4e471d8683620e2d",
+    "id": "4729d6a1d2ea65be4e471d8683620e2d",
+    "owner": "jwodder",
+    "public": true,
+    "updated_at": "2017-08-02T18:23:44Z",
+    "url": "https://api.github.com/gists/4729d6a1d2ea65be4e471d8683620e2d"
+}
+'''
+
+def test_gist_new_unnamed_named(cmd):
+    r = cmd(
+        'gist', 'new',
+        str(FILEDIR/'lorem.txt'),
+        '-f', 'lorem2.txt', str(FILEDIR/'subdir'/'lorem.txt'),
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+{
+    "comments": 0,
+    "created_at": "2017-08-02T18:23:46Z",
+    "description": null,
+    "files": {
+        "lorem.txt": {
+            "filename": "lorem.txt",
+            "language": "Text",
+            "raw_url": "https://gist.githubusercontent.com/jwodder/781a96c5c3aee03290605248fa6596e1/raw/ebe3d387302051a9d40f5cd9e09b9b2af7a8db40/lorem.txt",
+            "size": 450,
+            "truncated": false,
+            "type": "text/plain"
+        },
+        "lorem2.txt": {
+            "filename": "lorem2.txt",
+            "language": "Text",
+            "raw_url": "https://gist.githubusercontent.com/jwodder/781a96c5c3aee03290605248fa6596e1/raw/8102356d848536c9ff5ed0ea189d565f165fe662/lorem2.txt",
+            "size": 1171,
+            "truncated": false,
+            "type": "text/plain"
+        }
+    },
+    "forks": [],
+    "git_pull_url": "https://gist.github.com/781a96c5c3aee03290605248fa6596e1.git",
+    "html_url": "https://gist.github.com/781a96c5c3aee03290605248fa6596e1",
+    "id": "781a96c5c3aee03290605248fa6596e1",
+    "owner": "jwodder",
+    "public": true,
+    "updated_at": "2017-08-02T18:23:46Z",
+    "url": "https://api.github.com/gists/781a96c5c3aee03290605248fa6596e1"
+}
+'''
+
+def test_gist_new_stdin(cmd):
+    fp = BytesIO(b'This is stdin.')
+    fp.name = '<stdin>'  # or else we get an AttributeError
+    r = cmd('gist', 'new', '-', input=fp)
+    assert r.exit_code == 0
+    assert r.output == '''\
+{
+    "comments": 0,
+    "created_at": "2017-08-02T18:44:30Z",
+    "description": null,
+    "files": {
+        "<stdin>": {
+            "filename": "<stdin>",
+            "language": null,
+            "raw_url": "https://gist.githubusercontent.com/jwodder/7577ef3391fd07516aa207eef5f626be/raw/4262ec90ea000a131b930ec60ddac44e3a76545e/%3Cstdin%3E",
+            "size": 14,
+            "truncated": false,
+            "type": "text/plain"
+        }
+    },
+    "forks": [],
+    "git_pull_url": "https://gist.github.com/7577ef3391fd07516aa207eef5f626be.git",
+    "html_url": "https://gist.github.com/7577ef3391fd07516aa207eef5f626be",
+    "id": "7577ef3391fd07516aa207eef5f626be",
+    "owner": "jwodder",
+    "public": true,
+    "updated_at": "2017-08-02T18:44:30Z",
+    "url": "https://api.github.com/gists/7577ef3391fd07516aa207eef5f626be"
+}
+'''
+
+def test_gist_new_named_stdin(cmd):
+    r = cmd('gist', 'new', '-f', 'standard input', '-', input='This is stdin.')
+    assert r.exit_code == 0
+    assert r.output == '''\
+{
+    "comments": 0,
+    "created_at": "2017-08-02T18:23:47Z",
+    "description": null,
+    "files": {
+        "standard input": {
+            "filename": "standard input",
+            "language": null,
+            "raw_url": "https://gist.githubusercontent.com/jwodder/5a302aefacbd11c7c7b1fc1684bea669/raw/4262ec90ea000a131b930ec60ddac44e3a76545e/standard%20input",
+            "size": 14,
+            "truncated": false,
+            "type": "text/plain"
+        }
+    },
+    "forks": [],
+    "git_pull_url": "https://gist.github.com/5a302aefacbd11c7c7b1fc1684bea669.git",
+    "html_url": "https://gist.github.com/5a302aefacbd11c7c7b1fc1684bea669",
+    "id": "5a302aefacbd11c7c7b1fc1684bea669",
+    "owner": "jwodder",
+    "public": true,
+    "updated_at": "2017-08-02T18:23:47Z",
+    "url": "https://api.github.com/gists/5a302aefacbd11c7c7b1fc1684bea669"
+}
+'''
+
+def test_gist_new_duped_names(cmd):
+    r = cmd(
+        'gist', 'new',
+        str(FILEDIR/'lorem.txt'),
+        str(FILEDIR/'subdir'/'lorem.txt'),
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+{
+    "comments": 0,
+    "created_at": "2017-08-02T18:23:48Z",
+    "description": null,
+    "files": {
+        "lorem.txt": {
+            "filename": "lorem.txt",
+            "language": "Text",
+            "raw_url": "https://gist.githubusercontent.com/jwodder/0a577c9ccb01dadf1a3952ffaf3fc8f5/raw/8102356d848536c9ff5ed0ea189d565f165fe662/lorem.txt",
+            "size": 1171,
+            "truncated": false,
+            "type": "text/plain"
+        }
+    },
+    "forks": [],
+    "git_pull_url": "https://gist.github.com/0a577c9ccb01dadf1a3952ffaf3fc8f5.git",
+    "html_url": "https://gist.github.com/0a577c9ccb01dadf1a3952ffaf3fc8f5",
+    "id": "0a577c9ccb01dadf1a3952ffaf3fc8f5",
+    "owner": "jwodder",
+    "public": true,
+    "updated_at": "2017-08-02T18:23:48Z",
+    "url": "https://api.github.com/gists/0a577c9ccb01dadf1a3952ffaf3fc8f5"
+}
+'''
+
+def test_gist_new_unduped_names(cmd):
+    r = cmd(
+        'gist', 'new',
+        '-f', 'lorem1.txt', str(FILEDIR/'lorem.txt'),
+        '-f', 'lorem2.txt', str(FILEDIR/'subdir'/'lorem.txt'),
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+{
+    "comments": 0,
+    "created_at": "2017-08-02T18:23:50Z",
+    "description": null,
+    "files": {
+        "lorem1.txt": {
+            "filename": "lorem1.txt",
+            "language": "Text",
+            "raw_url": "https://gist.githubusercontent.com/jwodder/77eb2255b2fee9ee88ab331586596779/raw/ebe3d387302051a9d40f5cd9e09b9b2af7a8db40/lorem1.txt",
+            "size": 450,
+            "truncated": false,
+            "type": "text/plain"
+        },
+        "lorem2.txt": {
+            "filename": "lorem2.txt",
+            "language": "Text",
+            "raw_url": "https://gist.githubusercontent.com/jwodder/77eb2255b2fee9ee88ab331586596779/raw/8102356d848536c9ff5ed0ea189d565f165fe662/lorem2.txt",
+            "size": 1171,
+            "truncated": false,
+            "type": "text/plain"
+        }
+    },
+    "forks": [],
+    "git_pull_url": "https://gist.github.com/77eb2255b2fee9ee88ab331586596779.git",
+    "html_url": "https://gist.github.com/77eb2255b2fee9ee88ab331586596779",
+    "id": "77eb2255b2fee9ee88ab331586596779",
+    "owner": "jwodder",
+    "public": true,
+    "updated_at": "2017-08-02T18:23:50Z",
+    "url": "https://api.github.com/gists/77eb2255b2fee9ee88ab331586596779"
+}
+'''
+
+def test_gist_new_forced_dupe(cmd):
+    r = cmd(
+        'gist', 'new',
+        '-f', 'duped.dat', str(FILEDIR/'lorem.txt'),
+        '-f', 'duped.dat', str(FILEDIR/'life.py'),
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+{
+    "comments": 0,
+    "created_at": "2017-08-02T18:23:51Z",
+    "description": null,
+    "files": {
+        "duped.dat": {
+            "filename": "duped.dat",
+            "language": null,
+            "raw_url": "https://gist.githubusercontent.com/jwodder/493ee12c1af8825cb706735f95b34bad/raw/f3e251d5db162c0fb419bd3179b120f522c6ee83/duped.dat",
+            "size": 600,
+            "truncated": false,
+            "type": "text/plain"
+        }
+    },
+    "forks": [],
+    "git_pull_url": "https://gist.github.com/493ee12c1af8825cb706735f95b34bad.git",
+    "html_url": "https://gist.github.com/493ee12c1af8825cb706735f95b34bad",
+    "id": "493ee12c1af8825cb706735f95b34bad",
+    "owner": "jwodder",
+    "public": true,
+    "updated_at": "2017-08-02T18:23:51Z",
+    "url": "https://api.github.com/gists/493ee12c1af8825cb706735f95b34bad"
+}
 '''

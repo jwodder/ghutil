@@ -1,0 +1,60 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-08-02T18:23:51",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"files\": {\"duped.dat\": {\"content\": \"from collections import Counter\\n\\ndef life(before):\\n    \\\"\\\"\\\"\\n    Takes as input a state of Conway's Game of Life, represented as an iterable\\n    of ``(int, int)`` pairs giving the coordinates of living cells, and returns\\n    a `set` of ``(int, int)`` pairs representing the next state\\n    \\\"\\\"\\\"\\n    before = set(before)\\n    neighbors = Counter(\\n        (x+i, y+j) for (x,y) in before\\n                   for i in [-1,0,1]\\n                   for j in [-1,0,1]\\n                   if (i,j) != (0,0)\\n    )\\n    return {xy for (xy, n) in neighbors.items()\\n               if n == 3 or (n == 2 and xy in before)}\\n\"}}, \"public\": true}"
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "Content-Length": "680",
+          "Content-Type": "application/json",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.2 CPython/3.5.2"
+        },
+        "method": "POST",
+        "uri": "https://api.github.com/gists"
+      },
+      "response": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"url\":\"https://api.github.com/gists/493ee12c1af8825cb706735f95b34bad\",\"forks_url\":\"https://api.github.com/gists/493ee12c1af8825cb706735f95b34bad/forks\",\"commits_url\":\"https://api.github.com/gists/493ee12c1af8825cb706735f95b34bad/commits\",\"id\":\"493ee12c1af8825cb706735f95b34bad\",\"git_pull_url\":\"https://gist.github.com/493ee12c1af8825cb706735f95b34bad.git\",\"git_push_url\":\"https://gist.github.com/493ee12c1af8825cb706735f95b34bad.git\",\"html_url\":\"https://gist.github.com/493ee12c1af8825cb706735f95b34bad\",\"files\":{\"duped.dat\":{\"filename\":\"duped.dat\",\"type\":\"text/plain\",\"language\":null,\"raw_url\":\"https://gist.githubusercontent.com/jwodder/493ee12c1af8825cb706735f95b34bad/raw/f3e251d5db162c0fb419bd3179b120f522c6ee83/duped.dat\",\"size\":600,\"truncated\":false,\"content\":\"from collections import Counter\\n\\ndef life(before):\\n    \\\"\\\"\\\"\\n    Takes as input a state of Conway's Game of Life, represented as an iterable\\n    of ``(int, int)`` pairs giving the coordinates of living cells, and returns\\n    a `set` of ``(int, int)`` pairs representing the next state\\n    \\\"\\\"\\\"\\n    before = set(before)\\n    neighbors = Counter(\\n        (x+i, y+j) for (x,y) in before\\n                   for i in [-1,0,1]\\n                   for j in [-1,0,1]\\n                   if (i,j) != (0,0)\\n    )\\n    return {xy for (xy, n) in neighbors.items()\\n               if n == 3 or (n == 2 and xy in before)}\\n\"}},\"public\":true,\"created_at\":\"2017-08-02T18:23:51Z\",\"updated_at\":\"2017-08-02T18:23:51Z\",\"description\":null,\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/493ee12c1af8825cb706735f95b34bad/comments\",\"owner\":{\"login\":\"jwodder\",\"id\":98207,\"avatar_url\":\"https://avatars1.githubusercontent.com/u/98207?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/jwodder\",\"html_url\":\"https://github.com/jwodder\",\"followers_url\":\"https://api.github.com/users/jwodder/followers\",\"following_url\":\"https://api.github.com/users/jwodder/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/jwodder/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/jwodder/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/jwodder/subscriptions\",\"organizations_url\":\"https://api.github.com/users/jwodder/orgs\",\"repos_url\":\"https://api.github.com/users/jwodder/repos\",\"events_url\":\"https://api.github.com/users/jwodder/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/jwodder/received_events\",\"type\":\"User\",\"site_admin\":false},\"forks\":[],\"history\":[{\"user\":{\"login\":\"jwodder\",\"id\":98207,\"avatar_url\":\"https://avatars1.githubusercontent.com/u/98207?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/jwodder\",\"html_url\":\"https://github.com/jwodder\",\"followers_url\":\"https://api.github.com/users/jwodder/followers\",\"following_url\":\"https://api.github.com/users/jwodder/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/jwodder/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/jwodder/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/jwodder/subscriptions\",\"organizations_url\":\"https://api.github.com/users/jwodder/orgs\",\"repos_url\":\"https://api.github.com/users/jwodder/repos\",\"events_url\":\"https://api.github.com/users/jwodder/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/jwodder/received_events\",\"type\":\"User\",\"site_admin\":false},\"version\":\"7f1c1c01e2083fc0b92725da3c7d4678c8e7076f\",\"committed_at\":\"2017-08-02T18:23:50Z\",\"change_status\":{\"total\":17,\"additions\":17,\"deletions\":0},\"url\":\"https://api.github.com/gists/493ee12c1af8825cb706735f95b34bad/7f1c1c01e2083fc0b92725da3c7d4678c8e7076f\"}],\"truncated\":false}"
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Length": "3648",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Wed, 02 Aug 2017 18:23:51 GMT",
+          "ETag": "\"2d36710f8fc748763d2adf1f98935c4b\"",
+          "Location": "https://api.github.com/gists/493ee12c1af8825cb706735f95b34bad",
+          "Server": "GitHub.com",
+          "Status": "201 Created",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "CB02:3089:43AB351:9F68122:598218B6",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4988",
+          "X-RateLimit-Reset": "1501700854",
+          "X-Runtime-rack": "1.091402",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 201,
+          "message": "Created"
+        },
+        "url": "https://api.github.com/gists"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

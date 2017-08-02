@@ -102,8 +102,6 @@ Interface Improvements
     - default protocol to use when cloning repositories/gists
 
 - `gh gist`:
-    - `new`: Allow creating a gist containing more than one file
-    - `new`: Add an `--encoding` option?
     - `show` etc.: Die gracefully when used without arguments in a non-gist
       repository
 
@@ -118,7 +116,7 @@ Interface Improvements
         - Make the main issue "comment" respect `--since`?
         - Add an option for listing comments in reverse chronological order
         - Convert timestamps to local timezone?
-    - `new`: Abort if the user closes the editor without saving?
+    - `new`: Abort if the user closes the editor without saving
     - Should user-supplied milestones always be interpreted as milestone names
       instead of numbers?
     - Allow specifying the repository as a local path if `:` (or `#`?) is used
@@ -128,14 +126,15 @@ Interface Improvements
     - Improve the syntax of `new` and then document it in the docstring
     - Add a `search` command that just does `gh issue search type:pr ...`?
     - `new`: Should `--maintainer-can-modify` be on by default?
-    - `new`: Abort if the user closes the editor without saving?
+    - `new`: Abort if the user closes the editor without saving
 
 - `gh release`:
-    - When creating a new release, (add an option to) prepopulate the release
-      message/body with the tagged commit's commit message
-    - `new`: Allow specifying the repository on the command line
+    - `new`:
+        - Add an option to prepopulate the release message/body with the tagged
+          commit's commit message
+        - Allow specifying the repository on the command line
+        - Abort if the user closes the editor without saving
     - Support setting `target_commitish` when creating/editing a release
-    - `new`: Abort if the user closes the editor without saving?
     - Allow specifying the repository as a local path?
 
 - `gh repo`:

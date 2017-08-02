@@ -76,8 +76,8 @@ Gists
 ``gh gist [list]``
    List your gists
 
-``gh gist new [-d <description>] [-f <filename>] [-P|--private] [<file>]``
-   Create a gist from a file
+``gh gist new [-d <description>] [-P|--private] {-f <name> <file> | <file>} ...``
+   Create a gist from one or more files
 
 ``gh gist show [<gist-id> ...]``
    Show gist details

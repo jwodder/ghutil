@@ -38,10 +38,11 @@ with Betamax.configure() as config:
 
 @pytest.fixture
 def cmd(betamax_session):
-    def runner(*args):
+    def runner(*args, **kwargs):
         return CliRunner().invoke(
             cli,
             ['-c', os.devnull] + list(args),
             obj=GitHub(betamax_session),
+            **kwargs,
         )
     return runner
