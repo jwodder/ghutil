@@ -43,6 +43,6 @@ def cmd(betamax_session):
             cli,
             ['-c', os.devnull] + list(args),
             obj=GitHub(betamax_session),
-            **kwargs,
+            **kwargs
         )
     return runner
