@@ -28,6 +28,9 @@ BAD_ISSUES = [
     'jwodder/headerparser',
     '#1',
     '/1',
+    ':1',
+    'https://github.com/jwodder/headerparser/issues#1',
+    'https://github.com/jwodder/headerparser/issues:1',
 ]
 
 @pytest.mark.parametrize('arg,result', ISSUE_URLS + [
@@ -39,8 +42,13 @@ BAD_ISSUES = [
         'jwodder/headerparser#1',
         {"owner": "jwodder", "repo": "headerparser", "number": 1},
     ),
+    (
+        'jwodder/headerparser:1',
+        {"owner": "jwodder", "repo": "headerparser", "number": 1},
+    ),
     ('headerparser/1', {"owner": None, "repo": "headerparser", "number": 1}),
     ('headerparser#1', {"owner": None, "repo": "headerparser", "number": 1}),
+    ('headerparser:1', {"owner": None, "repo": "headerparser", "number": 1}),
     ('42', {"owner": None, "repo": None, "number": 42}),
 ])
 def test_parse_issue_arg(arg, result):

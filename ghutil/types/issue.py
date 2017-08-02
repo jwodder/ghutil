@@ -27,7 +27,7 @@ class Issue(Resource):
     ]
 
     ARGUMENT_REGEXES = [
-        r'(?:(?:(?P<owner>{})/)?(?P<repo>{})[/#])?(?P<i_number>\d+)'
+        r'(?:(?:(?P<owner>{})/)?(?P<repo>{})[/#:])?(?P<i_number>\d+)'
             .format(GH_USER_RGX, GH_REPO_RGX),
     ]
 

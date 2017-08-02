@@ -84,6 +84,8 @@ Interface Improvements
 - Change resources' `__str__` methods to use `self.data` instead of
   user-supplied params in order to ensure redirects over renames are taken into
   account (cf. `gh repo delete`)
+- Why does providing an invalid issue argument produce the message `Error:
+  Invalid value for "repos":`?  Fix this.
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
