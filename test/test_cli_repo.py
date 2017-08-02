@@ -170,9 +170,7 @@ perl6/book
 '''
 
 def test_repo_network(cmd):
-    ### TODO: Try to preserve (and test) the bolding of the command-line
-    ### argument
-    r = cmd('repo', 'network', 'sgillies/Fiona')
+    r = cmd('repo', 'network', 'sgillies/Fiona', color=True)
     assert r.exit_code == 0
     assert r.output == '''\
 Toblerity/Fiona
@@ -246,7 +244,7 @@ Toblerity/Fiona
  ├── aaronr/Fiona
  ├── drwelby/Fiona
  ├── mweisman/Fiona
- └── sgillies/Fiona
+ └── \x1B[1msgillies/Fiona\x1B[0m
      ├── taoteg/Fiona
      ├── wyom/Fiona
      ├── Joe-Blabbah/Fiona
