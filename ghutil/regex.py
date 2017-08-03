@@ -1,3 +1,7 @@
+#: Convenience regular expression for ``https://github.com`` and variations
+#: thereupon
+GITHUB = r'(?:https?://)?(?:www\.)?github\.com'
+
 #: Regular expression for a valid GitHub username or organization name.  As of
 #: 2017-07-23, trying to sign up to GitHub with an invalid username or create
 #: an organization with an invalid name gives the message "Username may only

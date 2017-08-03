@@ -1,4 +1,4 @@
-from   ghutil.regex import GH_REPO_RGX, GH_USER_RGX, OWNER_REPO_RGX
+from   ghutil.regex import GH_REPO_RGX, GH_USER_RGX, GITHUB, OWNER_REPO_RGX
 from   .repo        import Repository
 from   .util        import Resource, cacheable
 
@@ -20,8 +20,8 @@ class Issue(Resource):
     """
 
     URL_REGEXES = [
-        r'(?i)https?://github\.com/{}/(?:issues|pull)/(?P<i_number>\d+)/?'
-            .format(OWNER_REPO_RGX),
+        r'(?i){}/{}/(?:issues|pull)/(?P<i_number>\d+)/?'
+            .format(GITHUB, OWNER_REPO_RGX),
         r'(?i)https?://api\.github\.com/repos/{}/(?:issues|pulls)/(?P<i_number>\d+)'
             .format(OWNER_REPO_RGX),
     ]

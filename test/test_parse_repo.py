@@ -31,6 +31,26 @@ REPO_URLS = [
         {"owner": "jwodder", "repo": "headerparser"},
     ),
     (
+        'https://www.github.com/jwodder/headerparser',
+        {"owner": "jwodder", "repo": "headerparser"},
+    ),
+    (
+        'http://github.com/jwodder/headerparser',
+        {"owner": "jwodder", "repo": "headerparser"},
+    ),
+    (
+        'http://www.github.com/jwodder/headerparser',
+        {"owner": "jwodder", "repo": "headerparser"},
+    ),
+    (
+        'github.com/jwodder/headerparser',
+        {"owner": "jwodder", "repo": "headerparser"},
+    ),
+    (
+        'www.github.com/jwodder/headerparser',
+        {"owner": "jwodder", "repo": "headerparser"},
+    ),
+    (
         'https://github.com/jwodder/none.git',
         {"owner": "jwodder", "repo": "none"},
     ),

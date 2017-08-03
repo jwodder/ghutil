@@ -1,7 +1,7 @@
 import re
 import click
 from   ghutil       import git  # Import module to keep mocking easy
-from   ghutil.regex import GH_REPO_RGX, GH_USER_RGX, OWNER_REPO_RGX
+from   ghutil.regex import GH_REPO_RGX, GH_USER_RGX, GITHUB, OWNER_REPO_RGX
 from   .util        import Resource, cacheable
 
 class Repository(Resource):
@@ -21,7 +21,8 @@ class Repository(Resource):
     """
 
     URL_REGEXES = [
-        r'(?i)(?:(?:https?|git)://github\.com/|git@github\.com:){}(?:\.git)?/?'
+        r'(?i){}/{}(?:\.git)?/?'.format(GITHUB, OWNER_REPO_RGX),
+        r'(?i)git(?:://github\.com/|@github\.com:){}(?:\.git)?/?'
             .format(OWNER_REPO_RGX),
         r'(?i)https?://api\.github\.com/repos/{}'.format(OWNER_REPO_RGX),
     ]

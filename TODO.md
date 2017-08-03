@@ -80,8 +80,7 @@ Interface Improvements
   to?
 - Die gracefully when 'origin' is a non-GitHub URL
 - When no arguments are given to a `show` subcommand, output an empty list?
-- Allow web URLs to start with "https://www.github.com", "github.com", or
-  "www.github.com"
+- Accept api.github.com URLs without "https://"?
 - Change resources' `__str__` methods to use `self.data` instead of
   user-supplied params in order to ensure redirects over renames are taken into
   account (cf. `gh repo delete`)
