@@ -57,7 +57,12 @@ class GitHub:
                 )
             )
             if extra_accept:
-                self.session.headers["Accept"] += ',' + extra_accept
+                if parser.getboolean('api', 'append-accept', fallback=True):
+                    self.session.headers["Accept"] += ',' + extra_accept
+                else:
+                    self.session.headers["Accept"] = extra_accept
+            elif not parser.getboolean('api', 'append-accept', fallback=True):
+                self.session.headers.pop("Accept", None)
 
     def __getattr__(self, key):
         return self[key]

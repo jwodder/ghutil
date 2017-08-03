@@ -65,10 +65,16 @@ def test_accept_nullconfig():
         ACCEPT + ',application/vnd.github.batman-preview+json,text/plain,'
                  ' application/octet-stream',
     ),
+    ('[api]\nappend-accept = false', ACCEPT),
+    ('[api]\naccept =\nappend-accept = false', None),
+    ('[api]\naccept = text/plain\nappend-accept = false', 'text/plain'),
+    ('[api]\nappend-accept = true', ACCEPT),
+    ('[api]\naccept =\nappend-accept = true', ACCEPT),
+    ('[api]\naccept = text/plain\nappend-accept = true', ACCEPT+',text/plain'),
 ])
 def test_accept_configged(tmpdir, config, accept_header):
     cfg = tmpdir.join('config.cfg')
     cfg.write(config)
     gh = GitHub()
     gh.configure(str(cfg))
-    assert gh.session.headers["Accept"] == accept_header
+    assert gh.session.headers.get("Accept") == accept_header
