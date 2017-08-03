@@ -78,3 +78,32 @@ def test_accept_configged(tmpdir, config, accept_header):
     gh = GitHub()
     gh.configure(str(cfg))
     assert gh.session.headers.get("Accept") == accept_header
+
+@pytest.mark.parametrize('config,auth_header,auth_basic', [
+    ('', None, None),
+    (
+        '[api.auth]\ntoken = legitimateoauthtoken\n',
+        'token legitimateoauthtoken',
+        None,
+    ),
+    (
+        '[api.auth]\nusername = l.user\npassword = hunter2\n',
+        None,
+        ('l.user', 'hunter2'),
+    ),
+    (
+        '[api.auth]\n'
+        'token = legitimateoauthtoken\n'
+        'username = l.user\n'
+        'password = hunter2\n',
+        'token legitimateoauthtoken',
+        None,
+    ),
+])
+def test_auth_config(tmpdir, config, auth_header, auth_basic):
+    cfg = tmpdir.join('config.cfg')
+    cfg.write(config)
+    gh = GitHub()
+    gh.configure(str(cfg))
+    assert gh.session.headers.get("Authorization") == auth_header
+    assert gh.session.auth == auth_basic
