@@ -1,10 +1,12 @@
 - Add docstrings to everything
+- Add (more) user documentation
+    - Config file fields
 - Instead of assuming the GitHub remote for a local repository is always
   "origin", get all remotes with `git config --get-regexp 'remote\..*\.url'`
   and check for one that's a GitHub URL?
 - Write more tests (somehow)
     - Somewhere test that credentials are being redacted from cassettes
-    - Test that the correct User-Agent and Accept headers are being sent?
+    - Test that the correct User-Agent header is being sent?
     - Test that calling `Repository.default_params()` when `get_remote_url()`
       returns a local path always fails
     - `--verbose`
@@ -76,7 +78,6 @@ Interface Improvements
 - Add a command for showing rate limit information?
 - Default to HTTPS when cloning repositories/gists you don't have push access
   to?
-- `edit_as_mail()`: Set temporary file extension to `.eml`?
 - Die gracefully when 'origin' is a non-GitHub URL
 - When no arguments are given to a `show` subcommand, output an empty list?
 - Allow web URLs to start with "https://www.github.com", "github.com", or
@@ -92,7 +93,6 @@ Interface Improvements
       regexes)
     - `gh * list`/`search` formats
     - command aliases
-    - `Accept:` headers to send
     - `Time-Zone:` header to send
     - whether `--verbose` should be on by default?
     - whether `--maintainer-can-modify` should be set on `gh pr new` by

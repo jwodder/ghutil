@@ -1,4 +1,5 @@
 from   configparser import ConfigParser, ExtendedInterpolation
+from   functools    import partial
 import platform
 import re
 import requests
@@ -41,6 +42,22 @@ class GitHub:
         elif 'username' in auth and 'password' in auth:
             self.session.auth = (auth['username'], auth['password'])
         ### Do something if only one of (username, password) is set?
+        try:
+            extra_accept = parser['api']['accept']
+        except KeyError:
+            pass
+        else:
+            extra_accept = ','.join(
+                filter(
+                    None,
+                    map(
+                        partial(re.sub, r'^[\s,]+|[\s,]+$', ''),
+                        extra_accept.splitlines(),
+                    )
+                )
+            )
+            if extra_accept:
+                self.session.headers["Accept"] += ',' + extra_accept
 
     def __getattr__(self, key):
         return self[key]
