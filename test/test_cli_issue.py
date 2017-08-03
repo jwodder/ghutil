@@ -2,7 +2,7 @@ READ_ISSUE = '''\
 Issue:     click plugins / cache / local datastore
 State:     open
 Author:    roscopecoltran
-Date:      2017-06-29T09:39:32Z  (last updated 2017-06-29T16:33:16Z)
+Date:      2017-06-29 05:39:32 -0400  (last updated 2017-06-29 12:33:16 -0400)
 Labels:    Nice to Have
 Assignees: 
 
@@ -36,7 +36,7 @@ Assignees:
 
 comment 312021247
 Author: jwodder
-Date:   2017-06-29T16:31:32Z
+Date:   2017-06-29 12:31:32 -0400
 
     I do not currently have any plans for supporting plugins, and any such plans would be very far down on my to-do list for this project.
 '''

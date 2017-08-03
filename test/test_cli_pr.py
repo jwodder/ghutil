@@ -2,7 +2,7 @@ READ_PR = '''\
 PR:        Add attrs
 State:     open
 Author:    jwodder
-Date:      2017-04-15T23:59:11Z  (last updated 2017-05-20T23:16:50Z)
+Date:      2017-04-15 19:59:11 -0400  (last updated 2017-05-20 19:16:50 -0400)
 Labels:    
 Assignees: 
 Reactions: 👍 10
@@ -58,13 +58,13 @@ Reactions: 👍 10
 
 comment 296700521
 Author: pitcons
-Date:   2017-04-24T15:12:42Z
+Date:   2017-04-24 11:12:42 -0400
 
      :+1:
 
 comment 302904633
 Author: ibewatuwant
-Date:   2017-05-20T23:16:50Z
+Date:   2017-05-20 19:16:50 -0400
 
     Awesoms
 '''

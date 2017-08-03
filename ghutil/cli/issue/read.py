@@ -1,5 +1,7 @@
+from   datetime     import datetime
 from   textwrap     import indent
 import click
+from   dateutil.tz  import tzlocal, tzutc
 from   ghutil.types import Issue
 
 EMOJI = {
@@ -23,6 +25,12 @@ def cli(issue, since):
     # echo_via_pager adds a newline, so remove the "extra" newline at the end
     click.echo_via_pager(output.rstrip('\r\n'))
 
+def reformat_date(ts):
+    return datetime.strptime(ts, '%Y-%m-%dT%H:%M:%SZ')\
+                   .replace(tzinfo=tzutc())\
+                   .astimezone(tzlocal())\
+                   .strftime('%Y-%m-%d %H:%M:%S %z')
+
 def show_comment(obj):
     # Based on the output format of "git log"
     headers = []
@@ -40,10 +48,10 @@ def show_comment(obj):
         # Must be just a comment
         headers.append(('comment', obj["id"]))
     headers.append(('Author:', obj["user"]["login"]))
-    date = obj["created_at"]
+    date = reformat_date(obj["created_at"])
     if obj.get("updated_at") is not None and \
             obj["updated_at"] != obj["created_at"]:
-        date += '  (last updated {updated_at})'.format(**obj)
+        date += '  (last updated {})'.format(reformat_date(obj["updated_at"]))
     headers.append(('Date:', date))
     if "title" in obj:
         headers.append(('Labels:',', '.join(l["name"] for l in obj["labels"])))
@@ -56,7 +64,10 @@ def show_comment(obj):
         if obj["closed_at"] is not None:
             headers.append((
                 'Closed:',
-                '{closed_at} by {closed_by[login]}'.format(**obj)
+                '{} by {}'.format(
+                    reformat_date(obj["closed_at"]),
+                    obj["closed_by"]["login"],
+                )
             ))
     reactions = []
     for k,v in sorted(obj.get("reactions", {}).items()):

@@ -115,7 +115,6 @@ Interface Improvements
     - `read`:
         - Make the main issue "comment" respect `--since`?
         - Add an option for listing comments in reverse chronological order
-        - Convert timestamps to local timezone?
     - `new`: Abort if the user closes the editor without saving
     - Should user-supplied milestones always be interpreted as milestone names
       instead of numbers?
