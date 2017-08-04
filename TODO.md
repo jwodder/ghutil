@@ -1,6 +1,7 @@
 - Add docstrings to everything
 - Add (more) user documentation
     - Config file fields
+    - Bash completion
 - Instead of assuming the GitHub remote for a local repository is always
   "origin", get all remotes with `git config --get-regexp 'remote\..*\.url'`
   and check for one that's a GitHub URL?
@@ -74,7 +75,6 @@ Interface Improvements
 - Add debug logging
     - Rename `--verbose` to something like `--full`(?) and use `--verbose` to
       control logging level
-- Support bash completion
 - Add a command for showing rate limit information?
 - Default to HTTPS when cloning repositories/gists you don't have push access
   to?

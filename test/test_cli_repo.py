@@ -261,4 +261,28 @@ Joe-Blabbah/Fiona
 yuanshankongmeng/Fiona
 '''
 
-# repo search
+def test_repo_search(cmd):
+    r = cmd('repo', 'search', 'halting', 'problem')
+    assert r.exit_code == 0
+    assert r.output == '''\
+ZongzheYuan/HaltingProblem
+ForbesLindesay/halting-problem
+davidtadams/HaltingProblem
+Solidsoft-Reply/Halting
+siusoon/halting
+ebassi/halting_problem
+freddieswift/HaltingProblem
+gitpan/Acme-HaltingProblem
+GiacomoPinardi/HaltingProblemTuring
+jsenko/halting-problem-solver
+Tatsuonline/The-Halting-Problem-Ezine
+gstark/talk-halting-problem
+YorkCodeDojo/TheHaltingProblem
+mkotov/htm
+mrkline/ece556-router
+spruceb/kolmogorov
+cloudmine/cm-exitcheck
+spiderworthy/getRunningTime
+Aearnus/bf-genetic-generator
+vincentclee/csci2670-intro_to_theory_of_computation
+'''
