@@ -5,7 +5,7 @@ import re
 import requests
 from   ghutil       import __url__, __version__
 from   ghutil       import types
-from   ghutil.util  import cacheable
+from   ghutil.util  import cacheable, search_query
 from   .endpoint    import GHEndpoint
 from   .util        import API_ENDPOINT, paginate
 
@@ -75,20 +75,9 @@ class GitHub:
         return self.user.get()["login"]
 
     def search(self, objtype, *terms, **params):
-        q = ''
-        for t in terms:
-            if ' ' in t:
-                ### TODO: Don't add quotes when they're already there
-                if re.match(r'^\w+:', t):
-                    t = '{0}:"{2}"'.format(*t.partition(':'))
-                else:
-                    t = '"' + t + '"'
-            if q:
-                q += ' '
-            q += t
         r = self.session.get(
             API_ENDPOINT + '/search/' + objtype,
-            params=dict(params, q=q),
+            params=dict(params, q=search_query(*terms)),
         )
         for page in paginate(self.session, r):
             yield from page["items"]

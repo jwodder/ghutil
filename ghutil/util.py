@@ -1,5 +1,6 @@
 from   importlib        import import_module
 from   pathlib          import Path
+import re
 import click
 from   property_manager import cached_property
 
@@ -21,3 +22,16 @@ def default_command(ctx, cmdname):
         ctx.invoke(ctx.command.commands[cmdname])
 
 cacheable = cached_property(writable=True)
+
+def search_query(*terms):
+    q = ''
+    for t in terms:
+        if ' ' in t and not re.match(r'^(\w+:)?".*"$', t):
+            if re.match(r'^\w+:', t):
+                t = '{0}:"{2}"'.format(*t.partition(':'))
+            else:
+                t = '"' + t + '"'
+        if q:
+            q += ' '
+        q += t
+    return q
