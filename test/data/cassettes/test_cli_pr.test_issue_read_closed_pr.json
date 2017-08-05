@@ -1,0 +1,114 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-08-05T19:37:19",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.3 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/pypa/pip/issues/4429"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAAA+1YXW/bOBD8K4aKPl1sirL8JeBwb3c/4NKXFoVBS5RNHC3qSMqtK+S/d0jZsiWkjpX0MUACO9TM7GrFHa5SB5WWQRLsrC1NQggrxWQr7K7aTFK1J5qXypDyWDJSipIIYypuSBxHq+Ah8BeFVfq4HiAComQbLs0Q0nVk0tBrUrA9f4IcEt3zwr5e8CwALX54k1JDh87O7mXvBq/K2ha0rKQ8l1NkQRJFYTRbzRfhQ1BU+w3XQeKK/RBYYSXHc/q3Kkul7UgUxjIpRbEd5VrtR/8IO9I8NwhdGUerA6m2ogAlE1j04qs4prOHgB2YZbpffr9o6OnpO5FUFRbV8BuhIg37r8OfMeS2+iTidAMX9NYucmKG+Dxu18VDciWl+gZGP8Pu1jyLkhbfclGVQVzga6LsjqMoSNXtqa0wL22oNgGPrYn7WIvMsfFstObZnUmc0EjhW4Hote86L1NtTKpFaYUq7q1GhwMNpbesED/YEA1w3Eby/X3nPXgsOPf0T1u4BlyTUosDS4/uljVPuTigdIOEeizo2GPp2uWT6wUUUli+Ztne9UPOpOFPZxMKki+1b44ZpfNVuIxe2Mo9Q2ysiFhVivRjFI7xe0hdHZw3Ib6/MBqPmsVUSYXWDMJwFqUpUBnPWSXtOamvfudYR0ylMjwDRKr0P3xp0kbvGiO2BQekgHVc/ja4EdD3QnJjVYHr9e2e7N1ISzQkmiLs7T5t/aulNaxXGHsn8MnaEd/7FaXhYkkvVhhNL0ZIw0noK9h2SGNEqeYMR9K1AX5nh5zrghUZ/3GSpuFytYjj214Y/tILT/Q3mGEvp9vl7oEHGeQ19/VW+YzKW0yzI/cm++wo/T4j7cpe2zA20GBL7agNNdcOebjNdui/x3B7GXUMG+V52XpVyYt1M0sGyRwDnDe7dmWGvjz7oINC03c1IAxeGUQhnY8pHYfRY0STaAHv/gxMVWYdzGIc4mf2GE2TWZxM5w6TVXytcAg05nmK60TdAg6FdhJMYDv9oFCLoflI5wmlyXT2i6DALB9pCPvCOOcwV2Fc7o3MGRLGDuLmwLXm/2O6RjLDrNtx25n8tpE8O3dmIs+HjKoTR3A5M5vuBhE9I0CZNyo74kH+Lb5zM/owXS7mk0udNrh0mV6vNxsw7lx4N+/TjHznnNvp1+bweDfvu+fhd/Puzs1w4tQXb6hPXf3zAG84ZxGcFwpvsutUVQWsDy++f1D/MW4+JKu2O7+wU0ozeAO+4s00x1sEvMCtc6Yd8+npJ6GIVCTNEAAA",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Sat, 05 Aug 2017 19:37:19 GMT",
+          "ETag": "W/\"f5b288dc06658851de9b36b41f872b1f\"",
+          "Last-Modified": "Sun, 23 Jul 2017 04:10:15 GMT",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "8030:24EC:1310A05:2474CBF:59861E6F",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4857",
+          "X-RateLimit-Reset": "1501964529",
+          "X-Runtime-rack": "0.081637",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/pypa/pip/issues/4429"
+      }
+    },
+    {
+      "recorded_at": "2017-08-05T19:37:19",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.3 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/pypa/pip/issues/4429/comments"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAAA52UTW7bMBCFrxKwy8ihJAiwLKDIJZxNisIYS7RElCYJ/ih1BB+hi56gV+wROqRVI1YAJ/KKAsX38c0jh98G4o0gFemc07aiFDR/aLnr/PahVntqmFaW6oMGqrmm3FrPLMU/eyadpfkqX6ZlWZQkQcJebC5hb0BnhPZC0KLIV18ibEQt3pLijwnqU74CFp3whlRnXkK8ZYZUAxGq5RJL/Qn9jhkJsmGv4+osLVfLokgI9ODATPeOkzYdgwm8WkmHCcSMPB3lj/3XAoGtGSnBB8GJqwkHmqUTT9eznCzeKSHUC1Kmti+P8v1G9KxEk6dvLtsbKagcqHIdw/SwpGMIgls331RUDTQMG94EjsX0DWtmGxt1aOtFoqMh3uYI9FtbG64dV3K+wQs10pRpQfJXuI2GaouQ2GizK4wqVLM+tONs+Uk2UG14D/UhRGNYzXiPYd+InOiR6A6aYR88hS7E6LljG2j2oRN3ICw7JqQ2DBxuCQ7X5Wm2XKTFIi3XWVrlWZVlz6jzuvlwzVY1BySsO5A/7N3fP79/3cWKoI5HE96Aq6342ccO79F/JJanHIhNrbxE92lC7rM4LE6DAN92caJTygDaw098PHbYI/g6hHkGJiiPx+//AInWVQaNBQAA",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Sat, 05 Aug 2017 19:37:19 GMT",
+          "ETag": "W/\"841d08922b05cb5abebfb010632ed818\"",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "8030:24EC:1310A14:2474CD7:59861E6F",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4856",
+          "X-RateLimit-Reset": "1501964529",
+          "X-Runtime-rack": "0.081264",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/pypa/pip/issues/4429/comments"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

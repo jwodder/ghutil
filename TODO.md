@@ -86,6 +86,7 @@ Interface Improvements
   account (cf. `gh repo delete`)
 - Why does providing an invalid issue argument produce the message `Error:
   Invalid value for "repos":`?  Fix this.
+- Give the `search` subcommands a `--raw` option to not add any quotes?
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
@@ -114,6 +115,7 @@ Interface Improvements
     - `read`:
         - Make the main issue "comment" respect `--since`?
         - Add an option for listing comments in reverse chronological order
+        - Add the issue's "short ID" to the top of the output?
     - `new`: Abort if the user closes the editor without saving
     - Should user-supplied milestones always be interpreted as milestone names
       instead of numbers?

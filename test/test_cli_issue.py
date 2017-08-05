@@ -51,6 +51,57 @@ def test_pr_read_issue(cmd):
     assert r.exit_code == 0
     assert r.output == READ_ISSUE
 
+READ_CLOSED_ISSUE = '''\
+Issue:     support git refs in @ syntax
+State:     closed
+Author:    zzzeek
+Date:      2016-07-26 19:27:19 -0400  (last updated 2017-04-08 06:21:30 -0400)
+Labels:    
+Assignees: 
+Milestone: 10.0
+Closed:    2017-04-08 06:21:04 -0400 by xavfernandez
+Reactions: 👍 5
+
+    We'd like to be able to put paths to gerrit reviews in requirements files.
+
+    Given a gerrit like https://review.openstack.org/#/c/345601/6, the path given for a git pull looks like:
+
+       git pull https://git.openstack.org/openstack/oslo.db refs/changes/01/345601/6
+
+    pip syntax we'd expect would be:
+
+    ```
+    .venv/bin/pip install -e git+https://git.openstack.org/openstack/oslo.db@refs/changes/01/345601/6#egg=oslo.db
+    ```
+
+    current output:
+
+    ```
+
+    Obtaining oslo.db from git+https://git.openstack.org/openstack/oslo.db@refs/changes/01/345601/6#egg=oslo.db
+      Cloning https://git.openstack.org/openstack/oslo.db (to refs/changes/01/345601/6) to ./.venv/src/oslo.db
+      Could not find a tag or branch 'refs/changes/01/345601/6', assuming commit.
+    error: pathspec 'refs/changes/01/345601/6' did not match any file(s) known to git.
+    Command "git checkout -q refs/changes/01/345601/6" failed with error code 1 in /home/classic/.venv/src/oslo.db
+    ```
+
+comment 268571420
+Author: pradyunsg
+Date:   2016-12-21 11:44:43 -0500  (last updated 2016-12-21 11:44:54 -0500)
+
+    @sshnaidm Please use Github reactions. They're meant for exactly this.
+'''
+
+def test_issue_read_closed_issue(cmd):
+    r = cmd('issue', 'read', 'pypa/pip/3876')
+    assert r.exit_code == 0
+    assert r.output == READ_CLOSED_ISSUE
+
+def test_pr_read_closed_issue(cmd):
+    r = cmd('pr', 'read', 'pypa/pip/3876')
+    assert r.exit_code == 0
+    assert r.output == READ_CLOSED_ISSUE
+
 def test_issue_list_pypa_packaging(cmd):
     r = cmd('issue', 'list', 'pypa/packaging')
     assert r.exit_code == 0

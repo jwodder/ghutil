@@ -1,0 +1,114 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-08-05T19:37:19",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.3 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/pypa/pip/issues/3876"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAAA+1YTY/bNhD9K4Ry2ASxTcmfGwFBA+yhx162KNC68FISLROWSYWkvPEa+9/zSPlLbuxGu+mlCLCAtdK8N8PhzNNQ26DSRRAHC2tLE1PKStHLhV1USS9VK6p5qQwtNyWjpSipMKbihg5uJ+OgE/iHwiq9mbUgAbBgCS9MG9CpZ1rDt1SyFX8GHQJdcWlfTrgnABdfv4qphoNnYVfF2QJP0nohoSIL4mg8mQxGo/6oE8hqlXAdxC7dncAKW3DslKnKUmlLQEc0nxsiJPlEzEZa9gWOK+Mg26BQuZAwf3p64nyJB568f9vvDzoBWzPL9PkG+Jsm3O2/I0qVtMiHL4WK1uhf1h+HoMv1jsTxBs7xtTpyZIYeYrmenYPZXBWFegTyPNJmkZ6S0wMGIdXXQuat8cBsqbILjiQhdFdluTD/VmKNQLz9lrqfmcgcg0F6Nc9aBLNDIJRHiSi2vh89VZWYVIvSCiXbZKeBA4/SOZPiibXlAc4A7hWgxXq8PXDf02WNZNaALS21WLN041KgecrFGulsTXaGBJfdlK61fne9g+QKy2csW7n+mbPC8Oe9ZAXxX3/7fbTOPC2U4RkAhUqXuKiN0V3GiFxymMiqKI7/mxq+EgU3Vkk8317vmjP1PQAN7Q/g9noXHTTmAKtRLxDfhuOd/MK/6/x+FIWT2+goVk5e9lIVhb0Qdhk/1GotFanmDK+NU5n6wtZzriWTGX/aUUfh7YfJcPhitarhr5Crs5iup/vMuJV0nWJfLmDfYHmNjDXoXiVmDaYfJ2lN2lNBRAG1FrYGW1t5a4Dbi1wD/mOk7iyihlR+l+CpkstZPe8FMcaPWuwOd0boy70OOlNw+q6GHjOLLu+H0bgbRd2wf9+P4v4kHkV/wqYqs4bNpBvib3TfH8SjYTwYO5us4jMF6a3Fc+fXkbobkOLDtBZDdv7pFIT9sSOE0+jDBafDbnh7H4WQr3gQOpsTNy52BHViEg6dSaKyDVb2B7/JSCGWnFhFEk5YUvjLsrKkZHZh3D8519rPZ2vBH/2IpvnnSmjuB1Uyd6+A3lRO5a94hUnC9gDPu5/Fa3TPpRepTpc9lCV9Q1M6GI7GYUTHHYIJxTvFNOh45ko7LngukStSKLU0PtbY+SLk+GjvA7ZnDg7uqDKF6mWJnzJpumAyx+wPv3v3jhOngt3sSR5dYviXkqeWPKqqyJAd7/fh4WEqe4hvTRMh3UECCcGKEGGXu5Det4jm06Vo3vA8/7gLeedzKtMKE5e0RFUW+3OMZip/SywTEgJJ9suca7X6j6Ih5K5Q3lmLlZK3KKRLq33nqqxH66wane43y+3ynU++VBZ1JjMUhGVYpSaJZjJdkJtLnDcdgtGlwtyTE9dkKI0pxk6tdFxXNrb2Cppkova6YhZumNz4On9r3pGlxADr+8Jz3oEcb3oyxVBtSbrg6RIbRLqfLy53GpA5A1lGHnE4JT4oxJhxErnmogu14jQt3OSVfispvgSPbZ6gkY9HpFOthI0/KP2cPVodnhqvmwPyxUeoBt3P2ePCx5n6hPQ/nD0wSKT+RNr2hHTyfQpH5T0JDiQKb5tZqiqJMQJfVt5H/qeLn9Cd7ap84a8WSmkGbcAlPn3MkWBogbvPmQYyfH7+CnP/HXswEwAA",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Sat, 05 Aug 2017 19:37:19 GMT",
+          "ETag": "W/\"eaa3b85a8735275bd28736fc138d5e8d\"",
+          "Last-Modified": "Mon, 17 Jul 2017 13:46:53 GMT",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "D6D0:24EC:13109E5:2474C7A:59861E6F",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4859",
+          "X-RateLimit-Reset": "1501964529",
+          "X-Runtime-rack": "0.079805",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/pypa/pip/issues/3876"
+      }
+    },
+    {
+      "recorded_at": "2017-08-05T19:37:19",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.3 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/pypa/pip/issues/3876/comments"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAAA52UzY7bIBSFX8Wiiy7qhNhxkqmlqt1128V006qKbmxiI2FA/HjqWnn3Xog7SrxIJ1lhwT0f5x4DP0fijSAlaZ3TtqQUNF823LX+sKxURw3TylI9aKCaa8qt9cxSXOmYdJbm26fNLivyFUmR0In9NewCNEesn3bbdxE3wRaXrLgwg73JWcCiF16T8pWXEm+ZIeVIhGq4xGa1gXrw0jZT6TrfbTYf1ymBHhyY+cZx0mZTLgFWKekwgBiRp5P8c/+pQGBjJkowQXDiZsCBhgFfGPpPjheVRyWEekH93PD1P5xtQV9l6O38zWXzCAJlI1WuZZgYtnEKzXPr7rQTJSMNw57XAWIxbsPq+yxNIjT0ItHLGI9upPmDrQzXjit5p7UrKaKUaUDyP/AACqUWCfE+3ddYlKCU9eHK3ac9a0Y8X7yHaghxGFYx3mO6j/BmYsS5QTM85t/DDcOsuWN7qLtwy44gLDulpDIMHO4HDuvyVbZdZPkiz56zbVkUZbH+gTqv6xs1myLUHFQ9IOGLta0EXnfJN8HAsgSPXvI1vlgJ7lTFf7NMnls2vDcs6RhIlxyVSdhvXBRD4lpulzGIqTi8DDfv6FsfQTxy/5AYjHIg9pXyEvtepeRDFofFeRDgmzZOtEoZwMbwE1+VI3aDz0aYZ2CC8nT69RfltvcOpQUAAA==",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Sat, 05 Aug 2017 19:37:19 GMT",
+          "ETag": "W/\"45ab81dc6c5b8db213033f2fe32077cb\"",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "D6D0:24EC:13109EF:2474C89:59861E6F",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4858",
+          "X-RateLimit-Reset": "1501964529",
+          "X-Runtime-rack": "0.053126",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/pypa/pip/issues/3876/comments"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}
