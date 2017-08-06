@@ -1,4 +1,5 @@
 import os
+import tempfile
 import pytest
 from   ghutil.api.client import ACCEPT, GitHub
 
@@ -72,11 +73,12 @@ def test_accept_nullconfig():
     ('[api]\naccept =\nappend-accept = true', ACCEPT),
     ('[api]\naccept = text/plain\nappend-accept = true', ACCEPT+',text/plain'),
 ])
-def test_accept_configged(tmpdir, config, accept_header):
-    cfg = tmpdir.join('config.cfg')
-    cfg.write(config)
+def test_accept_configged(config, accept_header):
     gh = GitHub()
-    gh.configure(str(cfg))
+    with tempfile.NamedTemporaryFile(mode='w+') as cfg:
+        cfg.write(config)
+        cfg.flush()
+        gh.configure(cfg.name)
     assert gh.session.headers.get("Accept") == accept_header
 
 @pytest.mark.parametrize('config,auth_header,auth_basic', [
@@ -100,10 +102,11 @@ def test_accept_configged(tmpdir, config, accept_header):
         None,
     ),
 ])
-def test_auth_config(tmpdir, config, auth_header, auth_basic):
-    cfg = tmpdir.join('config.cfg')
-    cfg.write(config)
+def test_auth_config(config, auth_header, auth_basic):
     gh = GitHub()
-    gh.configure(str(cfg))
+    with tempfile.NamedTemporaryFile(mode='w+') as cfg:
+        cfg.write(config)
+        cfg.flush()
+        gh.configure(cfg.name)
     assert gh.session.headers.get("Authorization") == auth_header
     assert gh.session.auth == auth_basic
