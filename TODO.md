@@ -2,9 +2,6 @@
 - Add (more) user documentation
     - Config file fields
     - Bash completion
-- Instead of assuming the GitHub remote for a local repository is always
-  "origin", get all remotes with `git config --get-regexp 'remote\..*\.url'`
-  and check for one that's a GitHub URL?
 - Write more tests (somehow)
     - Somewhere test that credentials are being redacted from cassettes
     - Test that the correct User-Agent header is being sent?
@@ -17,6 +14,12 @@
     - Editing a renamed repository
 - It appears that not all URL path components are treated case-insensitively by
   GitHub (just the variable/user-defined ones?).  Fix the regexes to match.
+- Support older versions of Git that don't have `git remote get-url`
+    - At the very least, figure out and document the minimum required version
+      of Git
+    - Note that `git config --get remote.origin.url` doesn't perform
+      "`insteadOf`" replacements
+    - Or just switch to using GitPython or the like instead
 
 API Completeness
 ================
@@ -84,9 +87,8 @@ Interface Improvements
 - Change resources' `__str__` methods to use `self.data` instead of
   user-supplied params in order to ensure redirects over renames are taken into
   account (cf. `gh repo delete`)
-- Why does providing an invalid issue argument produce the message `Error:
-  Invalid value for "repos":`?  Fix this.
 - Give the `search` subcommands a `--raw` option to not add any quotes?
+- `edit` subcommands: (Add an option to) show the API's response?
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
@@ -100,6 +102,7 @@ Interface Improvements
     - timestamp format for `gh issue read`
     - editor program to use
     - default protocol to use when cloning repositories/gists
+    - per-repository configuration of the name of the GitHub remote?
 
 - `gh gist`:
     - `show` etc.: Die gracefully when used without arguments in a non-gist

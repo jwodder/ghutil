@@ -223,7 +223,6 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
             callback = None
         return click.argument(
             name,
-            'repos',
             type=ResourceParamType(cls),
             nargs=-1,
             callback=callback,
