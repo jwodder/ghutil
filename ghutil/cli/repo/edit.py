@@ -3,11 +3,19 @@ from   ghutil.edit  import edit_as_mail
 from   ghutil.types import Repository
 
 @click.command()
+@click.option('--allow-merge-commit/--no-merge-commit', default=None,
+              help='Allow/disallow merging PRs with merge commits')
+@click.option('--allow-rebase-merge/--no-rebase-merge', default=None,
+              help='Allow/disallow rebase-merging PRs')
+@click.option('--allow-squash-merge/--no-squash-merge', default=None,
+              help='Allow/disallow squash-merging PRs')
 @click.option('-b', '--default-branch',
               help="Change the repository's default branch")
 @click.option('-d', '--description', help='Set repository description')
 @click.option('--has-issues/--no-issues', default=None,
               help='Enable/disable issues for repository')
+@click.option('--has-projects/--no-projects', default=None,
+              help='Enable/disable projects in the repository')
 @click.option('--has-wiki/--no-wiki', default=None,
               help="Enable/disable the repository's wiki")
 @click.option('-H', '--homepage', metavar='URL', help='Set repository homepage')
@@ -25,8 +33,21 @@ def cli(repo, **opts):
     """
     edited = {k:v for k,v in opts.items() if v is not None}
     if not edited:
-        edited = edit_as_mail(repo.data, 'name private description homepage'
-                                         ' default_branch has_wiki has_issues')
+        edited = edit_as_mail(
+            repo.data, '''
+                name
+                description
+                homepage
+                private
+                default_branch
+                allow_merge_commit
+                allow_rebase_merge
+                allow_squash_merge
+                has_issues
+                has_projects
+                has_wiki
+            '''
+        )
         if not edited:
             click.echo('No modifications made; exiting')
             return

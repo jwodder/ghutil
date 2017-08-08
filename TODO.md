@@ -31,7 +31,6 @@ API Completeness
           how are watchers fetched?
     - deleting branches
     - protecting branches
-    - editing all options
     - editing topics
 
 - Issues & pull requests:
