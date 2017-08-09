@@ -97,6 +97,9 @@ Issues
 ``gh issue comments [--since <timestamp>] <issue>``
    Show comments on an issue/PR as JSON
 
+``gh issue edit [<options>] <issue>``
+   Edit an issue
+
 ``gh issue [list [<options>] [<repo>]]``
    List issues for a repository
 

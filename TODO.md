@@ -44,7 +44,6 @@ API Completeness
     - merging PRs
     - assigning
     - labelling & milestones
-    - editing
     - closing
 
 - Releases:
@@ -88,6 +87,10 @@ Interface Improvements
   account (cf. `gh repo delete`)
 - Give the `search` subcommands a `--raw` option to not add any quotes?
 - `edit` subcommands: (Add an option to) show the API's response?
+- Editing:
+    - Deleting the entire body should set it to the empty string, not leave it
+      unchanged
+    - Rethink the way deleted header fields are handled
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL

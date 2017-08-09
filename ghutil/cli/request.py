@@ -6,7 +6,7 @@ from   ghutil.showing import print_json
 @click.option('-d', '--data', help='Set request body')
 @click.option('-H', '--header', multiple=True,
               help='Add custom HTTP header to request.'
-                   '  May be specified multiple times')
+                   '  May be specified multiple times.')
 @click.option(
     '-X', '--request',
     type=click.Choice(['GET', 'POST', 'PUT', 'PATCH', 'DELETE']),

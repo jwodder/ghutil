@@ -6,11 +6,11 @@ from   ghutil.types   import Repository
 @click.command()
 @click.option('-a', '--assignee', multiple=True, metavar='USER',
               help='Assign the issue to a user.'
-                   '  May be specified multiple times')
+                   '  May be specified multiple times.')
 @click.option('-b', '--body', type=click.File(),
               help='File containing issue body')
 @click.option('-l', '--label', multiple=True, metavar='LABEL',
-              help='Add a label to the issue.  May be specified multiple times')
+              help='Add a label to the issue.  May be specified multiple times.')
 @click.option('-m', '--milestone', metavar='ID|TITLE',
               help='Associate the issue with a milestone (by ID or name)')
 @click.option('-T', '--title', help='Issue title')
