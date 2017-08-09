@@ -94,6 +94,9 @@ Gists
 Issues
 ^^^^^^
 
+``gh issue close <issue> ...``
+   Close one or more issues
+
 ``gh issue comments [--since <timestamp>] <issue>``
    Show comments on an issue/PR as JSON
 
@@ -103,8 +106,14 @@ Issues
 ``gh issue [list [<options>] [<repo>]]``
    List issues for a repository
 
+``gh issue lock <issue> ...``
+   Lock one or more issues
+
 ``gh issue new [<options>] [<repo>]``
    Create an issue in the given repository
+
+``gh issue open <issue> ...``
+   Open one or more issues
 
 ``gh issue read [--since <timestamp>] <issue>``
    Read an issue/PR and its comments
@@ -117,6 +126,9 @@ Issues
 
 ``gh issue show <issue> ...``
    Show details on the given issues
+
+``gh issue unlock <issue> ...``
+   Unlock one or more issues
 
 Pull Requests
 ^^^^^^^^^^^^^

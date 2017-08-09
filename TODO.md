@@ -44,7 +44,8 @@ API Completeness
     - merging PRs
     - assigning
     - labelling & milestones
-    - closing
+    - editing PRs
+    - opening, closing, locking, & unlocking PRs
 
 - Releases:
     - deleting

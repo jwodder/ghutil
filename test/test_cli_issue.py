@@ -1,3 +1,5 @@
+import json
+
 READ_ISSUE = '''\
 Issue:     click plugins / cache / local datastore
 State:     open
@@ -212,5 +214,45 @@ def test_pr_comments_issue(cmd):
     r = cmd('pr', 'comments', 'ghutil/1')
     assert r.exit_code == 0
     assert r.output == ISSUE_COMMENTS
+
+def test_issue_open(cmd):
+    issues = ['jwodder/test/1', 'test/2']
+    r = cmd('issue', 'open', *issues)
+    assert r.exit_code == 0
+    assert r.output == ''
+    for i in issues:
+        r = cmd('issue', 'show', '-v', i)
+        assert r.exit_code == 0
+        assert json.loads(r.output)[0]["state"] == "open"
+
+def test_issue_close(cmd):
+    issues = ['jwodder/test/1', 'test/2']
+    r = cmd('issue', 'close', *issues)
+    assert r.exit_code == 0
+    assert r.output == ''
+    for i in issues:
+        r = cmd('issue', 'show', '-v', i)
+        assert r.exit_code == 0
+        assert json.loads(r.output)[0]["state"] == "closed"
+
+def test_issue_lock(cmd):
+    issues = ['jwodder/test/1', 'test/2']
+    r = cmd('issue', 'lock', *issues)
+    assert r.exit_code == 0
+    assert r.output == ''
+    for i in issues:
+        r = cmd('issue', 'show', '-v', i)
+        assert r.exit_code == 0
+        assert json.loads(r.output)[0]["locked"]
+
+def test_issue_unlock(cmd):
+    issues = ['jwodder/test/1', 'test/2']
+    r = cmd('issue', 'unlock', *issues)
+    assert r.exit_code == 0
+    assert r.output == ''
+    for i in issues:
+        r = cmd('issue', 'show', '-v', i)
+        assert r.exit_code == 0
+        assert not json.loads(r.output)[0]["locked"]
 
 # issue search
