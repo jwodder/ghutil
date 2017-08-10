@@ -425,3 +425,17 @@ def test_release_show_a_bunch(cmd, mocker):
 ]
 '''
     git.get_remote_url.assert_called_once_with()
+
+def test_release_show_bad_implicit_repo(nullcmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='/home/jwodder/git/private.git',
+    )
+    r = nullcmd('release', 'show')
+    assert r.exit_code != 0
+    assert r.output == '''\
+Usage: gh release show [OPTIONS] [RELEASES]...
+
+Error: Not a GitHub remote: /home/jwodder/git/private.git
+'''
+    git.get_remote_url.assert_called_once_with()

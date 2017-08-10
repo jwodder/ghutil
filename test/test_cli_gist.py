@@ -1,5 +1,6 @@
 from io      import BytesIO
 from pathlib import Path
+from ghutil  import git
 
 FILEDIR = Path(__file__).with_name('data') / 'files'
 
@@ -478,3 +479,31 @@ def test_gist_new_forced_dupe(cmd):
     "url": "https://api.github.com/gists/493ee12c1af8825cb706735f95b34bad"
 }
 '''
+
+def test_gist_show_bad_implicit_repo(nullcmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='git@github.com:jwodder/ghutil.git',
+    )
+    r = nullcmd('gist', 'show')
+    assert r.exit_code != 0
+    assert r.output == '''\
+Usage: gh gist show [OPTIONS] [GISTS]...
+
+Error: Not a gist remote: git@github.com:jwodder/ghutil.git
+'''
+    git.get_remote_url.assert_called_once_with()
+
+def test_gist_show_bad_explicit_repo(nullcmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='git@github.com:jwodder/ghutil.git',
+    )
+    r = nullcmd('gist', 'show', '/some/path')
+    assert r.exit_code != 0
+    assert r.output == '''\
+Usage: gh gist show [OPTIONS] [GISTS]...
+
+Error: Not a gist remote: git@github.com:jwodder/ghutil.git
+'''
+    git.get_remote_url.assert_called_once_with(chdir='/some/path')

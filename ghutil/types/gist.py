@@ -1,5 +1,6 @@
 import re
-from   ghutil.git   import get_remote_url
+import click
+from   ghutil       import git  # Import module to keep mocking easy
 from   ghutil.regex import GH_USER_RGX
 from   .util        import Resource, cacheable
 
@@ -47,12 +48,20 @@ class Gist(Resource):
 
     @classmethod
     def default_params(cls):
-        return cls.parse_url(get_remote_url())
+        remote = git.get_remote_url()
+        try:
+            return cls.parse_url(remote)
+        except ValueError:
+            click.get_current_context().fail("Not a gist remote: " + remote)
 
     @classmethod
     def parse_arg(cls, arg):
         if arg.startswith('/') or re.match(r'^\.\.?(/|$)', arg):
             # Filepath pointing to a local repository
-            return cls.parse_url(get_remote_url(chdir=arg))
+            remote = git.get_remote_url(chdir=arg)
+            try:
+                return cls.parse_url(remote)
+            except ValueError:
+                click.get_current_context().fail("Not a gist remote: "+remote)
         else:
             return super().parse_arg(arg)

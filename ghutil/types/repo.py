@@ -82,13 +82,21 @@ class Repository(Resource):
 
     @classmethod
     def default_params(cls):
-        return cls.parse_url(git.get_remote_url())
+        remote = git.get_remote_url()
+        try:
+            return cls.parse_url(remote)
+        except ValueError:
+            click.get_current_context().fail("Not a GitHub remote: " + remote)
 
     @classmethod
     def parse_arg(cls, arg):
         if arg.startswith('/') or re.match(r'^\.\.?(/|$)', arg):
             # Filepath pointing to a local repository
-            return cls.parse_url(git.get_remote_url(chdir=arg))
+            remote = git.get_remote_url(chdir=arg)
+            try:
+                return cls.parse_url(remote)
+            except ValueError:
+                click.get_current_context().fail("Not a GitHub remote: "+remote)
         else:
             return super().parse_arg(arg)
 

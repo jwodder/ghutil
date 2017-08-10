@@ -81,7 +81,6 @@ Interface Improvements
 - Add a command for showing rate limit information?
 - Default to HTTPS when cloning repositories/gists you don't have push access
   to?
-- Die gracefully when 'origin' is a non-GitHub URL
 - When no arguments are given to a `show` subcommand, output an empty list?
 - Accept api.github.com URLs without "https://"?
 - Change resources' `__str__` methods to use `self.data` instead of
@@ -107,10 +106,6 @@ Interface Improvements
     - editor program to use
     - default protocol to use when cloning repositories/gists
     - per-repository configuration of the name of the GitHub remote?
-
-- `gh gist`:
-    - `show` etc.: Die gracefully when used without arguments in a non-gist
-      repository
 
 - `gh issue`:
     - `list`: Allow specifying `--since` in human-friendly formats like
@@ -139,7 +134,8 @@ Interface Improvements
           commit's commit message
         - Allow specifying the repository on the command line
     - Support setting `target_commitish` when creating/editing a release
-    - Allow specifying the repository as a local path?
+    - Allow specifying the repository as a local path
+    - Allow just `latest` to mean the latest release of the current repository
 
 - `gh repo`:
     - Give `new` an option for setting the local repository's origin to the new

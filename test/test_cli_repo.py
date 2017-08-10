@@ -1,3 +1,5 @@
+from ghutil import git
+
 # Betamax isn't good with parametrization, and parametrizing lengthy output
 # would result in very long cassette file names anyway, so no parametrization
 # for me.
@@ -286,3 +288,31 @@ spiderworthy/getRunningTime
 Aearnus/bf-genetic-generator
 vincentclee/csci2670-intro_to_theory_of_computation
 '''
+
+def test_repo_show_bad_implicit_repo(nullcmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='/home/jwodder/git/private.git',
+    )
+    r = nullcmd('repo', 'show')
+    assert r.exit_code != 0
+    assert r.output == '''\
+Usage: gh repo show [OPTIONS] [REPOS]...
+
+Error: Not a GitHub remote: /home/jwodder/git/private.git
+'''
+    git.get_remote_url.assert_called_once_with()
+
+def test_repo_show_bad_explicit_repo(nullcmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='/home/jwodder/git/private.git',
+    )
+    r = nullcmd('repo', 'show', '/some/path')
+    assert r.exit_code != 0
+    assert r.output == '''\
+Usage: gh repo show [OPTIONS] [REPOS]...
+
+Error: Not a GitHub remote: /home/jwodder/git/private.git
+'''
+    git.get_remote_url.assert_called_once_with(chdir='/some/path')
