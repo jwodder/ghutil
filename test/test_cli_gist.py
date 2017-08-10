@@ -119,8 +119,8 @@ def test_gist_starred(cmd):
 674099
 '''
 
-def test_gist_new_noargs(cmd):
-    r = cmd('gist', 'new')
+def test_gist_new_noargs(nullcmd):
+    r = nullcmd('gist', 'new')
     assert r.exit_code != 0
     assert r.output == '''\
 Usage: gh gist new [OPTIONS] [FILES]...
