@@ -40,7 +40,11 @@ def cli(ctx, repo, title, body, label, assignee, milestone, verbose):
             fields = 'title labels assignees milestone'
         else:
             fields = 'title'
-        data.update(edit_as_mail(data, fields, 'body'))
+        edited = edit_as_mail(data, fields, 'body')
+        if edited is None:
+            click.echo('No changes saved; exiting')
+            return
+        data.update(edited)
         if data["title"] is None:  # or body is None?
             click.echo('Aborting issue due to empty title')
             return

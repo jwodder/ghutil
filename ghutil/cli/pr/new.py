@@ -41,7 +41,11 @@ def cli(ctx, head, base, title, body, maintainer_can_modify, verbose):
     }
     if title is None or body is None:
         ### TODO: Also let the user edit the head & base?
-        data.update(edit_as_mail(data, 'title maintainer_can_modify', 'body'))
+        edited = edit_as_mail(data, 'title maintainer_can_modify', 'body')
+        if edited is None:
+            click.echo('No changes saved; exiting')
+            return
+        data.update(edited)
         if data["title"] is None:  # or body is None?
             click.echo('Aborting pull request due to empty title')
             return

@@ -30,9 +30,9 @@ def edit_as_mail(obj: dict, fields=None, bodyfield=None):
             raise TypeError('only string, boolean, and list fields supported')
     if bodyfield is not None:
         msg += '\n' + (obj[bodyfield] or '')
-    msg = click.edit(msg)
+    msg = click.edit(msg, require_save=True)
     if msg is None:
-        return {}
+        return None
     data = parser.parse_string(msg)
     newobj = dict(data)
     if data.body is not None:

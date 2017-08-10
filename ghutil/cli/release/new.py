@@ -41,9 +41,11 @@ def cli(gh, tag, name, body, draft, prerelease, verbose):
     # (in which case the web API displays the tag name and commit message,
     # respectively, in their stead), but it does not allow them to be null.
     if name is None or body is None:
-        data.update(
-            edit_as_mail(data, 'tag_name name draft prerelease', 'body')
-        )
+        edited = edit_as_mail(data, 'tag_name name draft prerelease', 'body')
+        if edited is None:
+            click.echo('No changes saved; exiting')
+            return
+        data.update(edited)
         if not data["tag_name"]:
             click.echo('Aborting release due to empty tag name')
             return
