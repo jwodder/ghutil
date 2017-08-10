@@ -9,6 +9,7 @@ DEFAULT_CFG = os.path.join(os.path.expanduser('~'), '.config', 'ghutil.cfg')
 
 @package_group(
     __package__, __file__,
+    name='gh',
     context_settings={"help_option_names": ["-h", "--help"]},
 )
 @click.option('-c', '--config', type=click.Path(dir_okay=False),

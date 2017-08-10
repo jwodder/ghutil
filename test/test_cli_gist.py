@@ -122,9 +122,8 @@ def test_gist_starred(cmd):
 def test_gist_new_noargs(cmd):
     r = cmd('gist', 'new')
     assert r.exit_code != 0
-    ### TODO: Get this usage message to say "gh" instead of "cli" when testing
     assert r.output == '''\
-Usage: cli gist new [OPTIONS] [FILES]...
+Usage: gh gist new [OPTIONS] [FILES]...
 
 Error: No files specified
 '''
