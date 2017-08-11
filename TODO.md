@@ -12,6 +12,7 @@
       `get_remote_url()` mocked
     - `show`ing more than one object at once
     - Editing a renamed repository
+    - Test specifying a nonexistent config file
 - It appears that not all URL path components are treated case-insensitively by
   GitHub (just the variable/user-defined ones?).  Fix the regexes to match.
 - Support older versions of Git that don't have `git remote get-url`

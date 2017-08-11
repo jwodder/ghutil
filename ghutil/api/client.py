@@ -1,13 +1,10 @@
-from   configparser import ConfigParser, ExtendedInterpolation
-from   functools    import partial
 import platform
-import re
 import requests
-from   ghutil       import __url__, __version__
-from   ghutil       import types
-from   ghutil.util  import cacheable, search_query
-from   .endpoint    import GHEndpoint
-from   .util        import API_ENDPOINT, paginate
+from   ghutil      import __url__, __version__
+from   ghutil      import types
+from   ghutil.util import cacheable, search_query
+from   .endpoint   import GHEndpoint
+from   .util       import API_ENDPOINT, paginate
 
 ACCEPT = ','.join([
     'application/vnd.github.drax-preview',           # Licenses
@@ -29,40 +26,6 @@ class GitHub:
         self.session = session or requests.Session()
         self.session.headers["Accept"] = ACCEPT
         self.session.headers["User-Agent"] = USER_AGENT
-
-    def configure(self, cfg_file):
-        parser = ConfigParser(interpolation=ExtendedInterpolation())
-        parser.read(cfg_file)
-        try:
-            auth = parser['api.auth']
-        except KeyError:
-            auth = {}
-        if 'token' in auth:
-            self.session.headers["Authorization"] = "token " + auth['token']
-        elif 'username' in auth and 'password' in auth:
-            self.session.auth = (auth['username'], auth['password'])
-        ### Do something if only one of (username, password) is set?
-        try:
-            extra_accept = parser['api']['accept']
-        except KeyError:
-            pass
-        else:
-            extra_accept = ','.join(
-                filter(
-                    None,
-                    map(
-                        partial(re.sub, r'^[\s,]+|[\s,]+$', ''),
-                        extra_accept.splitlines(),
-                    )
-                )
-            )
-            if extra_accept:
-                if parser.getboolean('api', 'append-accept', fallback=True):
-                    self.session.headers["Accept"] += ',' + extra_accept
-                else:
-                    self.session.headers["Accept"] = extra_accept
-            elif not parser.getboolean('api', 'append-accept', fallback=True):
-                self.session.headers.pop("Accept", None)
 
     def __getattr__(self, key):
         return self[key]

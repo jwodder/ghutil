@@ -1,16 +1,22 @@
-import os
+import json
+import netrc
 import tempfile
+from   click.testing       import CliRunner
 import pytest
-from   ghutil.api.client import ACCEPT, GitHub
+import responses
+from   ghutil.api.client   import ACCEPT
+from   ghutil.cli.__main__ import cli
 
-def test_accept_noconfig():
-    gh = GitHub()
-    assert gh.session.headers["Accept"] == ACCEPT
-
-def test_accept_nullconfig():
-    gh = GitHub()
-    gh.configure(os.devnull)
-    assert gh.session.headers["Accept"] == ACCEPT
+@pytest.fixture(autouse=True)
+def echo_headers(monkeypatch):
+    with responses.RequestsMock() as rsps:
+        rsps.add_callback(
+            responses.GET,
+            'https://api.github.com/echo-headers',
+            callback=lambda r: (200, {}, json.dumps(dict(r.headers))),
+            content_type='application/json',
+        )
+        yield
 
 @pytest.mark.parametrize('config,accept_header', [
     ('', ACCEPT),
@@ -73,25 +79,24 @@ def test_accept_nullconfig():
     ('[api]\naccept =\nappend-accept = true', ACCEPT),
     ('[api]\naccept = text/plain\nappend-accept = true', ACCEPT+',text/plain'),
 ])
-def test_accept_configged(config, accept_header):
-    gh = GitHub()
+def test_accept(config, accept_header):
     with tempfile.NamedTemporaryFile(mode='w+') as cfg:
         cfg.write(config)
         cfg.flush()
-        gh.configure(cfg.name)
-    assert gh.session.headers.get("Accept") == accept_header
+        r = CliRunner().invoke(cli, ['-c',cfg.name,'request','/echo-headers'])
+        assert r.exit_code == 0
+        headers = json.loads(r.output)
+        assert headers.get("Accept") == accept_header
 
-@pytest.mark.parametrize('config,auth_header,auth_basic', [
-    ('', None, None),
+@pytest.mark.parametrize('config,auth_header', [
+    ('', None),
     (
         '[api.auth]\ntoken = legitimateoauthtoken\n',
         'token legitimateoauthtoken',
-        None,
     ),
     (
         '[api.auth]\nusername = l.user\npassword = hunter2\n',
-        None,
-        ('l.user', 'hunter2'),
+        'Basic bC51c2VyOmh1bnRlcjI=',
     ),
     (
         '[api.auth]\n'
@@ -99,14 +104,18 @@ def test_accept_configged(config, accept_header):
         'username = l.user\n'
         'password = hunter2\n',
         'token legitimateoauthtoken',
-        None,
     ),
 ])
-def test_auth_config(config, auth_header, auth_basic):
-    gh = GitHub()
+def test_auth(monkeypatch, config, auth_header):
+    # Keep `requests` from using the local user's ~/.netrc file; this is needed
+    # not only for the empty config case but also for the tests that set the
+    # "Authorization" header directly (see
+    # <https://github.com/requests/requests/issues/3929>)
+    monkeypatch.delattr(netrc, 'netrc')
     with tempfile.NamedTemporaryFile(mode='w+') as cfg:
         cfg.write(config)
         cfg.flush()
-        gh.configure(cfg.name)
-    assert gh.session.headers.get("Authorization") == auth_header
-    assert gh.session.auth == auth_basic
+        r = CliRunner().invoke(cli, ['-c',cfg.name,'request','/echo-headers'])
+        assert r.exit_code == 0
+        headers = json.loads(r.output)
+        assert headers.get("Authorization") == auth_header
