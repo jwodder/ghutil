@@ -24,6 +24,7 @@ USER_AGENT = 'ghutil/{} ({}) requests/{} {}/{}'.format(
 
 class GitHub:
     def __init__(self, session=None):
+        self.aliases = {}
         self.debug = False
         self.session = session or requests.Session()
         self.session.headers["Accept"] = ACCEPT

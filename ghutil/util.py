@@ -4,9 +4,34 @@ import re
 import click
 from   property_manager import cached_property
 
+class AliasableGroup(click.Group):
+    def get_command(self, ctx, name):
+        cmd = super().get_command(ctx, name)
+        if cmd is None:
+            cmd = self.get_command_aliases(ctx).get(name)
+            if isinstance(cmd, dict):
+                cmd = AliasableGroup()
+        return cmd
+
+    def get_command_aliases(self, ctx):
+        cmd_path = []
+        ctxlevel = ctx
+        while ctxlevel.parent is not None:
+            cmd_path.append(ctxlevel.info_name)
+            ctxlevel = ctxlevel.parent
+        cmd_path.reverse()
+        aliases = ctx.obj.aliases
+        for p in cmd_path:
+            try:
+                aliases = aliases[p]
+            except KeyError:
+                return None
+        return aliases
+
+
 def package_group(package, filepath, **kwargs):
     def wrapper(f):
-        cli = click.group(**kwargs)(f)
+        cli = click.command(cls=AliasableGroup, **kwargs)(f)
         for fpath in Path(filepath).parent.iterdir():
             modname = fpath.stem
             if modname.isidentifier() and not modname.startswith('_') and \
