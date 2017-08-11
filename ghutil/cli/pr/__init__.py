@@ -5,7 +5,7 @@ from   ghutil.util import default_command, package_group
 @click.pass_context
 def cli(ctx):
     """
-    Manage pull requests
+    Manage pull requests.
 
     GitHub pull requests may be specified on the command line using any of the
     following formats:
