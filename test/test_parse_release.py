@@ -87,6 +87,8 @@ BAD_RELEASES = [
         ':jwodder/headerparser',
         {"owner": None, "repo": None, "tag_name": "jwodder/headerparser"},
     ),
+    ('latest',  {"owner": None, "repo": None, "tag_name": None}),
+    (':latest', {"owner": None, "repo": None, "tag_name": "latest"}),
 ])
 def test_parse_release_arg(arg, result):
     assert Release.parse_arg(arg) == result

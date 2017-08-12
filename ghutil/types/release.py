@@ -5,14 +5,13 @@ from   .repo           import Repository
 from   .util           import Resource, cacheable
 
 class Release(Resource):
-    # https://github.com/:owner/:repo/releases/latest is always a redirect to
-    # the latest release, even when there exists another release named
-    # "latest".
-
-    # Note that tags that have not been made into releases still have the same
-    # web URLs as they would if they were releases.
-
     URL_REGEXES = [
+        # https://github.com/:owner/:repo/releases/latest is always a redirect
+        # to the latest release, even when there exists another release named
+        # "latest".
+        #
+        # Note that tags that have not been made into releases still have the
+        # same web URLs as they would if they were releases.
         r'(?i){}/{}/releases/(?:latest|(?:tag/)?(?P<tag_name>{}))/?'
             .format(GITHUB, OWNER_REPO_RGX, GIT_REFNAME_RGX),
         r'(?i)https?://api\.github\.com/repos/{}/releases/'
@@ -21,6 +20,10 @@ class Release(Resource):
     ]
 
     ARGUMENT_REGEXES = [
+        'latest|latest(?P<owner>)(?P<repo>)(?P<tag_name>)',
+            # The second branch will never match, so we put the named capture
+            # groups there in order to have them be explicitly set to `None` in
+            # the resulting params
         r'(?:(?:(?:(?P<owner>{})/)?(?P<repo>{}))?:)?(?P<tag_name>{})'
             .format(GH_USER_RGX, GH_REPO_RGX, GIT_REFNAME_RGX),
         r'(?:(?P<owner>{})/)?(?P<repo>{}):'

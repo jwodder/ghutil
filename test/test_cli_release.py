@@ -439,3 +439,63 @@ Usage: gh release show [OPTIONS] [RELEASES]...
 Error: Not a GitHub remote: /home/jwodder/git/private.git
 '''
     git.get_remote_url.assert_called_once_with()
+
+def test_release_show_latest(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    r = cmd('release', 'show', 'latest')
+    assert r.exit_code == 0
+    assert r.output == '''\
+[
+    {
+        "assets": [],
+        "author": "jwodder",
+        "body": "This is the latest release.\\n",
+        "created_at": "2017-08-12T18:49:37Z",
+        "draft": false,
+        "html_url": "https://github.com/jwodder/test/releases/tag/v100.1",
+        "id": 7371148,
+        "name": "Version 100.1",
+        "prerelease": false,
+        "published_at": "2017-08-12T18:52:16Z",
+        "tag_name": "v100.1",
+        "tarball_url": "https://api.github.com/repos/jwodder/test/tarball/v100.1",
+        "target_commitish": "master",
+        "url": "https://api.github.com/repos/jwodder/test/releases/7371148",
+        "zipball_url": "https://api.github.com/repos/jwodder/test/zipball/v100.1"
+    }
+]
+'''
+    git.get_remote_url.assert_called_once_with()
+
+def test_release_show_colon_latest(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    r = cmd('release', 'show', ':latest')
+    assert r.exit_code == 0
+    assert r.output == '''\
+[
+    {
+        "assets": [],
+        "author": "jwodder",
+        "body": "This is a release tagged \\"latest\\".\\n",
+        "created_at": "2017-08-12T18:49:04Z",
+        "draft": false,
+        "html_url": "https://github.com/jwodder/test/releases/tag/latest",
+        "id": 7371143,
+        "name": "Pseudo-latest",
+        "prerelease": false,
+        "published_at": "2017-08-12T18:51:01Z",
+        "tag_name": "latest",
+        "tarball_url": "https://api.github.com/repos/jwodder/test/tarball/latest",
+        "target_commitish": "master",
+        "url": "https://api.github.com/repos/jwodder/test/releases/7371143",
+        "zipball_url": "https://api.github.com/repos/jwodder/test/zipball/latest"
+    }
+]
+'''
+    git.get_remote_url.assert_called_once_with()

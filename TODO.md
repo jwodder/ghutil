@@ -93,6 +93,7 @@ Interface Improvements
     - Deleting the entire body should set it to the empty string, not leave it
       unchanged
     - Rethink the way deleted header fields are handled
+- Give `gh` a `-C`/`--chdir` option?
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
@@ -123,11 +124,13 @@ Interface Improvements
       instead of numbers?
     - Allow specifying the repository as a local path if `:` (or `#`?) is used
       as the repo-issue separator?
+    - Support issue templates when creating issues
 
 - `gh pr`:
     - Improve the syntax of `new` and then document it in the docstring
     - Add a `search` command that just does `gh issue search type:pr ...`?
     - `new`: Should `--maintainer-can-modify` be on by default?
+    - Support PR templates when creating issues
 
 - `gh release`:
     - `new`:
@@ -136,7 +139,6 @@ Interface Improvements
         - Allow specifying the repository on the command line
     - Support setting `target_commitish` when creating/editing a release
     - Allow specifying the repository as a local path
-    - Allow just `latest` to mean the latest release of the current repository
 
 - `gh repo`:
     - Give `new` an option for setting the local repository's origin to the new

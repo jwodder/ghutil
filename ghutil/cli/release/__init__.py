@@ -13,9 +13,11 @@ def cli(ctx):
     \b
         $OWNER/$REPO:$TAG
         $REPO:$TAG
-        $TAG            # for releases of the locally-closed repository
-        $OWNER/$REPO:   # for the repository's latest release
-        $REPO:          # for the repository's latest release
+        latest          # the latest release of the locally-cloned repository
+        $TAG            # a release of the locally-closed repository
+        :$TAG           # as above, but useful if you have a tag named "latest"
+        $OWNER/$REPO:   # for the given repository's latest release
+        $REPO:          # for the given repository's latest release
         https://github.com/$OWNER/$REPO/releases/latest
         https://github.com/$OWNER/$REPO/releases/$TAG
         https://github.com/$OWNER/$REPO/releases/tag/$TAG
