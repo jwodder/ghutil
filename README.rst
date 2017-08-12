@@ -205,7 +205,7 @@ Repositories
 ``gh repo star [<repo> ...]``
    Star the given repositories
 
-``gh repo starred``
+``gh repo starred [--sort created|updated] [--asc|--desc]``
    List repositories you've starred
 
 ``gh repo unstar [<repo> ...]``

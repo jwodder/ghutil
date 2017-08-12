@@ -144,7 +144,6 @@ Interface Improvements
     - Give `new` an option for setting the local repository's origin to the new
       repository and pushing everything to it
     - Give `fork` (and `new`?) an option for cloning the new repository
-    - Give `starred` sorting options?
     - Come up with a better name for "`list-forks`"
     - Let `fans` take more than one repository at a time?
     - Let `list-forks` take more than one repository at a time?
