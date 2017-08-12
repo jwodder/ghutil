@@ -85,7 +85,7 @@ Gists
 ``gh gist star [<gist-id> ...]``
    Star the given gists
 
-``gh gist starred``
+``gh gist starred [--since <timestamp>]``
    List gists you've starred
 
 ``gh gist unstar [<gist-id> ...]``
