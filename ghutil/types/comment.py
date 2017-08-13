@@ -16,6 +16,8 @@ class Comment(Resource):
 
     DISPLAY_FIELDS = [
         "body",
+        "body_text",
+        "body_html",
         "created_at",
         "html_url",
         "id",

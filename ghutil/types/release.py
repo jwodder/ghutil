@@ -59,6 +59,8 @@ class Release(Resource):
             "url",
         )),
         "body",
+        "body_text",
+        "body_html",
     ]
 
     @cacheable

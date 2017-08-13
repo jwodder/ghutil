@@ -53,6 +53,8 @@ class Issue(Resource):
                 if k not in ('total_count', 'url') and v
         }),
         "body",
+        "body_text",
+        "body_html",
     ]
 
     @cacheable
@@ -122,6 +124,8 @@ class PullRequest(Issue):
         ("merged_by", "login"),
         ("requested_reviewers", "login"),  ### TODO: Double-check this one
         "body",
+        "body_text",
+        "body_html",
     ]
 
     @cacheable

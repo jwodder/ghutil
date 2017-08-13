@@ -94,6 +94,10 @@ Interface Improvements
       unchanged
     - Rethink the way deleted header fields are handled
 - Give `gh` a `-C`/`--chdir` option?
+- Make it easier to configure the use of types like
+  `application/vnd.github.v3.full+json` in place of
+  `application/vnd.github.v3+json` in the "Accept:" header without having to
+  use `append-accept = false`
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
