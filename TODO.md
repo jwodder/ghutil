@@ -112,6 +112,7 @@ Interface Improvements
     - editor program to use
     - default protocol to use when cloning repositories/gists
     - per-repository configuration of the name of the GitHub remote?
+    - path to the Git executable?
 
 - `gh issue`:
     - `list`: Allow specifying `--since` in human-friendly formats like
@@ -133,8 +134,13 @@ Interface Improvements
 - `gh pr`:
     - Improve the syntax of `new` and then document it in the docstring
     - Add a `search` command that just does `gh issue search type:pr ...`?
-    - `new`: Should `--maintainer-can-modify` be on by default?
+    - `new`:
+        - Should `--maintainer-can-modify` be on by default?
+        - (Add an option to) include the (commented out à la `git commit`)
+          summaries of the PR's commits in the editor?
     - Support PR templates when creating issues
+    - Add a way to list/show all pull requests to/from the current/given
+      branch?
 
 - `gh release`:
     - `new`:
@@ -153,7 +159,6 @@ Interface Improvements
     - Let `list-forks` take more than one repository at a time?
     - Remove the `repo` command level and move all repository commands to `gh
       new`, `gh list`, `gh show`, etc.?
-    - `list`: Add visibility and affiliation options?
 
 - `gh request`:
     - Add support for `--data` reading from a file
