@@ -8,8 +8,15 @@ GITHUB = r'(?:https?://)?(?:www\.)?github\.com'
 #: contain alphanumeric characters or single hyphens, and cannot begin or end
 #: with a hyphen".  Additionally, trying to create a user named "none" (case
 #: insensitive) gives the message "Username name 'none' is a reserved word."
-GH_USER_RGX = r'(?![Nn][Oo][Nn][Ee]($|[^-A-Za-z0-9]))'\
-              r'[A-Za-z0-9](?:-?[A-Za-z0-9])*'
+#:
+#: Unfortunately, there are a number of users who made accounts before the
+#: current name restrictions were put in place, and so this regex also needs to
+#: accept names that contain underscores, contain multiple consecutive hyphens,
+#: begin with a hyphen, and/or end with a hyphen.
+GH_USER_RGX = r'(?![Nn][Oo][Nn][Ee]($|[^-A-Za-z0-9]))[-_A-Za-z0-9]+'
+
+#GH_USER_RGX_DE_JURE = r'(?![Nn][Oo][Nn][Ee]($|[^-A-Za-z0-9]))'\
+#                      r'[A-Za-z0-9](?:-?[A-Za-z0-9])*'
 
 #: Regular expression for a valid GitHub repository name.  Testing as of
 #: 2017-05-21 indicates that repository names can be composed of alphanumeric

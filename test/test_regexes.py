@@ -17,23 +17,26 @@ from   ghutil.regex import GH_USER_RGX, GH_REPO_RGX, GIT_REFNAME_RGX
     'nonenone',
     'none0',
     '0none',
+    # The following are actual usernames on GitHub that violate the current
+    # username restrictions:
+    '-',
+    '-Jerry-',
+    '-SFT-Clan',
+    '123456----',
+    'FirE-Fly-',
+    'alex--evil',
+    'johan--',
+    'pj_nitin',
+    'up_the_irons',
 ])
 def test_good_users(name):
     assert bool(re.fullmatch(GH_USER_RGX, name))
 
 @pytest.mark.parametrize('name', [
-    '-steven',
-    'steven-'
-    '-steven-',
     'steven.universe',
     'steven-universe@beachcity.dv',
-    'steven_universe',
     'steven-univerß',
-    'steven--universe',
-    's--u',
-    '-',
     '',
-    'none-',
     'none',
     'NONE',
 ])

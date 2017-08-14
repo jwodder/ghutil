@@ -98,6 +98,8 @@ Interface Improvements
   `application/vnd.github.v3.full+json` in place of
   `application/vnd.github.v3+json` in the "Accept:" header without having to
   use `append-accept = false`
+- Print out lists of JSON objects as each page is received instead of waiting
+  for everything to be fetched before printing anything
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
@@ -166,3 +168,4 @@ Interface Improvements
       JSON body elements?)
     - Add an option for dumping response headers?
     - Support non-JSON responses
+    - Disable (or at least add control over) autopagination?

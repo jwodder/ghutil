@@ -59,7 +59,6 @@ REPO_URLS = [
 BAD_REPOS = [
     'https://github.com/none/headerparser.git',
     'none/repo',
-    'none-/repo',
     'jwodder/headerparser.git',
     'jwodder/',
 ]
