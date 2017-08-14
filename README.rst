@@ -196,7 +196,7 @@ Repositories
 ``gh repo new [<options>] <name>``
    Create a new repository
 
-``gh repo search <search-term> ...``
+``gh repo search [--sort stars|forks|updated] [--asc|--desc] <search-term> ...``
    Search for repositories on GitHub
 
 ``gh repo show [<repo> ...]``
