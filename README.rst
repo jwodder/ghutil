@@ -121,7 +121,7 @@ Issues
 ``gh issue reply <issue> [<file>]``
    Comment on an issue or pull request
 
-``gh issue search <search-term> ...``
+``gh issue search [--sort comments|created|updated] [--asc|--desc] <search-term> ...``
    Search for issues and/or pull requests
 
 ``gh issue show <issue> ...``
