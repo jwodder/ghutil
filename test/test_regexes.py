@@ -24,6 +24,7 @@ from   ghutil.regex import GH_USER_RGX, GH_REPO_RGX, GIT_REFNAME_RGX
     '-SFT-Clan',
     '123456----',
     'FirE-Fly-',
+    'None-',
     'alex--evil',
     'johan--',
     'pj_nitin',

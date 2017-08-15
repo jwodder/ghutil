@@ -167,5 +167,3 @@ Interface Improvements
     - Add a `--param key=value` option for setting query parameters (and/or
       JSON body elements?)
     - Add an option for dumping response headers?
-    - Support non-JSON responses
-    - Disable (or at least add control over) autopagination?

@@ -21,11 +21,14 @@ def die(r):
     else:
         msg = '{0.status_code} Unknown Error: {0.reason} for url: {0.url}'
     click.echo(msg.format(r), err=True)
+    ### Format output based on <https://developer.github.com/v3/#client-errors>?
+    echo_response(r, err=True)
+    click.get_current_context().exit(1)
+
+def echo_response(r, err=False):
     try:
         resp = r.json()
     except ValueError:
-        click.echo(r.text, err=True)
+        click.echo(r.text, err=err)
     else:
-        ### Format based on <https://developer.github.com/v3/#client-errors>?
-        print_json(resp, err=True)
-    click.get_current_context().exit(1)
+        print_json(resp, err=err)

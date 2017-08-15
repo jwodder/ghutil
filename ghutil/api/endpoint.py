@@ -21,7 +21,7 @@ class GHEndpoint:
         #return GHEndpoint(self.__session, *self.__path, name)  # Python 3.5+
         return GHEndpoint(self.__session, *(self.__path + (name,)))
 
-    def __call__(self, decode=True, maybe=False, **kwargs):
+    def __call__(self, decode=True, **kwargs):
         *path, method = self.__path
         url = API_ENDPOINT
         for p in path:
@@ -31,17 +31,13 @@ class GHEndpoint:
             else:
                 url = url.rstrip('/') + '/' + p.lstrip('/')
         r = self.__session.request(method, url, **kwargs)
-        if method.lower() == 'get' and 'next' in r.links:
-            return chain.from_iterable(paginate(self.__session, r))
-        elif r.ok:
-            if decode:
-                if r.status_code == 204:
-                    return None
-                else:
-                    return r.json()
-            else:
-                return r
-        elif r.status_code == 404 and maybe:
-            return None if decode else r
-        else:
+        if not decode:
+            return r
+        elif not r.ok:
             die(r)
+        elif method.lower() == 'get' and 'next' in r.links:
+            return chain.from_iterable(paginate(self.__session, r))
+        elif r.status_code == 204:
+            return None
+        else:
+            return r.json()
