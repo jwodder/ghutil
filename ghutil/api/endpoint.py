@@ -26,7 +26,7 @@ class GHEndpoint:
             self.__session,
             #*self.__path, name,  # Python 3.5+
             *(self.__path + (name,)),
-            debug=self.__debug,
+            debug=self.__debug
         )
 
     def __call__(self, decode=True, **kwargs):
