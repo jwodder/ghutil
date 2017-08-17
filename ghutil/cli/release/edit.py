@@ -1,18 +1,19 @@
 import click
 from   ghutil.edit  import edit_as_mail
 from   ghutil.types import Release
+from   ghutil.util  import optional
 
 @click.command()
-@click.option('--draft/--published', ' /--publish', 'draft', default=None,
-              help='Convert release to a draft/published')
-@click.option('--prerelease/--full-release', '--pre/--full', 'prerelease',
-              default=None, help='Convert release to a prerelease/full release')
-@click.option('-b', '--body', type=click.File(),
-              help='File containing new release body')
-@click.option('-n', '--name', help='Rename release')
-@click.option('--tag-name', help='Change Git tag name')
+@optional('--draft/--published', ' /--publish', 'draft',
+          help='Convert release to a draft/published')
+@optional('--prerelease/--full-release', '--pre/--full', 'prerelease',
+          help='Convert release to a prerelease/full release')
+@optional('-b', '--body', type=click.File(),
+          help='File containing new release body')
+@optional('-n', '--name', help='Rename release')
+@optional('--tag-name', help='Change Git tag name')
 @Release.argument('release')
-def cli(release, **opts):
+def cli(release, **edited):
     """
     Edit release details.
 
@@ -20,7 +21,6 @@ def cli(release, **opts):
     modified accordingly.  Otherwise, an editor is started, allowing you to
     modify the release's details as a text file.
     """
-    edited = {k:v for k,v in opts.items() if v is not None}
     if not edited:
         edited = edit_as_mail(
             release.data,

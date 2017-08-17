@@ -2,23 +2,24 @@ from   operator     import itemgetter
 import click
 from   ghutil.edit  import edit_as_mail
 from   ghutil.types import Issue, Repository
+from   ghutil.util  import optional
 
 @click.command()
-@click.option('-a', '--assignee', 'assignees', multiple=True, metavar='USER',
-              help='Assign the issue to a user.'
-                   '  May be specified multiple times.')
-@click.option('-b', '--body', type=click.File(),
-              help='File containing new issue body')
-@click.option('-l', '--label', 'labels', multiple=True, metavar='LABEL',
-              help='Set issue label.  May be specified multiple times.')
-@click.option('-m', '--milestone', metavar='ID|TITLE',
-              help='Associate the issue with a milestone (by ID or name)')
-@click.option('--open/--closed', ' /--close', default=None,
-              help='Open/close the issue')
-@click.option('-T', '--title', help='New issue title')
+@optional('-a', '--assignee', 'assignees', multiple=True, metavar='USER',
+          help='Assign the issue to a user.  May be specified multiple times.',
+          nilstr=True)
+@optional('-b', '--body', type=click.File(),
+          help='File containing new issue body')
+@optional('-l', '--label', 'labels', multiple=True, metavar='LABEL',
+          help='Set issue label.  May be specified multiple times.',
+          nilstr=True)
+@optional('-m', '--milestone', metavar='ID|TITLE', nilstr=True,
+          help='Associate the issue with a milestone (by ID or name)')
+@optional('--open/--closed', ' /--close', help='Open/close the issue')
+@optional('-T', '--title', help='New issue title')
 @Issue.argument('issue')
 @click.pass_obj
-def cli(gh, issue, **opts):
+def cli(gh, issue, **edited):
     """
     Edit an issue.
 
@@ -37,7 +38,6 @@ def cli(gh, issue, **opts):
     users with push access to the repository.
     """
     repo = Repository.from_url(gh, issue.data["repository_url"])
-    edited = {k:v for k,v in opts.items() if v is not None and v != ()}
     if not edited:
         if repo.data["permissions"]["push"]:
             fields = 'title labels assignees milestone open'
@@ -53,13 +53,8 @@ def cli(gh, issue, **opts):
         if not edited:
             click.echo('No modifications made; exiting')
             return
-    else:
-        if 'body' in edited:
-            edited['body'] = edited['body'].read()
-        if edited.get('assignees') == ('',):
-            edited['assignees'] = []
-        if edited.get('labels') == ('',):
-            edited['labels'] = []
+    elif 'body' in edited:
+        edited['body'] = edited['body'].read()
     if 'milestone' in edited:
         if edited['milestone']:
             edited["milestone"] = repo.parse_milestone(edited["milestone"])

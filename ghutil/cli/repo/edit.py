@@ -1,29 +1,28 @@
 import click
 from   ghutil.edit  import edit_as_mail
 from   ghutil.types import Repository
+from   ghutil.util  import optional
 
 @click.command()
-@click.option('--allow-merge-commit/--no-merge-commit', default=None,
-              help='Allow/disallow merging PRs with merge commits')
-@click.option('--allow-rebase-merge/--no-rebase-merge', default=None,
-              help='Allow/disallow rebase-merging PRs')
-@click.option('--allow-squash-merge/--no-squash-merge', default=None,
-              help='Allow/disallow squash-merging PRs')
-@click.option('-b', '--default-branch',
-              help="Change the repository's default branch")
-@click.option('-d', '--description', help='Set repository description')
-@click.option('--has-issues/--no-issues', default=None,
-              help='Enable/disable issues for repository')
-@click.option('--has-projects/--no-projects', default=None,
-              help='Enable/disable projects in the repository')
-@click.option('--has-wiki/--no-wiki', default=None,
-              help="Enable/disable the repository's wiki")
-@click.option('-H', '--homepage', metavar='URL', help='Set repository homepage')
-@click.option('-n', '--name', help='Rename repository')
-@click.option('-P/-p', '--private/--public', default=None,
-              help='Make repository private/public')
+@optional('--allow-merge-commit/--no-merge-commit',
+          help='Allow/disallow merging PRs with merge commits')
+@optional('--allow-rebase-merge/--no-rebase-merge',
+          help='Allow/disallow rebase-merging PRs')
+@optional('--allow-squash-merge/--no-squash-merge',
+          help='Allow/disallow squash-merging PRs')
+@optional('-b', '--default-branch',
+          help="Change the repository's default branch")
+@optional('-d', '--description', help='Set repository description')
+@optional('--has-issues/--no-issues',
+          help='Enable/disable issues for repository')
+@optional('--has-projects/--no-projects',
+          help='Enable/disable projects in the repository')
+@optional('--has-wiki/--no-wiki', help="Enable/disable the repository's wiki")
+@optional('-H', '--homepage', metavar='URL', help='Set repository homepage')
+@optional('-n', '--name', help='Rename repository')
+@optional('-P/-p', '--private/--public', help='Make repository private/public')
 @Repository.argument('repo')
-def cli(repo, **opts):
+def cli(repo, **edited):
     """
     Edit repository details.
 
@@ -31,7 +30,6 @@ def cli(repo, **opts):
     modified accordingly.  Otherwise, an editor is started, allowing you to
     modify the repository's details as a text file.
     """
-    edited = {k:v for k,v in opts.items() if v is not None}
     if not edited:
         edited = edit_as_mail(
             repo.data, '''
