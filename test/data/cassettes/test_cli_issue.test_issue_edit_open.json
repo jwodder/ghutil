@@ -1,0 +1,116 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-08-17T17:49:22",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.4.5"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/jwodder/test/issues/1"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAAA6WV3Y7aMBCFX2Xl2wJOKCvYSFVv+wDbm/4IOcmQuHXsyHZANOLde+xAWpCW3WivLOI5n2eOZ0zPOqtYxmrvW5dxLlq5qKSvu3xRmIZbao3jvw6mLMlyT85z6VxHjqdsxuKu9MYetxMpECuRk3JThePxfND3XIuGTuAh3Ya0fwfxQgCM9u9DDXqAat+omxr/s/clY2XJsuVjmiRPq/VmxnTX5GRZls6Yl14R7usZV/EQrwKHdC7s9kyZSmpsnrHYCaCnzTJZz5jYCy/srd/xo0vPdx5AhdEexcfr73gUf95/WgFW2TMjUFk4917rBNbYOm91AnE7o5Q5QHub6nVnXuH5KBoBUlfTARD13Pia4BPSD21VSfdaT12nEgU9D8tWlgHhYLGlcko6ZwmSOWjk0cdBjKwud4WVrZdGT3LoSgiQsZXQ8o+YDILQQR9nf0pJUQDhW0br2tFB0fPWyr0ojsEGSwXJPTydTruRAuaPbRipr2GK4LD0tBVlEyZpJ5Sj0+WtYtn3n/E2fQg3LWmEK1P8JsxDDMWUOScrTQjQnVL/frtB3EiFwTV63B/fnCzBE2YJ7HIrPPjLJF3Pk808XT+n6yxJs8eP33Be15YvxaxW2TINMYUy7owZsshNeQTyC1l6yOkhvONo9cWPUMA5OEfAEIwkitgV4Um5O+J3/h3QsBcKDDZeqG1hOo3CUOeHNC7zYVGiq+r4oTbGCuQRrDB6hy6AseE7CRuUp9NfABn1ma8GAAA=",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Thu, 17 Aug 2017 17:49:22 GMT",
+          "ETag": "W/\"4f624e770508e521f623b6b42f434c69\"",
+          "Last-Modified": "Thu, 17 Aug 2017 17:44:21 GMT",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "9F18:2B87:54CB5CD:C5876A1:5995D722",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4996",
+          "X-RateLimit-Reset": "1502995664",
+          "X-Runtime-rack": "0.071735",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/jwodder/test/issues/1"
+      }
+    },
+    {
+      "recorded_at": "2017-08-17T17:49:22",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"state\": \"open\"}"
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "Content-Length": "17",
+          "Content-Type": "application/json",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.4.5"
+        },
+        "method": "PATCH",
+        "uri": "https://api.github.com/repos/jwodder/test/issues/1"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAAA6WV3Y7aMBCFX2Xl2wJOKCvYSFVv+wDbm/4IOcmQuHXsyHZANOLde+xAWpCW3WivLOI5n2eOZ0zPOqtYxmrvW5dxLlq5qKSvu3xRmIZbao3jvw6mLMlyT85z6VxHjqdsxuKu9MYetxMpECuRk3JThePxfND3XIuGTuAh3Ya0fwfxQgCM9u9DDXqAat+omxr/s/clY2XJsuVjmiRPq/VmxnTX5GRZls6Yl14R7usZV/EQrwKHdC7s9kyZSmpsnrHYCaCnzTJZz5jYCy/srd/xo0vPdx5AhdEexcfr73gUf95/WgFW2TMjUFk4917rBNbYOm91AnE7o5Q5QHub6nVnXuH5KBoBUlfTARD13Pia4BPSD21VSfdaT12nEgU9D8tWlgHhYLGlcko6ZwmSOWjk0cdBjKwud4WVrZdGT3LoSgiQsZXQ8o+YDILQQR9nf0pJUQDhW0br2tFB0fPWyr0ojsEGSwXJPTydTruRAuaPbRipr2GK4LD0tBVlEyZpJ5Sj0+WtYtn3n/E2fQg3LWmEK1P8JsxDDMWUOScrTQjQnVL/frtB3EiFwTV63B/fnCzBE2YJ7HIrPPjLJF3Pk808XT+n6yxJs8eP33Be15YvxaxW2TINMYUy7owZsshNeQTyC1l6yOkhvONo9cWPUMA5OEfAEIwkitgV4Um5O+J3/h3QsBcKDDZeqG1hOo3CUOeHNC7zYVGiq+r4oTbGCuQRrDB6hy6AseE7CRuUp9NfABn1ma8GAAA=",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Thu, 17 Aug 2017 17:49:22 GMT",
+          "ETag": "W/\"4f624e770508e521f623b6b42f434c69\"",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "9F18:2B87:54CB5E1:C5876CC:5995D722",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4995",
+          "X-RateLimit-Reset": "1502995664",
+          "X-Runtime-rack": "0.108315",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/jwodder/test/issues/1"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

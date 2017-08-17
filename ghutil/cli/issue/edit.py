@@ -47,8 +47,8 @@ def cli(gh, issue, **opts):
         data['open'] = data['state'] == 'open'
         if data['milestone'] is not None:
             data['milestone'] = data['milestone']['title']
-        data["labels"] = ', '.join(map(itemgetter("name"), data["labels"]))
-        data["assignees"] = ', '.join(map(itemgetter("login"), data["assignees"]))
+        data["labels"] = list(map(itemgetter("name"), data["labels"]))
+        data["assignees"] = list(map(itemgetter("login"), data["assignees"]))
         edited = edit_as_mail(data, fields, 'body')
         if not edited:
             click.echo('No modifications made; exiting')

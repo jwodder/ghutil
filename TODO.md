@@ -131,6 +131,7 @@ Interface Improvements
         - Add the issue's "short ID" to the top of the output?
     - Should user-supplied milestones always be interpreted as milestone names
       instead of numbers?
+        - But then how would one list issues with milestone "none"?
     - Allow specifying the repository as a local path if `:` (or `#`?) is used
       as the repo-issue separator?
     - Support issue templates when creating issues

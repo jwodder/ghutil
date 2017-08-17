@@ -1,4 +1,9 @@
 import json
+import os
+from   pathlib import Path
+import click
+
+FILEDIR = Path(__file__).with_name('data') / 'files'
 
 READ_ISSUE = '''\
 Issue:     click plugins / cache / local datastore
@@ -255,4 +260,258 @@ def test_issue_unlock(cmd):
         assert r.exit_code == 0
         assert not json.loads(r.output)[0]["locked"]
 
+def test_issue_edit_one_assignee(cmd):
+    r = cmd('--debug', 'issue', 'edit', '--assignee', 'jwodder', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "assignees": [
+        "jwodder"
+    ]
+}
+'''
+
+def test_issue_edit_nil_assignee(cmd):
+    r = cmd('--debug', 'issue', 'edit', '--assignee', '', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "assignees": []
+}
+'''
+
+def test_issue_edit_one_label(cmd):
+    r = cmd('--debug', 'issue', 'edit', '--label', 'invalid', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "labels": [
+        "invalid"
+    ]
+}
+'''
+
+def test_issue_edit_nil_label(cmd):
+    r = cmd('--debug', 'issue', 'edit', '--label', '', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "labels": []
+}
+'''
+
+def test_issue_edit_two_labels(cmd):
+    r = cmd('--debug', 'issue', 'edit', '--label', 'invalid', '-lhelp wanted', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "labels": [
+        "invalid",
+        "help wanted"
+    ]
+}
+'''
+
+def test_issue_edit_milestone(cmd):
+    r = cmd('--debug', 'issue', 'edit', '--milestone', 'v1.0', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+GET https://api.github.com/repos/jwodder/test/milestones
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "milestone": 1
+}
+'''
+
+def test_issue_edit_int_milestone(cmd):
+    r = cmd('--debug', 'issue', 'edit', '--milestone', '1', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "milestone": 1
+}
+'''
+
+def test_issue_edit_nil_milestone(cmd):
+    r = cmd('--debug', 'issue', 'edit', '--milestone', '', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "milestone": null
+}
+'''
+
+def test_issue_edit_title(cmd):
+    r = cmd('--debug', 'issue', 'edit', '--title', 'API test site', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "title": "API test site"
+}
+'''
+
+def test_issue_edit_nil_title(cmd):
+    r = cmd('--debug', 'issue', 'edit', '--title', '', 'jwodder/test/1')
+    assert r.exit_code != 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "title": ""
+}
+422 Client Error: Unprocessable Entity for url: https://api.github.com/repos/jwodder/test/issues/1
+{
+    "documentation_url": "https://developer.github.com/v3/issues/#edit-an-issue",
+    "errors": [
+        {
+            "code": "missing_field",
+            "field": "title",
+            "resource": "Issue"
+        }
+    ],
+    "message": "Validation Failed"
+}
+'''
+
+def test_issue_edit_body(cmd):
+    r = cmd('--debug', 'issue', 'edit', '--body', str(FILEDIR/'life.py'), 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "body": "from collections import Counter\\n\\ndef life(before):\\n    \\\"\\\"\\\"\\n    Takes as input a state of Conway's Game of Life, represented as an iterable\\n    of ``(int, int)`` pairs giving the coordinates of living cells, and returns\\n    a `set` of ``(int, int)`` pairs representing the next state\\n    \\\"\\\"\\\"\\n    before = set(before)\\n    neighbors = Counter(\\n        (x+i, y+j) for (x,y) in before\\n                   for i in [-1,0,1]\\n                   for j in [-1,0,1]\\n                   if (i,j) != (0,0)\\n    )\\n    return {xy for (xy, n) in neighbors.items()\\n               if n == 3 or (n == 2 and xy in before)}\\n"
+}
+'''
+
+def test_issue_edit_body_devnull(cmd):
+    r = cmd('--debug', 'issue', 'edit', '--body', os.devnull, 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "body": ""
+}
+'''
+
+def test_issue_edit_open(cmd):
+    r = cmd('--debug', 'issue', 'edit', '--open', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "state": "open"
+}
+'''
+
+def test_issue_edit_closed(cmd):
+    r = cmd('--debug', 'issue', 'edit', '--closed', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "state": "closed"
+}
+'''
+
+def test_issue_edit_open_close(cmd):
+    r = cmd('--debug', 'issue', 'edit', '--open', '--close', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "state": "closed"
+}
+'''
+
+ISSUE_EDIT_MSG = 'Title: Test issue\n' \
+                 'Labels: \n' \
+                 'Assignees: \n' \
+                 'Milestone: \n' \
+                 'Open: yes\n' \
+                 '\n' \
+                 'Here be testing.\n'
+
+def test_issue_edit_nosave(cmd, mocker):
+    mocker.patch('click.edit', return_value=None)
+    r = cmd('--debug', 'issue', 'edit', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+GET https://api.github.com/repos/jwodder/test
+No modifications made; exiting
+'''
+    click.edit.assert_called_once_with(ISSUE_EDIT_MSG, require_save=True)
+
+def test_issue_edit_nochange(cmd, mocker):
+    mocker.patch('click.edit', return_value=ISSUE_EDIT_MSG)
+    r = cmd('--debug', 'issue', 'edit', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+GET https://api.github.com/repos/jwodder/test
+No modifications made; exiting
+'''
+    click.edit.assert_called_once_with(ISSUE_EDIT_MSG, require_save=True)
+
+def test_issue_edit_change_everything(cmd, mocker):
+    mocker.patch(
+        'click.edit',
+        return_value='Title: Tests at work\n'
+                     'Labels: help wanted, enhancement\n'
+                     'Assignees: jwodder\n'
+                     'Milestone: v1.0\n'
+                     'Open: false\n'
+                     '\n'
+                     'Once upon a time, there was a little unit test.'
+                     '  He failed, and the project was cancelled before anyone'
+                     ' could figure out why.'
+                     '  The end.\n'
+    )
+    r = cmd('--debug', 'issue', 'edit', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/issues/1
+GET https://api.github.com/repos/jwodder/test
+GET https://api.github.com/repos/jwodder/test/milestones
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "assignees": [
+        "jwodder"
+    ],
+    "body": "Once upon a time, there was a little unit test.  He failed, and the project was cancelled before anyone could figure out why.  The end.\\n",
+    "labels": [
+        "help wanted",
+        "enhancement"
+    ],
+    "milestone": 1,
+    "state": "closed",
+    "title": "Tests at work"
+}
+'''
+    click.edit.assert_called_once_with(ISSUE_EDIT_MSG, require_save=True)
+
+# issue edit - two assignees
+# editing an issue on a repository you don't have push access to
 # issue search
