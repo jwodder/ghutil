@@ -77,7 +77,7 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
                     setattr(self, k, v)
         else:
             raise TypeError('At least one of data and params must be non-None')
-        super().__init__(gh.session, *path)
+        super().__init__(gh.session, *path, debug=gh.debug)
 
     @cacheable
     def data(self):

@@ -23,6 +23,7 @@ USER_AGENT = 'ghutil/{} ({}) requests/{} {}/{}'.format(
 
 class GitHub:
     def __init__(self, session=None):
+        self.debug = False
         self.session = session or requests.Session()
         self.session.headers["Accept"] = ACCEPT
         self.session.headers["User-Agent"] = USER_AGENT
@@ -31,7 +32,7 @@ class GitHub:
         return self[key]
 
     def __getitem__(self, name):
-        return GHEndpoint(self.session, name)
+        return GHEndpoint(self.session, name, debug=self.debug)
 
     @cacheable
     def me(self):

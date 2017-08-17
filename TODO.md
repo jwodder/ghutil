@@ -76,9 +76,11 @@ Interface Improvements
 - Give the `list` and `search` commands an option for outputting JSON objects
   instead of names
 - Give the `list` and `search` (and `starred`?) subcommands `--format` options
-- Add debug logging
+- Add options for controlling the amount & detail of debugging output?
+    - Add options for showing responses, headers, and/or authentication method
+      used?
     - Rename `--verbose` to something like `--full`(?) and use `--verbose` to
-      control logging level
+      control debugging?
 - Add a command for showing rate limit information?
 - Default to HTTPS when cloning repositories/gists you don't have push access
   to?

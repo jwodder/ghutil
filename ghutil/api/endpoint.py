@@ -1,8 +1,11 @@
-from   itertools import chain
-from   .util     import API_ENDPOINT, die, paginate
+from   itertools      import chain
+import click
+from   requests       import Request
+from   ghutil.showing import print_json
+from   .util          import API_ENDPOINT, die, paginate
 
 class GHEndpoint:
-    def __init__(self, session, *path):
+    def __init__(self, session, *path, debug=False):
         self.__session = session
         #: A tuple of the path components of the URL (strings and/or integers).
         #: An absolute URL element will cause all components before it to be
@@ -13,13 +16,18 @@ class GHEndpoint:
         #: this allows using, say, "get" as both a path component (e.g., if
         #: someone named their repository that) and a request method.
         self.__path = path
+        self.__debug = debug
 
     def __getattr__(self, key):
         return self[key]
 
     def __getitem__(self, name):
-        #return GHEndpoint(self.__session, *self.__path, name)  # Python 3.5+
-        return GHEndpoint(self.__session, *(self.__path + (name,)))
+        return GHEndpoint(
+            self.__session,
+            #*self.__path, name,  # Python 3.5+
+            *(self.__path + (name,)),
+            debug=self.__debug,
+        )
 
     def __call__(self, decode=True, **kwargs):
         *path, method = self.__path
@@ -30,7 +38,14 @@ class GHEndpoint:
                 url = p
             else:
                 url = url.rstrip('/') + '/' + p.lstrip('/')
-        r = self.__session.request(method, url, **kwargs)
+        req = self.__session.prepare_request(Request(method, url, **kwargs))
+        if self.__debug:
+            click.echo('{0.method} {0.url}'.format(req), err=True)
+            if 'json' in kwargs:
+                print_json(kwargs['json'], err=True)
+            elif req.body is not None:
+                click.echo(req.body, err=True)
+        r = self.__session.send(req)
         if not decode:
             return r
         elif not r.ok:
