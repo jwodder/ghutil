@@ -1,0 +1,54 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-08-18T17:14:03",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "Content-Length": "0",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.4.5"
+        },
+        "method": "DELETE",
+        "uri": "https://api.github.com/repos/jwodder/test/labels/Test%20Label"
+      },
+      "response": {
+        "body": {
+          "encoding": null,
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/octet-stream",
+          "Date": "Fri, 18 Aug 2017 17:14:03 GMT",
+          "Server": "GitHub.com",
+          "Status": "204 No Content",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "A3D6:2B87:657C421:EAFDAD2:5997205B",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4980",
+          "X-RateLimit-Reset": "1503077033",
+          "X-Runtime-rack": "0.093170",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "url": "https://api.github.com/repos/jwodder/test/labels/Test%20Label"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

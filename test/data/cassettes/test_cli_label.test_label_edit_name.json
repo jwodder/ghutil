@@ -1,0 +1,61 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-08-18T17:28:09",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"name\": \"Enhancement\"}"
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "Content-Length": "23",
+          "Content-Type": "application/json",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.4.5"
+        },
+        "method": "PATCH",
+        "uri": "https://api.github.com/repos/jwodder/test/labels/enhancement"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAAA1XMTQ7CIBBA4bvMuuloUouy9yADTAXDX2BIF8a7y9btl5f3geBA7+qqLttNPRYYLYIGL1K7RqQa1lcQP8xqS8LGtXR8n8U5bijcBSMZjh2f2VO2nDgLLJAp8bz8oy2xtKn3zexsZuX4oBEF9EGx8/cHc322sYsAAAA=",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Fri, 18 Aug 2017 17:28:09 GMT",
+          "ETag": "W/\"49b90f0eb80528e2c48d4ca8654b97e4\"",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "BB8A:2B87:65A8FA8:EB626EB:599723A9",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4999",
+          "X-RateLimit-Reset": "1503080889",
+          "X-Runtime-rack": "0.174796",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/jwodder/test/labels/enhancement"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

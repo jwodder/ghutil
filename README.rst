@@ -130,6 +130,21 @@ Issues
 ``gh issue unlock <issue> ...``
    Unlock one or more issues
 
+Labels
+^^^^^^
+
+``gh label delete [-R|--repo <repo>] <label>``
+   Delete a label
+
+``gh label edit [-R|--repo <repo>] [--name <name>] [--color <color>] <label>``
+   Edit a label
+
+``gh label [list [-R|--repo <repo>] [--verbose]]``
+   List issue/PR labels available in a repository
+
+``gh label new [-R|--repo <repo>] <name> <color>``
+   Create a new label
+
 Pull Requests
 ^^^^^^^^^^^^^
 

@@ -228,6 +228,20 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
             callback=callback,
         )
 
+    @classmethod
+    def option(cls, *names, **kwargs):
+        """
+        A `click.option` decorator that converts option arguments to
+        instances of the class.  The resource type's default value is used as
+        the option's default value.
+        """
+        return click.option(
+            *names,
+            type=ResourceParamType(cls),
+            default=cls.default_params,
+            **kwargs
+        )
+
     def for_json(self, verbose=False):
         """
         If ``verbose`` is true, return `data`; otherwise, return only those
@@ -242,7 +256,7 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
 class ResourceParamType(click.ParamType):
     def __init__(self, resource_type):
         self.resource_type = resource_type
-        ### TODO: Set `self.name`?
+        self.name = resource_type.__name__
 
     def convert(self, value, param, ctx):
         if isinstance(value, str):
