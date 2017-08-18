@@ -1,10 +1,14 @@
 from ghutil import git
 
-def test_release_none(cmd):
-    # in ghutil
+def test_release_none(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='git@github.com:jwodder/ghutil.git',
+    )
     r = cmd('release', 'list')
     assert r.exit_code == 0
     assert r.output == ''
+    git.get_remote_url.assert_called_once_with()
 
 def test_release_mockdir(cmd, mocker):
     mocker.patch(
@@ -186,7 +190,8 @@ def test_release_show_a_bunch(cmd, mocker):
         return_value='git@github.com:jwodder/daemail.git',
     )
     r = cmd(
-        'release', 'show', ':v0.5.0',
+        'release', 'show',
+        ':v0.5.0',
         'qypi:',
         'stedolan/jq:',
         'TomasTomecek/sen:0.5.0',

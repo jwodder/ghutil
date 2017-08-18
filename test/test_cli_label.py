@@ -1,45 +1,32 @@
 import click
+from   ghutil import git
 
-def test_label(cmd):
+LABELS='bug\nduplicate\nenhancement\nhelp wanted\ninvalid\nquestion\nwontfix\n'
+
+def test_label(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='git@github.com:jwodder/test.git',
+    )
     r = cmd('label')
     assert r.exit_code == 0
-    assert r.output == '''\
-bug
-duplicate
-enhancement
-help wanted
-invalid
-Nice to Have
-question
-wontfix
-'''
+    assert r.output == LABELS
+    git.get_remote_url.assert_called_once_with()
 
-def test_label_list(cmd):
+def test_label_list(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='git@github.com:jwodder/test.git',
+    )
     r = cmd('label', 'list')
     assert r.exit_code == 0
-    assert r.output == '''\
-bug
-duplicate
-enhancement
-help wanted
-invalid
-Nice to Have
-question
-wontfix
-'''
+    assert r.output == LABELS
+    git.get_remote_url.assert_called_once_with()
 
 def test_label_list_repo(cmd):
     r = cmd('label', 'list', '-R', 'jwodder/test')
     assert r.exit_code == 0
-    assert r.output == '''\
-bug
-duplicate
-enhancement
-help wanted
-invalid
-question
-wontfix
-'''
+    assert r.output == LABELS
 
 def test_label_list_repo_verbose(cmd):
     r = cmd('label', 'list', '-R', 'jwodder/test', '--verbose')

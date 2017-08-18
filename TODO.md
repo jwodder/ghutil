@@ -21,8 +21,6 @@
     - Note that `git config --get remote.origin.url` doesn't perform
       "`insteadOf`" replacements
     - Or just switch to using GitPython or the like instead
-- Several tests assume that they're being run in a Git clone of jwodder/ghutil,
-  and thus they fail when run from sdists.  Fix this.
 
 API Completeness
 ================

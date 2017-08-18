@@ -15,11 +15,11 @@
           "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.4.5"
         },
         "method": "GET",
-        "uri": "https://api.github.com/repos/jwodder/ghutil/labels"
+        "uri": "https://api.github.com/repos/jwodder/test/labels"
       },
       "response": {
         "body": {
-          "base64_string": "H4sIAAAAAAAAA6XS32rDIBQG8Fcpwu5K1abNv7uxm13tBcYujDlpLEaz5NgMxt59dltqSxm50EDAT4I/Tr7XT6JqUqasYHy/47s1cYMmJWkR+7GkVPRqc1DYumojbUcH6O1Ij5OtaxjooXWoNNWiAj3Syh3ImhjRgf/+dyOttoPfAbCMcX9aQyOcRlLi4OBrfXv5PuLy2vVaSYEQCNfRDJE/awmSRkDAtMJI6MBgoNyGMybfVSlUS5gsAtOC7h+2bBIGoQ6cc7y6hDOHb/NH9rTEySM4ypyE9nW7tCQEl6ak4J9/EUla8CxPigjEi5LgZ4LWv57F6aow55MV2tVfOpOapkrlTXkboce79saY3h2MqKwJk7lKQncTni11d8siRjNZg436CIoQhGE0ft39n7dvubkmMEgEAAA=",
+          "base64_string": "H4sIAAAAAAAAA53SwU7EIBQF0F8xJO6agXbGUrszfoZxAeV1iqFQ6cOaGP9dHNMyExdNgNW7hHBC7ssX0Yq0NS85Oz1wXpDgDWnJgDjNLaVi0oezxiHIQ+dG6mFyM31bnFLgKcKM1AgJZqYynElBrBgh3v4bOmecjxMA46yMpwp6EQySFn2A7+L26Sb7aRUmozuBkADX0croLmuP8ZjNADsI28EIFhPkNlwpzUnWIHcoDcumDGCm+4otwiKohPmN77ZwxZRV88Se9zBlNkbbD2FiybZ2pGBrSA1x7xGqbMJ7iE3VzibDVZL6cSz5Xj+aYzZicRZ7/ZkMKVgJ/WX9+4fXH0pt7jOmAwAA",
           "encoding": "utf-8",
           "string": ""
         },
@@ -31,7 +31,7 @@
           "Content-Security-Policy": "default-src 'none'",
           "Content-Type": "application/json; charset=utf-8",
           "Date": "Fri, 18 Aug 2017 17:14:02 GMT",
-          "ETag": "W/\"c6520fb8551638123805ae3501fe8b3b\"",
+          "ETag": "W/\"a45d44833784cda473c2c71e4b07378f\"",
           "Server": "GitHub.com",
           "Status": "200 OK",
           "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
@@ -40,18 +40,18 @@
           "X-Content-Type-Options": "nosniff",
           "X-Frame-Options": "deny",
           "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
-          "X-GitHub-Request-Id": "A3CC:2B88:3082D49:6BF5D86:5997205A",
+          "X-GitHub-Request-Id": "A3D0:2B87:657C338:EAFD926:5997205A",
           "X-RateLimit-Limit": "5000",
-          "X-RateLimit-Remaining": "4985",
+          "X-RateLimit-Remaining": "4983",
           "X-RateLimit-Reset": "1503077033",
-          "X-Runtime-rack": "0.060194",
+          "X-Runtime-rack": "0.052292",
           "X-XSS-Protection": "1; mode=block"
         },
         "status": {
           "code": 200,
           "message": "OK"
         },
-        "url": "https://api.github.com/repos/jwodder/ghutil/labels"
+        "url": "https://api.github.com/repos/jwodder/test/labels"
       }
     }
   ],
