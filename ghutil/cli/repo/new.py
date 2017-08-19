@@ -1,5 +1,6 @@
 import click
 from   ghutil.showing import print_json
+from   ghutil.util    import optional
 
 # Note: Options with multiple names need to have their desired name given
 # explicitly due to <https://github.com/pallets/click/issues/793>
@@ -18,10 +19,12 @@ from   ghutil.showing import print_json
               help='Create an initial commit with the given .gitignore')
 @click.option('--has-issues/--no-issues', default=True, show_default=True,
               help='Enable/disable issues for the repository')
-### TODO: Handle `has_projects` defaulting to false in organizations without
-### projects; will setting the default value to `None` do the right thing?
-@click.option('--has-projects/--no-projects', default=True, show_default=True,
-              help='Enable/disable projects in the repository')
+# Note that `has_projects`'s actual default value changes to false when
+# creating a repo in an organization without projects, in which case trying to
+# set it to true returns an error.  It's thus safer to not set this option at
+# all if the user didn't specify it explicitly.
+@optional('--has-projects/--no-projects',
+          help='Enable/disable projects in the repository  [default: True]')
 @click.option('--has-wiki/--no-wiki', default=True, show_default=True,
               help="Enable/disable the repository's wiki")
 @click.option('-H', '--homepage', metavar='URL', help='Set repository homepage')
@@ -30,7 +33,7 @@ from   ghutil.showing import print_json
 @click.option('-O', '--organization',
               help='Create the repository in the given organization')
 @click.option('-P/-p', '--private/--public', default=False,
-              help='Make repository private/public [default: public]')
+              help='Make repository private/public  [default: public]')
 @click.option('-v', '--verbose', is_flag=True, help='Show full response body')
 ### TODO: team_id
 @click.argument('name')
