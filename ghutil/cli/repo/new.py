@@ -34,14 +34,22 @@ from   ghutil.util    import optional
               help='Create the repository in the given organization')
 @click.option('-P/-p', '--private/--public', default=False,
               help='Make repository private/public  [default: public]')
+@optional('--team', metavar='ID|NAME',
+          help='Grant the given team access to the repository')
 @click.option('-v', '--verbose', is_flag=True, help='Show full response body')
-### TODO: team_id
 @click.argument('name')
-@click.pass_obj
-def cli(gh, organization, verbose, **kwargs):
+@click.pass_context
+def cli(ctx, organization, verbose, **kwargs):
     """ Create a new repository """
     if organization is None:
-        ep = gh.user.repos
+        if 'team' in kwargs:
+            ctx.fail('--team cannot be used without --organization')
+        ep = ctx.obj.user.repos
     else:
-        ep = gh.orgs[organization].repos
-    print_json(gh.repository(ep.post(json=kwargs)), verbose)
+        if 'team' in kwargs:
+            kwargs["team_id"] = ctx.obj.parse_team(
+                organization,
+                kwargs.pop("team"),
+            )
+        ep = ctx.obj.orgs[organization].repos
+    print_json(ctx.obj.repository(ep.post(json=kwargs)), verbose)

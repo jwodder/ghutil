@@ -1,4 +1,5 @@
 import platform
+import click
 import requests
 from   ghutil      import __url__, __version__
 from   ghutil      import types
@@ -89,3 +90,15 @@ class GitHub:
             return types.Comment.from_arg(self, obj)
         else:
             return types.Comment.from_data(self, obj)
+
+    def parse_team(self, organization, team):
+        if team is None:
+            return None
+        try:
+            return int(team)
+        except ValueError:
+            for t in self.orgs[organization].teams.get():
+                if t["name"] == team:
+                    return t["id"]
+            else:
+                click.get_current_context().fail("Unknown team: " + team)
