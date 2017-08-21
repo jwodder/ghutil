@@ -1,0 +1,83 @@
+{
+    "http_interactions": [
+        {
+            "recorded_at": "2017-08-21T14:15:57",
+            "request": {
+                "body": {
+                    "encoding": "utf-8",
+                    "string": ""
+                },
+                "headers": {},
+                "method": "GET",
+                "uri": "https://api.github.com/repos/alice/repo"
+            },
+            "response": {
+                "body": {
+                    "encoding": "utf-8",
+                    "string": "{\n    \"id\": 1,\n    \"default_branch\": \"master\",\n    \"owner\": {\"login\": \"alice\"},\n    \"name\": \"repo\"\n}\n"
+                },
+                "headers": {
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "url": "https://api.github.com/repos/alice/repo"
+            }
+        },
+        {
+            "recorded_at": "2017-08-21T14:16:20",
+            "request": {
+                "body": {
+                    "encoding": "utf-8",
+                    "string": ""
+                },
+                "headers": {},
+                "method": "GET",
+                "uri": "https://api.github.com/repos/bob/sitory"
+            },
+            "response": {
+                "body": {
+                    "encoding": "utf-8",
+                    "string": "{\n    \"id\": 2,\n    \"default_branch\": \"master\",\n    \"owner\": {\"login\": \"bob\"},\n    \"name\": \"sitory\",\n    \"source\": {\n        \"id\": 1,\n        \"default_branch\": \"master\",\n        \"owner\": {\"login\": \"alice\"},\n        \"name\": \"repo\"\n    }\n}\n"
+                },
+                "headers": {
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "url": "https://api.github.com/repos/bob/sitory"
+            }
+        },
+        {
+            "recorded_at": "2017-08-21T14:16:41",
+            "request": {
+                "body": {
+                    "encoding": "utf-8",
+                    "string": ""
+                },
+                "headers": {},
+                "method": "GET",
+                "uri": "https://api.github.com/repos/charles/fork"
+            },
+            "response": {
+                "body": {
+                    "encoding": "utf-8",
+                    "string": "{\n    \"id\": 3,\n    \"default_branch\": \"master\",\n    \"owner\": {\"login\": \"charles\"},\n    \"name\": \"fork\",\n    \"source\": {\n        \"id\": 1,\n        \"default_branch\": \"master\",\n        \"owner\": {\"login\": \"alice\"},\n        \"name\": \"repo\"\n    }\n}\n"
+                },
+                "headers": {
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "url": "https://api.github.com/repos/charles/fork"
+            }
+        }
+    ],
+    "recorded_with": "A forgery"
+}
