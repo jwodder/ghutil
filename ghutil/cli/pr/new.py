@@ -19,6 +19,18 @@ def cli(gh, head, base, title, body, maintainer_can_modify, verbose):
     `gh pr new alice/repo:master bob/repo:patch` creates a pull request in
     alice/repo asking for bob/repo:patch to be merged into master.
 
+    The `:branch` portion of the base or head can be omitted to merge (to) the
+    repository's default branch.
+
+    If omitted, the PR head defaults to the current branch of the current
+    repository.
+
+    The PR head can be given as just `:branch` to merge the given branch of the
+    current repository.
+
+    The PR base can be given as just `:branch` to merge to the given branch of
+    the head repository.
+
     Unless both a pull request title and a file containing a PR body are
     specified on the command line, an editor will be opened for you to provide
     the missing details.

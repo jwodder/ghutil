@@ -137,13 +137,23 @@ Interface Improvements
     - Support issue templates when creating issues
 
 - `gh pr`:
-    - Improve the syntax of `new` and then document it in the docstring
     - Add a `search` command that just does `gh issue search type:pr ...`?
     - `new`:
         - Should `--maintainer-can-modify` be on by default?
         - (Add an option to) include the (commented out à la `git commit`)
           summaries of the PR's commits in the editor?
-    - Support PR templates when creating issues
+        - When a base or head argument is just a local repository path, use the
+          given repository's current branch instead of the GitHub repo's
+          default branch
+        - Should just `<repo>:` be allowed as a base or head argument?  Should
+          it mean the same thing as `<repo>`?
+        - Support specifying the base repo as just the owner's name?
+            - Note that it is possible for the repo name to differ between
+              forks; how is the correct repo then supposed to be found from
+              just the owner's name?
+        - Add some sort of shortcut syntax for using the head repository's
+          parent repo as the base?
+    - Support PR templates when creating PRs
     - Add a way to list/show all pull requests to/from the current/given
       branch?
 
