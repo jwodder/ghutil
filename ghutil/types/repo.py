@@ -112,3 +112,8 @@ class Repository(Resource):
             else:
                 click.get_current_context()\
                      .fail("Unknown milestone: " + milestone)
+
+    def same_network(self, other):
+        self_src = self.data.get("source", self.data)["id"]
+        other_src = other.data.get("source", other.data)["id"]
+        return self_src == other_src

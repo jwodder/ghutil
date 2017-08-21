@@ -13,6 +13,17 @@ def get_remote_url(chdir=None, remote='origin'):
 def get_last_tag(chdir=None):
     return cmdline('git', 'describe', '--abbrev=0', '--tags', cwd=chdir)
 
+def get_current_branch(chdir=None):
+    """
+    Returns the name of the currently checked-out branch of the Git repository
+    at the path ``chdir`` (default: the current directory), or `None` if the
+    repository is in a detached HEAD state
+    """
+    # Requires Git 1.7.10+
+    # <https://stackoverflow.com/a/11958481/744178>
+    return cmdline('git', 'symbolic-ref', '--short', '-q', 'HEAD', cwd=chdir) \
+        or None
+
 def clone_repo(url, target_dir=None):
     args = ['git', 'clone', url]
     if target_dir is not None:
