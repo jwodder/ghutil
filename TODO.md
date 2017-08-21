@@ -33,6 +33,8 @@ API Completeness
     - deleting branches
     - protecting branches
     - editing topics
+    - listing files?
+    - getting individual file contents?
 
 - Issues & pull requests:
     - comments
@@ -48,6 +50,7 @@ API Completeness
     - editing PRs
     - opening, closing, locking, & unlocking PRs
     - viewing PR diffs?
+    - creating a PR from an issue
 
 - Releases:
     - deleting

@@ -1,3 +1,4 @@
+import sys
 import click
 from   ghutil.showing import print_json
 
@@ -23,7 +24,7 @@ def die(r):
     click.echo(msg.format(r), err=True)
     ### Format output based on <https://developer.github.com/v3/#client-errors>?
     echo_response(r, err=True)
-    click.get_current_context().exit(1)
+    sys.exit(1)
 
 def echo_response(r, err=False):
     try:

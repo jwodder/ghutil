@@ -86,7 +86,7 @@ class Repository(Resource):
         try:
             return cls.parse_url(remote)
         except ValueError:
-            click.get_current_context().fail("Not a GitHub remote: " + remote)
+            raise click.UsageError("Not a GitHub remote: " + remote)
 
     @classmethod
     def parse_arg(cls, arg):
@@ -96,7 +96,7 @@ class Repository(Resource):
             try:
                 return cls.parse_url(remote)
             except ValueError:
-                click.get_current_context().fail("Not a GitHub remote: "+remote)
+                raise click.UsageError("Not a GitHub remote: " + remote)
         else:
             return super().parse_arg(arg)
 
@@ -110,8 +110,7 @@ class Repository(Resource):
                 if ms["title"] == milestone:
                     return ms["number"]
             else:
-                click.get_current_context()\
-                     .fail("Unknown milestone: " + milestone)
+                raise click.UsageError("Unknown milestone: " + milestone)
 
     def same_network(self, other):
         self_src = self.data.get("source", self.data)["id"]

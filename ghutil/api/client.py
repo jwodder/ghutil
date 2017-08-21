@@ -101,4 +101,4 @@ class GitHub:
                 if t["name"] == team:
                     return t["id"]
             else:
-                click.get_current_context().fail("Unknown team: " + team)
+                raise click.UsageError("Unknown team: " + team)

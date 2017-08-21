@@ -52,7 +52,7 @@ class Gist(Resource):
         try:
             return cls.parse_url(remote)
         except ValueError:
-            click.get_current_context().fail("Not a gist remote: " + remote)
+            raise click.UsageError("Not a gist remote: " + remote)
 
     @classmethod
     def parse_arg(cls, arg):
@@ -62,6 +62,6 @@ class Gist(Resource):
             try:
                 return cls.parse_url(remote)
             except ValueError:
-                click.get_current_context().fail("Not a gist remote: "+remote)
+                raise click.UsageError("Not a gist remote: " + remote)
         else:
             return super().parse_arg(arg)
