@@ -52,8 +52,7 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
 
     def __init__(self, gh, params=None, data=None):
         """
-        :param GitHub gh: the `GitHub` instance providing the underlying
-            `requests.Session` object
+        :param GitHub gh: the current `GitHub` instance
 
         :param dict params: Parameters extracted from a URL or command-line
             argument, used to construct the path to the API endpoint.
@@ -77,7 +76,7 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
                     setattr(self, k, v)
         else:
             raise TypeError('At least one of data and params must be non-None')
-        super().__init__(gh.session, *path, debug=gh.debug)
+        super().__init__(gh, *path)
 
     @cacheable
     def data(self):

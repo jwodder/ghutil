@@ -33,7 +33,7 @@ class GitHub:
         return self[key]
 
     def __getitem__(self, name):
-        return GHEndpoint(self.session, name, debug=self.debug)
+        return GHEndpoint(self, name)
 
     @cacheable
     def me(self):
