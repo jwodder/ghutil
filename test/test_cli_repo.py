@@ -289,6 +289,22 @@ Aearnus/bf-genetic-generator
 vincentclee/csci2670-intro_to_theory_of_computation
 '''
 
+def test_repo_search_limit(cmd):
+    r = cmd('repo', 'search', '--limit', '10', 'halting', 'problem')
+    assert r.exit_code == 0
+    assert r.output == '''\
+ZongzheYuan/HaltingProblem
+ForbesLindesay/halting-problem
+davidtadams/HaltingProblem
+Solidsoft-Reply/Halting
+siusoon/halting
+ebassi/halting_problem
+freddieswift/HaltingProblem
+gitpan/Acme-HaltingProblem
+GiacomoPinardi/HaltingProblemTuring
+jsenko/halting-problem-solver
+'''
+
 def test_repo_show_bad_implicit_repo(nullcmd, mocker):
     mocker.patch(
         'ghutil.git.get_remote_url',

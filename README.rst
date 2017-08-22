@@ -121,7 +121,7 @@ Issues
 ``gh issue reply <issue> [<file>]``
    Comment on an issue or pull request
 
-``gh issue search [--sort comments|created|updated] [--asc|--desc] <search-term> ...``
+``gh issue search [--limit <N>] [--sort comments|created|updated] [--asc|--desc] <search-term> ...``
    Search for issues and/or pull requests
 
 ``gh issue show <issue> ...``
@@ -211,7 +211,7 @@ Repositories
 ``gh repo new [<options>] <name>``
    Create a new repository
 
-``gh repo search [--sort stars|forks|updated] [--asc|--desc] <search-term> ...``
+``gh repo search [--limit <N>] [--sort stars|forks|updated] [--asc|--desc] <search-term> ...``
    Search for repositories on GitHub
 
 ``gh repo show [<repo> ...]``

@@ -1,6 +1,8 @@
+import itertools
 import click
 
 @click.command()
+@click.option('--limit', type=int, help='Maximum number of results to return')
 @click.option('-A', '--asc', '--ascending', 'order', flag_value='asc',
               help='Sort in ascending order')
 @click.option('-D', '--desc', '--descending', 'order', flag_value='desc',
@@ -9,7 +11,10 @@ import click
               type=click.Choice(['comments', 'created', 'updated']))
 @click.argument('terms', nargs=-1, required=True)
 @click.pass_obj
-def cli(gh, terms, **params):
+def cli(gh, terms, limit, **params):
     """ Search issues """
-    for issue in gh.search('issues', *terms, **params):
+    hits = gh.search('issues', *terms, **params)
+    if limit is not None:
+        hits = itertools.islice(hits, limit)
+    for issue in hits:
         click.echo(str(gh.issue(issue)))

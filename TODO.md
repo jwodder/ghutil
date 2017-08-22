@@ -21,6 +21,8 @@
     - Note that `git config --get remote.origin.url` doesn't perform
       "`insteadOf`" replacements
     - Or just switch to using GitPython or the like instead
+- When searching with a limit, be smart about the number of results requested
+  per page in order to minimize the number of API calls
 
 API Completeness
 ================
