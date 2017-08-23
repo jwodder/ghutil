@@ -1,4 +1,5 @@
 from   abc                 import ABCMeta, abstractmethod
+from   collections.abc     import Mapping
 import re
 import click
 from   ghutil.api.endpoint import GHEndpoint
@@ -77,6 +78,14 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
         else:
             raise TypeError('At least one of data and params must be non-None')
         super().__init__(gh, *path)
+
+    def __eq__(self, other):
+        if type(self) is not type(other):
+            if isinstance(other, Mapping):
+                other = type(self).from_params(self._gh, other)
+            else:
+                return NotImplemented
+        return self.data["id"] == other.data["id"]
 
     @cacheable
     def data(self):

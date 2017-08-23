@@ -77,7 +77,7 @@ def parse_pr_args(gh, base_arg, head_arg):
         base_branch = base_repo.data["default_branch"]
     elif not base_branch:
         raise click.UsageError('Empty branch name: ' + base_arg)
-    if base_repo.data["id"] == head_repo.data["id"]:
+    if base_repo == head_repo:
         head = head_branch
     elif not base_repo.same_network(head_repo):
         raise click.UsageError('Repositories must be in the same network')

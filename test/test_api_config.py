@@ -8,7 +8,7 @@ from   ghutil.api.client   import ACCEPT
 from   ghutil.cli.__main__ import cli
 
 @pytest.fixture(autouse=True)
-def echo_headers(monkeypatch):
+def echo_headers():
     with responses.RequestsMock() as rsps:
         rsps.add_callback(
             responses.GET,
