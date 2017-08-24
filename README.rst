@@ -148,19 +148,22 @@ Labels
 Pull Requests
 ^^^^^^^^^^^^^
 
-``gh pr comments [--since <timestamp>] <issue>``
+``gh pr comments [--since <timestamp>] <pull request>``
    Show comments on an issue/PR as JSON
 
 ``gh pr [list [<options>] [<repo>]]``
    List pull requests for a repository
 
+``gh pr merge [-T <commit title>] [-m <commit message>] [-M merge|squash|rebase] [--sha HASH] <pull request>``
+   Merge a pull request
+
 ``gh pr new [-T <title>] [--body <file>] [--maintainer-can-modify] <base> <head>``
    Create a pull request
 
-``gh pr read [--since <timestamp>] <issue>``
+``gh pr read [--since <timestamp>] <pull request>``
    Read an issue/PR and its comments
 
-``gh pr reply <issue> [<file>]``
+``gh pr reply <pull request> [<file>]``
    Comment on an issue or pull request
 
 ``gh pr show <pull request> ...``

@@ -46,7 +46,6 @@ API Completeness
     - listing individual users' reactions?
     - reviewing PRs
         - review comments
-    - merging PRs
     - assigning
     - labelling & milestones
     - editing PRs
