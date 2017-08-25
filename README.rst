@@ -95,7 +95,7 @@ Issues
 ^^^^^^
 
 ``gh issue close <issue> ...``
-   Close one or more issues
+   Close one or more issues/PRs
 
 ``gh issue comments [--since <timestamp>] <issue>``
    Show comments on an issue/PR as JSON
@@ -107,13 +107,13 @@ Issues
    List issues for a repository
 
 ``gh issue lock <issue> ...``
-   Lock one or more issues
+   Lock one or more issues/PRs
 
 ``gh issue new [<options>] [<repo>]``
    Create an issue in the given repository
 
 ``gh issue open <issue> ...``
-   Open one or more issues
+   Open one or more issues/PRs
 
 ``gh issue read [--since <timestamp>] <issue>``
    Read an issue/PR and its comments
@@ -128,7 +128,7 @@ Issues
    Show details on the given issues
 
 ``gh issue unlock <issue> ...``
-   Unlock one or more issues
+   Unlock one or more issues/PRs
 
 Labels
 ^^^^^^
@@ -148,6 +148,9 @@ Labels
 Pull Requests
 ^^^^^^^^^^^^^
 
+``gh pr close <pull request> ...``
+   Close one or more issues/PRs
+
 ``gh pr comments [--since <timestamp>] <pull request>``
    Show comments on an issue/PR as JSON
 
@@ -157,11 +160,17 @@ Pull Requests
 ``gh pr [list [<options>] [<repo>]]``
    List pull requests for a repository
 
+``gh pr lock <pull request> ...``
+   Lock one or more issues/PRs
+
 ``gh pr merge [-T <commit title>] [-m <commit message>] [--merge|--squash|--rebase] [--sha HASH] <pull request>``
    Merge a pull request
 
 ``gh pr new [-T <title>] [--body <file>] [--maintainer-can-modify] <base> <head>``
    Create a pull request
+
+``gh pr open <pull request> ...``
+   Open one or more issues/PRs
 
 ``gh pr read [--since <timestamp>] <pull request>``
    Read an issue/PR and its comments
@@ -171,6 +180,9 @@ Pull Requests
 
 ``gh pr show <pull request> ...``
    Show details on the given pull requests
+
+``gh pr unlock <pull request> ...``
+   Unlock one or more issues/PRs
 
 Releases
 ^^^^^^^^

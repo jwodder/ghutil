@@ -52,7 +52,6 @@ API Completeness
         - review comments
     - assigning
     - labelling & milestones
-    - opening, closing, locking, & unlocking PRs
     - viewing PR diffs?
     - creating a PR from an issue
 
