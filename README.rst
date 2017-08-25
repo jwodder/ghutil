@@ -154,7 +154,7 @@ Pull Requests
 ``gh pr [list [<options>] [<repo>]]``
    List pull requests for a repository
 
-``gh pr merge [-T <commit title>] [-m <commit message>] [-M merge|squash|rebase] [--sha HASH] <pull request>``
+``gh pr merge [-T <commit title>] [-m <commit message>] [--merge|--squash|--rebase] [--sha HASH] <pull request>``
    Merge a pull request
 
 ``gh pr new [-T <title>] [--body <file>] [--maintainer-can-modify] <base> <head>``

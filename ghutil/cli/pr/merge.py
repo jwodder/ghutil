@@ -6,9 +6,13 @@ from   ghutil.util    import optional
 @click.command()
 @optional('-m', '--message', '--commit-message', 'commit_message',
           help='Extra detail for automatic commit message')
-@optional('-M', '--method', '--merge-method',
-          help='Merge method to use  [default: merge]',
-          type=click.Choice(['merge', 'squash', 'rebase']))
+### TODO: Omit merge_method from kwargs when not set by user
+@click.option('--merge', 'merge_method', flag_value='merge',
+              help='Use the "merge" merge method [default]')
+@click.option('--squash', 'merge_method', flag_value='squash',
+              help='Use the "squash" merge method')
+@click.option('--rebase', 'merge_method', flag_value='rebase',
+              help='Use the "rebase" merge method')
 @optional('--sha', metavar='HASH', help='SHA hash that PR head must match')
 @optional('-T', '--title', '--commit-title', 'commit_title',
           help='Title for automatic commit message')

@@ -157,9 +157,7 @@ Interface Improvements
               just the owner's name?
         - Add some sort of shortcut syntax for using the head repository's
           parent repo as the base?
-    - Support PR templates when creating PRs
-    - Add a way to list/show all pull requests to/from the current/given
-      branch?
+        - Support PR templates when creating PRs
 
 - `gh release`:
     - `new`:
