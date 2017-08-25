@@ -151,6 +151,9 @@ Pull Requests
 ``gh pr comments [--since <timestamp>] <pull request>``
    Show comments on an issue/PR as JSON
 
+``gh pr edit [<options>] <pull request>``
+   Edit a pull request
+
 ``gh pr [list [<options>] [<repo>]]``
    List pull requests for a repository
 

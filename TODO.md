@@ -23,6 +23,10 @@
     - Or just switch to using GitPython or the like instead
 - When searching with a limit, be smart about the number of results requested
   per page in order to minimize the number of API calls
+- Bodies of issues & PRs (and releases?) created via the web interface seem to
+  always be stored in the API with CRLF line endings.  Should issues & PRs
+  created/edited with ghutil also use CRLFs?  Should CRLFs be converted to LFs
+  when displaying/editing bodies returned by the API?
 
 API Completeness
 ================
@@ -48,7 +52,6 @@ API Completeness
         - review comments
     - assigning
     - labelling & milestones
-    - editing PRs
     - opening, closing, locking, & unlocking PRs
     - viewing PR diffs?
     - creating a PR from an issue
