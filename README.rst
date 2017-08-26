@@ -94,6 +94,9 @@ Gists
 Issues
 ^^^^^^
 
+``gh issue assign [--delete|--set] <issue> <user> ...``
+   Assign an issue/PR to one or more users
+
 ``gh issue close <issue> ...``
    Close one or more issues/PRs
 
@@ -147,6 +150,9 @@ Labels
 
 Pull Requests
 ^^^^^^^^^^^^^
+
+``gh pr assign [--delete|--set] <pull request> <user> ...``
+   Assign an issue/PR to one or more users
 
 ``gh pr close <pull request> ...``
    Close one or more issues/PRs
