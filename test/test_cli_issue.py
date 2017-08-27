@@ -512,6 +512,133 @@ PATCH https://api.github.com/repos/jwodder/test/issues/1
 '''
     click.edit.assert_called_once_with(ISSUE_EDIT_MSG, require_save=True)
 
+def test_issue_label_add(cmd):
+    r = cmd('issue', 'show', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert json.loads(r.output)[0]["labels"] == ['enhancement']
+    r = cmd('--debug', 'issue', 'label', 'jwodder/test/1', 'invalid','question')
+    assert r.exit_code == 0
+    assert r.output == '''\
+POST https://api.github.com/repos/jwodder/test/issues/1/labels
+[
+    "invalid",
+    "question"
+]
+'''
+    r = cmd('issue', 'show', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert sorted(json.loads(r.output)[0]["labels"]) == \
+        ['enhancement', 'invalid', 'question']
+
+def test_issue_label_add_redundant(cmd):
+    r = cmd('issue', 'show', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert sorted(json.loads(r.output)[0]["labels"]) == \
+        ['enhancement', 'invalid', 'question']
+    r = cmd('--debug', 'issue', 'label', 'jwodder/test/1', 'invalid', 'wontfix')
+    assert r.exit_code == 0
+    assert r.output == '''\
+POST https://api.github.com/repos/jwodder/test/issues/1/labels
+[
+    "invalid",
+    "wontfix"
+]
+'''
+    r = cmd('issue', 'show', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert sorted(json.loads(r.output)[0]["labels"]) == \
+        ['enhancement', 'invalid', 'question', 'wontfix']
+
+def test_issue_label_add_nothing(cmd):
+    r = cmd('issue', 'show', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert sorted(json.loads(r.output)[0]["labels"]) == \
+        ['enhancement', 'question']
+    r = cmd('--debug', 'issue', 'label', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+POST https://api.github.com/repos/jwodder/test/issues/1/labels
+[]
+'''
+    r = cmd('issue', 'show', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert sorted(json.loads(r.output)[0]["labels"]) == \
+        ['enhancement', 'question']
+
+def test_issue_label_delete(cmd):
+    r = cmd('issue', 'show', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert sorted(json.loads(r.output)[0]["labels"]) == \
+        ['enhancement', 'invalid', 'question', 'wontfix']
+    r = cmd('--debug', 'issue', 'label', '--delete', 'jwodder/test/1',
+            'invalid', 'wontfix')
+    assert r.exit_code == 0
+    assert r.output == '''\
+DELETE https://api.github.com/repos/jwodder/test/issues/1/labels/invalid
+DELETE https://api.github.com/repos/jwodder/test/issues/1/labels/wontfix
+'''
+    r = cmd('issue', 'show', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert sorted(json.loads(r.output)[0]["labels"]) == \
+        ['enhancement', 'question']
+
+def test_issue_label_delete_nothing(cmd):
+    r = cmd('issue', 'show', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert sorted(json.loads(r.output)[0]["labels"]) == \
+        ['enhancement', 'question']
+    r = cmd('--debug', 'issue', 'label', '--delete', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == ''
+    r = cmd('issue', 'show', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert sorted(json.loads(r.output)[0]["labels"]) == \
+        ['enhancement', 'question']
+
+def test_issue_label_set(cmd):
+    r = cmd('issue', 'show', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert sorted(json.loads(r.output)[0]["labels"]) == \
+        ['enhancement', 'question']
+    r = cmd('--debug', 'issue', 'label', '--set', 'jwodder/test/1',
+            'invalid', 'enhancement')
+    assert r.exit_code == 0
+    assert r.output == '''\
+PUT https://api.github.com/repos/jwodder/test/issues/1/labels
+[
+    "invalid",
+    "enhancement"
+]
+'''
+    r = cmd('issue', 'show', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert sorted(json.loads(r.output)[0]["labels"]) == \
+        ['enhancement', 'invalid']
+
+def test_issue_label_set_nothing(cmd):
+    r = cmd('issue', 'show', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert sorted(json.loads(r.output)[0]["labels"]) == \
+        ['enhancement', 'invalid']
+    r = cmd('--debug', 'issue', 'label', '--set', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert r.output == '''\
+PUT https://api.github.com/repos/jwodder/test/issues/1/labels
+[]
+'''
+    r = cmd('issue', 'show', 'jwodder/test/1')
+    assert r.exit_code == 0
+    assert json.loads(r.output)[0]["labels"] == []
+
+def test_issue_label_delete_set_nothing(nullcmd):
+    r = nullcmd('issue', 'label', '--delete', '--set', 'jwodder/test/1', 'bug')
+    assert r.exit_code != 0
+    assert r.output == '''\
+Usage: gh issue label [OPTIONS] ISSUE [LABEL]...
+
+Error: --delete and --set are mutually exclusive
+'''
+
 # issue edit - two assignees
 # editing an issue on a repository you don't have push access to
 # issue search

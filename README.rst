@@ -106,6 +106,9 @@ Issues
 ``gh issue edit [<options>] <issue>``
    Edit an issue
 
+``gh issue label [--delete|--set] <issue> <label> ...``
+   (Re)label an issue/PR
+
 ``gh issue [list [<options>] [<repo>]]``
    List issues for a repository
 
@@ -162,6 +165,9 @@ Pull Requests
 
 ``gh pr edit [<options>] <pull request>``
    Edit a pull request
+
+``gh pr label [--delete|--set] <pull request> <label> ...``
+   (Re)label an issue/PR
 
 ``gh pr [list [<options>] [<repo>]]``
    List pull requests for a repository

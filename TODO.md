@@ -50,7 +50,7 @@ API Completeness
     - listing individual users' reactions?
     - reviewing PRs
         - review comments
-    - labelling & milestones
+    - milestones
     - viewing PR diffs?
     - creating a PR from an issue
 
