@@ -166,11 +166,3 @@ No modifications made; exiting
         "Name: duplicate\nColor: cccccc\n",
         require_save=True,
     )
-
-#gh label edit -R test ???
-#  - change name in CLI
-#  - change color in CLI
-#  - change name in editor
-#  - change color in editor
-#  - change both in CLI
-#  - change both in editor

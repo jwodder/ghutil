@@ -11,8 +11,8 @@ from   ghutil.types   import Repository
               help='File containing issue body')
 @click.option('-l', '--label', multiple=True, metavar='LABEL',
               help='Add a label to the issue.  May be specified multiple times.')
-@click.option('-m', '--milestone', metavar='ID|TITLE',
-              help='Associate the issue with a milestone (by ID or name)')
+@click.option('-m', '--milestone', metavar='NUMBER|TITLE',
+              help='Associate the issue with a milestone (by number or title)')
 @click.option('-T', '--title', help='Issue title')
 @click.option('-v', '--verbose', is_flag=True, help='Show full response body')
 @Repository.argument('repo')
@@ -48,5 +48,6 @@ def cli(ctx, repo, title, body, label, assignee, milestone, verbose):
         if data["title"] is None:  # or body is None?
             click.echo('Aborting issue due to empty title')
             return
-    data["milestone"] = repo.parse_milestone(data["milestone"])
+    if data["milestone"] is not None:
+        data["milestone"] = int(repo.milestone(data["milestone"]))
     print_json(ctx.obj.issue(repo.issues.post(json=data)), verbose)

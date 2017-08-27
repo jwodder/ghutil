@@ -2,9 +2,9 @@ import click
 from   ghutil.types import Repository
 
 @click.command()
-@click.option('-f', '--force', is_flag=True, help='Delete without prompting')
 @Repository.option('-R', '--repo', '--repository', 'repo',
                    help='Repository to which the label belongs')
+@click.option('-f', '--force', is_flag=True, help='Delete without prompting')
 @click.argument('label')
 def cli(repo, label, force):
     """ Delete a label """

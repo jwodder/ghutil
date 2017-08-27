@@ -11,7 +11,7 @@ from   ghutil.types import Repository
                    '  May be specified multiple times')
 @click.option('--mentioned', metavar='USER',
               help='Only show issues mentioning the given user')
-@click.option('-m', '--milestone', metavar='ID|TITLE',
+@click.option('-m', '--milestone', metavar='NUMBER|TITLE',
               help='Only show issues belonging to the given milestone')
 @click.option('--since', metavar='TIMESTAMP',
               help='Only show issues updated on or after the given timestamp')
@@ -29,7 +29,7 @@ def cli(gh, repo, **params):
     """ List issues for a repository """
     if params.get('label'):
         params['label'] = ','.join(params['label'])
-    if params["milestone"] not in ('none', '*'):
-        params["milestone"] = repo.parse_milestone(params["milestone"])
+    if params["milestone"] not in (None, 'none', '*'):
+        params["milestone"] = int(repo.milestone(params["milestone"]))
     for issue in repo.issues.get(params=params):
         click.echo(str(gh.issue(issue)))

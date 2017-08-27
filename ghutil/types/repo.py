@@ -100,17 +100,22 @@ class Repository(Resource):
         else:
             return super().parse_arg(arg)
 
-    def parse_milestone(self, milestone):
-        if milestone is None:
-            return None
+    def milestone(self, arg):
+        from .milestone import Milestone
         try:
-            return int(milestone)
+            mid = int(arg)
         except ValueError:
-            for ms in self.milestones.get():
-                if ms["title"] == milestone:
-                    return ms["number"]
+            for ms in self.milestones.get(params={"state": "all"}):
+                if ms["title"] == arg:
+                    return Milestone.from_data(self._gh, ms)
             else:
-                raise click.UsageError("Unknown milestone: " + milestone)
+                raise click.UsageError("Unknown milestone: " + arg)
+        else:
+            return Milestone.from_params(self._gh, {
+                "owner": self.owner,
+                "repo": self.repo,
+                "number": mid,
+            })
 
     def same_network(self, other):
         self_src = self.data.get("source", self.data)["id"]

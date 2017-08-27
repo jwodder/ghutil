@@ -327,7 +327,7 @@ def test_issue_edit_milestone(cmd):
     assert r.exit_code == 0
     assert r.output == '''\
 GET https://api.github.com/repos/jwodder/test/issues/1
-GET https://api.github.com/repos/jwodder/test/milestones
+GET https://api.github.com/repos/jwodder/test/milestones?state=all
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
     "milestone": 1
@@ -494,7 +494,7 @@ def test_issue_edit_change_everything(cmd, mocker):
     assert r.output == '''\
 GET https://api.github.com/repos/jwodder/test/issues/1
 GET https://api.github.com/repos/jwodder/test
-GET https://api.github.com/repos/jwodder/test/milestones
+GET https://api.github.com/repos/jwodder/test/milestones?state=all
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
     "assignees": [

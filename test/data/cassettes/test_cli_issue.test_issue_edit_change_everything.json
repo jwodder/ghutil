@@ -125,7 +125,7 @@
           "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.4.5"
         },
         "method": "GET",
-        "uri": "https://api.github.com/repos/jwodder/test/milestones"
+        "uri": "https://api.github.com/repos/jwodder/test/milestones?state=all"
       },
       "response": {
         "body": {
@@ -161,7 +161,7 @@
           "code": 200,
           "message": "OK"
         },
-        "url": "https://api.github.com/repos/jwodder/test/milestones"
+        "url": "https://api.github.com/repos/jwodder/test/milestones?state=all"
       }
     },
     {

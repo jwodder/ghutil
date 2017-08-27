@@ -139,7 +139,7 @@ Issues
 Labels
 ^^^^^^
 
-``gh label delete [-R|--repo <repo>] <label>``
+``gh label delete [-R|--repo <repo>] [--force] <label>``
    Delete a label
 
 ``gh label edit [-R|--repo <repo>] [--name <name>] [--color <color>] <label>``
@@ -150,6 +150,27 @@ Labels
 
 ``gh label new [-R|--repo <repo>] <name> <color>``
    Create a new label
+
+Milestones
+^^^^^^^^^^
+
+``gh milestone close [-R|--repo <repo>] <milestone>``
+   Close a milestone
+
+``gh milestone delete [-R|--repo <repo>] [--force] <milestone>``
+   Delete a milestone
+
+``gh milestone edit [-R|--repo <repo>] [<options>] <milestone>``
+   Edit a milestone
+
+``gh milestone [list [-R|--repo <repo>] [--state open|closed|all] [--sort completeness|due_on] [--asc|--desc] [--verbose]]``
+   List issue/PR milestones available in a repository
+
+``gh milestone new [-R|--repo <repo>] [-d <description>] [--due-on <timestamp>] [--open|--closed] <title>``
+   Create a new milestone
+
+``gh milestone open [-R|--repo <repo>] <milestone>``
+   Open a milestone
 
 Pull Requests
 ^^^^^^^^^^^^^

@@ -41,6 +41,7 @@ API Completeness
     - editing topics
     - listing files?
     - getting individual file contents?
+    - listing other users' repositories
 
 - Issues & pull requests:
     - comments
@@ -50,7 +51,6 @@ API Completeness
     - listing individual users' reactions?
     - reviewing PRs
         - review comments
-    - milestones
     - viewing PR diffs?
     - creating a PR from an issue
 
@@ -107,6 +107,8 @@ Interface Improvements
   use `append-accept = false`
 - Print out lists of JSON objects as each page is received instead of waiting
   for everything to be fetched before printing anything
+- Allow specifying `--since` and `--due-on` values in human-friendly formats
+  like `2017-06-28` and `1h`
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
@@ -124,8 +126,6 @@ Interface Improvements
     - path to the Git executable?
 
 - `gh issue`:
-    - `list`: Allow specifying `--since` in human-friendly formats like
-      `2017-06-28` and `1h`
     - `reply`:
         - Add an option for including the quoted (or commented-out?) contents
           of a previous comment in the editor
@@ -134,12 +134,13 @@ Interface Improvements
         - Make the main issue "comment" respect `--since`?
         - Add an option for listing comments in reverse chronological order
         - Add the issue's "short ID" to the top of the output?
-    - Should user-supplied milestones always be interpreted as milestone names
-      instead of numbers?
-        - But then how would one list issues with milestone "none"?
     - Allow specifying the repository as a local path if `:` (or `#`?) is used
       as the repo-issue separator?
     - Support issue templates when creating issues
+
+- `gh milestone`:
+    - Add a `show` command (and then use it when testing to check that editing
+      works?)
 
 - `gh pr`:
     - Add a `search` command that just does `gh issue search type:pr ...`?

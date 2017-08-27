@@ -13,8 +13,8 @@ from   ghutil.util  import optional
 @optional('-l', '--label', 'labels', multiple=True, metavar='LABEL',
           help='Set issue label.  May be specified multiple times.',
           nilstr=True)
-@optional('-m', '--milestone', metavar='ID|TITLE', nilstr=True,
-          help='Associate the issue with a milestone (by ID or name)')
+@optional('-m', '--milestone', metavar='NUMBER|TITLE', nilstr=True,
+          help='Associate the issue with a milestone (by number or title)')
 @optional('--open/--closed', ' /--close', help='Open/close the issue')
 @optional('-T', '--title', help='New issue title')
 @Issue.argument('issue')
@@ -59,7 +59,7 @@ def cli(gh, issue, **edited):
         edited['body'] = edited['body'].read()
     if 'milestone' in edited:
         if edited['milestone']:
-            edited["milestone"] = repo.parse_milestone(edited["milestone"])
+            edited["milestone"] = int(repo.milestone(edited["milestone"]))
         else:
             edited['milestone'] = None
     if 'open' in edited:
