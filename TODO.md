@@ -55,7 +55,6 @@ API Completeness
     - creating a PR from an issue
 
 - Releases:
-    - deleting
     - adding, editing, & deleting release assets
 
 - Gists:

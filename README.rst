@@ -220,6 +220,9 @@ Pull Requests
 Releases
 ^^^^^^^^
 
+``gh release delete [--force] [[<repo>:]<tag>]``
+   Delete a release
+
 ``gh release edit [<options>] [[<repo>:]<tag>]``
    Edit a release
 
