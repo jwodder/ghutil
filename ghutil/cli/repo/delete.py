@@ -7,9 +7,8 @@ from   ghutil.types import Repository
 @click.pass_obj
 def cli(gh, repo, force):
     """ Delete a repository """
-    name = repo.data["full_name"]
-    if force or click.confirm('Delete repository {}?'.format(name)):
+    if force or click.confirm('Delete repository {}?'.format(repo)):
         repo.delete()
-        click.echo('Repository {} deleted'.format(name))
+        click.echo('Repository {} deleted'.format(repo))
     else:
         click.echo('Repository not deleted')

@@ -72,7 +72,8 @@ class Repository(Resource):
         return self.data["name"]
 
     def __str__(self):
-        return '{0.owner}/{0.repo}'.format(self)
+        #return '{0.owner}/{0.repo}'.format(self)
+        return self.data["full_name"]
 
     @classmethod
     def params2path(cls, gh, params):

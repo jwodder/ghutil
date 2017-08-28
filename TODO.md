@@ -141,6 +141,7 @@ Interface Improvements
 - `gh milestone`:
     - Add a `show` command (and then use it when testing to check that editing
       works?)
+    - Allow specifying milestones on the command line as URLs?
 
 - `gh pr`:
     - Add a `search` command that just does `gh issue search type:pr ...`?

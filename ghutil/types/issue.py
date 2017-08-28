@@ -70,7 +70,10 @@ class Issue(Resource):
         return self.data["number"]
 
     def __str__(self):
-        return '{0.owner}/{0.repo}/{0.number}'.format(self)
+        #return '{0.owner}/{0.repo}/{0.number}'.format(self)
+        return '{owner}/{repo}/{number}'.format(
+            **self.parse_url(self.data["url"])
+        )
 
     @classmethod
     def params2path(cls, gh, params):

@@ -40,7 +40,7 @@ class Gist(Resource):
         return self.data["id"]
 
     def __str__(self):
-        return self.id
+        return self.data["id"]
 
     @classmethod
     def params2path(cls, gh, params):
