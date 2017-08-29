@@ -282,13 +282,13 @@ def test_gist_new_unnamed_named(cmd):
     assert r.output == '''\
 {
     "comments": 0,
-    "created_at": "2017-08-02T18:23:46Z",
+    "created_at": "2017-08-02T18:23:44Z",
     "description": null,
     "files": {
         "lorem.txt": {
             "filename": "lorem.txt",
             "language": "Text",
-            "raw_url": "https://gist.githubusercontent.com/jwodder/781a96c5c3aee03290605248fa6596e1/raw/ebe3d387302051a9d40f5cd9e09b9b2af7a8db40/lorem.txt",
+            "raw_url": "https://gist.githubusercontent.com/jwodder/4729d6a1d2ea65be4e471d8683620e2d/raw/ebe3d387302051a9d40f5cd9e09b9b2af7a8db40/lorem.txt",
             "size": 450,
             "truncated": false,
             "type": "text/plain"
@@ -296,20 +296,20 @@ def test_gist_new_unnamed_named(cmd):
         "lorem2.txt": {
             "filename": "lorem2.txt",
             "language": "Text",
-            "raw_url": "https://gist.githubusercontent.com/jwodder/781a96c5c3aee03290605248fa6596e1/raw/8102356d848536c9ff5ed0ea189d565f165fe662/lorem2.txt",
+            "raw_url": "https://gist.githubusercontent.com/jwodder/4729d6a1d2ea65be4e471d8683620e2d/raw/8102356d848536c9ff5ed0ea189d565f165fe662/lorem2.txt",
             "size": 1171,
             "truncated": false,
             "type": "text/plain"
         }
     },
     "forks": [],
-    "git_pull_url": "https://gist.github.com/781a96c5c3aee03290605248fa6596e1.git",
-    "html_url": "https://gist.github.com/781a96c5c3aee03290605248fa6596e1",
-    "id": "781a96c5c3aee03290605248fa6596e1",
+    "git_pull_url": "https://gist.github.com/4729d6a1d2ea65be4e471d8683620e2d.git",
+    "html_url": "https://gist.github.com/4729d6a1d2ea65be4e471d8683620e2d",
+    "id": "4729d6a1d2ea65be4e471d8683620e2d",
     "owner": "jwodder",
     "public": true,
-    "updated_at": "2017-08-02T18:23:46Z",
-    "url": "https://api.github.com/gists/781a96c5c3aee03290605248fa6596e1"
+    "updated_at": "2017-08-02T18:23:44Z",
+    "url": "https://api.github.com/gists/4729d6a1d2ea65be4e471d8683620e2d"
 }
 '''
 
