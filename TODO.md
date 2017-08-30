@@ -13,8 +13,6 @@
     - `show`ing more than one object at once
     - Editing a renamed repository
     - Test specifying a nonexistent config file
-- It appears that not all URL path components are treated case-insensitively by
-  GitHub (just the variable/user-defined ones?).  Fix the regexes to match.
 - Support older versions of Git that don't have `git remote get-url`
     - At the very least, figure out and document the minimum required version
       of Git
@@ -89,7 +87,6 @@ Interface Improvements
 - Default to HTTPS when cloning repositories/gists you don't have push access
   to?
 - When no arguments are given to a `show` subcommand, output an empty list?
-- Accept api.github.com URLs without "https://"?
 - Change resources' `__str__` methods to use `self.data` instead of
   user-supplied params in order to ensure redirects over renames are taken into
   account (cf. `gh repo delete`)

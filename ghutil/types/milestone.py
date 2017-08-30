@@ -1,12 +1,11 @@
-from   ghutil.regex import GITHUB, OWNER_REPO_RGX
+from   ghutil.regex import API_REPO_RGX, WEB_REPO_RGX
 from   .repo        import Repository
 from   .util        import Resource, cacheable
 
 class Milestone(Resource):
     URL_REGEXES = [
-        r'(?i){}/{}/milestone/(?P<i_number>\d+)'.format(GITHUB, OWNER_REPO_RGX),
-        r'(?i)https?://api\.github\.com/repos/{}/milestones/(?P<i_number>\d+)'
-            .format(OWNER_REPO_RGX),
+        WEB_REPO_RGX + r'/milestone/(?P<i_number>\d+)/?',
+        API_REPO_RGX + r'/milestones/(?P<i_number>\d+)',
     ]
 
     ARGUMENT_REGEXES = [

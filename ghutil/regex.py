@@ -1,7 +1,3 @@
-#: Convenience regular expression for ``https://github.com`` and variations
-#: thereupon
-GITHUB = r'(?:https?://)?(?:www\.)?github\.com'
-
 #: Regular expression for a valid GitHub username or organization name.  As of
 #: 2017-07-23, trying to sign up to GitHub with an invalid username or create
 #: an organization with an invalid name gives the message "Username may only
@@ -25,10 +21,6 @@ GH_USER_RGX = r'(?![Nn][Oo][Nn][Ee]($|[^-A-Za-z0-9]))[-_A-Za-z0-9]+'
 GH_REPO_RGX = r'(?:\.?[-A-Za-z0-9_][-A-Za-z0-9_.]*|\.\.[-A-Za-z0-9_.]+)'\
               r'(?<!\.git)'
 
-#: Convenience regular expression for ``<owner>/<repo>``, including named
-#: capturing groups
-OWNER_REPO_RGX = r'(?P<owner>{})/(?P<repo>{})'.format(GH_USER_RGX, GH_REPO_RGX)
-
 _REF_COMPONENT = r'(?!\.)[^\x00-\x20/~^:?*[\\\x7F]+(?<!\.lock)'
 
 #: Regular expression for a (possibly one-level) valid normalized Git refname
@@ -38,3 +30,11 @@ _REF_COMPONENT = r'(?!\.)[^\x00-\x20/~^:?*[\\\x7F]+(?<!\.lock)'
 #: 2.13.1)
 GIT_REFNAME_RGX = r'(?!@/?$)(?!.*(?:\.\.|@\{{)){0}(?:/{0})*(?<!\.)'\
                   .format(_REF_COMPONENT)
+
+#: Convenience regular expression for ``<owner>/<repo>``, including named
+#: capturing groups
+OWNER_REPO_RGX = r'(?P<owner>{})/(?P<repo>{})'.format(GH_USER_RGX, GH_REPO_RGX)
+
+API_REPO_RGX = r'(?:https?://)?api\.github\.com/repos/' + OWNER_REPO_RGX
+
+WEB_REPO_RGX = r'(?:https?://)?(?:www\.)?github\.com/' + OWNER_REPO_RGX

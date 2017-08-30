@@ -8,10 +8,10 @@ GIST_ID_RGX = r'(?P<id>[A-Fa-f0-9]+)'
 
 class Gist(Resource):
     URL_REGEXES = [
-        r'(?i)(?:https?://)?gist\.github\.com/(?:{user}/)?{id}(?:\.git)?/?'
+        r'(?:https?://)?gist\.github\.com/(?:{user}/)?{id}(?:\.git)?/?'
             .format(user=GH_USER_RGX, id=GIST_ID_RGX),
-        r'(?i)https?://api\.github\.com/gists/{}'.format(GIST_ID_RGX),
-        r'(?i)git@gist\.github\.com:{}\.git'.format(GIST_ID_RGX),
+        r'(?:https?://)?api\.github\.com/gists/{}'.format(GIST_ID_RGX),
+        r'git@gist\.github\.com:{}\.git'.format(GIST_ID_RGX),
     ]
 
     ARGUMENT_REGEXES = [GIST_ID_RGX]

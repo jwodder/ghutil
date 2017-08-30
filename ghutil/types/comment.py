@@ -1,13 +1,11 @@
-from   ghutil.regex import GITHUB, OWNER_REPO_RGX
+from   ghutil.regex import API_REPO_RGX, WEB_REPO_RGX
 from   .repo        import Repository
 from   .util        import Resource, cacheable
 
 class Comment(Resource):
     URL_REGEXES = [
-        r'(?i){}/{}/(?:issues|pull)/\d+/?#issuecomment-(?P<i_id>\d+)'
-            .format(GITHUB, OWNER_REPO_RGX),
-        r'(?i)https?://api\.github\.com/repos/{}/issues/comments/(?P<i_id>\d+)'
-            .format(OWNER_REPO_RGX),
+        WEB_REPO_RGX + r'/(?:issues|pull)/\d+/?#issuecomment-(?P<i_id>\d+)',
+        API_REPO_RGX + r'/issues/comments/(?P<i_id>\d+)',
     ]
 
     ARGUMENT_REGEXES = [

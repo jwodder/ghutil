@@ -1,6 +1,6 @@
 from   ghutil.api.util import API_ENDPOINT
-from   ghutil.regex    import GH_REPO_RGX, GH_USER_RGX, GITHUB, \
-                                GIT_REFNAME_RGX, OWNER_REPO_RGX
+from   ghutil.regex    import API_REPO_RGX, GH_REPO_RGX, GH_USER_RGX, \
+                                GIT_REFNAME_RGX, WEB_REPO_RGX
 from   .repo           import Repository
 from   .util           import Resource, cacheable
 
@@ -12,11 +12,10 @@ class Release(Resource):
         #
         # Note that tags that have not been made into releases still have the
         # same web URLs as they would if they were releases.
-        r'(?i){}/{}/releases/(?:latest|(?:tag/)?(?P<tag_name>{}))/?'
-            .format(GITHUB, OWNER_REPO_RGX, GIT_REFNAME_RGX),
-        r'(?i)https?://api\.github\.com/repos/{}/releases/'
-        r'(?:(?P<i_id>\d+)|latest|tags/(?P<tag_name>{}))'
-            .format(OWNER_REPO_RGX, GIT_REFNAME_RGX),
+        r'{}/releases/(?:latest|(?:tag/)?(?P<tag_name>{}))/?'
+            .format(WEB_REPO_RGX, GIT_REFNAME_RGX),
+        r'{}/releases/(?:(?P<i_id>\d+)|latest|tags/(?P<tag_name>{}))'
+            .format(API_REPO_RGX, GIT_REFNAME_RGX),
     ]
 
     ARGUMENT_REGEXES = [
