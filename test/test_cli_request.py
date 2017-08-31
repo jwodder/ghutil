@@ -1,3 +1,5 @@
+from pathlib import Path
+
 USER_REPOS_PAGE1 = '''\
 [
     {
@@ -4259,4 +4261,71 @@ index 0f63a961..3508e953 100644
  * [itsdangerous](https://github.com/pallets/itsdangerous) - Various helpers to pass trusted data to untrusted environments.
  * [pluginbase](https://github.com/mitsuhiko/pluginbase) - A simple but flexible plugin system for Python.
 
+'''
+
+def test_request_post_data(cmd):
+    r = cmd(
+        '--debug',
+        'request',
+        '-XPOST',
+        '-H', 'Content-Type: application/json',
+        '-d{"name": "Test Label", "color": "FF0000"}',
+        'https://api.github.com/repos/jwodder/test/labels',
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+POST https://api.github.com/repos/jwodder/test/labels
+{"name": "Test Label", "color": "FF0000"}
+{
+    "color": "FF0000",
+    "default": false,
+    "id": 671710206,
+    "name": "Test Label",
+    "url": "https://api.github.com/repos/jwodder/test/labels/Test%20Label"
+}
+'''
+
+def test_request_post_data_file(cmd):
+    r = cmd(
+        '--debug',
+        'request',
+        '-XPOST',
+        '-H', 'Content-Type: application/json',
+        '-d@' + str(Path(__file__).with_name('data')/'files'/'label.json'),
+        'https://api.github.com/repos/jwodder/test/labels',
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+POST https://api.github.com/repos/jwodder/test/labels
+{"name": "Test Label", "color": "FF0000"}
+{
+    "color": "FF0000",
+    "default": false,
+    "id": 671710206,
+    "name": "Test Label",
+    "url": "https://api.github.com/repos/jwodder/test/labels/Test%20Label"
+}
+'''
+
+def test_request_post_data_stdin(cmd):
+    r = cmd(
+        '--debug',
+        'request',
+        '-XPOST',
+        '-H', 'Content-Type: application/json',
+        '-d@-',
+        'https://api.github.com/repos/jwodder/test/labels',
+        input='{"name": "Test Label", "color": "FF0000"}',
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+POST https://api.github.com/repos/jwodder/test/labels
+{"name": "Test Label", "color": "FF0000"}
+{
+    "color": "FF0000",
+    "default": false,
+    "id": 671710206,
+    "name": "Test Label",
+    "url": "https://api.github.com/repos/jwodder/test/labels/Test%20Label"
+}
 '''

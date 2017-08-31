@@ -4,7 +4,7 @@ from   ghutil.api.util import die, echo_response, paginate
 from   ghutil.showing  import print_json
 
 @click.command()
-@click.option('-d', '--data', help='Set request body')
+@click.option('-d', '--data', metavar='TEXT|@FILE', help='Set request body')
 @click.option('-H', '--header', multiple=True,
               help='Add custom HTTP header to request.'
                    '  May be specified multiple times.')
@@ -24,6 +24,9 @@ def cli(gh, path, method, data, header, do_paginate):
     for h in header:
         name, value = re.split(r'\s*:\s*', h, maxsplit=1)
         extra_headers[name] = value
+    if data is not None and len(data) > 1 and data[0] == '@':
+        with click.open_file(data[1:]) as fp:
+            data = fp.read()
     r = gh[path][method](decode=False, data=data, headers=extra_headers)
     if not r.ok:
         die(r)

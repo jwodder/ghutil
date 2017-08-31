@@ -177,7 +177,6 @@ Interface Improvements
       new`, `gh list`, `gh show`, etc.?
 
 - `gh request`:
-    - Add support for `--data` reading from a file
     - Add a `--param key=value` option for setting query parameters (and/or
       JSON body elements?)
     - Add an option for dumping response headers?
