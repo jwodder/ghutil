@@ -51,8 +51,8 @@ def mock_cmd(args):
     ('foo bar = mock 1\nfoo baz = mock 2', ['foo', 'bar'], 'mock\n1\n'),
     ('foo bar = mock 1\nfoo baz = mock 2', ['foo', 'baz'], 'mock\n2\n'),
 
-    ('foo = mock 1\nrepo foo = mock2\n', ['foo'], 'mock\n1\n'),
-    ('foo = mock 1\nrepo foo = mock2\n', ['repo', 'foo'], 'mock\n2\n'),
+    ('foo = mock 1\nrepo foo = mock 2\n', ['foo'], 'mock\n1\n'),
+    ('foo = mock 1\nrepo foo = mock 2\n', ['repo', 'foo'], 'mock\n2\n'),
 
     ('foo = bar 1\nbar = mock 2\n', ['foo'], 'mock\n2\n1\n'),
 
@@ -67,18 +67,32 @@ def test_alias(monkeypatch, nullcmd, alias_config, cmdline, output):
         assert r.exit_code == 0, r.output
         assert r.output == output
 
-### Bad configs:
-### = mock
-### foo =
-### repo = mock
-### repo new = mock
-### foo = mock, foo = mock2
-### foo = mock, foo bar = mock2
-### foo bar = mock, foo = mock2
-### foo -x = mock
-### -x = mock
-### -x foo = mock
-### "foo bar" = mock
+@pytest.mark.parametrize('alias_config,errmsg', [
+    # Configparser error:
+    #('= mock',           'Invalid alias name'),
+    ('foo -x = mock',    'Invalid alias name'),
+    ('-x = mock',        'Invalid alias name'),
+    ('-x foo = mock',    'Invalid alias name'),
+    ('"foo" = mock',     'Invalid alias name'),
+    ('"foo bar" = mock', 'Invalid alias name'),
+    ('foo =',            'Invalid alias definition'),
+    ('request foo = mock',        'Cannot add alias beneath non-group command'),
+    ('foo = mock\nfoo bar=mock2', 'Cannot add alias beneath non-group command'),
+    ('repo = mock',     'Command already exists'),
+    ('repo new = mock', 'Command already exists'),
+    # Configparser error:
+    #('foo = mock\nfoo = mock2',          'Alias already defined'),
+    ('foo bar = mock\nfoo  bar = mock2', 'Alias already defined'),
+    ('foo bar = mock\nfoo = mock2',      'Alias already defined'),
+])
+def test_bad_alias(nullcmd, alias_config, errmsg):
+    with tempfile.NamedTemporaryFile(mode='w+') as cfg:
+        cfg.write('[alias]\n' + alias_config + '\n')
+        cfg.flush()
+        r = nullcmd('-c', cfg.name, 'nop')
+        assert r.exit_code != 0
+        assert errmsg in r.output
+
 
 ### Invocation errors:
 ### foo bar = mock; gh foo

@@ -57,11 +57,11 @@ def cfg_aliases(cfg, ctx):
         alias_parent = ctx.obj.aliases
         for a in user_args[:-1]:
             alias_parent = alias_parent.setdefault(a, {})
-            cmd_parent = cmd_parent.get_command(ctx, a)
-            assert cmd_parent is not None
-            if not isinstance(cmd_parent, click.Group):
+            if cmd_parent is not None:
+                cmd_parent = cmd_parent.get_command(ctx, a)
+            if not isinstance(cmd_parent, (click.Group, type(None))):
                 ctx.fail('Cannot add alias beneath non-group command: ' + name)
-        if user_args[-1] in cmd_parent.commands:
+        if cmd_parent is not None and user_args[-1] in cmd_parent.commands:
             ctx.fail('Command already exists: ' + name)
         elif user_args[-1] in alias_parent:
             ctx.fail('Alias already defined: ' + name)
