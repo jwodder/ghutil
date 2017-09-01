@@ -163,7 +163,7 @@ Milestones
 ``gh milestone edit [-R|--repo <repo>] [<options>] <milestone>``
    Edit a milestone
 
-``gh milestone [list [-R|--repo <repo>] [--state open|closed|all] [--sort completeness|due_on] [--asc|--desc] [--verbose]]``
+``gh milestone [list [-R|--repo <repo>] [--state open|closed|all] [--sort completeness|due_on] [--asc|--desc]]``
    List issue/PR milestones available in a repository
 
 ``gh milestone new [-R|--repo <repo>] [-d <description>] [--due-on <timestamp>] [--open|--closed] <title>``
@@ -171,6 +171,9 @@ Milestones
 
 ``gh milestone open [-R|--repo <repo>] <milestone>``
    Open a milestone
+
+``gh milestone show [-R|--repo <repo>] <milestone> ...``
+   Show details on the given milestones
 
 Pull Requests
 ^^^^^^^^^^^^^

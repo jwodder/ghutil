@@ -107,7 +107,7 @@ class Repository(Resource):
         try:
             mid = int(arg)
         except ValueError:
-            for ms in self.milestones.get(params={"state": "all"}):
+            for ms in self._milestones:
                 if ms["title"] == arg:
                     return Milestone.from_data(self._gh, ms)
             else:
@@ -118,6 +118,10 @@ class Repository(Resource):
                 "repo": self.repo,
                 "number": mid,
             })
+
+    @cacheable
+    def _milestones(self):
+        return list(self.milestones.get(params={"state": "all"}))
 
     def same_network(self, other):
         self_src = self.data.get("source", self.data)["id"]

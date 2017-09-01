@@ -1,6 +1,5 @@
 import click
-from   ghutil.showing import print_json
-from   ghutil.types   import Repository
+from   ghutil.types import Repository
 
 @click.command()
 @Repository.option('-R', '--repo', '--repository', 'repo',
@@ -13,13 +12,8 @@ from   ghutil.types   import Repository
               help='Sort in descending order')
 @click.option('-S', '--sort', help='What to sort results by',
               type=click.Choice(['completeness', 'due_on']))
-@click.option('-v', '--verbose', is_flag=True, help='Show full response body')
 @click.pass_obj
-def cli(gh, repo, verbose, **params):
+def cli(gh, repo, **params):
     """ List milestones for a repository """
-    milestones = repo.milestones.get(params=params)
-    if verbose:
-        print_json(milestones)
-    else:
-        for m in milestones:
-            click.echo(m["title"])
+    for m in repo.milestones.get(params=params):
+        click.echo(m["title"])

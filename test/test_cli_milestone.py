@@ -31,49 +31,6 @@ def test_milestone_list_repo(cmd):
     assert r.exit_code == 0
     assert r.output == 'v1.0\n'
 
-def test_milestone_list_repo_verbose(cmd):
-    r = cmd('milestone', 'list', '-R', 'jwodder/test', '--verbose')
-    assert r.exit_code == 0
-    assert r.output == '''\
-[
-    {
-        "closed_at": null,
-        "closed_issues": 0,
-        "created_at": "2017-08-27T18:40:30Z",
-        "creator": {
-            "avatar_url": "https://avatars1.githubusercontent.com/u/98207?v=4",
-            "events_url": "https://api.github.com/users/jwodder/events{/privacy}",
-            "followers_url": "https://api.github.com/users/jwodder/followers",
-            "following_url": "https://api.github.com/users/jwodder/following{/other_user}",
-            "gists_url": "https://api.github.com/users/jwodder/gists{/gist_id}",
-            "gravatar_id": "",
-            "html_url": "https://github.com/jwodder",
-            "id": 98207,
-            "login": "jwodder",
-            "organizations_url": "https://api.github.com/users/jwodder/orgs",
-            "received_events_url": "https://api.github.com/users/jwodder/received_events",
-            "repos_url": "https://api.github.com/users/jwodder/repos",
-            "site_admin": false,
-            "starred_url": "https://api.github.com/users/jwodder/starred{/owner}{/repo}",
-            "subscriptions_url": "https://api.github.com/users/jwodder/subscriptions",
-            "type": "User",
-            "url": "https://api.github.com/users/jwodder"
-        },
-        "description": null,
-        "due_on": null,
-        "html_url": "https://github.com/jwodder/test/milestone/1",
-        "id": 2725393,
-        "labels_url": "https://api.github.com/repos/jwodder/test/milestones/1/labels",
-        "number": 1,
-        "open_issues": 0,
-        "state": "open",
-        "title": "v1.0",
-        "updated_at": "2017-08-27T18:40:30Z",
-        "url": "https://api.github.com/repos/jwodder/test/milestones/1"
-    }
-]
-'''
-
 def test_milestone_new(cmd):
     r = cmd(
         'milestone', 'new',

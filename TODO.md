@@ -135,8 +135,6 @@ Interface Improvements
     - Support issue templates when creating issues
 
 - `gh milestone`:
-    - Add a `show` command (and then use it when testing to check that editing
-      works?)
     - Allow specifying milestones on the command line as URLs?
 
 - `gh pr`:
