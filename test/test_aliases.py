@@ -56,7 +56,7 @@ def mock_cmd(args):
 
     ('foo = bar 1\nbar = mock 2\n', ['foo'], 'mock\n2\n1\n'),
 
-    ### passing `--`?
+    ### TODO: Test passing `--`
 ])
 def test_alias(monkeypatch, nullcmd, alias_config, cmdline, output):
     monkeypatch.setitem(cli.commands, 'mock', mock_cmd)
@@ -64,26 +64,25 @@ def test_alias(monkeypatch, nullcmd, alias_config, cmdline, output):
         cfg.write('[alias]\n' + alias_config + '\n')
         cfg.flush()
         r = nullcmd('-c', cfg.name, *cmdline)
-        assert r.exit_code == 0, r.output
+        assert r.exit_code == 0
         assert r.output == output
 
 @pytest.mark.parametrize('alias_config,errmsg', [
-    # Configparser error:
-    #('= mock',           'Invalid alias name'),
-    ('foo -x = mock',    'Invalid alias name'),
-    ('-x = mock',        'Invalid alias name'),
-    ('-x foo = mock',    'Invalid alias name'),
-    ('"foo" = mock',     'Invalid alias name'),
-    ('"foo bar" = mock', 'Invalid alias name'),
-    ('foo =',            'Invalid alias definition'),
+    ('foo -x = mock',             'Invalid alias name'),
+    ('-x = mock',                 'Invalid alias name'),
+    ('-x foo = mock',             'Invalid alias name'),
+    ('"foo" = mock',              'Invalid alias name'),
+    ('"foo bar" = mock',          'Invalid alias name'),
+    ('foo =',                     'Invalid alias definition'),
     ('request foo = mock',        'Cannot add alias beneath non-group command'),
     ('foo = mock\nfoo bar=mock2', 'Cannot add alias beneath non-group command'),
-    ('repo = mock',     'Command already exists'),
-    ('repo new = mock', 'Command already exists'),
-    # Configparser error:
-    #('foo = mock\nfoo = mock2',          'Alias already defined'),
+    ('repo = mock',               'Command already exists'),
+    ('repo new = mock',           'Command already exists'),
     ('foo bar = mock\nfoo  bar = mock2', 'Alias already defined'),
     ('foo bar = mock\nfoo = mock2',      'Alias already defined'),
+    # Configparser errors:
+    #('= mock',                    'Invalid alias name'),
+    #('foo = mock\nfoo = mock2',   'Alias already defined'),
 ])
 def test_bad_alias(nullcmd, alias_config, errmsg):
     with tempfile.NamedTemporaryFile(mode='w+') as cfg:
@@ -99,6 +98,6 @@ def test_bad_alias(nullcmd, alias_config, errmsg):
 ### foo bar = mock; gh foo baz
 ### foo = nonexistent; gh foo
 
-### Test that top-level aliases show up in `gh -h` (Not possible?)
-### Test that second-level aliases show up in `gh <cmd> -h` (Not possible?)
-### Test that `gh alias -h` shows the help for the real command
+### Test that `gh alias -h` shows the help for the real command?
+### `foo bar = mock` => `gh foo -h` should not fail
+### `gh foo -h` should fail when nothing is defined for `foo`

@@ -68,16 +68,14 @@ def cfg_aliases(cfg, ctx):
         alias_parent[user_args[-1]] = alias_cmd(gh_args)
 
 def alias_cmd(real_cmd):
-    @click.command(
-        context_settings={"ignore_unknown_options": True},
-        short_help='Alias: ' + ' '.join(map(shlex.quote, real_cmd)),
-    )
-    @click.argument('args', nargs=-1)
-    @click.pass_context
+    docstr = 'Alias: ' + ' '.join(map(shlex.quote, real_cmd))
     def alias(ctx, args):
         while ctx.parent is not None:
             ctx = ctx.parent
         cmd = ctx.command.get_command(ctx, real_cmd[0])
-        assert cmd is not None  ### XXX
+        if cmd is None:
+            ctx.fail('No such command: ' + real_cmd[0])
         ctx.invoke(cmd.main, tuple(real_cmd[1:]) + args, parent=ctx)
-    return alias
+    alias.__doc__ = docstr
+    return click.command(context_settings={"ignore_unknown_options": True})\
+            (click.argument('args', nargs=-1)(click.pass_context(alias)))
