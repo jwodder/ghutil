@@ -1,6 +1,8 @@
+import click
 from   ghutil.api.util import API_ENDPOINT
 from   ghutil.regex    import API_REPO_RGX, GH_REPO_RGX, GH_USER_RGX, \
                                 GIT_REFNAME_RGX, WEB_REPO_RGX
+from   .asset          import Asset
 from   .repo           import Repository
 from   .util           import Resource, cacheable
 
@@ -43,20 +45,7 @@ class Release(Resource):
         "url",
         "tarball_url",
         "zipball_url",
-        ("assets", (
-            "browser_download_url",
-            "content_type",
-            "created_at",
-            "download_count",
-            "id",
-            "label",
-            "name",
-            "size",
-            "state",
-            "updated_at",
-            ("uploader", "login"),
-            "url",
-        )),
+        ("assets", Asset.DISPLAY_FIELDS),
         "body",
         "body_text",
         "body_html",
@@ -110,3 +99,13 @@ class Release(Resource):
         ### TODO: Replace this method with `post`, `put`, and `delete`
         ### overloads?
         return self[API_ENDPOINT].repos[self.owner][self.repo].releases[self.id]
+
+    def asset(self, arg):
+        ### TODO: Could the list of assets in `.data["assets"]` ever be
+        ### truncated, necessitating a request to
+        ### /repos/:owner/:repo/releases/:id/assets instead?
+        for s in self.data["assets"]:
+            if s["name"] == arg:
+                return Asset.from_data(self._gh, s)
+        else:
+            raise click.UsageError("Unknown asset: " + arg)

@@ -53,7 +53,11 @@ API Completeness
     - creating a PR from an issue
 
 - Releases:
-    - adding, editing, & deleting release assets
+    - editing release assets
+    - listing release assets (or is the list displayed when showing a release
+      enough?)
+    - showing individual release assets?
+    - downloading release assets?
 
 - Gists:
     - editing
@@ -163,6 +167,7 @@ Interface Improvements
         - Allow specifying the repository on the command line
     - Support setting `target_commitish` when creating/editing a release
     - Allow specifying the repository as a local path
+    - `unattach`: Support specifying assets by URL without a release argument?
 
 - `gh repo`:
     - Give `new` an option for setting the local repository's origin to the new

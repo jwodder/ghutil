@@ -223,6 +223,9 @@ Pull Requests
 Releases
 ^^^^^^^^
 
+``gh release attach [--content-type <MIME>] [--label <label>] [--name <name>] [<repo>:]<tag> <file>``
+   Upload a release asset
+
 ``gh release delete [--force] [[<repo>:]<tag>]``
    Delete a release
 
@@ -237,6 +240,9 @@ Releases
 
 ``gh release show [[<repo>:]<tag> ...]``
    Show details on the given releases
+
+``gh release unattach [--force] [<repo>:]<tag> <asset>``
+   Delete a release asset
 
 Repositories
 ^^^^^^^^^^^^

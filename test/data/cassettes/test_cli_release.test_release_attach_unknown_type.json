@@ -1,0 +1,107 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-09-04T01:18:48",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.4.7"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/jwodder/test/releases/latest"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAAA+2XUW+bMBSF/0rl5zQmaVoWpKnq4963l60TMuCAJ4ORfUnaovz3XRuXBtQmpeveojxEGJ+DOfh+tlvSaEkiUgDUJqKU1WKeCyiaZJ6qkmpeK0P/7FSWcU2BG8AmyZnhhoY3y+BqEZAZYcZwMPG/OtHOBw2bWiqWjQy7RjNxeN60va1YyWeSJVzu8QkFlHLkf/Dar78wsJxugzn+0EBkJPIJzAjeia0/Btl3AKZzDjGmWAoQpsB7JTPANYp932+VALzKNNsAiTZMGo5hNlAoTaKWSJWLCmV+NP6h6y/LIMRuW4ZPGGfuGs3CZ9QYrlNVAa/Afc2GOvHt9usKzXLtPeyrEJv6sZlgvfqZ8N4Asd9GSal2qB0PdTjRBva0F/UGosqnG6CopQoKjjnh8O13z4U5NVOHQ3GCltq/WGTWwmDEmo9n56hwhiZegoPZVTiO1tWV82oSk2pRg1DVpIQGQjRSOmeVeGKTjVBoUO8KfUrCToBCvsXZNUnZKVpaa7Fl6aONQfOUiy1mOt1tJEUzeKxtIf7AL24TFsBjlpW2klyF7Wek1txTrK+6VHMGOACGhUiWwSK8DNaXwep7EETLRRQEP9GqbhKJhfxGr6vo2vXyEIt+tccL6hhaOw+6Cq/Cxc0STW2J+queHlJpXs4tyLCDA5svYwdPfPkzQix3MJwOJ2eEjKB0yB5M6YyQjj7vQohfVmMPG+APQGvJkDJugQBLoG7DwjPbJJ6wZXUd4GqPa4Db3aSqqZA2ixl5Ez5InnW0DC1Wmjp7HVAHfRKtdki9uH/EcEU/ucF51vldDj0gzH72STgL7dajx1m4GuEMHuyO6Jlmd4lq7LVP8oy0biuFiZyR1h1QzkjzJ7VhEB/ZFX0e0pByR5C2wJ3S9Qmk9X3+D9IsZfa/7blNJ0yOD4Knz8Be93IafBL1h4y87sUoUdkjLh13ACwtLgw0m80Fnl/4/F7fV2T/Fw6322WvDwAA",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Mon, 04 Sep 2017 01:18:48 GMT",
+          "ETag": "W/\"28d6bd2cc8f8bbd1abaa46eaf226cbc3\"",
+          "Last-Modified": "Mon, 04 Sep 2017 01:07:52 GMT",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "97E6:3A32:1C4AD49:45F25C4:59ACA9F8",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4984",
+          "X-RateLimit-Reset": "1504489147",
+          "X-Runtime-rack": "0.071802",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/jwodder/test/releases/latest"
+      }
+    },
+    {
+      "recorded_at": "2017-09-04T01:18:48",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n"
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "Content-Length": "450",
+          "Content-Type": "application/octet-stream",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.4.7"
+        },
+        "method": "POST",
+        "uri": "https://uploads.github.com/repos/jwodder/test/releases/7620310/assets?name=lorem"
+      },
+      "response": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"url\":\"https://api.github.com/repos/jwodder/test/releases/assets/4737189\",\"id\":4737189,\"name\":\"lorem\",\"label\":\"\",\"uploader\":{\"login\":\"jwodder\",\"id\":98207,\"avatar_url\":\"https://avatars1.githubusercontent.com/u/98207?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/jwodder\",\"html_url\":\"https://github.com/jwodder\",\"followers_url\":\"https://api.github.com/users/jwodder/followers\",\"following_url\":\"https://api.github.com/users/jwodder/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/jwodder/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/jwodder/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/jwodder/subscriptions\",\"organizations_url\":\"https://api.github.com/users/jwodder/orgs\",\"repos_url\":\"https://api.github.com/users/jwodder/repos\",\"events_url\":\"https://api.github.com/users/jwodder/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/jwodder/received_events\",\"type\":\"User\",\"site_admin\":false},\"content_type\":\"application/octet-stream\",\"state\":\"uploaded\",\"size\":450,\"download_count\":0,\"created_at\":\"2017-09-04T01:18:48Z\",\"updated_at\":\"2017-09-04T01:18:48Z\",\"browser_download_url\":\"https://github.com/jwodder/test/releases/download/v0.0.0/lorem\"}"
+        },
+        "headers": {
+          "Cache-Control": "no-cache",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Mon, 04 Sep 2017 01:18:48 GMT",
+          "Etag": "W/\"6951d15e5c115087398f7ead1c2e588c\"",
+          "Last-Modified": "Mon, 04 Sep 2017 01:18:48 GMT",
+          "Strict-Transport-Security": "max-age=31557600",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Request-Id": "ABA0:AEC9:12911B6:13D79EE:59ACA9F8",
+          "X-Github-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-Xss-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 201,
+          "message": "Created"
+        },
+        "url": "https://uploads.github.com/repos/jwodder/test/releases/7620310/assets?name=lorem"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

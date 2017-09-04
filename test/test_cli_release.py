@@ -1,4 +1,7 @@
-from ghutil import git
+from pathlib import Path
+from ghutil  import git
+
+FILEDIR = Path(__file__).with_name('data') / 'files'
 
 def test_release_none(cmd, mocker):
     mocker.patch(
@@ -504,3 +507,185 @@ def test_release_show_colon_latest(cmd, mocker):
 ]
 '''
     git.get_remote_url.assert_called_once_with()
+
+def test_release_attach_text(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    r = cmd('--debug', 'release', 'attach', 'latest', str(FILEDIR/'lorem.txt'))
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/releases/latest
+POST https://uploads.github.com/repos/jwodder/test/releases/7620310/assets?name=lorem.txt
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+{
+    "browser_download_url": "https://github.com/jwodder/test/releases/download/v0.0.0/lorem.txt",
+    "content_type": "text/plain",
+    "created_at": "2017-09-04T00:30:14Z",
+    "download_count": 0,
+    "id": 4737049,
+    "label": "",
+    "name": "lorem.txt",
+    "size": 450,
+    "state": "uploaded",
+    "updated_at": "2017-09-04T00:30:14Z",
+    "uploader": "jwodder",
+    "url": "https://api.github.com/repos/jwodder/test/releases/assets/4737049"
+}
+'''
+
+def test_release_attach_named_text(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    r = cmd(
+        'release', 'attach',
+        '-n', 'lorem.html',
+        'latest',
+        str(FILEDIR/'lorem.txt'),
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+{
+    "browser_download_url": "https://github.com/jwodder/test/releases/download/v0.0.0/lorem.html",
+    "content_type": "text/html",
+    "created_at": "2017-09-04T00:39:07Z",
+    "download_count": 0,
+    "id": 4737064,
+    "label": "",
+    "name": "lorem.html",
+    "size": 450,
+    "state": "uploaded",
+    "updated_at": "2017-09-04T00:39:07Z",
+    "uploader": "jwodder",
+    "url": "https://api.github.com/repos/jwodder/test/releases/assets/4737064"
+}
+'''
+
+def test_release_attach_named_typed_text(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    r = cmd(
+        'release', 'attach',
+        '-n', 'lorem.html',
+        '--content-type', 'text/plain',
+        'latest',
+        str(FILEDIR/'lorem.txt'),
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+{
+    "browser_download_url": "https://github.com/jwodder/test/releases/download/v0.0.0/lorem.html",
+    "content_type": "text/plain",
+    "created_at": "2017-09-04T01:09:27Z",
+    "download_count": 0,
+    "id": 4737162,
+    "label": "",
+    "name": "lorem.html",
+    "size": 450,
+    "state": "uploaded",
+    "updated_at": "2017-09-04T01:09:27Z",
+    "uploader": "jwodder",
+    "url": "https://api.github.com/repos/jwodder/test/releases/assets/4737162"
+}
+'''
+
+def test_release_attach_labelled_text(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    r = cmd(
+        '--debug',
+        'release', 'attach',
+        '-lAbout',
+        'latest',
+        str(FILEDIR/'lorem.txt'),
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/releases/latest
+POST https://uploads.github.com/repos/jwodder/test/releases/7620310/assets?name=lorem.txt&label=About
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+{
+    "browser_download_url": "https://github.com/jwodder/test/releases/download/v0.0.0/lorem.txt",
+    "content_type": "text/plain",
+    "created_at": "2017-09-04T01:13:55Z",
+    "download_count": 0,
+    "id": 4737174,
+    "label": "About",
+    "name": "lorem.txt",
+    "size": 450,
+    "state": "uploaded",
+    "updated_at": "2017-09-04T01:13:55Z",
+    "uploader": "jwodder",
+    "url": "https://api.github.com/repos/jwodder/test/releases/assets/4737174"
+}
+'''
+
+def test_release_attach_binary(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    r = cmd('release', 'attach', 'latest', str(FILEDIR/'blob.png'))
+    assert r.exit_code == 0
+    assert r.output == '''\
+{
+    "browser_download_url": "https://github.com/jwodder/test/releases/download/v0.0.0/blob.png",
+    "content_type": "image/png",
+    "created_at": "2017-09-04T00:44:01Z",
+    "download_count": 0,
+    "id": 4737084,
+    "label": "",
+    "name": "blob.png",
+    "size": 208,
+    "state": "uploaded",
+    "updated_at": "2017-09-04T00:44:01Z",
+    "uploader": "jwodder",
+    "url": "https://api.github.com/repos/jwodder/test/releases/assets/4737084"
+}
+'''
+
+def test_release_attach_unknown_type(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    r = cmd('release', 'attach', 'latest', str(FILEDIR/'lorem'))
+    assert r.exit_code == 0
+    assert r.output == '''\
+{
+    "browser_download_url": "https://github.com/jwodder/test/releases/download/v0.0.0/lorem",
+    "content_type": "application/octet-stream",
+    "created_at": "2017-09-04T01:18:48Z",
+    "download_count": 0,
+    "id": 4737189,
+    "label": "",
+    "name": "lorem",
+    "size": 450,
+    "state": "uploaded",
+    "updated_at": "2017-09-04T01:18:48Z",
+    "uploader": "jwodder",
+    "url": "https://api.github.com/repos/jwodder/test/releases/assets/4737189"
+}
+'''
+
+def test_release_unattach(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    r = cmd('--debug', 'release', 'unattach', '--force', 'latest', 'lorem.txt')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/releases/latest
+DELETE https://api.github.com/repos/jwodder/test/releases/assets/4737049
+Asset lorem.txt deleted
+'''
