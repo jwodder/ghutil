@@ -15,13 +15,23 @@ import click
               type=click.Choice(['all','owner','public','private','member']))
 @click.option('--visibility', help='Filter by repository visibility',
               type=click.Choice(['all', 'public', 'private']))
+@click.argument('user', required=False)
 @click.pass_obj
-def cli(gh, **params):
+def cli(gh, user, **params):
     """
-    List your repositories.
+    List a user's repositories.
+
+    If no user is specified, list all repositories for the current user.
 
     Note that the `--type` option cannot be used together with `--affiliation`
     or `--visibility`.
+
+    Note that the `--affiliation` and `--visibility` options and certain values
+    for `--type` cannot be used when fetching another user's repositories.
     """
-    for repo in gh.user.repos.get(params=params):
+    if user is None:
+        repos = gh.user.repos.get(params=params)
+    else:
+        repos = gh.users[user].repos.get(params=params)
+    for repo in repos:
         click.echo(str(gh.repository(repo)))

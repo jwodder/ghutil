@@ -262,8 +262,8 @@ Repositories
 ``gh repo fork <repo>``
    Fork the given repository
 
-``gh repo [list [--type all|owner|public|private|member] [--sort created|updated|pushed|full_name] [--asc|--desc]]``
-   List your repositories
+``gh repo [list [<options>] [<user>]]``
+   List a user's repositories
 
 ``gh repo list-forks [<repo>]``
    List a repository's forks

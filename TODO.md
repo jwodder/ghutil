@@ -13,6 +13,7 @@
     - `show`ing more than one object at once
     - Editing a renamed repository
     - Test specifying a nonexistent config file
+    - Test invoking `delete` commands without `--force`
 - Support older versions of Git that don't have `git remote get-url`
     - At the very least, figure out and document the minimum required version
       of Git
@@ -39,7 +40,7 @@ API Completeness
     - editing topics
     - listing files?
     - getting individual file contents?
-    - listing other users' repositories
+    - listing an organization's repositories
 
 - Issues & pull requests:
     - comments
@@ -60,6 +61,7 @@ API Completeness
     - downloading release assets?
 
 - Gists:
+    - creating gists from non-text files?
     - editing
     - forking
     - listing forks
@@ -140,6 +142,7 @@ Interface Improvements
 
 - `gh milestone`:
     - Allow specifying milestones on the command line as URLs?
+        - Make this the only way to specify milestones by ID?
 
 - `gh pr`:
     - Add a `search` command that just does `gh issue search type:pr ...`?
