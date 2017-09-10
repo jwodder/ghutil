@@ -11,7 +11,7 @@ from   ghutil.types import Repository
                    '  May be specified multiple times')
 @click.option('--mentioned', metavar='USER',
               help='Only show issues mentioning the given user')
-@click.option('-m', '--milestone', metavar='NUMBER|TITLE',
+@click.option('-m', '--milestone', metavar='URL|TITLE',
               help='Only show issues belonging to the given milestone')
 @click.option('--since', metavar='TIMESTAMP',
               help='Only show issues updated on or after the given timestamp')

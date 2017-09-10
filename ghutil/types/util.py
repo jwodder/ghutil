@@ -68,20 +68,22 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
         :raises TypeError: if both ``params`` and ``data`` are `None`
         """
         if data is not None:
-            path = (data["url"],)
+            params = self.parse_url(data["url"])
             self.data = data
         elif params is not None:
-            path = self.params2path(gh, params)
             for k,v in params.items():
                 if v is not None:  # Don't set unknown parameters
                     setattr(self, k, v)
         else:
             raise TypeError('At least one of data and params must be non-None')
-        super().__init__(gh, *path)
+        super().__init__(gh, *self.params2path(gh, params))
 
     def __eq__(self, other):
         if type(self) is not type(other):
             if isinstance(other, Mapping):
+                if self._path == self.params2path(self._gh, other):
+                    # Avoid an unnecessary API call
+                    return True
                 other = type(self).from_params(self._gh, other)
             else:
                 return NotImplemented

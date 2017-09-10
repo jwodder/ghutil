@@ -335,7 +335,12 @@ PATCH https://api.github.com/repos/jwodder/test/issues/1
 '''
 
 def test_issue_edit_int_milestone(cmd):
-    r = cmd('--debug', 'issue', 'edit', '--milestone', '1', 'jwodder/test/1')
+    r = cmd(
+        '--debug',
+        'issue', 'edit',
+        '--milestone', 'https://github.com/jwodder/test/milestone/1',
+        'jwodder/test/1'
+    )
     assert r.exit_code == 0
     assert r.output == '''\
 GET https://api.github.com/repos/jwodder/test/issues/1

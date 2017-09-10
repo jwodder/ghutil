@@ -73,7 +73,8 @@ PATCH https://api.github.com/repos/jwodder/test/milestones/2
 '''
 
 def test_milestone_edit_title_by_number(cmd):
-    r = cmd('--debug', 'milestone', 'edit', '-R', 'jwodder/test', '2',
+    r = cmd('--debug', 'milestone', 'edit', '-R', 'jwodder/test',
+            'https://github.com/jwodder/test/milestone/2',
             '--title=Test Milestone')
     assert r.exit_code == 0
     assert r.output == '''\

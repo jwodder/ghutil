@@ -13,8 +13,8 @@ from   ghutil.util  import optional
 @optional('-l', '--label', 'labels', multiple=True, metavar='LABEL',
           help='Set issue label.  May be specified multiple times.',
           nilstr=True)
-@optional('-m', '--milestone', metavar='NUMBER|TITLE', nilstr=True,
-          help='Associate the issue with a milestone (by number or title)')
+@optional('-m', '--milestone', metavar='URL|TITLE', nilstr=True,
+          help='Associate the issue with a milestone')
 @optional('--open/--closed', ' /--close', help='Open/close the issue')
 @optional('-T', '--title', help='New issue title')
 @Issue.argument('issue')

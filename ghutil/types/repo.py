@@ -105,7 +105,7 @@ class Repository(Resource):
     def milestone(self, arg):
         from .milestone import Milestone
         try:
-            mid = int(arg)
+            ms = Milestone.from_url(self._gh, arg)
         except ValueError:
             for ms in self._milestones:
                 if ms["title"] == arg:
@@ -113,11 +113,10 @@ class Repository(Resource):
             else:
                 raise click.UsageError("Unknown milestone: " + arg)
         else:
-            return Milestone.from_params(self._gh, {
-                "owner": self.owner,
-                "repo": self.repo,
-                "number": mid,
-            })
+            if self != {"owner": ms.owner, "repo": ms.repo}:
+                raise click.UsageError('Milestone belongs to different'
+                                       ' repository: ' + arg)
+            return ms
 
     @cacheable
     def _milestones(self):

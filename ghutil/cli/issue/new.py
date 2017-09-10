@@ -11,8 +11,8 @@ from   ghutil.types   import Repository
               help='File containing issue body')
 @click.option('-l', '--label', multiple=True, metavar='LABEL',
               help='Add a label to the issue.  May be specified multiple times.')
-@click.option('-m', '--milestone', metavar='NUMBER|TITLE',
-              help='Associate the issue with a milestone (by number or title)')
+@click.option('-m', '--milestone', metavar='URL|TITLE',
+              help='Associate the issue with a milestone')
 @click.option('-T', '--title', help='Issue title')
 @click.option('-v', '--verbose', is_flag=True, help='Show full response body')
 @Repository.argument('repo')

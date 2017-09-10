@@ -141,8 +141,9 @@ Interface Improvements
     - Support issue templates when creating issues
 
 - `gh milestone`:
-    - Allow specifying milestones on the command line as URLs?
-        - Make this the only way to specify milestones by ID?
+    - Specifying a milestone by URL should remove the need to also use the `-R`
+      option (regardless of whether the user is in the same repo as the
+      milestone or even in a repo at all)
 
 - `gh pr`:
     - Add a `search` command that just does `gh issue search type:pr ...`?
