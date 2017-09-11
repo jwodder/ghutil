@@ -6,6 +6,7 @@ from   ghutil.types import Repository
 @Repository.argument('repo')
 def cli(repo, force):
     """ Delete a repository """
+    repo.data  # Force fetching repo data before deletion
     if force or click.confirm('Delete repository {}?'.format(repo)):
         repo.delete()
         click.echo('Repository {} deleted'.format(repo))

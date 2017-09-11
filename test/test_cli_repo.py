@@ -332,3 +332,80 @@ Usage: gh repo show [OPTIONS] [REPOS]...
 Error: Not a GitHub remote: /home/jwodder/git/private.git
 '''
     git.get_remote_url.assert_called_once_with(chdir='/some/path')
+
+def test_repo_new(cmd):
+    r = cmd('--debug', 'repo', 'new', 'test')
+    assert r.exit_code == 0
+    assert r.output == '''\
+POST https://api.github.com/user/repos
+{
+    "allow_merge_commit": true,
+    "allow_rebase_merge": true,
+    "allow_squash_merge": true,
+    "auto_init": false,
+    "description": null,
+    "gitignore_template": null,
+    "has_issues": true,
+    "has_wiki": true,
+    "homepage": null,
+    "license_template": null,
+    "name": "test",
+    "private": false
+}
+{
+    "clone_url": "https://github.com/jwodder/test.git",
+    "created_at": "2017-09-11T15:33:42Z",
+    "default_branch": "master",
+    "description": null,
+    "fork": false,
+    "forks_count": 0,
+    "full_name": "jwodder/test",
+    "git_url": "git://github.com/jwodder/test.git",
+    "homepage": null,
+    "html_url": "https://github.com/jwodder/test",
+    "id": 103154035,
+    "language": null,
+    "name": "test",
+    "network_count": 0,
+    "open_issues_count": 0,
+    "owner": "jwodder",
+    "private": false,
+    "pushed_at": "2017-09-11T15:33:42Z",
+    "size": 0,
+    "ssh_url": "git@github.com:jwodder/test.git",
+    "stargazers_count": 0,
+    "subscribers_count": 1,
+    "topics": [],
+    "updated_at": "2017-09-11T15:33:42Z",
+    "url": "https://api.github.com/repos/jwodder/test",
+    "watchers_count": 0
+}
+'''
+
+def test_repo_delete_noforce(cmd):
+    r = cmd('--debug', 'repo', 'delete', 'jwodder/test', input='y\n')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test
+Delete repository jwodder/test? [y/N]: y
+DELETE https://api.github.com/repos/jwodder/test
+Repository jwodder/test deleted
+'''
+
+def test_repo_delete_force(cmd):
+    r = cmd('--debug', 'repo', 'delete', '-f', 'jwodder/test')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test
+DELETE https://api.github.com/repos/jwodder/test
+Repository jwodder/test deleted
+'''
+
+def test_repo_no_delete(cmd):
+    r = cmd('--debug', 'repo', 'delete', 'jwodder/test', input='n\n')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test
+Delete repository jwodder/test? [y/N]: n
+Repository not deleted
+'''

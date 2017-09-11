@@ -11,7 +11,7 @@
     - Specifying an issue or PR without a repository name, with
       `get_remote_url()` mocked
     - `show`ing more than one object at once
-    - Editing a renamed repository
+    - Interacting with a renamed repository
     - Test specifying a nonexistent config file
     - Test invoking `delete` commands without `--force`
 - Support older versions of Git that don't have `git remote get-url`
