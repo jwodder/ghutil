@@ -6,8 +6,9 @@ from   ghutil.util    import optional
 @click.command()
 @optional('-m', '--message', '--commit-message', 'commit_message',
           help='Extra detail for automatic commit message')
-### TODO: Omit merge_method from kwargs when not set by user
-@click.option('--merge', 'merge_method', flag_value='merge',
+# The API seems to use "merge" as the default method even when merge commits
+# are not allowed in the repository, so I'm going to do that, too.
+@click.option('--merge', 'merge_method', flag_value='merge', default=True,
               help='Use the "merge" merge method [default]')
 @click.option('--squash', 'merge_method', flag_value='squash',
               help='Use the "squash" merge method')

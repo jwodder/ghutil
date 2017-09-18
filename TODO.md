@@ -3,7 +3,6 @@
     - Config file fields
     - Bash completion
 - Write more tests (somehow)
-    - Somewhere test that credentials are being redacted from cassettes
     - Test that the correct User-Agent header is being sent?
     - Test that calling `Repository.default_params()` when `get_remote_url()`
       returns a local path always fails
@@ -89,16 +88,12 @@ Interface Improvements
       used?
     - Rename `--verbose` to something like `--full`(?) and use `--verbose` to
       control debugging?
-- Add a command for showing rate limit information?
 - Default to HTTPS when cloning repositories/gists you don't have push access
   to?
 - When no arguments are given to a `show` subcommand, output an empty list?
-- Change resources' `__str__` methods to use `self.data` instead of
-  user-supplied params in order to ensure redirects over renames are taken into
-  account (cf. `gh repo delete`)
 - Give the `search` subcommands a `--raw` option to not add any quotes?
-- `edit` subcommands: (Add an option to) show the API's response?
 - Editing:
+    - (Add an option to) show the API's response?
     - Deleting the entire body should set it to the empty string, not leave it
       unchanged
     - Rethink the way deleted header fields are handled
