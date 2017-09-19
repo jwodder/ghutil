@@ -102,8 +102,6 @@ Interface Improvements
   `application/vnd.github.v3.full+json` in place of
   `application/vnd.github.v3+json` in the "Accept:" header without having to
   use `append-accept = false`
-- Print out lists of JSON objects as each page is received instead of waiting
-  for everything to be fetched before printing anything
 - Allow specifying `--since` and `--due-on` values in human-friendly formats
   like `2017-06-28` and `1h`
 

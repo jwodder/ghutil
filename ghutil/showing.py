@@ -2,6 +2,7 @@ from   collections.abc import Iterator
 from   functools       import partial
 from   inspect         import signature
 import json
+from   textwrap        import indent
 from   operator        import itemgetter
 import click
 
@@ -21,11 +22,24 @@ def print_json(obj, verbose=False, err=False):
                 data = {"__repr__": repr(obj)}
             data["__class__"] = type(obj).__name__
             return data
-    click.echo(
-        json.dumps(obj, sort_keys=True, indent=4, ensure_ascii=False,
-                        default=default),
-        err=err,
-    )
+    def dumps(x):
+        return json.dumps(x, sort_keys=True, indent=4, ensure_ascii=False,
+                          default=default)
+    if isinstance(obj, Iterator):
+        first = True
+        click.echo('[', nl=False, err=err)
+        for o in obj:
+            if first:
+                click.echo(err=err)
+                first = False
+            else:
+                click.echo(',', err=err)
+            click.echo(indent(dumps(o), ' '*4), nl=False, err=err)
+        if not first:
+            click.echo(err=err)
+        click.echo(']', err=err)
+    else:
+        click.echo(dumps(obj), err=err)
 
 def show_fields(fields, obj):
     about = {}
