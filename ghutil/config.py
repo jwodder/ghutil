@@ -1,5 +1,6 @@
 from   configparser import ConfigParser, ExtendedInterpolation
 import re
+import click
 from   ghutil.api   import GitHub
 
 def configure(cfg_file, ctx):
@@ -17,7 +18,10 @@ def cfg_session(cfg, session):
         session.headers["Authorization"] = "token " + auth['token']
     elif 'username' in auth and 'password' in auth:
         session.auth = (auth['username'], auth['password'])
-    ### TODO: Complain if only one of (username, password) is set?
+    elif 'username' in auth:
+        raise click.UsageError('Config file contains username but no password')
+    elif 'password' in auth:
+        raise click.UsageError('Config file contains password but no username')
     try:
         extra_accept = cfg['api']['accept']
     except KeyError:

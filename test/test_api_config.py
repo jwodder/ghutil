@@ -7,7 +7,7 @@ import responses
 from   ghutil.api.client   import ACCEPT
 from   ghutil.cli.__main__ import cli
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 def echo_headers():
     with responses.RequestsMock() as rsps:
         rsps.add_callback(
@@ -18,6 +18,7 @@ def echo_headers():
         )
         yield
 
+@pytest.mark.usefixtures('echo_headers')
 @pytest.mark.parametrize('config,accept_header', [
     ('', ACCEPT),
     ('[api]', ACCEPT),
@@ -88,6 +89,7 @@ def test_accept(config, accept_header):
         headers = json.loads(r.output)
         assert headers.get("Accept") == accept_header
 
+@pytest.mark.usefixtures('echo_headers')
 @pytest.mark.parametrize('config,auth_header', [
     ('', None),
     (
@@ -119,3 +121,21 @@ def test_auth(monkeypatch, config, auth_header):
         assert r.exit_code == 0
         headers = json.loads(r.output)
         assert headers.get("Authorization") == auth_header
+
+@pytest.mark.parametrize('config,errmsg', [
+    (
+        '[api.auth]\nusername = l.user\n',
+        'Config file contains username but no password',
+    ),
+    (
+        '[api.auth]\npassword = hunter2\n',
+        'Config file contains password but no username',
+    ),
+])
+def test_bad_auth(nullcmd, config, errmsg):
+    with tempfile.NamedTemporaryFile(mode='w+') as cfg:
+        cfg.write(config)
+        cfg.flush()
+        r = nullcmd('-c', cfg.name, 'nop')
+        assert r.exit_code != 0
+        assert errmsg in r.output
