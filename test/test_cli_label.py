@@ -1,27 +1,19 @@
 import click
-from   ghutil import git
+import pytest
 
 LABELS='bug\nduplicate\nenhancement\nhelp wanted\ninvalid\nquestion\nwontfix\n'
 
-def test_label(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='git@github.com:jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_label(cmd):
     r = cmd('label')
     assert r.exit_code == 0
     assert r.output == LABELS
-    git.get_remote_url.assert_called_once_with()
 
-def test_label_list(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='git@github.com:jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_label_list(cmd):
     r = cmd('label', 'list')
     assert r.exit_code == 0
     assert r.output == LABELS
-    git.get_remote_url.assert_called_once_with()
 
 def test_label_list_repo(cmd):
     r = cmd('label', 'list', '-R', 'jwodder/test')

@@ -1,5 +1,6 @@
 from   pathlib import Path
 import click
+import pytest
 from   ghutil  import git
 
 FILEDIR = Path(__file__).with_name('data') / 'files'
@@ -449,11 +450,8 @@ Error: Not a GitHub remote: /home/jwodder/git/private.git
 '''
     git.get_remote_url.assert_called_once_with()
 
-def test_release_show_latest(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_release_show_latest(cmd):
     r = cmd('release', 'show', 'latest')
     assert r.exit_code == 0
     assert r.output == '''\
@@ -477,13 +475,9 @@ def test_release_show_latest(cmd, mocker):
     }
 ]
 '''
-    git.get_remote_url.assert_called_once_with()
 
-def test_release_show_colon_latest(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_release_show_colon_latest(cmd):
     r = cmd('release', 'show', ':latest')
     assert r.exit_code == 0
     assert r.output == '''\
@@ -507,13 +501,9 @@ def test_release_show_colon_latest(cmd, mocker):
     }
 ]
 '''
-    git.get_remote_url.assert_called_once_with()
 
-def test_release_attach_text(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_release_attach_text(cmd):
     r = cmd('--debug', 'release', 'attach', 'latest', str(FILEDIR/'lorem.txt'))
     assert r.exit_code == 0
     assert r.output == '''\
@@ -537,11 +527,8 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 }
 '''
 
-def test_release_attach_named_text(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_release_attach_named_text(cmd):
     r = cmd(
         'release', 'attach',
         '-n', 'lorem.html',
@@ -566,11 +553,8 @@ def test_release_attach_named_text(cmd, mocker):
 }
 '''
 
-def test_release_attach_named_typed_text(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_release_attach_named_typed_text(cmd):
     r = cmd(
         'release', 'attach',
         '-n', 'lorem.html',
@@ -596,11 +580,8 @@ def test_release_attach_named_typed_text(cmd, mocker):
 }
 '''
 
-def test_release_attach_labelled_text(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_release_attach_labelled_text(cmd):
     r = cmd(
         '--debug',
         'release', 'attach',
@@ -630,11 +611,8 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 }
 '''
 
-def test_release_attach_binary(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_release_attach_binary(cmd):
     r = cmd('release', 'attach', 'latest', str(FILEDIR/'blob.png'))
     assert r.exit_code == 0
     assert r.output == '''\
@@ -654,11 +632,8 @@ def test_release_attach_binary(cmd, mocker):
 }
 '''
 
-def test_release_attach_unknown_type(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_release_attach_unknown_type(cmd):
     r = cmd('release', 'attach', 'latest', str(FILEDIR/'lorem'))
     assert r.exit_code == 0
     assert r.output == '''\
@@ -678,11 +653,8 @@ def test_release_attach_unknown_type(cmd, mocker):
 }
 '''
 
-def test_release_unattach(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_release_unattach(cmd):
     r = cmd('--debug', 'release', 'unattach', '--force', 'latest', 'lorem.txt')
     assert r.exit_code == 0
     assert r.output == '''\
@@ -691,11 +663,8 @@ DELETE https://api.github.com/repos/jwodder/test/releases/assets/4737049
 Asset lorem.txt deleted
 '''
 
-def test_release_new(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_release_new(cmd):
     r = cmd(
         '--debug',
         'release', 'new',
@@ -732,11 +701,8 @@ POST https://api.github.com/repos/jwodder/test/releases
 }
 '''
 
-def test_release_edit_name(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_release_edit_name(cmd):
     r = cmd('--debug', 'release', 'edit', '--name=Initial Release', 'v0.0.0')
     assert r.exit_code == 0
     assert r.output == '''\
@@ -747,11 +713,8 @@ PATCH https://api.github.com/repos/jwodder/test/releases/7871180
 }
 '''
 
+@pytest.mark.usefixtures('test_repo')
 def test_release_edit_name_editor(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
     mocker.patch('click.edit', return_value="Name: Initial Release\n")
     r = cmd('--debug', 'release', 'edit', 'v0.0.0')
     assert r.exit_code == 0
@@ -772,11 +735,8 @@ PATCH https://api.github.com/repos/jwodder/test/releases/7871180
         require_save=True,
     )
 
-def test_release_edit_body(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_release_edit_body(cmd):
     r = cmd(
         '--debug',
         'release', 'edit',
@@ -792,15 +752,12 @@ PATCH https://api.github.com/repos/jwodder/test/releases/7871180
 }
 '''
 
+@pytest.mark.usefixtures('test_repo')
 def test_release_edit_body_editor(cmd, mocker):
     HEADERS = 'Tag-Name: v0.0.0\n' \
               'Name: Initial Release\n' \
               'Draft: no\n' \
               'Prerelease: no\n'
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
     mocker.patch(
         'click.edit',
         return_value=HEADERS + '\n{"name": "Test Label", "color": "FF0000"}'
@@ -819,11 +776,8 @@ PATCH https://api.github.com/repos/jwodder/test/releases/7871180
         require_save=True,
     )
 
-def test_release_delete_noforce(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_release_delete_noforce(cmd):
     r = cmd('--debug', 'release', 'delete', 'v0.0.0', input='y\n')
     assert r.exit_code == 0
     assert r.output == '''\
@@ -833,11 +787,8 @@ DELETE https://api.github.com/repos/jwodder/test/releases/7871180
 Release jwodder/test:v0.0.0 deleted
 '''
 
-def test_release_delete_force(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_release_delete_force(cmd):
     r = cmd('--debug', 'release', 'delete', '-f', 'v0.0.0')
     assert r.exit_code == 0
     assert r.output == '''\
@@ -846,11 +797,8 @@ DELETE https://api.github.com/repos/jwodder/test/releases/7871180
 Release jwodder/test:v0.0.0 deleted
 '''
 
-def test_release_no_delete(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_release_no_delete(cmd):
     r = cmd('--debug', 'release', 'delete', 'v0.0.0', input='n\n')
     assert r.exit_code == 0
     assert r.output == '''\

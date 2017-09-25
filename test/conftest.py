@@ -9,6 +9,7 @@ import pytest
 import requests
 from   ghutil.api                      import GitHub
 from   ghutil.cli.__main__             import cli
+from   ghutil                          import git
 
 CASSETTE_DIR = Path(__file__).with_name('data') / 'cassettes'
 try:
@@ -61,3 +62,12 @@ def nullcmd(mocker):
         )
     yield runner
     assert not null_session.request.called
+
+@pytest.fixture
+def test_repo(mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    yield
+    git.get_remote_url.assert_called_once_with()

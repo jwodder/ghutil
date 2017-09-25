@@ -1,30 +1,22 @@
 import click
-from   ghutil import git
+import pytest
 
 def test_milestone_empty(cmd):
     r = cmd('milestone', 'list', '-R', 'jwodder/ghutil')
     assert r.exit_code == 0
     assert r.output == ''
 
-def test_milestone(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='git@github.com:jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_milestone(cmd):
     r = cmd('milestone')
     assert r.exit_code == 0
     assert r.output == 'v1.0\n'
-    git.get_remote_url.assert_called_once_with()
 
-def test_milestone_list(cmd, mocker):
-    mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='git@github.com:jwodder/test.git',
-    )
+@pytest.mark.usefixtures('test_repo')
+def test_milestone_list(cmd):
     r = cmd('milestone', 'list')
     assert r.exit_code == 0
     assert r.output == 'v1.0\n'
-    git.get_remote_url.assert_called_once_with()
 
 def test_milestone_list_repo(cmd):
     r = cmd('milestone', 'list', '-R', 'jwodder/test')
