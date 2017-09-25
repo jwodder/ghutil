@@ -1,5 +1,6 @@
-from pathlib import Path
-from ghutil  import git
+from   pathlib import Path
+import click
+from   ghutil  import git
 
 FILEDIR = Path(__file__).with_name('data') / 'files'
 
@@ -689,3 +690,182 @@ GET https://api.github.com/repos/jwodder/test/releases/latest
 DELETE https://api.github.com/repos/jwodder/test/releases/assets/4737049
 Asset lorem.txt deleted
 '''
+
+def test_release_new(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    r = cmd(
+        '--debug',
+        'release', 'new',
+        '-nInit',
+        '--body', str(FILEDIR/'lorem.txt'),
+        'v0.0.0',
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+POST https://api.github.com/repos/jwodder/test/releases
+{
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n",
+    "draft": false,
+    "name": "Init",
+    "prerelease": false,
+    "tag_name": "v0.0.0"
+}
+{
+    "assets": [],
+    "author": "jwodder",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n",
+    "created_at": "2017-09-24T23:46:48Z",
+    "draft": false,
+    "html_url": "https://github.com/jwodder/test/releases/tag/v0.0.0",
+    "id": 7871180,
+    "name": "Init",
+    "prerelease": false,
+    "published_at": "2017-09-25T00:05:35Z",
+    "tag_name": "v0.0.0",
+    "tarball_url": "https://api.github.com/repos/jwodder/test/tarball/v0.0.0",
+    "target_commitish": "master",
+    "url": "https://api.github.com/repos/jwodder/test/releases/7871180",
+    "zipball_url": "https://api.github.com/repos/jwodder/test/zipball/v0.0.0"
+}
+'''
+
+def test_release_edit_name(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    r = cmd('--debug', 'release', 'edit', '--name=Initial Release', 'v0.0.0')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
+PATCH https://api.github.com/repos/jwodder/test/releases/7871180
+{
+    "name": "Initial Release"
+}
+'''
+
+def test_release_edit_name_editor(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    mocker.patch('click.edit', return_value="Name: Initial Release\n")
+    r = cmd('--debug', 'release', 'edit', 'v0.0.0')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
+PATCH https://api.github.com/repos/jwodder/test/releases/7871180
+{
+    "name": "Initial Release"
+}
+'''
+    click.edit.assert_called_once_with(
+        'Tag-Name: v0.0.0\n'
+        'Name: Init\n'
+        'Draft: no\n'
+        'Prerelease: no\n'
+        '\n'
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n",
+        require_save=True,
+    )
+
+def test_release_edit_body(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    r = cmd(
+        '--debug',
+        'release', 'edit',
+        '--body=' + str(FILEDIR/'label.json'),
+        'v0.0.0',
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
+PATCH https://api.github.com/repos/jwodder/test/releases/7871180
+{
+    "body": "{\\"name\\": \\"Test Label\\", \\"color\\": \\"FF0000\\"}"
+}
+'''
+
+def test_release_edit_body_editor(cmd, mocker):
+    HEADERS = 'Tag-Name: v0.0.0\n' \
+              'Name: Initial Release\n' \
+              'Draft: no\n' \
+              'Prerelease: no\n'
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    mocker.patch(
+        'click.edit',
+        return_value=HEADERS + '\n{"name": "Test Label", "color": "FF0000"}'
+    )
+    r = cmd('--debug', 'release', 'edit', 'v0.0.0')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
+PATCH https://api.github.com/repos/jwodder/test/releases/7871180
+{
+    "body": "{\\"name\\": \\"Test Label\\", \\"color\\": \\"FF0000\\"}"
+}
+'''
+    click.edit.assert_called_once_with(
+        HEADERS + '\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n',
+        require_save=True,
+    )
+
+def test_release_delete_noforce(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    r = cmd('--debug', 'release', 'delete', 'v0.0.0', input='y\n')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
+Delete release jwodder/test:v0.0.0? [y/N]: y
+DELETE https://api.github.com/repos/jwodder/test/releases/7871180
+Release jwodder/test:v0.0.0 deleted
+'''
+
+def test_release_delete_force(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    r = cmd('--debug', 'release', 'delete', '-f', 'v0.0.0')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
+DELETE https://api.github.com/repos/jwodder/test/releases/7871180
+Release jwodder/test:v0.0.0 deleted
+'''
+
+def test_release_no_delete(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/jwodder/test.git',
+    )
+    r = cmd('--debug', 'release', 'delete', 'v0.0.0', input='n\n')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
+Delete release jwodder/test:v0.0.0? [y/N]: n
+Release not deleted
+'''
+
+# new with name on command line but not body (with & without filling in the body in the editor)
+# new with body on command line but not name (with & without filling in the name in the editor)
+# new with neither name nor body on command line
+# new: tag name deleted in editor
+# new: --draft, --published
+# new: --prerelease, --full-release
+
+# edit: --draft, --published
+# edit: --prerelease, --full-release
+# edit tag name

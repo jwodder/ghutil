@@ -1,10 +1,9 @@
 import click
-from   ghutil.api.util import API_ENDPOINT
-from   ghutil.regex    import API_REPO_RGX, GH_REPO_RGX, GH_USER_RGX, \
-                                GIT_REFNAME_RGX, WEB_REPO_RGX
-from   .asset          import Asset
-from   .repo           import Repository
-from   .util           import Resource, cacheable
+from   ghutil.regex import API_REPO_RGX, GH_REPO_RGX, GH_USER_RGX, \
+                            GIT_REFNAME_RGX, WEB_REPO_RGX
+from   .asset       import Asset
+from   .repo        import Repository
+from   .util        import Resource, cacheable
 
 class Release(Resource):
     URL_REGEXES = [
@@ -94,11 +93,9 @@ class Release(Resource):
         return Repository.default_params()
 
     def endpoint(self):
-        ### TODO: Confirm that `/tags/*` and `/latest` endpoints can't be used
-        ### for anything other than GETting
         ### TODO: Replace this method with `post`, `put`, and `delete`
         ### overloads?
-        return self[API_ENDPOINT].repos[self.owner][self.repo].releases[self.id]
+        return self._gh.repos[self.owner][self.repo].releases[self.id]
 
     def asset(self, arg):
         ### TODO: Could the list of assets in `.data["assets"]` ever be

@@ -2,6 +2,7 @@
 - Add (more) user documentation
     - Config file fields
     - Bash completion
+    - The "edit as mail" interface
 - Write more tests (somehow)
     - Test that the correct User-Agent header is being sent?
     - Test that calling `Repository.default_params()` when `get_remote_url()`
@@ -25,6 +26,7 @@
   always be stored in the API with CRLF line endings.  Should issues & PRs
   created/edited with ghutil also use CRLFs?  Should CRLFs be converted to LFs
   when displaying/editing bodies returned by the API?
+    - Should trailing line endings be removed when setting object bodies?
 
 API Completeness
 ================
@@ -104,6 +106,7 @@ Interface Improvements
   use `append-accept = false`
 - Allow specifying `--since` and `--due-on` values in human-friendly formats
   like `2017-06-28` and `1h`
+- `edit_as_mail()`: Handle header parser errors in a more human-friendly way
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
@@ -164,7 +167,7 @@ Interface Improvements
         - Allow specifying the repository on the command line
     - Support setting `target_commitish` when creating/editing a release
     - Allow specifying the repository as a local path
-    - `unattach`: Support specifying assets by URL without a release argument?
+    - `unattach`: Support specifying assets by URL without a release argument
 
 - `gh repo`:
     - Give `new` an option for setting the local repository's origin to the new
