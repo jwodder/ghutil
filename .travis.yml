@@ -1,11 +1,13 @@
 language: python
+cache: pip
 python:
     - '3.4'
     - '3.5'
     - '3.6'
 install:
-    - pip install coveralls tox
+    - pip install codecov coveralls tox
 script:
     - tox -e py
 after_success:
+    - codecov
     - coveralls
