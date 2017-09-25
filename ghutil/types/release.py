@@ -92,10 +92,19 @@ class Release(Resource):
         # latest tag.
         return Repository.default_params()
 
-    def endpoint(self):
-        ### TODO: Replace this method with `post`, `put`, and `delete`
-        ### overloads?
-        return self._gh.repos[self.owner][self.repo].releases[self.id]
+    def __getitem__(self, name):
+        # The …/releases/latest and …/releases/tags/:tag endpoints are only
+        # good for GETting; they cannot be PATCHed or DELETEd, and appending
+        # `/assets` to them results in a 404.  Thus, if you want to actually
+        # _do_ something with a release, you need to use the …/releases/:id
+        # endpoint instead; hence, this overload.
+        #
+        # NOTE: This will fail horribly if GitHub ever introduces a
+        # …/releases/:id/get endpoint.  Hopefully, that will never happen.
+        if name.upper() == 'GET':
+            return super().__getitem__(name)
+        else:
+            return self._gh.repos[self.owner][self.repo].releases[self.id][name]
 
     def asset(self, arg):
         ### TODO: Could the list of assets in `.data["assets"]` ever be

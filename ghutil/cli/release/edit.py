@@ -32,4 +32,4 @@ def cli(release, **edited):
             return
     elif 'body' in edited:
         edited['body'] = edited['body'].read()
-    release.endpoint().patch(json=edited)
+    release.patch(json=edited)
