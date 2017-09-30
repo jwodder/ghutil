@@ -14,7 +14,7 @@ extensions = [
 
 autodoc_default_flags = [
     'members',
-    #'private-members',  # <https://github.com/sphinx-doc/sphinx/issues/3969>
+    'private-members',
     'show-inheritance',
     'undoc-members',
 ]
