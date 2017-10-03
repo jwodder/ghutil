@@ -6,7 +6,7 @@ from   betamax_matchers.json_body      import JSONBodyMatcher
 from   betamax_serializers.pretty_json import PrettyJSONSerializer
 from   click.testing                   import CliRunner
 import pytest
-import requests
+import responses
 from   ghutil.api                      import GitHub
 from   ghutil.cli.__main__             import cli
 from   ghutil                          import git
@@ -50,18 +50,16 @@ def cmd(betamax_session):
     return runner
 
 @pytest.fixture
-def nullcmd(mocker):
-    null_session = requests.Session()
-    mocker.patch.object(null_session, 'request')
-    def runner(*args, **kwargs):
-        return CliRunner().invoke(
-            cli,
-            ['-c', os.devnull] + list(args),
-            obj=GitHub(null_session),
-            **kwargs
-        )
-    yield runner
-    assert not null_session.request.called
+def nullcmd():
+    """ Errors if any HTTP requests are made """
+    with responses.RequestsMock():
+        def runner(*args, **kwargs):
+            return CliRunner().invoke(
+                cli,
+                ['-c', os.devnull] + list(args),
+                **kwargs
+            )
+        yield runner
 
 @pytest.fixture
 def test_repo(mocker):
