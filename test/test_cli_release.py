@@ -788,10 +788,7 @@ POST https://api.github.com/repos/jwodder/test/releases
 }
 '''
     click.edit.assert_called_once_with(
-        'Tag-Name: v0.0.0\n' \
-        'Name: \n' \
-        'Draft: no\n' \
-        'Prerelease: no\n\n' + LOREM,
+        'Tag-Name: v0.0.0\nName: \nDraft: no\nPrerelease: no\n\n' + LOREM,
         require_save=True,
     )
 

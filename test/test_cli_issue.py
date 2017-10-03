@@ -2,8 +2,11 @@ import json
 import os
 from   pathlib import Path
 import click
+import pytest
 
 FILEDIR = Path(__file__).with_name('data') / 'files'
+
+LOREM = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n"
 
 READ_ISSUE = '''\
 Issue:     click plugins / cache / local datastore
@@ -643,6 +646,201 @@ Usage: gh issue label [OPTIONS] ISSUE [LABEL]...
 
 Error: --delete and --set are mutually exclusive
 '''
+
+@pytest.mark.usefixtures('test_repo')
+def test_issue_new(cmd):
+    r = cmd(
+        '--debug',
+        'issue', 'new',
+        '-TThing is broken',
+        '--body', str(FILEDIR/'lorem.txt'),
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+POST https://api.github.com/repos/jwodder/test/issues
+{
+    "assignees": [],
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n",
+    "labels": [],
+    "milestone": null,
+    "title": "Thing is broken"
+}
+{
+    "assignees": [],
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n",
+    "closed_at": null,
+    "closed_by": null,
+    "comments": 0,
+    "created_at": "2017-09-28T21:44:54Z",
+    "html_url": "https://github.com/jwodder/test/issues/1",
+    "id": 261470773,
+    "labels": [],
+    "locked": false,
+    "milestone": null,
+    "number": 1,
+    "reactions": {},
+    "state": "open",
+    "title": "Thing is broken",
+    "updated_at": "2017-09-28T21:44:54Z",
+    "url": "https://api.github.com/repos/jwodder/test/issues/1",
+    "user": "jwodder"
+}
+'''
+
+@pytest.mark.usefixtures('test_repo')
+def test_issue_new_edit_body(cmd, mocker):
+    HEADERS = 'Title: Thing is broken\n' \
+              'Labels: \n' \
+              'Assignees: \n' \
+              'Milestone: \n'
+    mocker.patch('click.edit', return_value=HEADERS + '\n' + LOREM)
+    r = cmd('--debug', 'issue', 'new', '-TThing is broken')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test
+POST https://api.github.com/repos/jwodder/test/issues
+{
+    "assignees": [],
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n",
+    "labels": [],
+    "milestone": null,
+    "title": "Thing is broken"
+}
+{
+    "assignees": [],
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n",
+    "closed_at": null,
+    "closed_by": null,
+    "comments": 0,
+    "created_at": "2017-09-28T21:44:54Z",
+    "html_url": "https://github.com/jwodder/test/issues/1",
+    "id": 261470773,
+    "labels": [],
+    "locked": false,
+    "milestone": null,
+    "number": 1,
+    "reactions": {},
+    "state": "open",
+    "title": "Thing is broken",
+    "updated_at": "2017-09-28T21:44:54Z",
+    "url": "https://api.github.com/repos/jwodder/test/issues/1",
+    "user": "jwodder"
+}
+'''
+    click.edit.assert_called_once_with(HEADERS+'\n', require_save=True)
+
+@pytest.mark.usefixtures('test_repo')
+def test_issue_new_edit_title(cmd, mocker):
+    HEADERS = 'Title: Thing is broken\n' \
+              'Labels: \n' \
+              'Assignees: \n' \
+              'Milestone: \n'
+    mocker.patch('click.edit', return_value=HEADERS + '\n' + LOREM)
+    r = cmd('--debug', 'issue', 'new', '--body', str(FILEDIR/'lorem.txt'))
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test
+POST https://api.github.com/repos/jwodder/test/issues
+{
+    "assignees": [],
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n",
+    "labels": [],
+    "milestone": null,
+    "title": "Thing is broken"
+}
+{
+    "assignees": [],
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n",
+    "closed_at": null,
+    "closed_by": null,
+    "comments": 0,
+    "created_at": "2017-09-28T21:44:54Z",
+    "html_url": "https://github.com/jwodder/test/issues/1",
+    "id": 261470773,
+    "labels": [],
+    "locked": false,
+    "milestone": null,
+    "number": 1,
+    "reactions": {},
+    "state": "open",
+    "title": "Thing is broken",
+    "updated_at": "2017-09-28T21:44:54Z",
+    "url": "https://api.github.com/repos/jwodder/test/issues/1",
+    "user": "jwodder"
+}
+'''
+    click.edit.assert_called_once_with(
+        'Title: \nLabels: \nAssignees: \nMilestone: \n\n' + LOREM,
+        require_save=True,
+    )
+
+@pytest.mark.usefixtures('test_repo')
+def test_issue_new_edit_title_no_body(cmd, mocker):
+    EDIT = 'Title: \nLabels: \nAssignees: \nMilestone: \n\n'
+    mocker.patch('click.edit', return_value='Title: Thing is broken\n')
+    r = cmd('--debug', 'issue', 'new')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test
+POST https://api.github.com/repos/jwodder/test/issues
+{
+    "assignees": [],
+    "body": null,
+    "labels": [],
+    "milestone": null,
+    "title": "Thing is broken"
+}
+{
+    "assignees": [],
+    "body": null,
+    "closed_at": null,
+    "closed_by": null,
+    "comments": 0,
+    "created_at": "2017-09-28T21:44:54Z",
+    "html_url": "https://github.com/jwodder/test/issues/2",
+    "id": 261470775,
+    "labels": [],
+    "locked": false,
+    "milestone": null,
+    "number": 2,
+    "reactions": {},
+    "state": "open",
+    "title": "Thing is broken",
+    "updated_at": "2017-09-28T21:44:54Z",
+    "url": "https://api.github.com/repos/jwodder/test/issues/2",
+    "user": "jwodder"
+}
+'''
+    click.edit.assert_called_once_with(EDIT, require_save=True)
+
+@pytest.mark.usefixtures('test_repo')
+def test_issue_new_no_title_no_body(cmd, mocker):
+    EDIT = 'Title: \nLabels: \nAssignees: \nMilestone: \n\n'
+    mocker.patch('click.edit', return_value=EDIT)
+    r = cmd('--debug', 'issue', 'new')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test
+Aborting issue due to empty title
+'''
+    click.edit.assert_called_once_with(EDIT, require_save=True)
+
+@pytest.mark.usefixtures('test_repo')
+def test_issue_new_no_name_no_body_no_save(nullcmd, mocker):
+    EDIT = 'Title: \nLabels: \nAssignees: \nMilestone: \n\n'
+    mocker.patch('click.edit', return_value=None)
+    r = nullcmd('--debug', 'issue', 'new')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test
+No changes saved; exiting
+'''
+    click.edit.assert_called_once_with(EDIT, require_save=True)
+
+# issue new
+# - milestones
+# - editor invoked and you don't have push permission
+# - explicit repository on command line
 
 # issue edit - two assignees
 # editing an issue on a repository you don't have push access to

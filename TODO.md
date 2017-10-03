@@ -122,6 +122,7 @@ Interface Improvements
     - default protocol to use when cloning repositories/gists
     - per-repository configuration of the name of the GitHub remote?
     - path to the Git executable?
+    - default options for `gh repo new`?
 
 - `gh issue`:
     - `reply`:
