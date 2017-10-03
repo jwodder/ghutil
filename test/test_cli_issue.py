@@ -826,10 +826,10 @@ Aborting issue due to empty title
     click.edit.assert_called_once_with(EDIT, require_save=True)
 
 @pytest.mark.usefixtures('test_repo')
-def test_issue_new_no_name_no_body_no_save(nullcmd, mocker):
+def test_issue_new_no_name_no_body_no_save(cmd, mocker):
     EDIT = 'Title: \nLabels: \nAssignees: \nMilestone: \n\n'
     mocker.patch('click.edit', return_value=None)
-    r = nullcmd('--debug', 'issue', 'new')
+    r = cmd('--debug', 'issue', 'new')
     assert r.exit_code == 0
     assert r.output == '''\
 GET https://api.github.com/repos/jwodder/test
