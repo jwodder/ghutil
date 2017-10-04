@@ -837,11 +837,57 @@ No changes saved; exiting
 '''
     click.edit.assert_called_once_with(EDIT, require_save=True)
 
+def test_issue_assign(cmd):
+    r = cmd('--debug', 'issue', 'assign', 'jwodder/test/1', 'jwodder')
+    assert r.exit_code == 0
+    assert r.output == '''\
+POST https://api.github.com/repos/jwodder/test/issues/1/assignees
+{
+    "assignees": [
+        "jwodder"
+    ]
+}
+'''
+
+def test_issue_assign_delete(cmd):
+    r = cmd('--debug', 'issue', 'assign', '-d', 'jwodder/test/1', 'jwodder')
+    assert r.exit_code == 0
+    assert r.output == '''\
+DELETE https://api.github.com/repos/jwodder/test/issues/1/assignees
+{
+    "assignees": [
+        "jwodder"
+    ]
+}
+'''
+
+def test_issue_assign_set(cmd):
+    r = cmd('--debug', 'issue', 'assign', '--set', 'jwodder/test/1', 'jwodder')
+    assert r.exit_code == 0
+    assert r.output == '''\
+PATCH https://api.github.com/repos/jwodder/test/issues/1
+{
+    "assignees": [
+        "jwodder"
+    ]
+}
+'''
+
+def test_issue_assign_delete_set(nullcmd):
+    r = nullcmd('issue', 'assign', '-d', '--set', 'jwodder/test/1', 'jwodder')
+    assert r.exit_code != 0
+    assert r.output == '''\
+Usage: gh issue assign [OPTIONS] ISSUE [USER]...
+
+Error: --delete and --set are mutually exclusive
+'''
+
 # issue new
 # - milestones
 # - editor invoked and you don't have push permission
 # - explicit repository on command line
 
 # issue edit - two assignees
-# editing an issue on a repository you don't have push access to
+# creating/editing an issue on a repository you don't have push access to
 # issue search
+# issue assign: no assignees given
