@@ -27,8 +27,9 @@ from   ghutil.types import Repository
 @click.pass_obj
 def cli(gh, repo, **params):
     """ List issues for a repository """
-    if params.get('label'):
-        params['label'] = ','.join(params['label'])
+    labels = params.pop('label', ())
+    if labels:
+        params['labels'] = ','.join(labels)
     if params["milestone"] not in (None, 'none', '*'):
         params["milestone"] = int(repo.milestone(params["milestone"]))
     for issue in repo.issues.get(params=params):

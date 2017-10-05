@@ -1,0 +1,113 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-10-05T15:53:03",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/pypa/pip/milestones?state=all"
+      },
+      "response": {
+        "body": {
+          "base64_string": "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",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Thu, 05 Oct 2017 15:53:03 GMT",
+          "ETag": "W/\"59f2dcc1e71107e19d6567102c9ca380\"",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "C84E:42B1:E05F78:21F4517:59D6555F",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4999",
+          "X-RateLimit-Reset": "1507222383",
+          "X-Runtime-rack": "0.110450",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/pypa/pip/milestones?state=all"
+      }
+    },
+    {
+      "recorded_at": "2017-10-05T15:53:03",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/pypa/pip/issues?milestone=10"
+      },
+      "response": {
+        "body": {
+          "base64_string": "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",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Thu, 05 Oct 2017 15:53:03 GMT",
+          "ETag": "W/\"57bb475d8bc76abfebfe3307af069fb3\"",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "C84E:42B1:E05F89:21F4539:59D6555F",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4998",
+          "X-RateLimit-Reset": "1507222383",
+          "X-Runtime-rack": "0.146955",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/pypa/pip/issues?milestone=10"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

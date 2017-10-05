@@ -1,0 +1,113 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-10-05T15:53:04",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/pypa/pip/milestones?state=all"
+      },
+      "response": {
+        "body": {
+          "base64_string": "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",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Thu, 05 Oct 2017 15:53:04 GMT",
+          "ETag": "W/\"59f2dcc1e71107e19d6567102c9ca380\"",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "C852:42AE:4B9FEC:AB9121:59D65560",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4995",
+          "X-RateLimit-Reset": "1507222383",
+          "X-Runtime-rack": "0.086167",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/pypa/pip/milestones?state=all"
+      }
+    },
+    {
+      "recorded_at": "2017-10-05T15:53:04",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
+          "Accept-Encoding": "gzip, deflate",
+          "Authorization": "---REDACTED---",
+          "Connection": "keep-alive",
+          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.5.2"
+        },
+        "method": "GET",
+        "uri": "https://api.github.com/repos/pypa/pip/issues?labels=discussion+needed%2Ctopic+-+user-scheme&milestone=10"
+      },
+      "response": {
+        "body": {
+          "base64_string": "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",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+          "Cache-Control": "private, max-age=60, s-maxage=60",
+          "Content-Encoding": "gzip",
+          "Content-Security-Policy": "default-src 'none'",
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Thu, 05 Oct 2017 15:53:04 GMT",
+          "ETag": "W/\"e3a7735a44f6e1ed574a74e006cc55c3\"",
+          "Server": "GitHub.com",
+          "Status": "200 OK",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+          "Transfer-Encoding": "chunked",
+          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "deny",
+          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
+          "X-GitHub-Request-Id": "C852:42AE:4B9FF8:AB9134:59D65560",
+          "X-RateLimit-Limit": "5000",
+          "X-RateLimit-Remaining": "4994",
+          "X-RateLimit-Reset": "1507222383",
+          "X-Runtime-rack": "0.108793",
+          "X-XSS-Protection": "1; mode=block"
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/pypa/pip/issues?labels=discussion+needed%2Ctopic+-+user-scheme&milestone=10"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}

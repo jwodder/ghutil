@@ -158,3 +158,5 @@ No modifications made; exiting
         "Name: duplicate\nColor: cccccc\n",
         require_save=True,
     )
+
+# operating on labels with slashes in their names

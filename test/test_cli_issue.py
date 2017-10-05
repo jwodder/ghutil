@@ -138,6 +138,41 @@ pypa/packaging/74
 pypa/packaging/34
 '''
 
+def test_issue_list_milestone(cmd):
+    r = cmd('issue', 'list', 'pypa/pip', '-m', 'Improve User Experience')
+    assert r.exit_code == 0
+    assert r.output == '''\
+pypa/pip/4685
+pypa/pip/4649
+pypa/pip/4575
+pypa/pip/1668
+'''
+
+def test_issue_list_milestone_label(cmd):
+    r = cmd(
+        'issue', 'list',
+        'pypa/pip',
+        '-m', 'Improve User Experience',
+        '-l', 'discussion needed',
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+pypa/pip/4685
+pypa/pip/4649
+pypa/pip/4575
+'''
+
+def test_issue_list_milestone_two_labels(cmd):
+    r = cmd(
+        'issue', 'list',
+        'pypa/pip',
+        '-m', 'Improve User Experience',
+        '-l', 'discussion needed',
+        '-l', 'topic - user-scheme',
+    )
+    assert r.exit_code == 0
+    assert r.output == 'pypa/pip/4575\n'
+
 def test_issue_show_issue(cmd):
     r = cmd('issue', 'show', 'ghutil/1')
     assert r.exit_code == 0
