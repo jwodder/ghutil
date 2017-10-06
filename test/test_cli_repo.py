@@ -264,9 +264,10 @@ yuanshankongmeng/Fiona
 '''
 
 def test_repo_search(cmd):
-    r = cmd('repo', 'search', 'halting', 'problem')
+    r = cmd('--debug', 'repo', 'search', 'halting', 'problem')
     assert r.exit_code == 0
     assert r.output == '''\
+GET https://api.github.com/search/repositories?q=halting+problem
 ZongzheYuan/HaltingProblem
 ForbesLindesay/halting-problem
 davidtadams/HaltingProblem
@@ -290,9 +291,10 @@ vincentclee/csci2670-intro_to_theory_of_computation
 '''
 
 def test_repo_search_limit(cmd):
-    r = cmd('repo', 'search', '--limit', '10', 'halting', 'problem')
+    r = cmd('--debug', 'repo', 'search', '--limit', '10', 'halting', 'problem')
     assert r.exit_code == 0
     assert r.output == '''\
+GET https://api.github.com/search/repositories?q=halting+problem
 ZongzheYuan/HaltingProblem
 ForbesLindesay/halting-problem
 davidtadams/HaltingProblem
