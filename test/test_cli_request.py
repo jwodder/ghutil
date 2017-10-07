@@ -4244,6 +4244,20 @@ def test_request_paginate_user_repos(cmd):
     assert r.exit_code == 0
     assert r.output == USER_REPOS_PAGE1 + USER_REPOS_PAGE2
 
+def test_request_debug_user_repos(cmd):
+    r = cmd('--debug', 'request', '/user/repos')
+    assert r.exit_code == 0
+    assert r.output == 'GET https://api.github.com/user/repos\n' \
+                        + USER_REPOS_PAGE1
+
+def test_request_debug_paginate_user_repos(cmd):
+    r = cmd('--debug', 'request', '--paginate', '/user/repos')
+    assert r.exit_code == 0
+    assert r.output == 'GET https://api.github.com/user/repos\n' \
+                        + USER_REPOS_PAGE1 \
+                        + 'GET https://api.github.com/user/repos?page=2\n' \
+                        + USER_REPOS_PAGE2
+
 def test_request_nonjson(cmd):
     r = cmd('request', 'https://github.com/vinta/awesome-python/pull/875.diff')
     assert r.exit_code == 0

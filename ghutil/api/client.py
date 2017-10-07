@@ -5,7 +5,7 @@ from   ghutil      import __url__, __version__
 from   ghutil      import types
 from   ghutil.util import cacheable, search_query
 from   .endpoint   import GHEndpoint
-from   .util       import API_ENDPOINT, paginate
+from   .util       import die
 
 ACCEPT = ','.join([
     'application/vnd.github.drax-preview',           # Licenses
@@ -40,14 +40,24 @@ class GitHub:
         return self.user.get()["login"]
 
     def search(self, objtype, *terms, **params):
-        r = self.session.get(
-            API_ENDPOINT + '/search/' + objtype,
+        r = self['search'][objtype].get(
+            decode=False,
             params=dict(params, q=search_query(*terms)),
         )
-        for page in paginate(self.session, r):
+        for page in self.paginate(r):
             yield from page["items"]
         ### Return total_count?
         ### Do something on incomplete_results?
+
+    def paginate(self, r):
+        while True:
+            if not r.ok:
+                die(r)
+            yield r.json()
+            url = r.links.get('next', {}).get('url')
+            if url is None:
+                break
+            r = self[url].get(decode=False)
 
     def repository(self, obj=None):
         if obj is None:

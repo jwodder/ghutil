@@ -160,6 +160,7 @@ Interface Improvements
         - Add some sort of shortcut syntax for using the head repository's
           parent repo as the base?
         - Support PR templates when creating PRs
+    - `read`: Show merged status etc.
 
 - `gh release`:
     - `new`:

@@ -1,6 +1,6 @@
 import re
 import click
-from   ghutil.api.util import die, echo_response, paginate
+from   ghutil.api.util import die, echo_response
 from   ghutil.showing  import print_json
 
 @click.command()
@@ -31,7 +31,7 @@ def cli(gh, path, method, data, header, do_paginate):
     if not r.ok:
         die(r)
     elif do_paginate and method.lower() == 'get' and 'next' in r.links:
-        for q in paginate(gh.session, r):
+        for q in gh.paginate(r):
             print_json(q)
     else:
         echo_response(r)

@@ -2,7 +2,7 @@ from   itertools      import chain
 import click
 from   requests       import Request
 from   ghutil.showing import print_json
-from   .util          import API_ENDPOINT, die, paginate
+from   .util          import API_ENDPOINT, die
 
 class GHEndpoint:
     def __init__(self, gh, *path):
@@ -46,7 +46,7 @@ class GHEndpoint:
         elif not r.ok:
             die(r)
         elif method.lower() == 'get' and 'next' in r.links:
-            return chain.from_iterable(paginate(self._gh.session, r))
+            return chain.from_iterable(self._gh.paginate(r))
         elif r.status_code == 204:
             return None
         else:
