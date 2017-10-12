@@ -924,6 +924,22 @@ PATCH https://api.github.com/repos/jwodder/test/releases/7871180
     click.edit.assert_called_once_with(HEADERS+'\n'+LOREM, require_save=True)
 
 @pytest.mark.usefixtures('test_repo')
+def test_release_edit_nochange(cmd, mocker):
+    RELEASE = 'Tag-Name: v0.0.0\n' \
+              'Name: Init\n' \
+              'Draft: no\n' \
+              'Prerelease: no\n' \
+              '\n' + LOREM
+    mocker.patch('click.edit', return_value=RELEASE)
+    r = cmd('--debug', 'release', 'edit', 'v0.0.0')
+    assert r.exit_code == 0
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
+No modifications made; exiting
+'''
+    click.edit.assert_called_once_with(RELEASE, require_save=True)
+
+@pytest.mark.usefixtures('test_repo')
 def test_release_delete_noforce(cmd):
     r = cmd('--debug', 'release', 'delete', 'v0.0.0', input='y\n')
     assert r.exit_code == 0
