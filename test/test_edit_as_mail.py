@@ -95,6 +95,70 @@ from   ghutil.edit import edit_as_mail
         marks=pytest.mark.xfail(reason='TODO'),
     ),
 
+    pytest.param(
+        {"title": 'Title', "body": "Body"},
+        "title",
+        "body",
+        "Title: Title\n\nBody",
+        None,
+        None,
+    ),
+
+    pytest.param(
+        {"title": 'Title', "body": "Body"},
+        "title",
+        "body",
+        "Title: Title\n\nBody",
+        "Title: Title\n\nBody",
+        {},
+    ),
+
+    pytest.param(
+        {"title": 'Title', "body": "Body"},
+        "title",
+        "body",
+        "Title: Title\n\nBody",
+        "Title: New Title\n\nNew Body\n",
+        {"title": "New Title", "body": "New Body\n"},
+    ),
+
+    pytest.param(
+        {"title": 'Title', "body": "Body"},
+        "title",
+        "body",
+        "Title: Title\n\nBody",
+        "Title: Title\n\n",
+        {"body": ""},
+    ),
+
+    pytest.param(
+        {"title": 'Title', "body": "Body"},
+        "title",
+        "body",
+        "Title: Title\n\nBody",
+        "Title: Title\n",
+        {},
+    ),
+
+    pytest.param(
+        {"title": 'Title', "body": "Body"},
+        "title",
+        "body",
+        "Title: Title\n\nBody",
+        "\n",
+        {},
+        marks=pytest.mark.xfail(reason='TODO'),
+    ),
+
+    pytest.param(
+        {"title": 'Title', "body": "Body"},
+        "title",
+        "body",
+        "Title: Title\n\nBody",
+        "",
+        {},
+    ),
+
     (
         {"publish": False},
         "publish",
@@ -146,12 +210,8 @@ def test_edit_as_mail(mocker, obj, fields, bodyfield, edit_in, edit_out, ret):
     assert edit_as_mail(obj, fields, bodyfield) == ret
     click.edit.assert_called_once_with(edit_in, require_save=True)
 
-# deleting the body
-# non-empty input field
-# leaving a non-empty input field as-is
-# non-empty input body
 # `fields` is None
-# no body
+# `fields` is a list
 # `obj` contains extra fields
 # some fields are changed, others aren't
 # empty body vs. body that's just a newline
