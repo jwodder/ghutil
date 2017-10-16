@@ -1,3 +1,4 @@
+from   copy        import deepcopy
 import click
 #from   headerparser import Error
 import pytest
@@ -207,7 +208,9 @@ from   ghutil.edit import edit_as_mail
 ])
 def test_edit_as_mail(mocker, obj, fields, bodyfield, edit_in, edit_out, ret):
     mocker.patch('click.edit', return_value=edit_out)
+    original_obj = deepcopy(obj)
     assert edit_as_mail(obj, fields, bodyfield) == ret
+    assert obj == original_obj
     click.edit.assert_called_once_with(edit_in, require_save=True)
 
 # `fields` is None
@@ -215,7 +218,6 @@ def test_edit_as_mail(mocker, obj, fields, bodyfield, edit_in, edit_out, ret):
 # `obj` contains extra fields
 # some fields are changed, others aren't
 # empty body vs. body that's just a newline
-# assert that `obj` is never modified
 
 # Errors:
 # - adding a body
