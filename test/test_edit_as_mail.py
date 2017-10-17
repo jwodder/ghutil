@@ -15,6 +15,15 @@ from   ghutil.edit import edit_as_mail
     ),
 
     (
+        {"title": None, "labels": [], "body": None},
+        "title labels",
+        "body",
+        "Title: \nLabels: \n\n",
+        "Title: Testing\nLabels: test, editing\n\nThis is a message body.\n",
+        {"title": "Testing", "labels": ["test", "editing"], "body": "This is a message body.\n"},
+    ),
+
+    (
         {"title": None, "labels": (), "body": None},
         "title labels",
         "body",
@@ -43,6 +52,15 @@ from   ghutil.edit import edit_as_mail
 
     (
         {"title": None, "labels": ('red', 'green', 'blue'), "body": None},
+        "title labels",
+        "body",
+        "Title: \nLabels: red, green, blue\n\n",
+        "Title: Testing\nLabels:  \n  \n\n",
+        {"title": "Testing", "labels": []},
+    ),
+
+    (
+        {"title": None, "labels": ['red', 'green', 'blue'], "body": None},
         "title labels",
         "body",
         "Title: \nLabels: red, green, blue\n\n",
@@ -96,7 +114,7 @@ from   ghutil.edit import edit_as_mail
         marks=pytest.mark.xfail(reason='TODO'),
     ),
 
-    pytest.param(
+    (
         {"title": 'Title', "body": "Body"},
         "title",
         "body",
@@ -105,7 +123,7 @@ from   ghutil.edit import edit_as_mail
         None,
     ),
 
-    pytest.param(
+    (
         {"title": 'Title', "body": "Body"},
         "title",
         "body",
@@ -114,7 +132,7 @@ from   ghutil.edit import edit_as_mail
         {},
     ),
 
-    pytest.param(
+    (
         {"title": 'Title', "body": "Body"},
         "title",
         "body",
@@ -123,7 +141,7 @@ from   ghutil.edit import edit_as_mail
         {"title": "New Title", "body": "New Body\n"},
     ),
 
-    pytest.param(
+    (
         {"title": 'Title', "body": "Body"},
         "title",
         "body",
@@ -132,7 +150,7 @@ from   ghutil.edit import edit_as_mail
         {"body": ""},
     ),
 
-    pytest.param(
+    (
         {"title": 'Title', "body": "Body"},
         "title",
         "body",
@@ -151,13 +169,22 @@ from   ghutil.edit import edit_as_mail
         marks=pytest.mark.xfail(reason='TODO'),
     ),
 
-    pytest.param(
+    (
         {"title": 'Title', "body": "Body"},
         "title",
         "body",
         "Title: Title\n\nBody",
         "",
         {},
+    ),
+
+    (
+        {"title": 'Title', "body": "Body"},
+        "title",
+        "body",
+        "Title: Title\n\nBody",
+        "Title: Title\n\nBody\n",
+        {"body": "Body\n"},
     ),
 
     (
@@ -196,6 +223,16 @@ from   ghutil.edit import edit_as_mail
         {},
     ),
 
+    pytest.param(
+        {"publish": False},
+        "publish",
+        None,
+        "Publish: no\n",
+        "\n",
+        {},
+        marks=pytest.mark.xfail(reason='TODO'),
+    ),
+
     (
         {"publish": True},
         "publish",
@@ -205,6 +242,24 @@ from   ghutil.edit import edit_as_mail
         {},
     ),
 
+    (
+        {"title": "Title", "labels": ["red", "green"], "body": "Body"},
+        None,
+        None,
+        "Body: Body\nLabels: red, green\nTitle: Title\n",
+        None,
+        None,
+    ),
+
+    (
+        {"title": "Title", "labels": ["red", "green"], "body": "Body"},
+        None,
+        "body",
+        "Labels: red, green\nTitle: Title\n\nBody",
+        None,
+        None,
+    ),
+
 ])
 def test_edit_as_mail(mocker, obj, fields, bodyfield, edit_in, edit_out, ret):
     mocker.patch('click.edit', return_value=edit_out)
@@ -212,12 +267,14 @@ def test_edit_as_mail(mocker, obj, fields, bodyfield, edit_in, edit_out, ret):
     assert edit_as_mail(obj, fields, bodyfield) == ret
     assert obj == original_obj
     click.edit.assert_called_once_with(edit_in, require_save=True)
+    if ret is not None:
+        for k,v in ret.items():
+            assert obj[k] != v
 
-# `fields` is None
-# `fields` is a list
 # `obj` contains extra fields
 # some fields are changed, others aren't
 # empty body vs. body that's just a newline
+# header values that contain newlines
 
 # Errors:
 # - adding a body

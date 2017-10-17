@@ -7,6 +7,8 @@ def edit_as_mail(obj: dict, fields=None, bodyfield=None):
     # Fields that the user deletes are considered unchanged
     if fields is None:
         fields = sorted(obj.keys())
+        if bodyfield is not None:
+            fields.remove(bodyfield)
     elif isinstance(fields, str):
         fields = fields.split()
     parser = HeaderParser(body=False if bodyfield is None else None)
