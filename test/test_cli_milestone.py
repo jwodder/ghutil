@@ -202,3 +202,27 @@ GET https://api.github.com/repos/jwodder/test/milestones?state=all
 DELETE https://api.github.com/repos/jwodder/test/milestones/2
 Milestone 'Test Milestone' deleted
 '''
+
+def test_milestone_show(cmd):
+    r = cmd('milestone', 'show', '-R', 'jwodder/test', 'v1.0')
+    assert r.exit_code == 0
+    assert r.output == '''\
+[
+    {
+        "closed_at": null,
+        "closed_issues": 0,
+        "created_at": "2017-10-20T19:16:13Z",
+        "creator": "jwodder",
+        "description": null,
+        "due_on": null,
+        "html_url": "https://github.com/jwodder/test/milestone/2",
+        "id": 2855064,
+        "number": 2,
+        "open_issues": 0,
+        "state": "open",
+        "title": "v1.0",
+        "updated_at": "2017-10-20T19:16:13Z",
+        "url": "https://api.github.com/repos/jwodder/test/milestones/2"
+    }
+]
+'''
