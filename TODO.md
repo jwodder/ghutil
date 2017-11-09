@@ -107,6 +107,8 @@ Interface Improvements
 - Allow specifying `--since` and `--due-on` values in human-friendly formats
   like `2017-06-28` and `1h`
 - `edit_as_mail()`: Handle header parser errors in a more human-friendly way
+- Give the `search` subcommands an option for just showing the total number of
+  results?
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL

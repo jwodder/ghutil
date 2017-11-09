@@ -62,6 +62,7 @@ class Repository(Resource):
         ("source", "full_name"),
         "topics",
         ("license", "spdx_id"),
+        "archived",
     ]
 
     @cacheable
