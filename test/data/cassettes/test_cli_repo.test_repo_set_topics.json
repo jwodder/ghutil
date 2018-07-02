@@ -1,0 +1,122 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2018-07-02T20:34:24",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"names\": [\"test\", \"not-a-real-repository\"]}"
+        },
+        "headers": {
+          "Accept": [
+            "application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "---REDACTED---"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "44"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.19.1 CPython/3.4.8"
+          ]
+        },
+        "method": "PUT",
+        "uri": "https://api.github.com/repos/jwodder/test/topics"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAAA6tWykvMTS1WsopWKkktLlHSUcrLL9FN1C1KTcwBEgX5xZkl+UWVSrG1AFa05PcqAAAA",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Access-Control-Expose-Headers": [
+            "ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval"
+          ],
+          "Cache-Control": [
+            "private, max-age=60, s-maxage=60"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Security-Policy": [
+            "default-src 'none'"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Mon, 02 Jul 2018 20:34:24 GMT"
+          ],
+          "ETag": [
+            "W/\"bb08b4072887a79a3ac55e5467ad8249\""
+          ],
+          "Referrer-Policy": [
+            "origin-when-cross-origin, strict-origin-when-cross-origin"
+          ],
+          "Server": [
+            "GitHub.com"
+          ],
+          "Status": [
+            "200 OK"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubdomains; preload"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ],
+          "Vary": [
+            "Accept, Authorization, Cookie, X-GitHub-OTP"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "deny"
+          ],
+          "X-GitHub-Media-Type": [
+            "github.mercy-preview, github.squirrel-girl-preview"
+          ],
+          "X-GitHub-Request-Id": [
+            "B93C:510A:E8F3F6:25FCD43:5B3A8C50"
+          ],
+          "X-RateLimit-Limit": [
+            "5000"
+          ],
+          "X-RateLimit-Remaining": [
+            "4990"
+          ],
+          "X-RateLimit-Reset": [
+            "1530566287"
+          ],
+          "X-Runtime-rack": [
+            "0.281498"
+          ],
+          "X-XSS-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.github.com/repos/jwodder/test/topics"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}

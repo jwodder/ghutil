@@ -280,6 +280,9 @@ Repositories
 ``gh repo search [--limit <N>] [--sort stars|forks|updated] [--asc|--desc] <search-term> ...``
    Search for repositories on GitHub
 
+``gh repo set-topics <repo> <topic> ...``
+   Set a repository's topics
+
 ``gh repo show [<repo> ...]``
    Show details on the given repositories
 

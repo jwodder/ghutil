@@ -27,6 +27,8 @@
   created/edited with ghutil also use CRLFs?  Should CRLFs be converted to LFs
   when displaying/editing bodies returned by the API?
     - Should trailing line endings be removed when setting object bodies?
+- Tag the code at each point it is/was stable
+    - At the very least, tag the code before making any breaking changes
 
 API Completeness
 ================
@@ -36,12 +38,15 @@ API Completeness
         - Are subscribers already listed by the /repos/:owner/:repo/subscribers
           endpoint despite the documentation saying it lists watchers?  If so,
           how are watchers fetched?
+        - cf. <https://developer.github.com/changes/2012-09-05-watcher-api/>?
     - deleting branches
     - protecting branches
-    - editing topics
     - listing files?
     - getting individual file contents?
     - listing an organization's repositories
+    - archiving repositories (once the API also supports unarchiving)
+    - transferring repositories
+    - downloading branches/trees as ZIPs?
 
 - Issues & pull requests:
     - comments
@@ -53,6 +58,7 @@ API Completeness
         - review comments
     - viewing PR diffs?
     - creating a PR from an issue
+    - label descriptions
 
 - Releases:
     - editing release assets
@@ -109,6 +115,7 @@ Interface Improvements
 - `edit_as_mail()`: Handle header parser errors in a more human-friendly way
 - Give the `search` subcommands an option for just showing the total number of
   results?
+- Add commands for opening repos, issues, etc. in a web browser?
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL

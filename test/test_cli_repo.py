@@ -411,3 +411,17 @@ GET https://api.github.com/repos/jwodder/test
 Delete repository jwodder/test? [y/N]: n
 Repository not deleted
 '''
+
+def test_repo_set_topics(cmd):
+    r = cmd('--debug', 'repo', 'set-topics', 'jwodder/test', 'test',
+            'not-a-real-repository')
+    assert r.exit_code == 0, r.output
+    assert r.output == '''\
+PUT https://api.github.com/repos/jwodder/test/topics
+{
+    "names": [
+        "test",
+        "not-a-real-repository"
+    ]
+}
+'''
