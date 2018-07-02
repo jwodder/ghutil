@@ -67,8 +67,13 @@ or an OAuth2 token::
 Commands
 --------
 
+Commands that allow the repository (or gist) to be unspecified will operate on
+the current repository by default.
+
 Gists
 ^^^^^
+
+Run ``gh gist --help`` for details on specifying gists on the command line.
 
 ``gh gist clone <gist-id> [<dir>]``
    Locally clone a gist
@@ -96,6 +101,8 @@ Gists
 
 Issues
 ^^^^^^
+
+Run ``gh issue --help`` for details on specifying issues on the command line.
 
 ``gh issue assign [--delete|--set] <issue> <user> ...``
    Assign an issue/PR to one or more users
@@ -181,6 +188,9 @@ Milestones
 Pull Requests
 ^^^^^^^^^^^^^
 
+Run ``gh pr --help`` for details on specifying pull requests on the command
+line.
+
 ``gh pr assign [--delete|--set] <pull request> <user> ...``
    Assign an issue/PR to one or more users
 
@@ -226,6 +236,10 @@ Pull Requests
 Releases
 ^^^^^^^^
 
+Run ``gh release --help`` for details on specifying releases on the command
+line.  Commands that allow the release to be unspecified will operate on the
+latest release by default.
+
 ``gh release attach [--content-type <MIME>] [--label <label>] [--name <name>] [<repo>:]<tag> <file>``
    Upload a release asset
 
@@ -249,6 +263,9 @@ Releases
 
 Repositories
 ^^^^^^^^^^^^
+
+Run ``gh repo --help`` for details on specifying repositories on the command
+line.
 
 ``gh repo clone <repo> [<dir>]``
    Locally clone a GitHub repository
