@@ -6,9 +6,6 @@
 .. image:: https://travis-ci.org/jwodder/ghutil.svg?branch=master
     :target: https://travis-ci.org/jwodder/ghutil
 
-.. image:: https://coveralls.io/repos/github/jwodder/ghutil/badge.svg?branch=master
-    :target: https://coveralls.io/github/jwodder/ghutil?branch=master
-
 .. image:: https://codecov.io/gh/jwodder/ghutil/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/jwodder/ghutil
 

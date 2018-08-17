@@ -10,9 +10,8 @@ jobs:
           sudo: true
         - python: pypy3
 install:
-    - pip install codecov coveralls tox
+    - pip install codecov tox
 script:
     - tox -e py
 after_success:
     - codecov
-    - coveralls
