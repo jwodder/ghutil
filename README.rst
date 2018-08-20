@@ -309,6 +309,9 @@ line.
 ``gh repo unstar [<repo> ...]``
    Unstar the given repositories
 
+``gh repo web [<repo>]``
+   Open the given repository in a web browser
+
 Other
 ^^^^^
 

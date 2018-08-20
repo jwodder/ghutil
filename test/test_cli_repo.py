@@ -1,4 +1,6 @@
-from ghutil import git
+import webbrowser
+import pytest
+from   ghutil import git
 
 # Betamax isn't good with parametrization, and parametrizing lengthy output
 # would result in very long cassette file names anyway, so no parametrization
@@ -425,3 +427,21 @@ PUT https://api.github.com/repos/jwodder/test/topics
     ]
 }
 '''
+
+@pytest.mark.usefixtures('test_repo')
+def test_repo_web(cmd, mocker):
+    mocker.patch('webbrowser.open_new')
+    r = cmd('--debug', 'repo', 'web')
+    assert r.exit_code == 0, r.output
+    assert r.output == 'GET https://api.github.com/repos/jwodder/test\n'
+    webbrowser.open_new.assert_called_once_with('https://github.com/jwodder/test')
+
+def test_repo_web_ghutil(cmd, mocker):
+    mocker.patch('webbrowser.open_new')
+    r = cmd('--debug', 'repo', 'web', 'ghutil')
+    assert r.exit_code == 0, r.output
+    assert r.output == '''\
+GET https://api.github.com/user
+GET https://api.github.com/repos/jwodder/ghutil
+'''
+    webbrowser.open_new.assert_called_once_with('https://github.com/jwodder/ghutil')

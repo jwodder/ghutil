@@ -39,6 +39,7 @@ API Completeness
           endpoint despite the documentation saying it lists watchers?  If so,
           how are watchers fetched?
         - cf. <https://developer.github.com/changes/2012-09-05-watcher-api/>?
+        - Ask about on <https://github.community/t5/How-to-use-Git-and-GitHub/bd-p/Board_1>?
     - deleting branches
     - protecting branches
     - listing files?
@@ -98,7 +99,6 @@ Interface Improvements
       control debugging?
 - Default to HTTPS when cloning repositories/gists you don't have push access
   to?
-- When no arguments are given to a `show` subcommand, output an empty list?
 - Give the `search` subcommands a `--raw` option to not add any quotes?
 - Editing:
     - (Add an option to) show the API's response?
@@ -115,7 +115,7 @@ Interface Improvements
 - `edit_as_mail()`: Handle header parser errors in a more human-friendly way
 - Give the `search` subcommands an option for just showing the total number of
   results?
-- Add commands for opening repos, issues, etc. in a web browser?
+- Add commands for opening issues etc. in a web browser
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
@@ -187,8 +187,7 @@ Interface Improvements
     - Come up with a better name for "`list-forks`"
     - Let `fans` take more than one repository at a time?
     - Let `list-forks` take more than one repository at a time?
-    - Remove the `repo` command level and move all repository commands to `gh
-      new`, `gh list`, `gh show`, etc.?
+    - Let `open` take more than one repository at a time?
 
 - `gh request`:
     - Add a `--param key=value` option for setting query parameters (and/or
