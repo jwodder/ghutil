@@ -1,4 +1,5 @@
 from   pathlib import Path
+import webbrowser
 import click
 import pytest
 from   ghutil  import git
@@ -969,6 +970,34 @@ GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
 Delete release jwodder/test:v0.0.0? [y/N]: n
 Release not deleted
 '''
+
+def test_release_web(cmd, mocker):
+    mocker.patch(
+        'ghutil.git.get_remote_url',
+        return_value='https://github.com/stedolan/jq.git',
+    )
+    mocker.patch('webbrowser.open_new')
+    r = cmd('--debug', 'release', 'web')
+    assert r.exit_code == 0, r.output
+    assert r.output == '''\
+GET https://api.github.com/repos/stedolan/jq/releases/latest
+'''
+    git.get_remote_url.assert_called_once_with()
+    webbrowser.open_new.assert_called_once_with(
+        'https://github.com/stedolan/jq/releases/tag/jq-1.5'
+    )
+
+@pytest.mark.usefixtures('test_repo')
+def test_release_web_colon_latest(cmd, mocker):
+    mocker.patch('webbrowser.open_new')
+    r = cmd('--debug', 'release', 'web', ':latest')
+    assert r.exit_code == 0, r.output
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/releases/tags/latest
+'''
+    webbrowser.open_new.assert_called_once_with(
+        'https://github.com/jwodder/test/releases/tag/latest'
+    )
 
 # new: --draft, --published
 # new: --prerelease, --full-release

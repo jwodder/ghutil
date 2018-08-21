@@ -96,6 +96,9 @@ Run ``gh gist --help`` for details on specifying gists on the command line.
 ``gh gist unstar [<gist-id> ...]``
    Unstar the given gists
 
+``gh gist web [<gist-id>]``
+   Open the given gist in a web browser
+
 Issues
 ^^^^^^
 
@@ -143,6 +146,9 @@ Run ``gh issue --help`` for details on specifying issues on the command line.
 ``gh issue unlock <issue> ...``
    Unlock one or more issues/PRs
 
+``gh issue web <issue>``
+   Open the given issue/PR in a web browser
+
 Labels
 ^^^^^^
 
@@ -181,6 +187,9 @@ Milestones
 
 ``gh milestone show [-R|--repo <repo>] <milestone> ...``
    Show details on the given milestones
+
+``gh milestone web [-R|--repo <repo>] <milestone>``
+   Open the given milestone in a web browser
 
 Pull Requests
 ^^^^^^^^^^^^^
@@ -230,6 +239,9 @@ line.
 ``gh pr unlock <pull request> ...``
    Unlock one or more issues/PRs
 
+``gh pr web <pull request>``
+   Open the given pull request in a web browser
+
 Releases
 ^^^^^^^^
 
@@ -257,6 +269,9 @@ latest release by default.
 
 ``gh release unattach [--force] [<repo>:]<tag> <asset>``
    Delete a release asset
+
+``gh release web [[<repo>:]<tag>]``
+   Open the given release in a web browser
 
 Repositories
 ^^^^^^^^^^^^

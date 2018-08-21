@@ -1,3 +1,5 @@
+import webbrowser
+
 READ_PR = '''\
 PR:        Add attrs
 State:     open
@@ -211,5 +213,16 @@ def test_pr_comments_pr(cmd):
     r = cmd('pr', 'comments', 'vinta/awesome-python/875')
     assert r.exit_code == 0
     assert r.output == PR_COMMENTS
+
+def test_pr_web_pr(cmd, mocker):
+    mocker.patch('webbrowser.open_new')
+    r = cmd('--debug', 'pr', 'web', 'vinta/awesome-python/875')
+    assert r.exit_code == 0, r.output
+    assert r.output == '''\
+GET https://api.github.com/repos/vinta/awesome-python/issues/875
+'''
+    webbrowser.open_new.assert_called_once_with(
+        'https://github.com/vinta/awesome-python/pull/875'
+    )
 
 # pr show <issue> = error

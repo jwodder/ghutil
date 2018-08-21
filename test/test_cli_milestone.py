@@ -1,3 +1,4 @@
+import webbrowser
 import click
 import pytest
 
@@ -226,3 +227,14 @@ def test_milestone_show(cmd):
     }
 ]
 '''
+
+def test_milestone_web(cmd, mocker):
+    mocker.patch('webbrowser.open_new')
+    r = cmd('--debug', 'milestone', 'web', '-R', 'jwodder/test', 'v1.0')
+    assert r.exit_code == 0, r.output
+    assert r.output == '''\
+GET https://api.github.com/repos/jwodder/test/milestones?state=all
+'''
+    webbrowser.open_new.assert_called_once_with(
+        'https://github.com/jwodder/test/milestone/2'
+    )

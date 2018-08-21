@@ -115,7 +115,6 @@ Interface Improvements
 - `edit_as_mail()`: Handle header parser errors in a more human-friendly way
 - Give the `search` subcommands an option for just showing the total number of
   results?
-- Add commands for opening issues etc. in a web browser
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
@@ -133,6 +132,9 @@ Interface Improvements
     - path to the Git executable?
     - default options for `gh repo new`?
 
+- `gh gist`:
+    - Let `web` take more than one repository at a time?
+
 - `gh issue`:
     - `reply`:
         - Add an option for including the quoted (or commented-out?) contents
@@ -145,11 +147,13 @@ Interface Improvements
     - Allow specifying the repository as a local path if `:` (or `#`?) is used
       as the repo-issue separator?
     - Support issue templates when creating issues
+    - Let `web` take more than one repository at a time?
 
 - `gh milestone`:
     - Specifying a milestone by URL should remove the need to also use the `-R`
       option (regardless of whether the user is in the same repo as the
       milestone or even in a repo at all)
+    - Let `web` take more than one repository at a time?
 
 - `gh pr`:
     - Add a `search` command that just does `gh issue search type:pr ...`?
@@ -179,6 +183,7 @@ Interface Improvements
     - Support setting `target_commitish` when creating/editing a release
     - Allow specifying the repository as a local path
     - `unattach`: Support specifying assets by URL without a release argument
+    - Let `web` take more than one repository at a time?
 
 - `gh repo`:
     - Give `new` an option for setting the local repository's origin to the new
@@ -187,7 +192,7 @@ Interface Improvements
     - Come up with a better name for "`list-forks`"
     - Let `fans` take more than one repository at a time?
     - Let `list-forks` take more than one repository at a time?
-    - Let `open` take more than one repository at a time?
+    - Let `web` take more than one repository at a time?
 
 - `gh request`:
     - Add a `--param key=value` option for setting query parameters (and/or

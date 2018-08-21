@@ -445,3 +445,5 @@ GET https://api.github.com/user
 GET https://api.github.com/repos/jwodder/ghutil
 '''
     webbrowser.open_new.assert_called_once_with('https://github.com/jwodder/ghutil')
+
+# `show` with no arguments (symlink with test_repo_web)

@@ -1,6 +1,7 @@
 import json
 import os
 from   pathlib import Path
+import webbrowser
 import click
 import pytest
 
@@ -916,6 +917,18 @@ Usage: gh issue assign [OPTIONS] ISSUE [USER]...
 
 Error: --delete and --set are mutually exclusive
 '''
+
+def test_issue_web_issue(cmd, mocker):
+    mocker.patch('webbrowser.open_new')
+    r = cmd('--debug', 'issue', 'web', 'ghutil/1')
+    assert r.exit_code == 0, r.output
+    assert r.output == '''\
+GET https://api.github.com/user
+GET https://api.github.com/repos/jwodder/ghutil/issues/1
+'''
+    webbrowser.open_new.assert_called_once_with(
+        'https://github.com/jwodder/ghutil/issues/1'
+    )
 
 # issue new
 # - milestones

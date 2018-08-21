@@ -1,6 +1,7 @@
-from io      import BytesIO
-from pathlib import Path
-from ghutil  import git
+from   io      import BytesIO
+from   pathlib import Path
+import webbrowser
+from   ghutil  import git
 
 FILEDIR = Path(__file__).with_name('data') / 'files'
 
@@ -507,3 +508,16 @@ Usage: gh gist show [OPTIONS] [GISTS]...
 Error: Not a gist remote: git@github.com:jwodder/ghutil.git
 '''
     git.get_remote_url.assert_called_once_with(chdir='/some/path')
+
+def test_gist_web_fork(cmd, mocker):
+    mocker.patch('webbrowser.open_new')
+    r = cmd('--debug', 'gist', 'web', '4bf350e2d72b547b22dc9de52148ccbe')
+    assert r.exit_code == 0, r.output
+    assert r.output == '''\
+GET https://api.github.com/gists/4bf350e2d72b547b22dc9de52148ccbe
+'''
+    webbrowser.open_new.assert_called_once_with(
+        'https://gist.github.com/4bf350e2d72b547b22dc9de52148ccbe'
+    )
+
+# `show` and `web` with no arguments
