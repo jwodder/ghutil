@@ -92,8 +92,7 @@ def test_repo_show_ghutil(cmd):
         "subscribers_count": 2,
         "topics": [],
         "updated_at": "2017-06-12T16:38:36Z",
-        "url": "https://api.github.com/repos/jwodder/ghutil",
-        "watchers_count": 3
+        "url": "https://api.github.com/repos/jwodder/ghutil"
     }
 ]
 '''
@@ -381,8 +380,7 @@ POST https://api.github.com/user/repos
     "subscribers_count": 1,
     "topics": [],
     "updated_at": "2017-09-11T15:33:42Z",
-    "url": "https://api.github.com/repos/jwodder/test",
-    "watchers_count": 0
+    "url": "https://api.github.com/repos/jwodder/test"
 }
 '''
 
