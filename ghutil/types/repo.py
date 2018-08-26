@@ -50,7 +50,6 @@ class Repository(Resource):
         "pushed_at",
         "fork",
         "forks_count",
-        "watchers_count",
         "size",
         "subscribers_count",
         "stargazers_count",

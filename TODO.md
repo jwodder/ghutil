@@ -33,13 +33,7 @@
 API Completeness
 ================
 - Repositories:
-    - watching
-    - showing subscribers?
-        - Are subscribers already listed by the /repos/:owner/:repo/subscribers
-          endpoint despite the documentation saying it lists watchers?  If so,
-          how are watchers fetched?
-        - cf. <https://developer.github.com/changes/2012-09-05-watcher-api/>?
-        - Ask about on <https://github.community/t5/How-to-use-Git-and-GitHub/bd-p/Board_1>?
+    - watching (a.k.a. subscribing)
     - deleting branches
     - protecting branches
     - listing files?
@@ -193,6 +187,7 @@ Interface Improvements
     - Let `fans` take more than one repository at a time?
     - Let `list-forks` take more than one repository at a time?
     - Let `web` take more than one repository at a time?
+    - Show repositories' `"organization"` field?
 
 - `gh request`:
     - Add a `--param key=value` option for setting query parameters (and/or
