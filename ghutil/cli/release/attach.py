@@ -1,9 +1,9 @@
-from   mimetypes      import guess_type
 import os.path
 import click
 from   uritemplate    import expand
 from   ghutil.showing import print_json
 from   ghutil.types   import Asset, Release
+from   ghutil.util    import mime_type
 
 @click.command()
 @click.option('-T', '--content-type', metavar='MIME',
@@ -26,7 +26,7 @@ def cli(gh, release, file, name, label, content_type, verbose):
     if name is None:
         name = os.path.basename(file.name)
     if content_type is None:
-        content_type = guess_type(name, False)[0] or 'application/octet-stream'
+        content_type = mime_type(name)
     url = expand(release.data["upload_url"], name=name, label=label)
     r = gh[url].post(headers={"Content-Type": content_type}, data=file.read())
     print_json(Asset.from_data(gh, r), verbose)

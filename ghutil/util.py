@@ -1,4 +1,5 @@
 from   importlib        import import_module
+from   mimetypes        import guess_type
 from   pathlib          import Path
 import re
 import click
@@ -57,3 +58,20 @@ def optional(*decls, nilstr=False, **attrs):
     if not attrs.get('multiple'):
         attrs['default'] = None
     return click.option(*decls, callback=callback, expose_value=False, **attrs)
+
+def mime_type(filename):
+    """
+    Like `mimetypes.guess_type()`, except that if the file is compressed, the
+    MIME type for the compression is returned
+    """
+    mtype, encoding = guess_type(filename, False)
+    if encoding is None:
+        return mtype or 'application/octet-stream'
+    elif encoding == 'gzip':
+        # application/gzip is defined by RFC 6713
+        return 'application/gzip'
+        # Note that there is a "+gzip" MIME structured syntax suffix specified
+        # in an RFC draft that may one day mean the correct code is:
+        #return mtype + '+gzip'
+    else:
+        return 'application/x-' + encoding

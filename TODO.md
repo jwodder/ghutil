@@ -14,6 +14,7 @@
     - Interacting with a renamed repository
     - Test specifying a nonexistent config file
     - Test invoking `delete` commands without `--force`
+    - Try to set up integration tests that actually interact with GitHub?
 - Support older versions of Git that don't have `git remote get-url`
     - At the very least, figure out and document the minimum required version
       of Git
