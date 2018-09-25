@@ -48,6 +48,10 @@ def cli(ctx, repo, title, body, label, assignee, milestone, verbose):
         if data["title"] is None:  # or body is None?
             click.echo('Aborting issue due to empty title')
             return
+        if data["body"] is None:
+            del data["body"]
     if data["milestone"] is not None:
         data["milestone"] = int(repo.milestone(data["milestone"]))
+    else:
+        del data["milestone"]
     print_json(ctx.obj.issue(repo.issues.post(json=data)), verbose)

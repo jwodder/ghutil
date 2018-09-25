@@ -1,13 +1,14 @@
 import click
 from   ghutil.showing import print_json
 from   ghutil.types   import Milestone, Repository
+from   ghutil.util    import optional
 
 @click.command()
 @Repository.option('-R', '--repo', '--repository', 'repo',
                    help='Repository in which to create the milestone')
-@click.option('-d', '--description', help='Set milestone description')
-@click.option('--due-on', '--due', 'due_on', metavar='TIMESTAMP',
-              help='Set milestone due date')
+@optional('-d', '--description', help='Set milestone description')
+@optional('--due-on', '--due', 'due_on', metavar='TIMESTAMP',
+          help='Set milestone due date')
 @click.option('--open', 'state', flag_value='open', default=True,
               help='Create milestone open  [default]')
 @click.option('--closed', '--close', 'state', flag_value='closed',

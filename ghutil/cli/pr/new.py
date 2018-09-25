@@ -54,6 +54,8 @@ def cli(gh, head, base, title, body, maintainer_can_modify, verbose):
         if data["title"] is None:  # or body is None?
             click.echo('Aborting pull request due to empty title')
             return
+        if data["body"] is None:
+            del data["body"]
     print_json(gh.pull_request(base_repo.pulls.post(json=data)), verbose)
 
 def parse_pr_args(gh, base_arg, head_arg):

@@ -1,20 +1,34 @@
 {
   "http_interactions": [
     {
-      "recorded_at": "2017-09-11T15:33:42",
+      "recorded_at": "2018-09-25T14:50:00",
       "request": {
         "body": {
           "encoding": "utf-8",
-          "string": "{\"private\": false, \"description\": null, \"has_issues\": true, \"homepage\": null, \"allow_rebase_merge\": true, \"allow_squash_merge\": true, \"name\": \"test\", \"license_template\": null, \"allow_merge_commit\": true, \"auto_init\": false, \"gitignore_template\": null, \"has_wiki\": true}"
+          "string": "{\"has_wiki\": true, \"private\": false, \"allow_merge_commit\": true, \"auto_init\": false, \"allow_squash_merge\": true, \"has_issues\": true, \"allow_rebase_merge\": true, \"name\": \"test\"}"
         },
         "headers": {
-          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
-          "Accept-Encoding": "gzip, deflate",
-          "Authorization": "---REDACTED---",
-          "Connection": "keep-alive",
-          "Content-Length": "269",
-          "Content-Type": "application/json",
-          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.5.2"
+          "Accept": [
+            "application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "---REDACTED---"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "176"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.19.1 CPython/3.4.9"
+          ]
         },
         "method": "POST",
         "uri": "https://api.github.com/user/repos"
@@ -22,31 +36,78 @@
       "response": {
         "body": {
           "encoding": "utf-8",
-          "string": "{\"id\":103154035,\"name\":\"test\",\"full_name\":\"jwodder/test\",\"owner\":{\"login\":\"jwodder\",\"id\":98207,\"avatar_url\":\"https://avatars1.githubusercontent.com/u/98207?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/jwodder\",\"html_url\":\"https://github.com/jwodder\",\"followers_url\":\"https://api.github.com/users/jwodder/followers\",\"following_url\":\"https://api.github.com/users/jwodder/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/jwodder/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/jwodder/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/jwodder/subscriptions\",\"organizations_url\":\"https://api.github.com/users/jwodder/orgs\",\"repos_url\":\"https://api.github.com/users/jwodder/repos\",\"events_url\":\"https://api.github.com/users/jwodder/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/jwodder/received_events\",\"type\":\"User\",\"site_admin\":false},\"private\":false,\"html_url\":\"https://github.com/jwodder/test\",\"description\":null,\"fork\":false,\"url\":\"https://api.github.com/repos/jwodder/test\",\"forks_url\":\"https://api.github.com/repos/jwodder/test/forks\",\"keys_url\":\"https://api.github.com/repos/jwodder/test/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/jwodder/test/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/jwodder/test/teams\",\"hooks_url\":\"https://api.github.com/repos/jwodder/test/hooks\",\"issue_events_url\":\"https://api.github.com/repos/jwodder/test/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/jwodder/test/events\",\"assignees_url\":\"https://api.github.com/repos/jwodder/test/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/jwodder/test/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/jwodder/test/tags\",\"blobs_url\":\"https://api.github.com/repos/jwodder/test/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/jwodder/test/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/jwodder/test/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/jwodder/test/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/jwodder/test/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/jwodder/test/languages\",\"stargazers_url\":\"https://api.github.com/repos/jwodder/test/stargazers\",\"contributors_url\":\"https://api.github.com/repos/jwodder/test/contributors\",\"subscribers_url\":\"https://api.github.com/repos/jwodder/test/subscribers\",\"subscription_url\":\"https://api.github.com/repos/jwodder/test/subscription\",\"commits_url\":\"https://api.github.com/repos/jwodder/test/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/jwodder/test/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/jwodder/test/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/jwodder/test/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/jwodder/test/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/jwodder/test/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/jwodder/test/merges\",\"archive_url\":\"https://api.github.com/repos/jwodder/test/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/jwodder/test/downloads\",\"issues_url\":\"https://api.github.com/repos/jwodder/test/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/jwodder/test/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/jwodder/test/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/jwodder/test/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/jwodder/test/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/jwodder/test/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/jwodder/test/deployments\",\"created_at\":\"2017-09-11T15:33:42Z\",\"updated_at\":\"2017-09-11T15:33:42Z\",\"pushed_at\":\"2017-09-11T15:33:42Z\",\"git_url\":\"git://github.com/jwodder/test.git\",\"ssh_url\":\"git@github.com:jwodder/test.git\",\"clone_url\":\"https://github.com/jwodder/test.git\",\"svn_url\":\"https://github.com/jwodder/test\",\"homepage\":null,\"size\":0,\"stargazers_count\":0,\"watchers_count\":0,\"language\":null,\"has_issues\":true,\"has_projects\":true,\"has_downloads\":true,\"has_wiki\":true,\"has_pages\":false,\"forks_count\":0,\"mirror_url\":null,\"open_issues_count\":0,\"topics\":[],\"forks\":0,\"open_issues\":0,\"watchers\":0,\"default_branch\":\"master\",\"permissions\":{\"admin\":true,\"push\":true,\"pull\":true},\"allow_squash_merge\":true,\"allow_merge_commit\":true,\"allow_rebase_merge\":true,\"network_count\":0,\"subscribers_count\":1}"
+          "string": "{\"id\":150282389,\"node_id\":\"MDEwOlJlcG9zaXRvcnkxNTAyODIzODk=\",\"name\":\"test\",\"full_name\":\"jwodder/test\",\"private\":false,\"owner\":{\"login\":\"jwodder\",\"id\":98207,\"node_id\":\"MDQ6VXNlcjk4MjA3\",\"avatar_url\":\"https://avatars1.githubusercontent.com/u/98207?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/jwodder\",\"html_url\":\"https://github.com/jwodder\",\"followers_url\":\"https://api.github.com/users/jwodder/followers\",\"following_url\":\"https://api.github.com/users/jwodder/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/jwodder/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/jwodder/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/jwodder/subscriptions\",\"organizations_url\":\"https://api.github.com/users/jwodder/orgs\",\"repos_url\":\"https://api.github.com/users/jwodder/repos\",\"events_url\":\"https://api.github.com/users/jwodder/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/jwodder/received_events\",\"type\":\"User\",\"site_admin\":false},\"html_url\":\"https://github.com/jwodder/test\",\"description\":null,\"fork\":false,\"url\":\"https://api.github.com/repos/jwodder/test\",\"forks_url\":\"https://api.github.com/repos/jwodder/test/forks\",\"keys_url\":\"https://api.github.com/repos/jwodder/test/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/jwodder/test/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/jwodder/test/teams\",\"hooks_url\":\"https://api.github.com/repos/jwodder/test/hooks\",\"issue_events_url\":\"https://api.github.com/repos/jwodder/test/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/jwodder/test/events\",\"assignees_url\":\"https://api.github.com/repos/jwodder/test/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/jwodder/test/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/jwodder/test/tags\",\"blobs_url\":\"https://api.github.com/repos/jwodder/test/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/jwodder/test/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/jwodder/test/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/jwodder/test/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/jwodder/test/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/jwodder/test/languages\",\"stargazers_url\":\"https://api.github.com/repos/jwodder/test/stargazers\",\"contributors_url\":\"https://api.github.com/repos/jwodder/test/contributors\",\"subscribers_url\":\"https://api.github.com/repos/jwodder/test/subscribers\",\"subscription_url\":\"https://api.github.com/repos/jwodder/test/subscription\",\"commits_url\":\"https://api.github.com/repos/jwodder/test/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/jwodder/test/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/jwodder/test/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/jwodder/test/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/jwodder/test/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/jwodder/test/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/jwodder/test/merges\",\"archive_url\":\"https://api.github.com/repos/jwodder/test/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/jwodder/test/downloads\",\"issues_url\":\"https://api.github.com/repos/jwodder/test/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/jwodder/test/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/jwodder/test/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/jwodder/test/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/jwodder/test/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/jwodder/test/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/jwodder/test/deployments\",\"created_at\":\"2018-09-25T14:49:59Z\",\"updated_at\":\"2018-09-25T14:49:59Z\",\"pushed_at\":\"2018-09-25T14:50:00Z\",\"git_url\":\"git://github.com/jwodder/test.git\",\"ssh_url\":\"git@github.com:jwodder/test.git\",\"clone_url\":\"https://github.com/jwodder/test.git\",\"svn_url\":\"https://github.com/jwodder/test\",\"homepage\":null,\"size\":0,\"stargazers_count\":0,\"watchers_count\":0,\"language\":null,\"has_issues\":true,\"has_projects\":true,\"has_downloads\":true,\"has_wiki\":true,\"has_pages\":false,\"forks_count\":0,\"mirror_url\":null,\"archived\":false,\"open_issues_count\":0,\"license\":null,\"topics\":[],\"forks\":0,\"open_issues\":0,\"watchers\":0,\"default_branch\":\"master\",\"permissions\":{\"admin\":true,\"push\":true,\"pull\":true},\"allow_squash_merge\":true,\"allow_merge_commit\":true,\"allow_rebase_merge\":true,\"network_count\":0,\"subscribers_count\":1}"
         },
         "headers": {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
-          "Cache-Control": "private, max-age=60, s-maxage=60",
-          "Content-Length": "4519",
-          "Content-Security-Policy": "default-src 'none'",
-          "Content-Type": "application/json; charset=utf-8",
-          "Date": "Mon, 11 Sep 2017 15:33:42 GMT",
-          "ETag": "\"80e208b7bebccc1f205bf0196e20fd10\"",
-          "Location": "https://api.github.com/repos/jwodder/test",
-          "Server": "GitHub.com",
-          "Status": "201 Created",
-          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
-          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
-          "X-Content-Type-Options": "nosniff",
-          "X-Frame-Options": "deny",
-          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
-          "X-GitHub-Request-Id": "AB02:438F:997382:161BB0F:59B6ACD6",
-          "X-RateLimit-Limit": "5000",
-          "X-RateLimit-Remaining": "4994",
-          "X-RateLimit-Reset": "1505144811",
-          "X-Runtime-rack": "0.613572",
-          "X-XSS-Protection": "1; mode=block"
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Access-Control-Expose-Headers": [
+            "ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval"
+          ],
+          "Cache-Control": [
+            "private, max-age=60, s-maxage=60"
+          ],
+          "Content-Length": [
+            "4625"
+          ],
+          "Content-Security-Policy": [
+            "default-src 'none'"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Tue, 25 Sep 2018 14:50:00 GMT"
+          ],
+          "ETag": [
+            "\"abc4bce26ed33618e6c0573f6897639a\""
+          ],
+          "Location": [
+            "https://api.github.com/repos/jwodder/test"
+          ],
+          "Referrer-Policy": [
+            "origin-when-cross-origin, strict-origin-when-cross-origin"
+          ],
+          "Server": [
+            "GitHub.com"
+          ],
+          "Status": [
+            "201 Created"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubdomains; preload"
+          ],
+          "Vary": [
+            "Accept, Authorization, Cookie, X-GitHub-OTP"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "deny"
+          ],
+          "X-GitHub-Media-Type": [
+            "github.mercy-preview, github.squirrel-girl-preview"
+          ],
+          "X-GitHub-Request-Id": [
+            "A6B8:3A76:5E1CC05:B82A83E:5BAA4B17"
+          ],
+          "X-RateLimit-Limit": [
+            "5000"
+          ],
+          "X-RateLimit-Remaining": [
+            "4999"
+          ],
+          "X-RateLimit-Reset": [
+            "1537890600"
+          ],
+          "X-Runtime-rack": [
+            "0.793769"
+          ],
+          "X-XSS-Protection": [
+            "1; mode=block"
+          ]
         },
         "status": {
           "code": 201,
@@ -56,5 +117,5 @@
       }
     }
   ],
-  "recorded_with": "betamax/0.8.0"
+  "recorded_with": "betamax/0.8.1"
 }

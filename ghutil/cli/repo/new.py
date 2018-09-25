@@ -14,9 +14,9 @@ from   ghutil.util    import optional
 @click.option('--auto-init/--no-init', '--init', 'auto_init', default=False,
               help='Whether to create an initial commit with an empty README',
               show_default=True)
-@click.option('-d', '--description', help='Set repository description')
-@click.option('--gitignore-template', '--gitignore', 'gitignore_template',
-              help='Create an initial commit with the given .gitignore')
+@optional('-d', '--description', help='Set repository description')
+@optional('--gitignore-template', '--gitignore', 'gitignore_template',
+          help='Create an initial commit with the given .gitignore')
 @click.option('--has-issues/--no-issues', default=True, show_default=True,
               help='Enable/disable issues for the repository')
 # Note that `has_projects`'s actual default value changes to false when
@@ -27,9 +27,9 @@ from   ghutil.util    import optional
           help='Enable/disable projects in the repository  [default: True]')
 @click.option('--has-wiki/--no-wiki', default=True, show_default=True,
               help="Enable/disable the repository's wiki")
-@click.option('-H', '--homepage', metavar='URL', help='Set repository homepage')
-@click.option('--license-template', '--license', 'license_template',
-              help='Create an initial commit with the given license')
+@optional('-H', '--homepage', metavar='URL', help='Set repository homepage')
+@optional('--license-template', '--license', 'license_template',
+          help='Create an initial commit with the given license')
 @click.option('-O', '--organization',
               help='Create the repository in the given organization')
 @click.option('-P/-p', '--private/--public', default=False,

@@ -698,7 +698,6 @@ POST https://api.github.com/repos/jwodder/test/issues
     "assignees": [],
     "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n",
     "labels": [],
-    "milestone": null,
     "title": "Thing is broken"
 }
 {
@@ -707,9 +706,9 @@ POST https://api.github.com/repos/jwodder/test/issues
     "closed_at": null,
     "closed_by": null,
     "comments": 0,
-    "created_at": "2017-09-28T21:44:54Z",
+    "created_at": "2018-09-25T15:16:57Z",
     "html_url": "https://github.com/jwodder/test/issues/1",
-    "id": 261470773,
+    "id": 363631533,
     "labels": [],
     "locked": false,
     "milestone": null,
@@ -717,7 +716,7 @@ POST https://api.github.com/repos/jwodder/test/issues
     "reactions": {},
     "state": "open",
     "title": "Thing is broken",
-    "updated_at": "2017-09-28T21:44:54Z",
+    "updated_at": "2018-09-25T15:16:57Z",
     "url": "https://api.github.com/repos/jwodder/test/issues/1",
     "user": "jwodder"
 }
@@ -739,7 +738,6 @@ POST https://api.github.com/repos/jwodder/test/issues
     "assignees": [],
     "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n",
     "labels": [],
-    "milestone": null,
     "title": "Thing is broken"
 }
 {
@@ -748,9 +746,9 @@ POST https://api.github.com/repos/jwodder/test/issues
     "closed_at": null,
     "closed_by": null,
     "comments": 0,
-    "created_at": "2017-09-28T21:44:54Z",
+    "created_at": "2018-09-25T15:16:57Z",
     "html_url": "https://github.com/jwodder/test/issues/1",
-    "id": 261470773,
+    "id": 363631533,
     "labels": [],
     "locked": false,
     "milestone": null,
@@ -758,7 +756,7 @@ POST https://api.github.com/repos/jwodder/test/issues
     "reactions": {},
     "state": "open",
     "title": "Thing is broken",
-    "updated_at": "2017-09-28T21:44:54Z",
+    "updated_at": "2018-09-25T15:16:57Z",
     "url": "https://api.github.com/repos/jwodder/test/issues/1",
     "user": "jwodder"
 }
@@ -781,7 +779,6 @@ POST https://api.github.com/repos/jwodder/test/issues
     "assignees": [],
     "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n",
     "labels": [],
-    "milestone": null,
     "title": "Thing is broken"
 }
 {
@@ -790,9 +787,9 @@ POST https://api.github.com/repos/jwodder/test/issues
     "closed_at": null,
     "closed_by": null,
     "comments": 0,
-    "created_at": "2017-09-28T21:44:54Z",
+    "created_at": "2018-09-25T15:16:57Z",
     "html_url": "https://github.com/jwodder/test/issues/1",
-    "id": 261470773,
+    "id": 363631533,
     "labels": [],
     "locked": false,
     "milestone": null,
@@ -800,7 +797,7 @@ POST https://api.github.com/repos/jwodder/test/issues
     "reactions": {},
     "state": "open",
     "title": "Thing is broken",
-    "updated_at": "2017-09-28T21:44:54Z",
+    "updated_at": "2018-09-25T15:16:57Z",
     "url": "https://api.github.com/repos/jwodder/test/issues/1",
     "user": "jwodder"
 }
@@ -821,9 +818,7 @@ GET https://api.github.com/repos/jwodder/test
 POST https://api.github.com/repos/jwodder/test/issues
 {
     "assignees": [],
-    "body": null,
     "labels": [],
-    "milestone": null,
     "title": "Thing is broken"
 }
 {
@@ -832,9 +827,9 @@ POST https://api.github.com/repos/jwodder/test/issues
     "closed_at": null,
     "closed_by": null,
     "comments": 0,
-    "created_at": "2017-09-28T21:44:54Z",
+    "created_at": "2018-09-25T15:16:57Z",
     "html_url": "https://github.com/jwodder/test/issues/2",
-    "id": 261470775,
+    "id": 363631539,
     "labels": [],
     "locked": false,
     "milestone": null,
@@ -842,7 +837,7 @@ POST https://api.github.com/repos/jwodder/test/issues
     "reactions": {},
     "state": "open",
     "title": "Thing is broken",
-    "updated_at": "2017-09-28T21:44:54Z",
+    "updated_at": "2018-09-25T15:16:57Z",
     "url": "https://api.github.com/repos/jwodder/test/issues/2",
     "user": "jwodder"
 }

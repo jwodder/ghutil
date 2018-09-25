@@ -1,52 +1,111 @@
 {
   "http_interactions": [
     {
-      "recorded_at": "2017-09-28T21:44:54",
+      "recorded_at": "2018-09-25T15:16:57",
       "request": {
         "body": {
           "encoding": "utf-8",
           "string": ""
         },
         "headers": {
-          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
-          "Accept-Encoding": "gzip, deflate",
-          "Authorization": "---REDACTED---",
-          "Connection": "keep-alive",
-          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.5.2"
+          "Accept": [
+            "application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "---REDACTED---"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "User-Agent": [
+            "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.19.1 CPython/3.5.2"
+          ]
         },
         "method": "GET",
         "uri": "https://api.github.com/repos/jwodder/test"
       },
       "response": {
         "body": {
-          "base64_string": "H4sIAAAAAAAAA52Y3W7bOBCF30W365q2kUUTA0X3IbY3u1gYtERLbCRSJSkbiZB33zOkfl0nDnWTyDS/o+Fwhpxxm8gs2W83f+42u83TwypRvBLJPnHCumSVnJqyPHRDPy86y4Rh3Vf6ooRJ9m1S6lwqIN33oEjy6XG3+bpK+Jk7bg6NKTGjcK62e8bCoN2uc+mK5thYYVKtnFBuneqKNczD38/fHiCWm06DVBMMXGnVspMJLLQsG00pXFVevT281M8e5510WeoL2GtTP5BnA0Se8gJS5fECgFqmXSHgJ5j/RouW1kWZ4oGW0b+DzEjCwu9GZDHmdAiMob19a5kRtfZazdGmRtZOahVl1gyEkDY5V/KVRwsBtODJoCgDPABQnBFdUWQgWlYbeebpC7nBiFTIM3war3aFQsy91JRoP7Dj5GHpxIFnFWXSiZdWvK0S/2aHSX5ghfT5RCz36ZmJYceSvUIaU4ia50HswyzyXuuzo1ck/I4Hf+eQI6CwwGfxEg8T1DL87WI6RZLxozbc6XuZesOUGd2y6UfaXSd4FW+ip0AXWi/wjqdAS2sb8amwurEuD1vWB6xqqmM4RT4Tpjf0AgaruLUyV0LEe2UgW9YfaUfDVVos0OrBloUnv1c8jzeKILDHUh/jYdwazJMtswUPZ7Q7LLKDpAicKRlxWmYUgYOSM0t2yxtE5KCDm8Bh4+It6kHWdl4qucobni+QGkg6HnGZ5fz17v18I5pHFDpUZhh5bBaeHyNMNoVLEbm2wE0jOyr56/Xj+/rW+iZ3s19hVcl7N90NmY6bxeRSLYqnaz36fP8KfscwAls2HmzhuOwkoz3WnZe9RVPhrgyN39AeZO0fNXcFnQ/Qr7kR0eZ1HGuPHGXAer1uC8F9SVcJsySRAgaem7RA/RJtUduDuMwr7nxheCKDMhSKpeZZvL8GEiphP6KtCth092qUOfGmeGoqU8kS3Y9WC86sEZ0KKu3kSaafqXpvJMCMbr9bqVKx4ijoEF1OphLxhg6CtgO1kVjggIDBYLR+ocwtBUIv3pNGBLBloQXJRF3ql2VpP2Epl4xAJZwduEPJvNtsv37ZPH3ZPf692+4fdvuHx38wp6mzu3PqxhbvyzyRDA6vLhTxhGb193bRF8TUdGK2tcU4+69x7n7aLXdz0xIxdRXmd9TP1/fBO/NhSaErUeOi7at9K1/xvJndnaluFDyIwQt3KMZwc41D/X3bCxTcHkKOJXtnGmpAMFIb/VOkzk7HxmSeTLzIZzkDqQgY2o/QTIwvr6QxuvudIHQruhaqe//ESKdrmULm3/9CP4NHrGYyd7Y6/yETJ96U7hCqR8RPxa3zTVctTIUVUlNLP2R07VdYK0VKbz6dEOEZXVkpU6Hs4GYkor4c7K+GIxL8SdtT4Rs/hAXQrTz/xgg64OeMEu6Chmmy4GmV0blr+/Y/lw8gILYRAAA=",
+          "base64_string": "H4sIAAAAAAAAA51YXW/bNhT9L35dGjppssUGiq5AhmED2mBDNxQbBoOWaIuxRGokZS8W8t93LilZkuvGoV4SmeY5Ory8n64nMp3Mr26n13fXb+9mFxOlU7GgtcnH+592D/mvefLzbM+//L5N1Oa/T58/PD3c/7J/uN+8m2AzLwR2OmEdPq2qPF80S487nabCsOar0sgtd9i74rkVFxO9U8JM5vUk12upQNHsBwu9e3Z3Pf1hqOW37//88ilPHjc3Hx8/vMU+DkJuFpXJAc+cK+2csbBory7X0mXVsrLCJFo5odxlogtWMc/8fvvuBgxr03D442LhiKuUDU3AgsuyTmfmivzo7eGlfne3b6XzXO+APZb6Aj07gMisnkCqdTwBQDXTLhOwE+Q/06GldVFSPKBm9A9+QRQWdjcijZHTQCCGLv65ZkaU2nNVS5sYWTqpVZSsARBE2qy5knseTQSgBZ4ERQnwAADFFt4VhQyImvmgSJ7IDEYkQm5h03i2IyjI3FNJUfkHbpwsLJ1Y8LSgMPPR93yBcHmF77axm4rDDU3mCjFOLmk2h1h+MWq8ldpoaBkJfsZiX+MQE0DhQBvxFA8mUM3wt/HhBEHFl9pwp89F5gkpA3TN+h/pNp3gRbxEjwI603qEdTwKaGltJV7lRifO5cGWtQ6qqmIZssZr3PIEX4BBFbdWrpUQ8VY5IGvWprCl4SrJRnC1wJqFJ39XfB0vikDALnO9jAejSjCPrJnNeMjJbjFKB1ERcMBkxGqcKAIemJwZc1teECEPPMj8DhcXr6gFsrqxUs7VuuLrEVQHJKVDFK8135+txye8uYOCh9oKI5fVyPzRgUlTKIKItRFm6rAdky+nL9fnU+fr1WJ/wqKQ5yrbCZoGN/DJsVzkT8d89Pl8yf2GMALWrEtsIV02lNEWa/Jlq6hP3LSd8RfaAln9XcldRvkB/CU3Ilpeg2P1kqPsX15e1pngvoUrhBkTSAEGPDdJhn4lWlHdAlHMC+58I7giQSkaw1zzNN5eByRYwn1Eqwqw/u2VaHPipXhUn6aQOUYjrUbkrA7aJ1TayZVMXtPlngiAAbp+b6VKxAVHQwfvcjKR8DdMDHQd6I3ECAMEGARjLgxtbS7gevGWNCIAaxZGjlSUuX4aF/Y9LMWSERhE0wV3aJGvp1d3b6azN9e3n69u5jez+e3sL+ypyvTsnrKy2Wma2+l8OiUaJK/GFfGE4fTr8dA3xDRkYre1Wbf7x27vvD9KN3uTHD515OZn2LfH9eAb+6Ek04UoUWjbbt/KPZ6ng9qZ6ErBgljccYdmDJWrW2rrbUuQcbsIMTaZO1Nh/qeV0uhHkTjbX+uCubdxJzdyAKQm4DB+hGGie3khjdHN7wJhWmlyDob89teHUqhGUF+1TISyh1M7XcoEr/n7nzDv4BGn1R10cHr/IRUrXuVuEbpL+FfBrfNDWClMAQvQkEu/ejTjWLAFeVJ7PMog4RlTGiJT7xb234rDNXzqbbeFb/wSDkBleviNEZTxhxgl3A4TVO/A/bajsd/V8/8/K4PkERIAAA==",
           "encoding": "utf-8",
           "string": ""
         },
         "headers": {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
-          "Cache-Control": "private, max-age=60, s-maxage=60",
-          "Content-Encoding": "gzip",
-          "Content-Security-Policy": "default-src 'none'",
-          "Content-Type": "application/json; charset=utf-8",
-          "Date": "Thu, 28 Sep 2017 21:44:54 GMT",
-          "ETag": "W/\"926f4fb035091261cdcd31c95300f9d5\"",
-          "Last-Modified": "Thu, 28 Sep 2017 21:42:48 GMT",
-          "Server": "GitHub.com",
-          "Status": "200 OK",
-          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
-          "Transfer-Encoding": "chunked",
-          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
-          "X-Content-Type-Options": "nosniff",
-          "X-Frame-Options": "deny",
-          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
-          "X-GitHub-Request-Id": "9FB8:4528:B65657:17203C4:59CD6D56",
-          "X-RateLimit-Limit": "5000",
-          "X-RateLimit-Remaining": "4994",
-          "X-RateLimit-Reset": "1506638440",
-          "X-Runtime-rack": "0.088284",
-          "X-XSS-Protection": "1; mode=block"
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Access-Control-Expose-Headers": [
+            "ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval"
+          ],
+          "Cache-Control": [
+            "private, max-age=60, s-maxage=60"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Security-Policy": [
+            "default-src 'none'"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Tue, 25 Sep 2018 15:16:57 GMT"
+          ],
+          "ETag": [
+            "W/\"abc4bce26ed33618e6c0573f6897639a\""
+          ],
+          "Last-Modified": [
+            "Tue, 25 Sep 2018 14:49:59 GMT"
+          ],
+          "Referrer-Policy": [
+            "origin-when-cross-origin, strict-origin-when-cross-origin"
+          ],
+          "Server": [
+            "GitHub.com"
+          ],
+          "Status": [
+            "200 OK"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubdomains; preload"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ],
+          "Vary": [
+            "Accept, Authorization, Cookie, X-GitHub-OTP"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "deny"
+          ],
+          "X-GitHub-Media-Type": [
+            "github.mercy-preview, github.squirrel-girl-preview"
+          ],
+          "X-GitHub-Request-Id": [
+            "E89E:3A76:5E7CCA7:B8E4FAB:5BAA5168"
+          ],
+          "X-RateLimit-Limit": [
+            "5000"
+          ],
+          "X-RateLimit-Remaining": [
+            "4998"
+          ],
+          "X-RateLimit-Reset": [
+            "1537890600"
+          ],
+          "X-Runtime-rack": [
+            "0.064439"
+          ],
+          "X-XSS-Protection": [
+            "1; mode=block"
+          ]
         },
         "status": {
           "code": 200,
@@ -56,20 +115,34 @@
       }
     },
     {
-      "recorded_at": "2017-09-28T21:44:54",
+      "recorded_at": "2018-09-25T15:16:57",
       "request": {
         "body": {
           "encoding": "utf-8",
-          "string": "{\"milestone\": null, \"body\": \"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n\", \"title\": \"Thing is broken\", \"assignees\": [], \"labels\": []}"
+          "string": "{\"assignees\": [], \"title\": \"Thing is broken\", \"body\": \"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n\", \"labels\": []}"
         },
         "headers": {
-          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
-          "Accept-Encoding": "gzip, deflate",
-          "Authorization": "---REDACTED---",
-          "Connection": "keep-alive",
-          "Content-Length": "541",
-          "Content-Type": "application/json",
-          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.5.2"
+          "Accept": [
+            "application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "---REDACTED---"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "522"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.19.1 CPython/3.5.2"
+          ]
         },
         "method": "POST",
         "uri": "https://api.github.com/repos/jwodder/test/issues"
@@ -77,31 +150,78 @@
       "response": {
         "body": {
           "encoding": "utf-8",
-          "string": "{\"url\":\"https://api.github.com/repos/jwodder/test/issues/1\",\"repository_url\":\"https://api.github.com/repos/jwodder/test\",\"labels_url\":\"https://api.github.com/repos/jwodder/test/issues/1/labels{/name}\",\"comments_url\":\"https://api.github.com/repos/jwodder/test/issues/1/comments\",\"events_url\":\"https://api.github.com/repos/jwodder/test/issues/1/events\",\"html_url\":\"https://github.com/jwodder/test/issues/1\",\"id\":261470773,\"number\":1,\"title\":\"Thing is broken\",\"user\":{\"login\":\"jwodder\",\"id\":98207,\"avatar_url\":\"https://avatars1.githubusercontent.com/u/98207?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/jwodder\",\"html_url\":\"https://github.com/jwodder\",\"followers_url\":\"https://api.github.com/users/jwodder/followers\",\"following_url\":\"https://api.github.com/users/jwodder/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/jwodder/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/jwodder/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/jwodder/subscriptions\",\"organizations_url\":\"https://api.github.com/users/jwodder/orgs\",\"repos_url\":\"https://api.github.com/users/jwodder/repos\",\"events_url\":\"https://api.github.com/users/jwodder/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/jwodder/received_events\",\"type\":\"User\",\"site_admin\":false},\"labels\":[],\"state\":\"open\",\"locked\":false,\"assignee\":null,\"assignees\":[],\"milestone\":null,\"comments\":0,\"created_at\":\"2017-09-28T21:44:54Z\",\"updated_at\":\"2017-09-28T21:44:54Z\",\"closed_at\":null,\"author_association\":\"OWNER\",\"body\":\"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n\",\"closed_by\":null,\"reactions\":{\"url\":\"https://api.github.com/repos/jwodder/test/issues/1/reactions\",\"total_count\":0,\"+1\":0,\"-1\":0,\"laugh\":0,\"hooray\":0,\"confused\":0,\"heart\":0}}"
+          "string": "{\"url\":\"https://api.github.com/repos/jwodder/test/issues/1\",\"repository_url\":\"https://api.github.com/repos/jwodder/test\",\"labels_url\":\"https://api.github.com/repos/jwodder/test/issues/1/labels{/name}\",\"comments_url\":\"https://api.github.com/repos/jwodder/test/issues/1/comments\",\"events_url\":\"https://api.github.com/repos/jwodder/test/issues/1/events\",\"html_url\":\"https://github.com/jwodder/test/issues/1\",\"id\":363631533,\"node_id\":\"MDU6SXNzdWUzNjM2MzE1MzM=\",\"number\":1,\"title\":\"Thing is broken\",\"user\":{\"login\":\"jwodder\",\"id\":98207,\"node_id\":\"MDQ6VXNlcjk4MjA3\",\"avatar_url\":\"https://avatars1.githubusercontent.com/u/98207?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/jwodder\",\"html_url\":\"https://github.com/jwodder\",\"followers_url\":\"https://api.github.com/users/jwodder/followers\",\"following_url\":\"https://api.github.com/users/jwodder/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/jwodder/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/jwodder/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/jwodder/subscriptions\",\"organizations_url\":\"https://api.github.com/users/jwodder/orgs\",\"repos_url\":\"https://api.github.com/users/jwodder/repos\",\"events_url\":\"https://api.github.com/users/jwodder/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/jwodder/received_events\",\"type\":\"User\",\"site_admin\":false},\"labels\":[],\"state\":\"open\",\"locked\":false,\"assignee\":null,\"assignees\":[],\"milestone\":null,\"comments\":0,\"created_at\":\"2018-09-25T15:16:57Z\",\"updated_at\":\"2018-09-25T15:16:57Z\",\"closed_at\":null,\"author_association\":\"OWNER\",\"body\":\"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n\",\"closed_by\":null,\"reactions\":{\"url\":\"https://api.github.com/repos/jwodder/test/issues/1/reactions\",\"total_count\":0,\"+1\":0,\"-1\":0,\"laugh\":0,\"hooray\":0,\"confused\":0,\"heart\":0}}"
         },
         "headers": {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
-          "Cache-Control": "private, max-age=60, s-maxage=60",
-          "Content-Length": "2178",
-          "Content-Security-Policy": "default-src 'none'",
-          "Content-Type": "application/json; charset=utf-8",
-          "Date": "Thu, 28 Sep 2017 21:44:54 GMT",
-          "ETag": "\"94e340c98df0aac8e6e4f421c2b573ba\"",
-          "Location": "https://api.github.com/repos/jwodder/test/issues/1",
-          "Server": "GitHub.com",
-          "Status": "201 Created",
-          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
-          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
-          "X-Content-Type-Options": "nosniff",
-          "X-Frame-Options": "deny",
-          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
-          "X-GitHub-Request-Id": "9FB8:4528:B65661:17203D6:59CD6D56",
-          "X-RateLimit-Limit": "5000",
-          "X-RateLimit-Remaining": "4993",
-          "X-RateLimit-Reset": "1506638440",
-          "X-Runtime-rack": "0.170976",
-          "X-XSS-Protection": "1; mode=block"
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Access-Control-Expose-Headers": [
+            "ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval"
+          ],
+          "Cache-Control": [
+            "private, max-age=60, s-maxage=60"
+          ],
+          "Content-Length": [
+            "2244"
+          ],
+          "Content-Security-Policy": [
+            "default-src 'none'"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Tue, 25 Sep 2018 15:16:57 GMT"
+          ],
+          "ETag": [
+            "\"c1e0c5a953dd1346f12139b0bde67b60\""
+          ],
+          "Location": [
+            "https://api.github.com/repos/jwodder/test/issues/1"
+          ],
+          "Referrer-Policy": [
+            "origin-when-cross-origin, strict-origin-when-cross-origin"
+          ],
+          "Server": [
+            "GitHub.com"
+          ],
+          "Status": [
+            "201 Created"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubdomains; preload"
+          ],
+          "Vary": [
+            "Accept, Authorization, Cookie, X-GitHub-OTP"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "deny"
+          ],
+          "X-GitHub-Media-Type": [
+            "github.mercy-preview, github.squirrel-girl-preview"
+          ],
+          "X-GitHub-Request-Id": [
+            "E89E:3A76:5E7CCBD:B8E4FCC:5BAA5169"
+          ],
+          "X-RateLimit-Limit": [
+            "5000"
+          ],
+          "X-RateLimit-Remaining": [
+            "4997"
+          ],
+          "X-RateLimit-Reset": [
+            "1537890600"
+          ],
+          "X-Runtime-rack": [
+            "0.295359"
+          ],
+          "X-XSS-Protection": [
+            "1; mode=block"
+          ]
         },
         "status": {
           "code": 201,
@@ -111,5 +231,5 @@
       }
     }
   ],
-  "recorded_with": "betamax/0.8.0"
+  "recorded_with": "betamax/0.8.1"
 }
