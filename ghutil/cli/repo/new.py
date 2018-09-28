@@ -2,8 +2,6 @@ import click
 from   ghutil.showing import print_json
 from   ghutil.util    import optional
 
-# Note: Options with multiple names need to have their desired name given
-# explicitly due to <https://github.com/pallets/click/issues/793>
 @click.command()
 @click.option('--allow-merge-commit/--no-merge-commit', default=True,
               help='Allow merging PRs with merge commits?', show_default=True)
@@ -11,11 +9,11 @@ from   ghutil.util    import optional
               help='Allow rebase-merging PRs?', show_default=True)
 @click.option('--allow-squash-merge/--no-squash-merge', default=True,
               help='Allow squash-merging PRs?', show_default=True)
-@click.option('--auto-init/--no-init', '--init', 'auto_init', default=False,
+@click.option('--auto-init/--no-init', '--init', default=False,
               help='Whether to create an initial commit with an empty README',
               show_default=True)
 @optional('-d', '--description', help='Set repository description')
-@optional('--gitignore-template', '--gitignore', 'gitignore_template',
+@optional('--gitignore-template', '--gitignore',
           help='Create an initial commit with the given .gitignore')
 @click.option('--has-issues/--no-issues', default=True, show_default=True,
               help='Enable/disable issues for the repository')
@@ -28,7 +26,7 @@ from   ghutil.util    import optional
 @click.option('--has-wiki/--no-wiki', default=True, show_default=True,
               help="Enable/disable the repository's wiki")
 @optional('-H', '--homepage', metavar='URL', help='Set repository homepage')
-@optional('--license-template', '--license', 'license_template',
+@optional('--license-template', '--license',
           help='Create an initial commit with the given license')
 @click.option('-O', '--organization',
               help='Create the repository in the given organization')

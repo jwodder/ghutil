@@ -126,6 +126,7 @@ def test_gist_new_noargs(nullcmd):
     assert r.exit_code != 0
     assert r.output == '''\
 Usage: gh gist new [OPTIONS] [FILES]...
+Try "gh gist new -h" for help.
 
 Error: No files specified
 '''

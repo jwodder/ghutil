@@ -679,6 +679,7 @@ def test_issue_label_delete_set_nothing(nullcmd):
     assert r.exit_code != 0
     assert r.output == '''\
 Usage: gh issue label [OPTIONS] ISSUE [LABEL]...
+Try "gh issue label -h" for help.
 
 Error: --delete and --set are mutually exclusive
 '''
@@ -909,6 +910,7 @@ def test_issue_assign_delete_set(nullcmd):
     assert r.exit_code != 0
     assert r.output == '''\
 Usage: gh issue assign [OPTIONS] ISSUE [USER]...
+Try "gh issue assign -h" for help.
 
 Error: --delete and --set are mutually exclusive
 '''
