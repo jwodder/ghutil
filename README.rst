@@ -13,6 +13,9 @@
     :target: https://opensource.org/licenses/MIT
     :alt: MIT License
 
+.. image:: https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg
+    :target: https://saythanks.io/to/jwodder
+
 .. contents::
     :backlinks: top
 
@@ -28,9 +31,9 @@ Installation
 ============
 ``ghutil`` requires Python 3.4 or higher to run and `pip
 <https://pip.pypa.io>`_ 6.0+, `Setuptools <https://setuptools.readthedocs.io>`_
-30.3.0+, & `wheel <https://pypi.python.org/pypi/wheel>`_ to install.  `Once you
+30.3.0+, & `wheel <https://pypi.org/project/wheel>`_ to install.  `Once you
 have those
-<https://packaging.python.org/tutorials/installing-packages/#install-pip-setuptools-and-wheel>`_,
+<https://packaging.python.org/tutorials/installing-packages/#ensure-pip-setuptools-and-wheel-are-up-to-date>`_,
 you can install ``ghutil`` and its dependencies by running::
 
     python3 -m pip install git+https://github.com/jwodder/ghutil.git
