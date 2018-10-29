@@ -1,52 +1,108 @@
 {
   "http_interactions": [
     {
-      "recorded_at": "2017-08-18T17:28:10",
+      "recorded_at": "2018-10-29T17:43:33",
       "request": {
         "body": {
           "encoding": "utf-8",
           "string": ""
         },
         "headers": {
-          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
-          "Accept-Encoding": "gzip, deflate",
-          "Authorization": "---REDACTED---",
-          "Connection": "keep-alive",
-          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.4.5"
+          "Accept": [
+            "application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.symmetra-preview+json,application/vnd.github.v3+json"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "---REDACTED---"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "User-Agent": [
+            "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.20.0 CPython/3.5.2"
+          ]
         },
         "method": "GET",
         "uri": "https://api.github.com/repos/jwodder/test/labels/wontfix"
       },
       "response": {
         "body": {
-          "base64_string": "H4sIAAAAAAAAA0WMywqDMBAA/2XP4rb0YcnfRLOpKasbNhsUiv9u6KVzHIb5QgrgnsN1uNwfr1sHVRkczGa5OESfU/9ONtexn2RBpSwFP5uEQIpGxZD9SFxwk9Vi2qGD1S/UDn8xCYs2E3+0IlD0lQ2caaXjBPYtCZuCAAAA",
+          "base64_string": "H4sIAAAAAAAAA0WMywrCMBBFfyVkLY1V8dGd4AMX4iYiuJG2mdrRmCnJlAjivxvdeHf33MN9STSyyPPhfDGaLPLZQDoycPlCuV8dp3q7wfMpPvd6OTno3fCg12M5kL23SWiZu1AoVXaYXZHbvspqeigPHQV1i2QMeMUQWNmyAhtUJMcNPtOBKx+QHv6gJks+keaXZBhoyt6yLNj38K2h9tgxkkuWbjGIiNYKRywqEJH8HYxI4/sD+h/Y+tMAAAA=",
           "encoding": "utf-8",
           "string": ""
         },
         "headers": {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
-          "Cache-Control": "private, max-age=60, s-maxage=60",
-          "Content-Encoding": "gzip",
-          "Content-Security-Policy": "default-src 'none'",
-          "Content-Type": "application/json; charset=utf-8",
-          "Date": "Fri, 18 Aug 2017 17:28:10 GMT",
-          "ETag": "W/\"805ad3063856ba3d9d49c3f460d5fa07\"",
-          "Last-Modified": "Fri, 18 Aug 2017 17:02:17 GMT",
-          "Server": "GitHub.com",
-          "Status": "200 OK",
-          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
-          "Transfer-Encoding": "chunked",
-          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
-          "X-Content-Type-Options": "nosniff",
-          "X-Frame-Options": "deny",
-          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
-          "X-GitHub-Request-Id": "A3E6:2B86:6AE9F8E:D593091:599723A9",
-          "X-RateLimit-Limit": "5000",
-          "X-RateLimit-Remaining": "4998",
-          "X-RateLimit-Reset": "1503080889",
-          "X-Runtime-rack": "0.049185",
-          "X-XSS-Protection": "1; mode=block"
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Access-Control-Expose-Headers": [
+            "ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval"
+          ],
+          "Cache-Control": [
+            "private, max-age=60, s-maxage=60"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Security-Policy": [
+            "default-src 'none'"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Mon, 29 Oct 2018 17:43:33 GMT"
+          ],
+          "ETag": [
+            "W/\"9add8dbce762dfbfad64d7fed1676400\""
+          ],
+          "Last-Modified": [
+            "Mon, 29 Oct 2018 17:41:29 GMT"
+          ],
+          "Referrer-Policy": [
+            "origin-when-cross-origin, strict-origin-when-cross-origin"
+          ],
+          "Server": [
+            "GitHub.com"
+          ],
+          "Status": [
+            "200 OK"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubdomains; preload"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ],
+          "Vary": [
+            "Accept, Authorization, Cookie, X-GitHub-OTP"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "deny"
+          ],
+          "X-GitHub-Media-Type": [
+            "github.mercy-preview, github.squirrel-girl-preview, github.symmetra-preview; format=json"
+          ],
+          "X-GitHub-Request-Id": [
+            "A984:0B0B:25EF1:5002C:5BD746C5"
+          ],
+          "X-RateLimit-Limit": [
+            "5000"
+          ],
+          "X-RateLimit-Remaining": [
+            "4968"
+          ],
+          "X-RateLimit-Reset": [
+            "1540837415"
+          ],
+          "X-XSS-Protection": [
+            "1; mode=block"
+          ]
         },
         "status": {
           "code": 200,
@@ -56,53 +112,111 @@
       }
     },
     {
-      "recorded_at": "2017-08-18T17:28:10",
+      "recorded_at": "2018-10-29T17:43:33",
       "request": {
         "body": {
           "encoding": "utf-8",
           "string": "{\"name\": \"Won't Fix\"}"
         },
         "headers": {
-          "Accept": "application/vnd.github.drax-preview,application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.v3+json",
-          "Accept-Encoding": "gzip, deflate",
-          "Authorization": "---REDACTED---",
-          "Connection": "keep-alive",
-          "Content-Length": "21",
-          "Content-Type": "application/json",
-          "User-Agent": "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.18.4 CPython/3.4.5"
+          "Accept": [
+            "application/vnd.github.mercy-preview,application/vnd.github.squirrel-girl-preview,application/vnd.github.symmetra-preview+json,application/vnd.github.v3+json"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "---REDACTED---"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "21"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.20.0 CPython/3.5.2"
+          ]
         },
         "method": "PATCH",
         "uri": "https://api.github.com/repos/jwodder/test/labels/wontfix"
       },
       "response": {
         "body": {
-          "base64_string": "H4sIAAAAAAAAAyXMWwrCMBCF4a3IgPhSOvVayQLcgs9pM7GRaSckExTEvRvqefw4/B8IDsyl3/fd6Xw9NlASg4FJNWaDaGNoH0GnMrSjzJgoSsbnS5yjhEpZke1AnPEuy063h+4W3tDAYmeqlRU3fxqFJVXz6+rHkbeFFYy3nOn7AzRjC9OJAAAA",
+          "base64_string": "H4sIAAAAAAAAAyWMy6rCMBRFfyUELk7EtCo+OhN84ECcRAQnkjan9mjMKckpFeT++43ePdtrL/ZbopVFnmeL5Xi6zOdD6cnC9QPlYX2a6d0WL+f+ddCr6VHvs6PeTORQdsEloWFuY6GUaXF0Q266clTRUwVoKap7T9ZCUAyRlTMluKjO5Af8M862+Eon3jwhvXyh+EcVOQqJ1d8kx0JtOseyqI2L8OmxCtgykk+abjCKHp0TnliUIHoKD7Aijb9/WjxlQNoAAAA=",
           "encoding": "utf-8",
           "string": ""
         },
         "headers": {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Expose-Headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
-          "Cache-Control": "private, max-age=60, s-maxage=60",
-          "Content-Encoding": "gzip",
-          "Content-Security-Policy": "default-src 'none'",
-          "Content-Type": "application/json; charset=utf-8",
-          "Date": "Fri, 18 Aug 2017 17:28:10 GMT",
-          "ETag": "W/\"941c0c48ec54ae3b7289b6e24365bb98\"",
-          "Server": "GitHub.com",
-          "Status": "200 OK",
-          "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
-          "Transfer-Encoding": "chunked",
-          "Vary": "Accept, Authorization, Cookie, X-GitHub-OTP",
-          "X-Content-Type-Options": "nosniff",
-          "X-Frame-Options": "deny",
-          "X-GitHub-Media-Type": "github.drax-preview, github.mercy-preview, github.squirrel-girl-preview",
-          "X-GitHub-Request-Id": "A3E6:2B86:6AE9F9F:D5930A5:599723AA",
-          "X-RateLimit-Limit": "5000",
-          "X-RateLimit-Remaining": "4997",
-          "X-RateLimit-Reset": "1503080889",
-          "X-Runtime-rack": "0.076617",
-          "X-XSS-Protection": "1; mode=block"
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Access-Control-Expose-Headers": [
+            "ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval"
+          ],
+          "Cache-Control": [
+            "private, max-age=60, s-maxage=60"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Security-Policy": [
+            "default-src 'none'"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Mon, 29 Oct 2018 17:43:33 GMT"
+          ],
+          "ETag": [
+            "W/\"e47adfc33781be16b357c1650481a3ff\""
+          ],
+          "Referrer-Policy": [
+            "origin-when-cross-origin, strict-origin-when-cross-origin"
+          ],
+          "Server": [
+            "GitHub.com"
+          ],
+          "Status": [
+            "200 OK"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubdomains; preload"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ],
+          "Vary": [
+            "Accept, Authorization, Cookie, X-GitHub-OTP"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "deny"
+          ],
+          "X-GitHub-Media-Type": [
+            "github.mercy-preview, github.squirrel-girl-preview, github.symmetra-preview; format=json"
+          ],
+          "X-GitHub-Request-Id": [
+            "A984:0B0B:25EF9:50043:5BD746C5"
+          ],
+          "X-RateLimit-Limit": [
+            "5000"
+          ],
+          "X-RateLimit-Remaining": [
+            "4967"
+          ],
+          "X-RateLimit-Reset": [
+            "1540837415"
+          ],
+          "X-XSS-Protection": [
+            "1; mode=block"
+          ]
         },
         "status": {
           "code": 200,
@@ -112,5 +226,5 @@
       }
     }
   ],
-  "recorded_with": "betamax/0.8.0"
+  "recorded_with": "betamax/0.8.1"
 }

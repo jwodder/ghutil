@@ -1,11 +1,11 @@
 {
   "http_interactions": [
     {
-      "recorded_at": "2018-10-29T17:59:19",
+      "recorded_at": "2018-10-29T18:07:50",
       "request": {
         "body": {
           "encoding": "utf-8",
-          "string": ""
+          "string": "{\"description\": \"Not to be confused with \\\"enchantment\\\"\"}"
         },
         "headers": {
           "Accept": [
@@ -20,16 +20,22 @@
           "Connection": [
             "keep-alive"
           ],
+          "Content-Length": [
+            "58"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
           "User-Agent": [
             "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.20.0 CPython/3.5.2"
           ]
         },
-        "method": "GET",
-        "uri": "https://api.github.com/repos/jwodder/test/labels/duplicate"
+        "method": "PATCH",
+        "uri": "https://api.github.com/repos/jwodder/test/labels/enhancement"
       },
       "response": {
         "body": {
-          "base64_string": "H4sIAAAAAAAAA02NzUpDMRBGXyVkXRqvLVrvThBdXURIEbqRNDPtHUlv4syE/ojv3nTn8jsczvdrCWzfdXerp+WiW93P7JQBv27QDi/rB//2SpvP42nwz8t3/3EZ/P5sZ7ZyasKoWqR3LhSa70nHup3HfHCMJYv7PmYAZKco6lLYYhIHtSSKQbElpnDA1viPYk6ZG4s7WMBjcwB3oSa1vXLF25TIVJTy1Cw/khgSqWgym1JTMow/td2ZkBgDnA2eSFTs3xVP/sF25gAAAA==",
+          "base64_string": "H4sIAAAAAAAAA1WOQWvDMAxG/4rRudTLWkqX26Bsp7QUUgajMBxbaTwcK9gyKR3771OOO+rxeJ9+wDuoq+pp/7LdVPvNCiI5/FogNIfLrn1/858f871pX7en9vxo2tsDVlBSEGFgnnKttZn8+uZ5KN3a0qgTTpT190zOYdKMmXUwHYasMQ4mWhwxskSiGVEq/6GlQEmoeUbEXiyHvSmBoeZUcDmzTX5iT1GsI7FiUh0qS7EvGZ2a5RF1laqVLV6mrgC/fxwQ6RnoAAAA",
           "encoding": "utf-8",
           "string": ""
         },
@@ -53,13 +59,10 @@
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Mon, 29 Oct 2018 17:59:19 GMT"
+            "Mon, 29 Oct 2018 18:07:50 GMT"
           ],
           "ETag": [
-            "W/\"8e95d656054ad8d86c4bc3047e70f5e9\""
-          ],
-          "Last-Modified": [
-            "Mon, 29 Oct 2018 17:58:46 GMT"
+            "W/\"3aa8e9d7f2b8f489695d6aa5ba568f01\""
           ],
           "Referrer-Policy": [
             "origin-when-cross-origin, strict-origin-when-cross-origin"
@@ -89,13 +92,13 @@
             "github.mercy-preview, github.squirrel-girl-preview, github.symmetra-preview; format=json"
           ],
           "X-GitHub-Request-Id": [
-            "EB62:0B09:32006:70E8E:5BD74A77"
+            "A9D2:0B0B:5C4B8:C2575:5BD74C76"
           ],
           "X-RateLimit-Limit": [
             "5000"
           ],
           "X-RateLimit-Remaining": [
-            "4949"
+            "4944"
           ],
           "X-RateLimit-Reset": [
             "1540837415"
@@ -108,7 +111,7 @@
           "code": 200,
           "message": "OK"
         },
-        "url": "https://api.github.com/repos/jwodder/test/labels/duplicate"
+        "url": "https://api.github.com/repos/jwodder/test/labels/enhancement"
       }
     }
   ],

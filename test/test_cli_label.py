@@ -95,6 +95,32 @@ POST https://api.github.com/repos/jwodder/test/labels
 }
 '''
 
+def test_label_new_description(cmd):
+    r = cmd(
+        '--debug',
+        'label', 'new', '-R', 'jwodder/test',
+        'Test Label 2', '#FF0000',
+        '-d', 'This label is a test.',
+    )
+    assert r.exit_code == 0
+    assert r.output == '''\
+POST https://api.github.com/repos/jwodder/test/labels
+{
+    "color": "FF0000",
+    "description": "This label is a test.",
+    "name": "Test Label 2"
+}
+{
+    "color": "FF0000",
+    "default": false,
+    "description": "This label is a test.",
+    "id": 1108950320,
+    "name": "Test Label 2",
+    "node_id": "MDU6TGFiZWwxMTA4OTUwMzIw",
+    "url": "https://api.github.com/repos/jwodder/test/labels/Test%20Label%202"
+}
+'''
+
 def test_label_delete(cmd):
     r = cmd('--debug', 'label', 'delete', '-R', 'jwodder/test', '-f', 'Test Label')
     assert r.exit_code == 0
@@ -114,10 +140,21 @@ PATCH https://api.github.com/repos/jwodder/test/labels/enhancement
 }
 '''
 
+def test_label_edit_description(cmd):
+    r = cmd('--debug', 'label', 'edit', '-R', 'jwodder/test', 'enhancement',
+            '--description=Not to be confused with "enchantment"')
+    assert r.exit_code == 0
+    assert r.output == '''\
+PATCH https://api.github.com/repos/jwodder/test/labels/enhancement
+{
+    "description": "Not to be confused with \\"enchantment\\""
+}
+'''
+
 def test_label_edit_name_editor(cmd, mocker):
     mocker.patch('click.edit', return_value="Name: Won't Fix\nColor: ffffff\n")
     r = cmd('--debug', 'label', 'edit', '-R', 'jwodder/test', 'wontfix')
-    assert r.exit_code == 0
+    assert r.exit_code == 0, r.output
     assert r.output == '''\
 GET https://api.github.com/repos/jwodder/test/labels/wontfix
 PATCH https://api.github.com/repos/jwodder/test/labels/wontfix
@@ -126,14 +163,16 @@ PATCH https://api.github.com/repos/jwodder/test/labels/wontfix
 }
 '''
     click.edit.assert_called_once_with(
-        "Name: wontfix\nColor: ffffff\n",
+        "Name: wontfix\n"
+        "Color: ffffff\n"
+        "Description: This will not be worked on\n",
         require_save=True,
     )
 
 def test_label_edit_color_editor(cmd, mocker):
     mocker.patch('click.edit', return_value="Name: invalid\nColor: #000000\n")
     r = cmd('--debug', 'label', 'edit', '-R', 'jwodder/test', 'invalid')
-    assert r.exit_code == 0
+    assert r.exit_code == 0, r.output
     assert r.output == '''\
 GET https://api.github.com/repos/jwodder/test/labels/invalid
 PATCH https://api.github.com/repos/jwodder/test/labels/invalid
@@ -142,21 +181,25 @@ PATCH https://api.github.com/repos/jwodder/test/labels/invalid
 }
 '''
     click.edit.assert_called_once_with(
-        "Name: invalid\nColor: e6e6e6\n",
+        "Name: invalid\nColor: e4e669\nDescription: This doesn't seem right\n",
         require_save=True,
     )
 
 def test_label_edit_nop_editor(cmd, mocker):
-    mocker.patch('click.edit', return_value="Color: cccccc\nName: duplicate\n")
+    mocker.patch('click.edit', return_value="Color: cfd3d7\nName: duplicate\n")
     r = cmd('--debug', 'label', 'edit', '-R', 'jwodder/test', 'duplicate')
-    assert r.exit_code == 0
+    assert r.exit_code == 0, r.output
     assert r.output == '''\
 GET https://api.github.com/repos/jwodder/test/labels/duplicate
 No modifications made; exiting
 '''
     click.edit.assert_called_once_with(
-        "Name: duplicate\nColor: cccccc\n",
+        "Name: duplicate\n"
+        "Color: cfd3d7\n"
+        "Description: This issue or pull request already exists\n",
         require_save=True,
     )
 
 # operating on labels with slashes in their names
+# editing a label's color on the command line
+# editing a label's description in the editor

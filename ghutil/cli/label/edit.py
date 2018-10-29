@@ -7,6 +7,7 @@ from   ghutil.util  import optional
 @Repository.option('-R', '--repo', '--repository', 'repo',
                    help='Repository to which the label belongs')
 @optional('-c', '--color', help='New label color (six-character hex code)')
+@optional('-d', '--description', help='Set label description')
 @optional('-n', '--name', help='Rename label')
 @click.argument('label')
 def cli(repo, label, **edited):
@@ -18,7 +19,7 @@ def cli(repo, label, **edited):
     label's details as a text file.
     """
     if not edited:
-        edited = edit_as_mail(repo.labels[label].get(), 'name color')
+        edited = edit_as_mail(repo.labels[label].get(), 'name color description')
         if not edited:
             click.echo('No modifications made; exiting')
             return

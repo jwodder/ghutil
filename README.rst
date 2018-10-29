@@ -158,13 +158,13 @@ Labels
 ``gh label delete [-R|--repo <repo>] [--force] <label>``
    Delete a label
 
-``gh label edit [-R|--repo <repo>] [--name <name>] [--color <color>] <label>``
+``gh label edit [-R|--repo <repo>] [--name <name>] [--color <color>] [-d <description>] <label>``
    Edit a label
 
 ``gh label [list [-R|--repo <repo>] [--verbose]]``
    List issue/PR labels available in a repository
 
-``gh label new [-R|--repo <repo>] <name> <color>``
+``gh label new [-R|--repo <repo>] [-d <description>] <name> <color>``
    Create a new label
 
 Milestones

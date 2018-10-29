@@ -54,7 +54,6 @@ API Completeness
         - review comments
     - viewing PR diffs?
     - creating a PR from an issue
-    - label descriptions
 
 - Releases:
     - editing release assets

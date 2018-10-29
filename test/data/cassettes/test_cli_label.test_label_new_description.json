@@ -1,11 +1,11 @@
 {
   "http_interactions": [
     {
-      "recorded_at": "2018-10-29T17:59:19",
+      "recorded_at": "2018-10-29T18:05:14",
       "request": {
         "body": {
           "encoding": "utf-8",
-          "string": ""
+          "string": "{\"color\": \"FF0000\", \"description\": \"This label is a test.\", \"name\": \"Test Label 2\"}"
         },
         "headers": {
           "Accept": [
@@ -20,18 +20,23 @@
           "Connection": [
             "keep-alive"
           ],
+          "Content-Length": [
+            "83"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
           "User-Agent": [
             "ghutil/0.1.0.dev1 (https://github.com/jwodder/ghutil) requests/2.20.0 CPython/3.5.2"
           ]
         },
-        "method": "GET",
-        "uri": "https://api.github.com/repos/jwodder/test/labels/duplicate"
+        "method": "POST",
+        "uri": "https://api.github.com/repos/jwodder/test/labels"
       },
       "response": {
         "body": {
-          "base64_string": "H4sIAAAAAAAAA02NzUpDMRBGXyVkXRqvLVrvThBdXURIEbqRNDPtHUlv4syE/ojv3nTn8jsczvdrCWzfdXerp+WiW93P7JQBv27QDi/rB//2SpvP42nwz8t3/3EZ/P5sZ7ZyasKoWqR3LhSa70nHup3HfHCMJYv7PmYAZKco6lLYYhIHtSSKQbElpnDA1viPYk6ZG4s7WMBjcwB3oSa1vXLF25TIVJTy1Cw/khgSqWgym1JTMow/td2ZkBgDnA2eSFTs3xVP/sF25gAAAA==",
           "encoding": "utf-8",
-          "string": ""
+          "string": "{\"id\":1108950320,\"node_id\":\"MDU6TGFiZWwxMTA4OTUwMzIw\",\"url\":\"https://api.github.com/repos/jwodder/test/labels/Test%20Label%202\",\"name\":\"Test Label 2\",\"color\":\"FF0000\",\"default\":false,\"description\":\"This label is a test.\"}"
         },
         "headers": {
           "Access-Control-Allow-Origin": [
@@ -43,8 +48,8 @@
           "Cache-Control": [
             "private, max-age=60, s-maxage=60"
           ],
-          "Content-Encoding": [
-            "gzip"
+          "Content-Length": [
+            "221"
           ],
           "Content-Security-Policy": [
             "default-src 'none'"
@@ -53,13 +58,13 @@
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Mon, 29 Oct 2018 17:59:19 GMT"
+            "Mon, 29 Oct 2018 18:05:14 GMT"
           ],
           "ETag": [
-            "W/\"8e95d656054ad8d86c4bc3047e70f5e9\""
+            "\"f01a0da49ad9481d7718cecf02acbd88\""
           ],
-          "Last-Modified": [
-            "Mon, 29 Oct 2018 17:58:46 GMT"
+          "Location": [
+            "https://api.github.com/repos/jwodder/test/labels/Test%20Label%202"
           ],
           "Referrer-Policy": [
             "origin-when-cross-origin, strict-origin-when-cross-origin"
@@ -68,13 +73,10 @@
             "GitHub.com"
           ],
           "Status": [
-            "200 OK"
+            "201 Created"
           ],
           "Strict-Transport-Security": [
             "max-age=31536000; includeSubdomains; preload"
-          ],
-          "Transfer-Encoding": [
-            "chunked"
           ],
           "Vary": [
             "Accept, Authorization, Cookie, X-GitHub-OTP"
@@ -89,13 +91,13 @@
             "github.mercy-preview, github.squirrel-girl-preview, github.symmetra-preview; format=json"
           ],
           "X-GitHub-Request-Id": [
-            "EB62:0B09:32006:70E8E:5BD74A77"
+            "A9CE:0B0D:7042B:D5EA9:5BD74BDA"
           ],
           "X-RateLimit-Limit": [
             "5000"
           ],
           "X-RateLimit-Remaining": [
-            "4949"
+            "4945"
           ],
           "X-RateLimit-Reset": [
             "1540837415"
@@ -105,10 +107,10 @@
           ]
         },
         "status": {
-          "code": 200,
-          "message": "OK"
+          "code": 201,
+          "message": "Created"
         },
-        "url": "https://api.github.com/repos/jwodder/test/labels/duplicate"
+        "url": "https://api.github.com/repos/jwodder/test/labels"
       }
     }
   ],

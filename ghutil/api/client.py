@@ -10,6 +10,7 @@ from   .util       import die
 ACCEPT = ','.join([
     'application/vnd.github.mercy-preview',          # Topics
     'application/vnd.github.squirrel-girl-preview',  # Reactions
+    'application/vnd.github.symmetra-preview+json',  # Label descriptions
     'application/vnd.github.v3+json',
 ])
 
