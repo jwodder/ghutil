@@ -80,6 +80,7 @@ API Completeness
 - searching code
 - searching commits
 - statuses? <https://developer.github.com/v3/repos/statuses/>
+- enabling & disabling Pages
 
 Interface Improvements
 ======================
