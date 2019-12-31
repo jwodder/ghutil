@@ -12,6 +12,7 @@ def cli(ctx):
 
     \b
         $ID
+        git@github.com:$ID.git
         git@gist.github.com:$ID.git
         https://gist.github.com/$ID.git        # with or without trailing `.git`
         https://gist.github.com/$OWNER/$ID.git # with or without trailing `.git`

@@ -28,6 +28,10 @@ GIST_URLS = [
         {"id": "4bf350e2d72b547b22dc9de52148ccbe"},
     ),
     (
+        'git@github.com:4bf350e2d72b547b22dc9de52148ccbe.git',
+        {"id": "4bf350e2d72b547b22dc9de52148ccbe"},
+    ),
+    (
         'https://gist.github.com/jwodder/4bf350e2d72b547b22dc9de52148ccbe',
         {"id": "4bf350e2d72b547b22dc9de52148ccbe"},
     ),
@@ -42,6 +46,7 @@ BAD_GISTS = [
     'https://github.com/4bf350e2d72b547b22dc9de52148ccbe',
     'https://github.com/jwodder/4bf350e2d72b547b22dc9de52148ccbe',
     'git@gist.github.com:jwodder/4bf350e2d72b547b22dc9de52148ccbe.git',
+    'git@github.com:jwodder/4bf350e2d72b547b22dc9de52148ccbe.git',
 ]
 
 @pytest.mark.parametrize('arg,result', GIST_URLS + [])
