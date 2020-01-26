@@ -44,22 +44,9 @@ Basic Usage
 
 Authentication
 --------------
-Store your GitHub username & password in ``~/.netrc`` like so::
 
-    machine api.github.com
-    login YOUR_USERNAME_HERE
-    password YOUR_PASSWORD_HERE
-
-(Make sure the file permissions on ``~/.netrc`` are set to 0600!)
-
-Alternatively, create a ``~/.config/ghutil.cfg`` file and populate it with
-either your username & password::
-
-    [api.auth]
-    username = YOUR_USERNAME_HERE
-    password = YOUR_PASSWORD_HERE
-
-or an OAuth2 token::
+Create a ``~/.config/ghutil.cfg`` file and store a GitHub OAuth2 token in it
+like so::
 
     [api.auth]
     token = YOUR_OAUTH_TOKEN_HERE
