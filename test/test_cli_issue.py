@@ -1,6 +1,7 @@
 import json
 import os
 from   pathlib import Path
+import re
 import webbrowser
 import click
 import pytest
@@ -677,12 +678,16 @@ PUT https://api.github.com/repos/jwodder/test/issues/1/labels
 def test_issue_label_delete_set_nothing(nullcmd):
     r = nullcmd('issue', 'label', '--delete', '--set', 'jwodder/test/1', 'bug')
     assert r.exit_code != 0
-    assert r.output == '''\
-Usage: gh issue label [OPTIONS] ISSUE [LABEL]...
-Try "gh issue label -h" for help.
-
-Error: --delete and --set are mutually exclusive
-'''
+    stdout_lines = r.output.splitlines()
+    assert len(stdout_lines) == 4, r.output
+    assert stdout_lines[0] \
+        == 'Usage: gh issue label [OPTIONS] ISSUE [LABEL]...'
+    assert re.match(
+        r'^Try [\'"]gh issue label -h[\'"] for help\.$',
+        stdout_lines[1],
+    )
+    assert stdout_lines[2] == ''
+    assert stdout_lines[3] == 'Error: --delete and --set are mutually exclusive'
 
 @pytest.mark.usefixtures('test_repo')
 def test_issue_new(cmd):
@@ -908,12 +913,16 @@ PATCH https://api.github.com/repos/jwodder/test/issues/1
 def test_issue_assign_delete_set(nullcmd):
     r = nullcmd('issue', 'assign', '-d', '--set', 'jwodder/test/1', 'jwodder')
     assert r.exit_code != 0
-    assert r.output == '''\
-Usage: gh issue assign [OPTIONS] ISSUE [USER]...
-Try "gh issue assign -h" for help.
-
-Error: --delete and --set are mutually exclusive
-'''
+    stdout_lines = r.output.splitlines()
+    assert len(stdout_lines) == 4, r.output
+    assert stdout_lines[0] \
+        == 'Usage: gh issue assign [OPTIONS] ISSUE [USER]...'
+    assert re.match(
+        r'^Try [\'"]gh issue assign -h[\'"] for help\.$',
+        stdout_lines[1],
+    )
+    assert stdout_lines[2] == ''
+    assert stdout_lines[3] == 'Error: --delete and --set are mutually exclusive'
 
 def test_issue_web_issue(cmd, mocker):
     mocker.patch('webbrowser.open_new')

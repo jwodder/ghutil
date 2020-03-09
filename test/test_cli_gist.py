@@ -1,5 +1,6 @@
 from   io      import BytesIO
 from   pathlib import Path
+import re
 import webbrowser
 from   ghutil  import git
 
@@ -124,12 +125,16 @@ def test_gist_starred(cmd):
 def test_gist_new_noargs(nullcmd):
     r = nullcmd('gist', 'new')
     assert r.exit_code != 0
-    assert r.output == '''\
-Usage: gh gist new [OPTIONS] [FILES]...
-Try "gh gist new -h" for help.
-
-Error: No files specified
-'''
+    stdout_lines = r.output.splitlines()
+    assert len(stdout_lines) == 4, r.output
+    assert stdout_lines[0] \
+        == 'Usage: gh gist new [OPTIONS] [FILES]...'
+    assert re.match(
+        r'^Try [\'"]gh gist new -h[\'"] for help\.$',
+        stdout_lines[1],
+    )
+    assert stdout_lines[2] == ''
+    assert stdout_lines[3] == 'Error: No files specified'
 
 def test_gist_new_unnamed(cmd):
     r = cmd('gist', 'new', '-d', 'A file', str(FILEDIR/'lorem.txt'))
