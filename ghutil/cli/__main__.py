@@ -1,12 +1,11 @@
-import os.path
+from   pathlib       import Path
 import click
 from   ghutil        import __version__
 from   ghutil.api    import GitHub
 from   ghutil.config import configure
 from   ghutil.util   import package_group
 
-#DEFAULT_CFG = str(pathlib.Path.home() / '.config' / 'ghutil.cfg')  # Py3.5+
-DEFAULT_CFG = os.path.join(os.path.expanduser('~'), '.config', 'ghutil.cfg')
+DEFAULT_CFG = str(Path.home() / '.config' / 'ghutil.cfg')
 
 @package_group(
     __package__, __file__,

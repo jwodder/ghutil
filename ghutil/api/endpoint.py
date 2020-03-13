@@ -21,8 +21,7 @@ class GHEndpoint:
         return self[key]
 
     def __getitem__(self, name):
-        #return GHEndpoint(self._gh, *self._path, name)  # Python 3.5+
-        return GHEndpoint(self._gh, *(self._path + (name,)))
+        return GHEndpoint(self._gh, *self._path, name)
 
     def __call__(self, decode=True, **kwargs):
         *path, method = self._path

@@ -12,11 +12,7 @@ from   ghutil.cli.__main__             import cli
 from   ghutil                          import git
 
 CASSETTE_DIR = Path(__file__).with_name('data') / 'cassettes'
-try:
-    # Path.mkdir() only got `exist_ok` in Python 3.5.
-    CASSETTE_DIR.mkdir(parents=True)
-except FileExistsError:
-    pass
+CASSETTE_DIR.mkdir(parents=True, exist_ok=True)
 
 def redact(interaction, cassette):
     try:
