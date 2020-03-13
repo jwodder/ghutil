@@ -16,8 +16,7 @@ State:     open
 Author:    roscopecoltran
 Date:      2017-06-29 05:39:32 -0400  (last updated 2017-06-29 12:33:16 -0400)
 Labels:    Nice to Have
-Assignees: 
-
+Assignees: \n
     Hi,
 
     Hope u are all well !
@@ -68,9 +67,7 @@ Issue:     support git refs in @ syntax
 State:     closed
 Author:    zzzeek
 Date:      2016-07-26 19:27:19 -0400  (last updated 2017-04-08 06:21:30 -0400)
-Labels:    
-Assignees: 
-Milestone: 10.0
+Labels:    \nAssignees: \nMilestone: 10.0
 Closed:    2017-04-08 06:21:04 -0400 by xavfernandez
 Reactions: 👍 5
 

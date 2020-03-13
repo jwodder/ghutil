@@ -5,9 +5,7 @@ PR:        Add attrs
 State:     open
 Author:    jwodder
 Date:      2017-04-15 19:59:11 -0400  (last updated 2017-05-20 19:16:50 -0400)
-Labels:    
-Assignees: 
-Reactions: 👍 10
+Labels:    \nAssignees: \nReactions: 👍 10
 
     ## What is this Python project?
 
@@ -87,8 +85,7 @@ State:     closed
 Author:    di
 Date:      2017-04-07 12:11:35 -0400  (last updated 2017-04-08 06:21:22 -0400)
 Labels:    topic - vcs
-Assignees: 
-Milestone: 10.0
+Assignees: \nMilestone: 10.0
 Closed:    2017-04-08 06:21:04 -0400 by xavfernandez
 
     Fixes #3876.
@@ -97,8 +94,7 @@ comment 292708848
 Author: xavfernandez
 Date:   2017-04-08 06:21:11 -0400
 
-    Thanks 👍 
-'''
+    Thanks 👍 \n'''
 
 def test_issue_read_closed_pr(cmd):
     r = cmd('issue', 'read', 'pypa/pip/4429')

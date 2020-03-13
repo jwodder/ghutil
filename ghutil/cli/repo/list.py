@@ -3,7 +3,8 @@ import click
 @click.command()
 @click.option(
     '--affiliation',
-    help='Comma-separated list of "owner", "collaborator", and/or "organization_member"',
+    help='Comma-separated list of "owner", "collaborator", and/or'
+         ' "organization_member"',
 )
 @click.option('-A', '--asc', '--ascending', 'direction', flag_value='asc',
               help='Sort in ascending order')

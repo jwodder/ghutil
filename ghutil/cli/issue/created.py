@@ -9,7 +9,9 @@ def cli(gh):
         click.echo(
             '{!s:40}  #{:<5}  [{}]'.format(
                 #Repository.from_url(gh, issue["repository_url"]),
-                '{owner}/{repo}'.format(**Repository.parse_url(issue["repository_url"])),
+                '{owner}/{repo}'.format_map(
+                    Repository.parse_url(issue["repository_url"])
+                ),
                 issue["number"],
                 issue["state"].upper(),
             )

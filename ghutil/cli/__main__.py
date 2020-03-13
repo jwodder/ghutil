@@ -7,6 +7,9 @@ from   ghutil.util   import package_group
 
 DEFAULT_CFG = str(Path.home() / '.config' / 'ghutil.cfg')
 
+def set_debug(ctx, param, value):
+    ctx.ensure_object(GitHub).debug = value
+
 @package_group(
     __package__, __file__,
     name='gh',
@@ -24,8 +27,7 @@ DEFAULT_CFG = str(Path.home() / '.config' / 'ghutil.cfg')
 @click.option(
     '--debug',
     is_flag      = True,
-    callback     = lambda ctx, param, value:
-                        setattr(ctx.ensure_object(GitHub), 'debug', value),
+    callback     = set_debug,
     expose_value = False,
     help         = 'Show API requests made',
 )

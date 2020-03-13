@@ -4267,10 +4267,8 @@ index 0f63a961..3508e953 100644
 --- a/README.md
 +++ b/README.md
 @@ -777,6 +777,7 @@ Inspired by [awesome-php](https://github.com/ziadoz/awesome-php).
- 
- *Useful libraries or tools that don't fit in the categories above.*
- 
-+* [attrs](https://github.com/python-attrs/attrs) - Replacement for `__init__`, `__eq__`, `__repr__`, etc. boilerplate in class definitions.
+ \n *Useful libraries or tools that don't fit in the categories above.*
+ \n+* [attrs](https://github.com/python-attrs/attrs) - Replacement for `__init__`, `__eq__`, `__repr__`, etc. boilerplate in class definitions.
  * [blinker](https://github.com/jek/blinker) - A fast Python in-process signal/event dispatching system.
  * [itsdangerous](https://github.com/pallets/itsdangerous) - Various helpers to pass trusted data to untrusted environments.
  * [pluginbase](https://github.com/mitsuhiko/pluginbase) - A simple but flexible plugin system for Python.
