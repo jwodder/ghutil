@@ -1,4 +1,5 @@
 import webbrowser
+import click
 import pytest
 from   ghutil import git
 
@@ -313,13 +314,11 @@ def test_repo_show_bad_implicit_repo(nullcmd, mocker):
         'ghutil.git.get_remote_url',
         return_value='/home/jwodder/git/private.git',
     )
-    r = nullcmd('repo', 'show')
+    r = nullcmd('repo', 'show', standalone_mode=False)
     assert r.exit_code != 0
-    assert r.output == '''\
-Usage: gh repo show [OPTIONS] [REPOS]...
-
-Error: Not a GitHub remote: /home/jwodder/git/private.git
-'''
+    assert isinstance(r.exception, click.UsageError)
+    assert str(r.exception) \
+        == 'Not a GitHub remote: /home/jwodder/git/private.git'
     git.get_remote_url.assert_called_once_with()
 
 def test_repo_show_bad_explicit_repo(nullcmd, mocker):
@@ -327,13 +326,11 @@ def test_repo_show_bad_explicit_repo(nullcmd, mocker):
         'ghutil.git.get_remote_url',
         return_value='/home/jwodder/git/private.git',
     )
-    r = nullcmd('repo', 'show', '/some/path')
+    r = nullcmd('repo', 'show', '/some/path', standalone_mode=False)
     assert r.exit_code != 0
-    assert r.output == '''\
-Usage: gh repo show [OPTIONS] [REPOS]...
-
-Error: Not a GitHub remote: /home/jwodder/git/private.git
-'''
+    assert isinstance(r.exception, click.UsageError)
+    assert str(r.exception) \
+        == 'Not a GitHub remote: /home/jwodder/git/private.git'
     git.get_remote_url.assert_called_once_with(chdir='/some/path')
 
 def test_repo_new(cmd):

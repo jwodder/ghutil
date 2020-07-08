@@ -444,13 +444,11 @@ def test_release_show_bad_implicit_repo(nullcmd, mocker):
         'ghutil.git.get_remote_url',
         return_value='/home/jwodder/git/private.git',
     )
-    r = nullcmd('release', 'show')
+    r = nullcmd('release', 'show', standalone_mode=False)
     assert r.exit_code != 0
-    assert r.output == '''\
-Usage: gh release show [OPTIONS] [RELEASES]...
-
-Error: Not a GitHub remote: /home/jwodder/git/private.git
-'''
+    assert isinstance(r.exception, click.UsageError)
+    assert str(r.exception) \
+        == 'Not a GitHub remote: /home/jwodder/git/private.git'
     git.get_remote_url.assert_called_once_with()
 
 @pytest.mark.usefixtures('test_repo')

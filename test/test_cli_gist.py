@@ -1,7 +1,7 @@
 from   io      import BytesIO
 from   pathlib import Path
-import re
 import webbrowser
+import click
 from   ghutil  import git
 
 FILEDIR = Path(__file__).with_name('data') / 'files'
@@ -123,18 +123,10 @@ def test_gist_starred(cmd):
 '''
 
 def test_gist_new_noargs(nullcmd):
-    r = nullcmd('gist', 'new')
+    r = nullcmd('gist', 'new', standalone_mode=False)
     assert r.exit_code != 0
-    stdout_lines = r.output.splitlines()
-    assert len(stdout_lines) == 4, r.output
-    assert stdout_lines[0] \
-        == 'Usage: gh gist new [OPTIONS] [FILES]...'
-    assert re.match(
-        r'^Try [\'"]gh gist new -h[\'"] for help\.$',
-        stdout_lines[1],
-    )
-    assert stdout_lines[2] == ''
-    assert stdout_lines[3] == 'Error: No files specified'
+    assert isinstance(r.exception, click.UsageError)
+    assert str(r.exception) == 'No files specified'
 
 def test_gist_new_unnamed(cmd):
     r = cmd('gist', 'new', '-d', 'A file', str(FILEDIR/'lorem.txt'))
@@ -492,13 +484,11 @@ def test_gist_show_bad_implicit_repo(nullcmd, mocker):
         'ghutil.git.get_remote_url',
         return_value='git@github.com:jwodder/ghutil.git',
     )
-    r = nullcmd('gist', 'show')
+    r = nullcmd('gist', 'show', standalone_mode=False)
     assert r.exit_code != 0
-    assert r.output == '''\
-Usage: gh gist show [OPTIONS] [GISTS]...
-
-Error: Not a gist remote: git@github.com:jwodder/ghutil.git
-'''
+    assert isinstance(r.exception, click.UsageError)
+    assert str(r.exception) \
+        == 'Not a gist remote: git@github.com:jwodder/ghutil.git'
     git.get_remote_url.assert_called_once_with()
 
 def test_gist_show_bad_explicit_repo(nullcmd, mocker):
@@ -506,13 +496,11 @@ def test_gist_show_bad_explicit_repo(nullcmd, mocker):
         'ghutil.git.get_remote_url',
         return_value='git@github.com:jwodder/ghutil.git',
     )
-    r = nullcmd('gist', 'show', '/some/path')
+    r = nullcmd('gist', 'show', '/some/path', standalone_mode=False)
     assert r.exit_code != 0
-    assert r.output == '''\
-Usage: gh gist show [OPTIONS] [GISTS]...
-
-Error: Not a gist remote: git@github.com:jwodder/ghutil.git
-'''
+    assert isinstance(r.exception, click.UsageError)
+    assert str(r.exception) \
+        == 'Not a gist remote: git@github.com:jwodder/ghutil.git'
     git.get_remote_url.assert_called_once_with(chdir='/some/path')
 
 def test_gist_web_fork(cmd, mocker):
