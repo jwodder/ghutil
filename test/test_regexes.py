@@ -1,6 +1,6 @@
 import re
 import pytest
-from   ghutil.regex import GH_USER_RGX, GH_REPO_RGX, GIT_REFNAME_RGX
+from   ghutil.regex import GH_REPO_RGX, GH_USER_RGX, GIT_REFNAME_RGX
 
 @pytest.mark.parametrize('name', [
     'steven-universe',

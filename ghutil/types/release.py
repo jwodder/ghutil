@@ -27,7 +27,7 @@ class Release(Resource):
         r'(?:(?:(?:(?P<owner>{})/)?(?P<repo>{}))?:)?(?P<tag_name>{})'
             .format(GH_USER_RGX, GH_REPO_RGX, GIT_REFNAME_RGX),
         r'(?:(?P<owner>{})/)?(?P<repo>{}):'
-            .format(GH_USER_RGX, GH_REPO_RGX, GIT_REFNAME_RGX),
+            .format(GH_USER_RGX, GH_REPO_RGX),
     ]
 
     DISPLAY_FIELDS = [

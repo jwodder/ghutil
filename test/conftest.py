@@ -7,9 +7,9 @@ from   betamax_serializers.pretty_json import PrettyJSONSerializer
 from   click.testing                   import CliRunner
 import pytest
 import responses
+from   ghutil                          import git
 from   ghutil.api                      import GitHub
 from   ghutil.cli.__main__             import cli
-from   ghutil                          import git
 
 CASSETTE_DIR = Path(__file__).with_name('data') / 'cassettes'
 CASSETTE_DIR.mkdir(parents=True, exist_ok=True)

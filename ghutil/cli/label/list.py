@@ -13,5 +13,5 @@ def cli(gh, repo, verbose):
     if verbose:
         print_json(labels)
     else:
-        for l in labels:
-            click.echo(l["name"])
+        for lb in labels:
+            click.echo(lb["name"])

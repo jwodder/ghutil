@@ -2,8 +2,8 @@ from   collections.abc import Iterator
 from   functools       import partial
 from   inspect         import signature
 import json
-from   textwrap        import indent
 from   operator        import itemgetter
+from   textwrap        import indent
 import click
 
 def print_json(obj, verbose=False, err=False):

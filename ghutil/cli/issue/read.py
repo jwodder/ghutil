@@ -54,7 +54,7 @@ def show_comment(obj):
         date += '  (last updated {})'.format(reformat_date(obj["updated_at"]))
     headers.append(('Date:', date))
     if "title" in obj:
-        headers.append(('Labels:',', '.join(l["name"] for l in obj["labels"])))
+        headers.append(('Labels:',', '.join(lb["name"] for lb in obj["labels"])))
         headers.append((
             'Assignees:',
             ', '.join(u["login"] for u in obj["assignees"])

@@ -24,7 +24,7 @@ def cli(ctx, issue, label, delete, set):  # noqa: B002
     elif set:
         issue.labels.put(json=label)
     elif delete:
-        for l in label:
-            issue.labels[l].delete()
+        for lb in label:
+            issue.labels[lb].delete()
     else:
         issue.labels.post(json=label)

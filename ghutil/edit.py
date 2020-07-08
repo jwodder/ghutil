@@ -17,7 +17,7 @@ def edit_as_mail(obj: dict, fields=None, bodyfield=None):
         dispname = f.replace('_', '-').title()
         val = obj[f]
         if val is None:
-            msg += '{}: \n'.format(dispname, val)
+            msg += '{}: \n'.format(dispname)
             parser.add_field(dispname, dest=f)
         elif isinstance(val, bool):
             msg += '{}: {}\n'.format(dispname, 'yes' if val else 'no')
