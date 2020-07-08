@@ -418,7 +418,7 @@ PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
     "title": ""
 }
-422 Client Error: Unprocessable Entity for url: https://api.github.com/repos/jwodder/test/issues/1
+422 Client Error: Unprocessable Entity for URL: https://api.github.com/repos/jwodder/test/issues/1
 {
     "documentation_url": "https://developer.github.com/v3/issues/#edit-an-issue",
     "errors": [
