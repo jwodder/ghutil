@@ -110,6 +110,11 @@ Interface Improvements
 - `edit_as_mail()`: Handle header parser errors in a more human-friendly way
 - Give the `search` subcommands an option for just showing the total number of
   results?
+- Give `new` and `reply` commands an `--edit` option for opening the editor
+  anyway even if all the necessary details are given on the command line
+    - How would the user then cancel the operation from the editor?  Leaving
+      the input the same produces the same return value from `edit_as_mail()`
+      as deleting everything.
 
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
