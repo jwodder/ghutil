@@ -1,6 +1,5 @@
 from   configparser import ConfigParser, ExtendedInterpolation
 import re
-import click
 from   ghutil.api   import GitHub
 
 def configure(cfg_file, ctx):
@@ -11,17 +10,11 @@ def configure(cfg_file, ctx):
 
 def cfg_session(cfg, session):
     try:
-        auth = cfg['api.auth']
+        token = cfg['api.auth']['token']
     except KeyError:
-        auth = {}
-    if 'token' in auth:
-        session.headers["Authorization"] = "token " + auth['token']
-    elif 'username' in auth and 'password' in auth:
-        session.auth = (auth['username'], auth['password'])
-    elif 'username' in auth:
-        raise click.UsageError('Config file contains username but no password')
-    elif 'password' in auth:
-        raise click.UsageError('Config file contains password but no username')
+        pass
+    else:
+        session.headers["Authorization"] = "token " + token
     try:
         extra_accept = cfg['api']['accept']
     except KeyError:

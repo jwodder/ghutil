@@ -98,7 +98,7 @@ def test_accept(config, accept_header):
     ),
     (
         '[api.auth]\nusername = l.user\npassword = hunter2\n',
-        'Basic bC51c2VyOmh1bnRlcjI=',
+        None,
     ),
     (
         '[api.auth]\n'
@@ -121,21 +121,3 @@ def test_auth(monkeypatch, config, auth_header):
         assert r.exit_code == 0
         headers = json.loads(r.output)
         assert headers.get("Authorization") == auth_header
-
-@pytest.mark.parametrize('config,errmsg', [
-    (
-        '[api.auth]\nusername = l.user\n',
-        'Config file contains username but no password',
-    ),
-    (
-        '[api.auth]\npassword = hunter2\n',
-        'Config file contains password but no username',
-    ),
-])
-def test_bad_auth(nullcmd, config, errmsg):
-    with tempfile.NamedTemporaryFile(mode='w+') as cfg:
-        cfg.write(config)
-        cfg.flush()
-        r = nullcmd('-c', cfg.name, 'nop')
-        assert r.exit_code != 0
-        assert errmsg in r.output
