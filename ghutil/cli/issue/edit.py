@@ -30,8 +30,8 @@ def cli(gh, issue, **edited):
     Assignees/labels given on the command line will replace the issue's current
     assignees/labels.  To remove all assignees/labels from an issue, supply an
     empty string as the sole assignee/label, e.g., `--assignee ""`.  To add or
-    remove individual assignees & labels, use the `gh issue assign` and `gh
-    issue label` commands.
+    remove individual assignees & labels, use the `ghutil issue assign` and
+    `ghutil issue label` commands.
 
     An issue's milestone can be removed by setting it to the empty string,
     e.g., `--milestone ""`.

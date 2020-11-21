@@ -17,7 +17,7 @@ def cli(gh, head, base, title, body, maintainer_can_modify, verbose):
     """
     Create a new pull request.
 
-    `gh pr new alice/repo:master bob/repo:patch` creates a pull request in
+    `ghutil pr new alice/repo:master bob/repo:patch` creates a pull request in
     alice/repo asking for bob/repo:patch to be merged into master.
 
     The `:branch` portion of the base or head can be omitted to merge (to) the

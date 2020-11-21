@@ -60,270 +60,270 @@ the current repository by default.
 Gists
 ^^^^^
 
-Run ``gh gist --help`` for details on specifying gists on the command line.
+Run ``ghutil gist --help`` for details on specifying gists on the command line.
 
-``gh gist clone <gist-id> [<dir>]``
+``ghutil gist clone <gist-id> [<dir>]``
    Locally clone a gist
 
-``gh gist delete [--force] [<gist-id>]``
+``ghutil gist delete [--force] [<gist-id>]``
    Delete a gist
 
-``gh gist [list]``
+``ghutil gist [list]``
    List your gists
 
-``gh gist new [-d <description>] [-P|--private] {-f <name> <file> | <file>} ...``
+``ghutil gist new [-d <description>] [-P|--private] {-f <name> <file> | <file>} ...``
    Create a gist from one or more files
 
-``gh gist show [<gist-id> ...]``
+``ghutil gist show [<gist-id> ...]``
    Show gist details
 
-``gh gist star [<gist-id> ...]``
+``ghutil gist star [<gist-id> ...]``
    Star the given gists
 
-``gh gist starred [--since <timestamp>]``
+``ghutil gist starred [--since <timestamp>]``
    List gists you've starred
 
-``gh gist unstar [<gist-id> ...]``
+``ghutil gist unstar [<gist-id> ...]``
    Unstar the given gists
 
-``gh gist web [<gist-id>]``
+``ghutil gist web [<gist-id>]``
    Open the given gist in a web browser
 
 Issues
 ^^^^^^
 
-Run ``gh issue --help`` for details on specifying issues on the command line.
+Run ``ghutil issue --help`` for details on specifying issues on the command line.
 
-``gh issue assign [--delete|--set] <issue> <user> ...``
+``ghutil issue assign [--delete|--set] <issue> <user> ...``
    Assign an issue/PR to one or more users
 
-``gh issue close <issue> ...``
+``ghutil issue close <issue> ...``
    Close one or more issues/PRs
 
-``gh issue comments [--since <timestamp>] <issue>``
+``ghutil issue comments [--since <timestamp>] <issue>``
    Show comments on an issue/PR as JSON
 
-``gh issue edit [<options>] <issue>``
+``ghutil issue edit [<options>] <issue>``
    Edit an issue
 
-``gh issue label [--delete|--set] <issue> <label> ...``
+``ghutil issue label [--delete|--set] <issue> <label> ...``
    (Re)label an issue/PR
 
-``gh issue [list [<options>] [<repo>]]``
+``ghutil issue [list [<options>] [<repo>]]``
    List issues for a repository
 
-``gh issue lock <issue> ...``
+``ghutil issue lock <issue> ...``
    Lock one or more issues/PRs
 
-``gh issue new [<options>] [<repo>]``
+``ghutil issue new [<options>] [<repo>]``
    Create an issue in the given repository
 
-``gh issue open <issue> ...``
+``ghutil issue open <issue> ...``
    Open one or more issues/PRs
 
-``gh issue read [--since <timestamp>] <issue>``
+``ghutil issue read [--since <timestamp>] <issue>``
    Read an issue/PR and its comments
 
-``gh issue reply <issue> [<file>]``
+``ghutil issue reply <issue> [<file>]``
    Comment on an issue or pull request
 
-``gh issue search [--limit <N>] [--sort comments|created|updated] [--asc|--desc] <search-term> ...``
+``ghutil issue search [--limit <N>] [--sort comments|created|updated] [--asc|--desc] <search-term> ...``
    Search for issues and/or pull requests
 
-``gh issue show <issue> ...``
+``ghutil issue show <issue> ...``
    Show details on the given issues
 
-``gh issue unlock <issue> ...``
+``ghutil issue unlock <issue> ...``
    Unlock one or more issues/PRs
 
-``gh issue web <issue>``
+``ghutil issue web <issue>``
    Open the given issue/PR in a web browser
 
 Labels
 ^^^^^^
 
-``gh label delete [-R|--repo <repo>] [--force] <label>``
+``ghutil label delete [-R|--repo <repo>] [--force] <label>``
    Delete a label
 
-``gh label edit [-R|--repo <repo>] [--name <name>] [--color <color>] [-d <description>] <label>``
+``ghutil label edit [-R|--repo <repo>] [--name <name>] [--color <color>] [-d <description>] <label>``
    Edit a label
 
-``gh label [list [-R|--repo <repo>] [--verbose]]``
+``ghutil label [list [-R|--repo <repo>] [--verbose]]``
    List issue/PR labels available in a repository
 
-``gh label new [-R|--repo <repo>] [-d <description>] <name> <color>``
+``ghutil label new [-R|--repo <repo>] [-d <description>] <name> <color>``
    Create a new label
 
 Milestones
 ^^^^^^^^^^
 
-``gh milestone close [-R|--repo <repo>] <milestone>``
+``ghutil milestone close [-R|--repo <repo>] <milestone>``
    Close a milestone
 
-``gh milestone delete [-R|--repo <repo>] [--force] <milestone>``
+``ghutil milestone delete [-R|--repo <repo>] [--force] <milestone>``
    Delete a milestone
 
-``gh milestone edit [-R|--repo <repo>] [<options>] <milestone>``
+``ghutil milestone edit [-R|--repo <repo>] [<options>] <milestone>``
    Edit a milestone
 
-``gh milestone [list [-R|--repo <repo>] [--state open|closed|all] [--sort completeness|due_on] [--asc|--desc]]``
+``ghutil milestone [list [-R|--repo <repo>] [--state open|closed|all] [--sort completeness|due_on] [--asc|--desc]]``
    List issue/PR milestones available in a repository
 
-``gh milestone new [-R|--repo <repo>] [-d <description>] [--due-on <timestamp>] [--open|--closed] <title>``
+``ghutil milestone new [-R|--repo <repo>] [-d <description>] [--due-on <timestamp>] [--open|--closed] <title>``
    Create a new milestone
 
-``gh milestone open [-R|--repo <repo>] <milestone>``
+``ghutil milestone open [-R|--repo <repo>] <milestone>``
    Open a milestone
 
-``gh milestone show [-R|--repo <repo>] <milestone> ...``
+``ghutil milestone show [-R|--repo <repo>] <milestone> ...``
    Show details on the given milestones
 
-``gh milestone web [-R|--repo <repo>] <milestone>``
+``ghutil milestone web [-R|--repo <repo>] <milestone>``
    Open the given milestone in a web browser
 
 Pull Requests
 ^^^^^^^^^^^^^
 
-Run ``gh pr --help`` for details on specifying pull requests on the command
+Run ``ghutil pr --help`` for details on specifying pull requests on the command
 line.
 
-``gh pr assign [--delete|--set] <pull request> <user> ...``
+``ghutil pr assign [--delete|--set] <pull request> <user> ...``
    Assign an issue/PR to one or more users
 
-``gh pr close <pull request> ...``
+``ghutil pr close <pull request> ...``
    Close one or more issues/PRs
 
-``gh pr comments [--since <timestamp>] <pull request>``
+``ghutil pr comments [--since <timestamp>] <pull request>``
    Show comments on an issue/PR as JSON
 
-``gh pr edit [<options>] <pull request>``
+``ghutil pr edit [<options>] <pull request>``
    Edit a pull request
 
-``gh pr label [--delete|--set] <pull request> <label> ...``
+``ghutil pr label [--delete|--set] <pull request> <label> ...``
    (Re)label an issue/PR
 
-``gh pr [list [<options>] [<repo>]]``
+``ghutil pr [list [<options>] [<repo>]]``
    List pull requests for a repository
 
-``gh pr lock <pull request> ...``
+``ghutil pr lock <pull request> ...``
    Lock one or more issues/PRs
 
-``gh pr merge [-T <commit title>] [-m <commit message>] [--merge|--squash|--rebase] [--sha HASH] <pull request>``
+``ghutil pr merge [-T <commit title>] [-m <commit message>] [--merge|--squash|--rebase] [--sha HASH] <pull request>``
    Merge a pull request
 
-``gh pr new [-T <title>] [--body <file>] [--maintainer-can-modify] <base> <head>``
+``ghutil pr new [-T <title>] [--body <file>] [--maintainer-can-modify] <base> <head>``
    Create a pull request
 
-``gh pr open <pull request> ...``
+``ghutil pr open <pull request> ...``
    Open one or more issues/PRs
 
-``gh pr read [--since <timestamp>] <pull request>``
+``ghutil pr read [--since <timestamp>] <pull request>``
    Read an issue/PR and its comments
 
-``gh pr reply <pull request> [<file>]``
+``ghutil pr reply <pull request> [<file>]``
    Comment on an issue or pull request
 
-``gh pr show <pull request> ...``
+``ghutil pr show <pull request> ...``
    Show details on the given pull requests
 
-``gh pr unlock <pull request> ...``
+``ghutil pr unlock <pull request> ...``
    Unlock one or more issues/PRs
 
-``gh pr web <pull request>``
+``ghutil pr web <pull request>``
    Open the given pull request in a web browser
 
 Releases
 ^^^^^^^^
 
-Run ``gh release --help`` for details on specifying releases on the command
+Run ``ghutil release --help`` for details on specifying releases on the command
 line.  Commands that allow the release to be unspecified will operate on the
 latest release by default.
 
-``gh release attach [--content-type <MIME>] [--label <label>] [--name <name>] [<repo>:]<tag> <file>``
+``ghutil release attach [--content-type <MIME>] [--label <label>] [--name <name>] [<repo>:]<tag> <file>``
    Upload a release asset
 
-``gh release delete [--force] [[<repo>:]<tag>]``
+``ghutil release delete [--force] [[<repo>:]<tag>]``
    Delete a release
 
-``gh release edit [<options>] [[<repo>:]<tag>]``
+``ghutil release edit [<options>] [[<repo>:]<tag>]``
    Edit a release
 
-``gh release [list [<repo>]]``
+``ghutil release [list [<repo>]]``
    List releases for a repository
 
-``gh release new [<options>] [<tag>]``
+``ghutil release new [<options>] [<tag>]``
    Create a release for the given tag (default: the most recent reachable tag)
 
-``gh release show [[<repo>:]<tag> ...]``
+``ghutil release show [[<repo>:]<tag> ...]``
    Show details on the given releases
 
-``gh release unattach [--force] [<repo>:]<tag> <asset>``
+``ghutil release unattach [--force] [<repo>:]<tag> <asset>``
    Delete a release asset
 
-``gh release web [[<repo>:]<tag>]``
+``ghutil release web [[<repo>:]<tag>]``
    Open the given release in a web browser
 
 Repositories
 ^^^^^^^^^^^^
 
-Run ``gh repo --help`` for details on specifying repositories on the command
+Run ``ghutil repo --help`` for details on specifying repositories on the command
 line.
 
-``gh repo clone <repo> [<dir>]``
+``ghutil repo clone <repo> [<dir>]``
    Locally clone a GitHub repository
 
-``gh repo delete [--force] [<repo>]``
+``ghutil repo delete [--force] [<repo>]``
    Delete a GitHub repository
 
-``gh repo edit [<options>] [<repo>]``
+``ghutil repo edit [<options>] [<repo>]``
    Edit a GitHub repository's details
 
-``gh repo fans [<repo>]``
+``ghutil repo fans [<repo>]``
    List users that have forked, starred, or watched the given repository
 
-``gh repo fork <repo>``
+``ghutil repo fork <repo>``
    Fork the given repository
 
-``gh repo [list [<options>] [<user>]]``
+``ghutil repo [list [<options>] [<user>]]``
    List a user's repositories
 
-``gh repo list-forks [<repo>]``
+``ghutil repo list-forks [<repo>]``
    List a repository's forks
 
-``gh repo network [<repo> ...]``
+``ghutil repo network [<repo> ...]``
    Show a repository's network of forks as a tree
 
-``gh repo new [<options>] <name>``
+``ghutil repo new [<options>] <name>``
    Create a new repository
 
-``gh repo search [--limit <N>] [--sort stars|forks|updated] [--asc|--desc] <search-term> ...``
+``ghutil repo search [--limit <N>] [--sort stars|forks|updated] [--asc|--desc] <search-term> ...``
    Search for repositories on GitHub
 
-``gh repo set-topics <repo> <topic> ...``
+``ghutil repo set-topics <repo> <topic> ...``
    Set a repository's topics
 
-``gh repo show [<repo> ...]``
+``ghutil repo show [<repo> ...]``
    Show details on the given repositories
 
-``gh repo star [<repo> ...]``
+``ghutil repo star [<repo> ...]``
    Star the given repositories
 
-``gh repo starred [--sort created|updated] [--asc|--desc]``
+``ghutil repo starred [--sort created|updated] [--asc|--desc]``
    List repositories you've starred
 
-``gh repo unstar [<repo> ...]``
+``ghutil repo unstar [<repo> ...]``
    Unstar the given repositories
 
-``gh repo web [<repo>]``
+``ghutil repo web [<repo>]``
    Open the given repository in a web browser
 
 Other
 ^^^^^
 
-``gh plus1 <issue_url>|<comment_url> ...``
+``ghutil plus1 <issue_url>|<comment_url> ...``
    Give a thumbs-up to an issue, pull request, or comment thereon
 
-``gh request [--data <data>] [-H <header>] [--paginate] [-X <method>] <path>``
+``ghutil request [--data <data>] [-H <header>] [--paginate] [-X <method>] <path>``
    Make an arbitrary GitHub API request to ``<path>``
 
 

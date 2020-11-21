@@ -100,7 +100,7 @@ Interface Improvements
     - Deleting the entire body should set it to the empty string, not leave it
       unchanged
     - Rethink the way deleted header fields are handled
-- Give `gh` a `-C`/`--chdir` option?
+- Give `ghutil` a `-C`/`--chdir` option?
 - Make it easier to configure the use of types like
   `application/vnd.github.v3.full+json` in place of
   `application/vnd.github.v3+json` in the "Accept:" header without having to
@@ -119,23 +119,23 @@ Interface Improvements
 - Support configuring the following through the config file:
     - API endpoint (including overriding `https://api.github.com` in URL
       regexes)
-    - `gh * list`/`search` formats
+    - `ghutil * list`/`search` formats
     - command aliases
     - `Time-Zone:` header to send
     - whether `--verbose` should be on by default?
-    - whether `--maintainer-can-modify` should be set on `gh pr new` by
+    - whether `--maintainer-can-modify` should be set on `ghutil pr new` by
       default?
-    - timestamp format for `gh issue read`
+    - timestamp format for `ghutil issue read`
     - editor program to use
     - default protocol to use when cloning repositories/gists
     - per-repository configuration of the name of the GitHub remote?
     - path to the Git executable?
-    - default options for `gh repo new`?
+    - default options for `ghutil repo new`?
 
-- `gh gist`:
+- `ghutil gist`:
     - Let `web` take more than one repository at a time?
 
-- `gh issue`:
+- `ghutil issue`:
     - `reply`:
         - Add an option for including the quoted (or commented-out?) contents
           of a previous comment in the editor
@@ -149,14 +149,14 @@ Interface Improvements
     - Support issue templates when creating issues
     - Let `web` take more than one repository at a time?
 
-- `gh milestone`:
+- `ghutil milestone`:
     - Specifying a milestone by URL should remove the need to also use the `-R`
       option (regardless of whether the user is in the same repo as the
       milestone or even in a repo at all)
     - Let `web` take more than one repository at a time?
 
-- `gh pr`:
-    - Add a `search` command that just does `gh issue search type:pr ...`?
+- `ghutil pr`:
+    - Add a `search` command that just does `ghutil issue search type:pr ...`?
     - `new`:
         - Should `--maintainer-can-modify` be on by default?
         - (Add an option to) include the (commented out à la `git commit`)
@@ -170,12 +170,12 @@ Interface Improvements
             - Note that it is possible for the repo name to differ between
               forks; how is the correct repo then supposed to be found from
               just the owner's name?
-        - Add some sort of shortcut syntax for using the head repository's
-          parent repo as the base?
+        - When `base` isn't given, use the default brach of the head
+          repository's parent repo
         - Support PR templates when creating PRs
     - `read`: Show merged status etc.
 
-- `gh release`:
+- `ghutil release`:
     - `new`:
         - Add an option to prepopulate the release message/body with the tagged
           commit's commit message
@@ -185,7 +185,7 @@ Interface Improvements
     - `unattach`: Support specifying assets by URL without a release argument
     - Let `web` take more than one repository at a time?
 
-- `gh repo`:
+- `ghutil repo`:
     - Give `new` an option for setting the local repository's origin to the new
       repository and pushing everything to it
     - Give `fork` (and `new`?) an option for cloning the new repository
@@ -195,7 +195,7 @@ Interface Improvements
     - Let `web` take more than one repository at a time?
     - Show repositories' `"organization"` field?
 
-- `gh request`:
+- `ghutil request`:
     - Add a `--param key=value` option for setting query parameters (and/or
       JSON body elements?)
     - Add an option for dumping response headers?

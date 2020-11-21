@@ -12,7 +12,7 @@ def set_debug(ctx, param, value):
 
 @package_group(
     __package__, __file__,
-    name='gh',
+    name='ghutil',
     context_settings={"help_option_names": ["-h", "--help"]},
 )
 @click.option(
