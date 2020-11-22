@@ -87,6 +87,8 @@ Interface Improvements
 - Give the `list` and `search` commands an option for outputting JSON objects
   instead of names
 - Give the `list` and `search` (and `starred`?) subcommands `--format` options
+    - Use Jinja for formatting?  `format()` strings?  `git log --format`-style
+      pseudo-printf format strings?
 - Add options for controlling the amount & detail of debugging output?
     - Add options for showing responses, headers, and/or authentication method
       used?
@@ -170,8 +172,9 @@ Interface Improvements
             - Note that it is possible for the repo name to differ between
               forks; how is the correct repo then supposed to be found from
               just the owner's name?
-        - When `base` isn't given, use the default brach of the head
-          repository's parent repo
+        - When `base` isn't given, use either the default brach of the
+          repository's parent repo (if it has one) or the default branch of the
+          repository itself
         - Support PR templates when creating PRs
     - `read`: Show merged status etc.
 

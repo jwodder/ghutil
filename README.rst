@@ -3,8 +3,9 @@
     :alt: Project Status: WIP — Initial development is in progress, but there
           has not yet been a stable, usable release suitable for the public.
 
-.. image:: https://travis-ci.com/jwodder/ghutil.svg?branch=master
-    :target: https://travis-ci.com/jwodder/ghutil
+.. image:: https://github.com/jwodder/ghutil/workflows/Test/badge.svg?branch=master
+    :target: https://github.com/jwodder/ghutil/actions?workflow=Test
+    :alt: CI Status
 
 .. image:: https://codecov.io/gh/jwodder/ghutil/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/jwodder/ghutil
