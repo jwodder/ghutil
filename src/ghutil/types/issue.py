@@ -25,8 +25,8 @@ class Issue(Resource):
     ]
 
     ARGUMENT_REGEXES = [
-        r'(?:(?:(?P<owner>{})/)?(?P<repo>{})[/#:])?(?P<i_number>\d+)'
-            .format(GH_USER_RGX, GH_REPO_RGX),
+        fr'(?:(?:(?P<owner>{GH_USER_RGX})/)?(?P<repo>{GH_REPO_RGX})[/#:])?'
+            r'(?P<i_number>\d+)',
     ]
 
     DISPLAY_FIELDS = [
@@ -68,9 +68,9 @@ class Issue(Resource):
         return self.data["number"]
 
     def __str__(self):
-        #return '{0.owner}/{0.repo}/{0.number}'.format(self)
-        return '{owner}/{repo}/{number}'.format(
-            **self.parse_url(self.data["url"])
+        #return f'{self.owner}/{self.repo}/{self.number}'
+        return '{owner}/{repo}/{number}'.format_map(
+            self.parse_url(self.data["url"])
         )
 
     @classmethod

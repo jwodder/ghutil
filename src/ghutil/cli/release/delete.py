@@ -7,8 +7,8 @@ from   ghutil.types import Release
 def cli(release, force):
     """ Delete a release """
     release.data  # Force fetching release data before deletion
-    if force or click.confirm('Delete release {}?'.format(release)):
+    if force or click.confirm(f'Delete release {release}?'):
         release.delete()
-        click.echo('Release {} deleted'.format(release))
+        click.echo(f'Release {release} deleted')
     else:
         click.echo('Release not deleted')

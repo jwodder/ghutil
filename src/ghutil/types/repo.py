@@ -24,12 +24,11 @@ class Repository(Resource):
     URL_REGEXES = [
         WEB_REPO_RGX + r'(?:\.git)?/?',
         API_REPO_RGX,
-        r'git(?:://github\.com/|@github\.com:){}(?:\.git)?/?'
-            .format(OWNER_REPO_RGX),
+        fr'git(?:://github\.com/|@github\.com:){OWNER_REPO_RGX}(?:\.git)?/?',
     ]
 
     ARGUMENT_REGEXES = [
-        r'(?:(?P<owner>{})/)?(?P<repo>{})'.format(GH_USER_RGX, GH_REPO_RGX),
+        fr'(?:(?P<owner>{GH_USER_RGX})/)?(?P<repo>{GH_REPO_RGX})',
     ]
 
     DISPLAY_FIELDS = [
@@ -73,7 +72,7 @@ class Repository(Resource):
         return self.data["name"]
 
     def __str__(self):
-        #return '{0.owner}/{0.repo}'.format(self)
+        #return f'{self.owner}/{self.repo}'
         return self.data["full_name"]
 
     @classmethod

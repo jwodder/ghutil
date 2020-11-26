@@ -67,7 +67,7 @@ class Release(Resource):
         return self.data["tag_name"]
 
     def __str__(self):
-        #return '{0.owner}/{0.repo}:{0.tag_name}'.format(self)
+        #return f'{self.owner}/{self.repo}:{self.tag_name}'
         return '{0[owner]}/{0[repo]}:{1}'.format(
             self.parse_url(self.data["url"]),
             self.data["tag_name"],

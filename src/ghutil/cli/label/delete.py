@@ -9,8 +9,8 @@ from   ghutil.types import Repository
 def cli(repo, label, force):
     """ Delete a label """
     ### TODO: Check that the label actually exists first?
-    if force or click.confirm('Delete label {!r} from {}?'.format(label, repo)):
+    if force or click.confirm(f'Delete label {label!r} from {repo}?'):
         repo.labels[label].delete()
-        click.echo('Label {!r} deleted'.format(label))
+        click.echo(f'Label {label!r} deleted')
     else:
         click.echo('Label not deleted')

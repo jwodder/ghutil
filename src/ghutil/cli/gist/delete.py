@@ -7,8 +7,8 @@ from   ghutil.types import Gist
 def cli(gist, force):
     """ Delete a gist """
     data = gist.data
-    if force or click.confirm('Delete gist {0[html_url]}?'.format(data)):
+    if force or click.confirm(f'Delete gist {data["html_url"]}?'):
         gist.delete()
-        click.echo('Gist {0[id]} deleted'.format(data))
+        click.echo(f'Gist {data["id"]} deleted')
     else:
         click.echo('Gist not deleted')

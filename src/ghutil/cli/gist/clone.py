@@ -15,5 +15,5 @@ def cli(ctx, gist, dir, url):  # noqa: B002
         clone_url = gist.data["git_pull_url"]
     elif url == 'ssh':
         # Why isn't this URL returned by the API?
-        clone_url = 'git@gist.github.com:{}.git'.format(gist.id)
+        clone_url = f'git@gist.github.com:{gist.id}.git'
     clone_repo(clone_url, dir)

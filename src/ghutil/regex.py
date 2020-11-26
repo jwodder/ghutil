@@ -33,7 +33,7 @@ GIT_REFNAME_RGX = r'(?!@/?$)(?!.*(?:\.\.|@\{{)){0}(?:/{0})*(?<!\.)'\
 
 #: Convenience regular expression for ``<owner>/<repo>``, including named
 #: capturing groups
-OWNER_REPO_RGX = r'(?P<owner>{})/(?P<repo>{})'.format(GH_USER_RGX, GH_REPO_RGX)
+OWNER_REPO_RGX = fr'(?P<owner>{GH_USER_RGX})/(?P<repo>{GH_REPO_RGX})'
 
 API_REPO_RGX = r'(?:https?://)?api\.github\.com/repos/' + OWNER_REPO_RGX
 

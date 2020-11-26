@@ -51,7 +51,7 @@ def show_comment(obj):
     date = reformat_date(obj["created_at"])
     if obj.get("updated_at") is not None and \
             obj["updated_at"] != obj["created_at"]:
-        date += '  (last updated {})'.format(reformat_date(obj["updated_at"]))
+        date += f'  (last updated {reformat_date(obj["updated_at"])})'
     headers.append(('Date:', date))
     if "title" in obj:
         headers.append(('Labels:',', '.join(lb["name"] for lb in obj["labels"])))
@@ -73,10 +73,10 @@ def show_comment(obj):
     for k,v in sorted(obj.get("reactions", {}).items()):
         if k not in ('total_count', 'url') and v:
             symbol = EMOJI.get(k, ':' + k + ':')
-            reactions.append('{} {}'.format(symbol, v))
+            reactions.append(f'{symbol} {v}')
     if reactions:
         headers.append(('Reactions:', '  '.join(reactions)))
     width = max(len(k) for k,v in headers)
     return ''.join(
-        '{:{width}} {}\n'.format(k, v, width=width) for k,v in headers
+        f'{k:{width}} {v}\n' for k,v in headers
     ) + '\n' + indent(obj["body"], ' ' * 4).rstrip('\r\n') + '\n'

@@ -17,13 +17,13 @@ def edit_as_mail(obj: dict, fields=None, bodyfield=None):
         dispname = f.replace('_', '-').title()
         val = obj[f]
         if val is None:
-            msg += '{}: \n'.format(dispname)
+            msg += f'{dispname}: \n'
             parser.add_field(dispname, dest=f)
         elif isinstance(val, bool):
             msg += '{}: {}\n'.format(dispname, 'yes' if val else 'no')
             parser.add_field(dispname, type=BOOL, dest=f)
         elif isinstance(val, str):
-            msg += '{}: {}\n'.format(dispname, val)
+            msg += f'{dispname}: {val}\n'
             parser.add_field(dispname, dest=f)
         elif isinstance(val, (list, tuple)):
             msg += '{}: {}\n'.format(dispname, ', '.join(map(str, val)))

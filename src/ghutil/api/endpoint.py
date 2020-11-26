@@ -34,7 +34,7 @@ class GHEndpoint:
                 url = url.rstrip('/') + '/' + p.lstrip('/')
         req = self._gh.session.prepare_request(Request(method, url, **kwargs))
         if self._gh.debug:
-            click.echo('{0.method} {0.url}'.format(req), err=True)
+            click.echo(f'{req.method} {req.url}', err=True)
             if 'json' in kwargs:
                 print_json(kwargs['json'], err=True)
             elif req.body is not None:

@@ -14,8 +14,7 @@ def cli(ctx, url):
                          r'/(?P<issue>\d+)'
                          r'(?:#issuecomment-(?P<comment>\d+))?', u)
         if not m:
-            click.echo('{}: could not parse {!r}'.format(ctx.command_path, u),
-                       err=True)
+            click.echo(f'{ctx.command_path}: could not parse {u!r}', err=True)
             continue
         endpoint = ctx.obj.repos[m.group('owner')][m.group('repo')].issues
         if m.group('comment') is None:

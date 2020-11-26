@@ -8,10 +8,8 @@ from   ghutil.types import Release
 def cli(release, asset, force):
     """ Delete a release asset """
     s = release.asset(asset)
-    if force or click.confirm(
-        'Delete assert {} from release {}?'.format(s, release)
-    ):
+    if force or click.confirm(f'Delete assert {s} from release {release}?'):
         s.delete()
-        click.echo('Asset {} deleted'.format(s))
+        click.echo(f'Asset {s} deleted')
     else:
         click.echo('Asset not deleted')
