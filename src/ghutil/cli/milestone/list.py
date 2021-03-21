@@ -12,8 +12,7 @@ from   ghutil.types import Repository
               help='Sort in descending order')
 @click.option('-S', '--sort', help='What to sort results by',
               type=click.Choice(['completeness', 'due_on']))
-@click.pass_obj
-def cli(gh, repo, **params):
+def cli(repo, **params):
     """ List milestones for a repository """
     for m in repo.milestones.get(params=params):
         click.echo(m["title"])

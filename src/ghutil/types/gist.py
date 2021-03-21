@@ -43,7 +43,7 @@ class Gist(Resource):
         return self.data["id"]
 
     @classmethod
-    def params2path(cls, gh, params):
+    def params2path(cls, _gh, params):
         return ('gists', params["id"])
 
     @classmethod

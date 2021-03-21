@@ -12,8 +12,7 @@ from   ghutil.util  import optional
 @optional('--open/--closed', ' /--close', help='Open/close the PR')
 @optional('-T', '--title', help='New PR title')
 @PullRequest.argument('pull_request')
-@click.pass_obj
-def cli(gh, pull_request, **edited):
+def cli(pull_request, **edited):
     """
     Edit a pull request.
 

@@ -115,7 +115,7 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
         :type params: dict
         :return: sequence of `str` and/or `int` values
         """
-        pass
+        ...
 
     @classmethod
     @abstractmethod
@@ -128,7 +128,7 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
 
         :rtype: dict
         """
-        pass
+        ...
 
     @classmethod
     def parse_url(cls, url):

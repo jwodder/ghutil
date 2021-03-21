@@ -10,7 +10,6 @@ from   ghutil.types import Repository
               help='Clone over SSH [default]')
 @Repository.argument('repo', implicit=False)
 @click.argument('dir', required=False)
-@click.pass_context
-def cli(ctx, repo, dir, url):  # noqa: B002
+def cli(repo, dir, url):  # noqa: B002
     """ Clone a GitHub repository """
     clone_repo(repo.data[url], dir)

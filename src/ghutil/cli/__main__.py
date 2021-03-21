@@ -7,7 +7,7 @@ from   ghutil.util   import package_group
 
 DEFAULT_CFG = str(Path.home() / '.config' / 'ghutil.cfg')
 
-def set_debug(ctx, param, value):
+def set_debug(ctx, _param, value):
     ctx.ensure_object(GitHub).debug = value
 
 @package_group(
