@@ -269,7 +269,9 @@ class ResourceParamType(click.ParamType):
         self.name = resource_type.__name__
 
     def convert(self, value, param, ctx):
-        if isinstance(value, str):
+        if isinstance(value, self.resource_type):
+            return value
+        elif isinstance(value, str):
             try:
                 return self.resource_type.from_arg(ctx.obj, value)
             except ValueError:
