@@ -227,7 +227,7 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
         defaulted to the resource type's default value.
         """
         if cls.default_params is not None:
-            def callback(ctx, param, value):
+            def callback(ctx, _param, value):
                 return value or [cls.default(ctx.obj)]
         else:
             callback = None
