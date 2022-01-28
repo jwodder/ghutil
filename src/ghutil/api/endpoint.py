@@ -1,8 +1,9 @@
-from   itertools      import chain
+from itertools import chain
 import click
-from   requests       import Request
-from   ghutil.showing import print_json
-from   .util          import API_ENDPOINT, die
+from requests import Request
+from ghutil.showing import print_json
+from .util import API_ENDPOINT, die
+
 
 class GHEndpoint:
     def __init__(self, gh, *path):
@@ -28,15 +29,15 @@ class GHEndpoint:
         url = API_ENDPOINT
         for p in path:
             p = str(p)
-            if p.lower().startswith(('http://', 'https://')):
+            if p.lower().startswith(("http://", "https://")):
                 url = p
             else:
-                url = url.rstrip('/') + '/' + p.lstrip('/')
+                url = url.rstrip("/") + "/" + p.lstrip("/")
         req = self._gh.session.prepare_request(Request(method, url, **kwargs))
         if self._gh.debug:
-            click.echo(f'{req.method} {req.url}', err=True)
-            if 'json' in kwargs:
-                print_json(kwargs['json'], err=True)
+            click.echo(f"{req.method} {req.url}", err=True)
+            if "json" in kwargs:
+                print_json(kwargs["json"], err=True)
             elif req.body is not None:
                 click.echo(req.body, err=True)
         r = self._gh.session.send(req)
@@ -44,7 +45,7 @@ class GHEndpoint:
             return r
         elif not r.ok:
             die(r)
-        elif method.lower() == 'get' and 'next' in r.links:
+        elif method.lower() == "get" and "next" in r.links:
             return chain.from_iterable(self._gh.paginate(r))
         elif r.status_code == 204:
             return None

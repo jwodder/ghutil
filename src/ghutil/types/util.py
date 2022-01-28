@@ -1,10 +1,11 @@
-from   abc                 import ABCMeta, abstractmethod
-from   collections.abc     import Mapping
+from abc import ABCMeta, abstractmethod
+from collections.abc import Mapping
 import re
 import click
-from   ghutil.api.endpoint import GHEndpoint
-from   ghutil.showing      import show_fields
-from   ghutil.util         import cacheable
+from ghutil.api.endpoint import GHEndpoint
+from ghutil.showing import show_fields
+from ghutil.util import cacheable
+
 
 class Resource(GHEndpoint, metaclass=ABCMeta):
     """
@@ -71,11 +72,11 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
             params = self.parse_url(data["url"])
             self.data = data
         elif params is not None:
-            for k,v in params.items():
+            for k, v in params.items():
                 if v is not None:  # Don't set unknown parameters
                     setattr(self, k, v)
         else:
-            raise TypeError('At least one of data and params must be non-None')
+            raise TypeError("At least one of data and params must be non-None")
         super().__init__(gh, *self.params2path(gh, params))
 
     def __eq__(self, other):
@@ -165,7 +166,7 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
 
     @classmethod
     def from_url(cls, gh, url):
-        """ Construct a resource instance from a `GitHub` instance and a URL """
+        """Construct a resource instance from a `GitHub` instance and a URL"""
         return cls.from_params(gh, cls.parse_url(url))
 
     @classmethod
@@ -227,8 +228,10 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
         defaulted to the resource type's default value.
         """
         if cls.default_params is not None:
+
             def callback(ctx, _param, value):
                 return value or [cls.default(ctx.obj)]
+
         else:
             callback = None
         return click.argument(
@@ -246,10 +249,7 @@ class Resource(GHEndpoint, metaclass=ABCMeta):
         the option's default value.
         """
         return click.option(
-            *names,
-            type=ResourceParamType(cls),
-            default=cls.default_params,
-            **kwargs
+            *names, type=ResourceParamType(cls), default=cls.default_params, **kwargs
         )
 
     def for_json(self, verbose=False):
@@ -287,8 +287,8 @@ def typed_match(rgx, s):
     if not m:
         return None
     params = {}
-    for k,v in m.groupdict().items():
-        if k.startswith('i_'):
+    for k, v in m.groupdict().items():
+        if k.startswith("i_"):
             params[k[2:]] = int(v) if v is not None else None
         else:
             params[k] = v

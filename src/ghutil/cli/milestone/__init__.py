@@ -1,5 +1,6 @@
 import click
-from   ghutil.util import default_command, package_group
+from ghutil.util import default_command, package_group
+
 
 @package_group(__package__, __file__, invoke_without_command=True)
 @click.pass_context
@@ -12,4 +13,4 @@ def cli(ctx):
     current repository; to specify a different repository, pass the
     `--repository <REPO>` option to the subcommands.
     """
-    default_command(ctx, 'list')
+    default_command(ctx, "list")

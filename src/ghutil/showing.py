@@ -1,15 +1,16 @@
-from   collections.abc import Iterator
-from   functools       import partial
-from   inspect         import signature
+from collections.abc import Iterator
+from functools import partial
+from inspect import signature
 import json
-from   operator        import itemgetter
-from   textwrap        import indent
+from operator import itemgetter
+from textwrap import indent
 import click
+
 
 def print_json(obj, verbose=False, err=False):
     def default(obj):
-        if hasattr(obj, 'for_json'):
-            if 'verbose' in signature(obj.for_json).parameters:
+        if hasattr(obj, "for_json"):
+            if "verbose" in signature(obj.for_json).parameters:
                 return obj.for_json(verbose=verbose)
             else:
                 return obj.for_json()
@@ -22,24 +23,28 @@ def print_json(obj, verbose=False, err=False):
                 data = {"__repr__": repr(obj)}
             data["__class__"] = type(obj).__name__
             return data
+
     def dumps(x):
-        return json.dumps(x, sort_keys=True, indent=4, ensure_ascii=False,
-                          default=default)
+        return json.dumps(
+            x, sort_keys=True, indent=4, ensure_ascii=False, default=default
+        )
+
     if isinstance(obj, Iterator):
         first = True
-        click.echo('[', nl=False, err=err)
+        click.echo("[", nl=False, err=err)
         for o in obj:
             if first:
                 click.echo(err=err)
                 first = False
             else:
-                click.echo(',', err=err)
-            click.echo(indent(dumps(o), ' '*4), nl=False, err=err)
+                click.echo(",", err=err)
+            click.echo(indent(dumps(o), " " * 4), nl=False, err=err)
         if not first:
             click.echo(err=err)
-        click.echo(']', err=err)
+        click.echo("]", err=err)
     else:
         click.echo(dumps(obj), err=err)
+
 
 def show_fields(fields, obj):
     about = {}

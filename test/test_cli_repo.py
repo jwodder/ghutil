@@ -1,13 +1,13 @@
 import webbrowser
 import click
 import pytest
-from   ghutil import git
+from ghutil import git
 
 # Betamax isn't good with parametrization, and parametrizing lengthy output
 # would result in very long cassette file names anyway, so no parametrization
 # for me.
 
-REPO_LIST = '''\
+REPO_LIST = """\
 jwodder/advent350
 jwodder/aptrepo
 jwodder/awesome-python
@@ -50,22 +50,27 @@ jwodder/Verity
 jwodder/whitaker-docker
 jwodder/whitaker2json
 jwodder/xattr
-'''
+"""
+
 
 def test_repo_list(cmd):
-    r = cmd('repo', 'list')
+    r = cmd("repo", "list")
     assert r.exit_code == 0
     assert r.output == REPO_LIST
+
 
 def test_repo(cmd):
-    r = cmd('repo')
+    r = cmd("repo")
     assert r.exit_code == 0
     assert r.output == REPO_LIST
 
+
 def test_repo_show_ghutil(cmd):
-    r = cmd('repo', 'show', 'ghutil')
+    r = cmd("repo", "show", "ghutil")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 [
     {
         "clone_url": "https://github.com/jwodder/ghutil.git",
@@ -96,12 +101,16 @@ def test_repo_show_ghutil(cmd):
         "url": "https://api.github.com/repos/jwodder/ghutil"
     }
 ]
-'''
+"""
+    )
+
 
 def test_repo_fans_jwodder_ghutil(cmd):
-    r = cmd('repo', 'fans', 'jwodder/ghutil')
+    r = cmd("repo", "fans", "jwodder/ghutil")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "forkers": [
         "pombredanne"
@@ -116,12 +125,16 @@ def test_repo_fans_jwodder_ghutil(cmd):
         "roscopecoltran"
     ]
 }
-'''
+"""
+    )
+
 
 def test_repo_starred(cmd):
-    r = cmd('repo', 'starred')
+    r = cmd("repo", "starred")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 john-kurkowski/tldextract
 keon/algorithms
 vinta/awesome-python
@@ -171,12 +184,16 @@ perl6/specs
 paxed/Rodney
 rakudo/star
 perl6/book
-'''
+"""
+    )
+
 
 def test_repo_network(cmd):
-    r = cmd('repo', 'network', 'sgillies/Fiona', color=True)
+    r = cmd("repo", "network", "sgillies/Fiona", color=True)
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 Toblerity/Fiona
  ├── johnbickmore/Fiona
  ├── Python3pkg/Fiona
@@ -253,22 +270,30 @@ Toblerity/Fiona
      ├── wyom/Fiona
      ├── Joe-Blabbah/Fiona
      └── yuanshankongmeng/Fiona
-'''
+"""
+    )
+
 
 def test_repo_list_forks(cmd):
-    r = cmd('repo', 'list-forks', 'sgillies/Fiona')
+    r = cmd("repo", "list-forks", "sgillies/Fiona")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 taoteg/Fiona
 wyom/Fiona
 Joe-Blabbah/Fiona
 yuanshankongmeng/Fiona
-'''
+"""
+    )
+
 
 def test_repo_search(cmd):
-    r = cmd('--debug', 'repo', 'search', 'halting', 'problem')
+    r = cmd("--debug", "repo", "search", "halting", "problem")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/search/repositories?q=halting+problem
 ZongzheYuan/HaltingProblem
 ForbesLindesay/halting-problem
@@ -290,12 +315,16 @@ cloudmine/cm-exitcheck
 spiderworthy/getRunningTime
 Aearnus/bf-genetic-generator
 vincentclee/csci2670-intro_to_theory_of_computation
-'''
+"""
+    )
+
 
 def test_repo_search_limit(cmd):
-    r = cmd('--debug', 'repo', 'search', '--limit', '10', 'halting', 'problem')
+    r = cmd("--debug", "repo", "search", "--limit", "10", "halting", "problem")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/search/repositories?q=halting+problem
 ZongzheYuan/HaltingProblem
 ForbesLindesay/halting-problem
@@ -307,36 +336,40 @@ freddieswift/HaltingProblem
 gitpan/Acme-HaltingProblem
 GiacomoPinardi/HaltingProblemTuring
 jsenko/halting-problem-solver
-'''
+"""
+    )
+
 
 def test_repo_show_bad_implicit_repo(nullcmd, mocker):
     mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='/home/jwodder/git/private.git',
+        "ghutil.git.get_remote_url",
+        return_value="/home/jwodder/git/private.git",
     )
-    r = nullcmd('repo', 'show', standalone_mode=False)
+    r = nullcmd("repo", "show", standalone_mode=False)
     assert r.exit_code != 0
     assert isinstance(r.exception, click.UsageError)
-    assert str(r.exception) \
-        == 'Not a GitHub remote: /home/jwodder/git/private.git'
+    assert str(r.exception) == "Not a GitHub remote: /home/jwodder/git/private.git"
     git.get_remote_url.assert_called_once_with()
+
 
 def test_repo_show_bad_explicit_repo(nullcmd, mocker):
     mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='/home/jwodder/git/private.git',
+        "ghutil.git.get_remote_url",
+        return_value="/home/jwodder/git/private.git",
     )
-    r = nullcmd('repo', 'show', '/some/path', standalone_mode=False)
+    r = nullcmd("repo", "show", "/some/path", standalone_mode=False)
     assert r.exit_code != 0
     assert isinstance(r.exception, click.UsageError)
-    assert str(r.exception) \
-        == 'Not a GitHub remote: /home/jwodder/git/private.git'
-    git.get_remote_url.assert_called_once_with(chdir='/some/path')
+    assert str(r.exception) == "Not a GitHub remote: /home/jwodder/git/private.git"
+    git.get_remote_url.assert_called_once_with(chdir="/some/path")
+
 
 def test_repo_new(cmd):
-    r = cmd('--debug', 'repo', 'new', 'test')
+    r = cmd("--debug", "repo", "new", "test")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 POST https://api.github.com/user/repos
 {
     "allow_merge_commit": true,
@@ -377,41 +410,58 @@ POST https://api.github.com/user/repos
     "updated_at": "2018-09-25T14:49:59Z",
     "url": "https://api.github.com/repos/jwodder/test"
 }
-'''
+"""
+    )
+
 
 def test_repo_delete_noforce(cmd):
-    r = cmd('--debug', 'repo', 'delete', 'jwodder/test', input='y\n')
+    r = cmd("--debug", "repo", "delete", "jwodder/test", input="y\n")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test
 Delete repository jwodder/test? [y/N]: y
 DELETE https://api.github.com/repos/jwodder/test
 Repository jwodder/test deleted
-'''
+"""
+    )
+
 
 def test_repo_delete_force(cmd):
-    r = cmd('--debug', 'repo', 'delete', '-f', 'jwodder/test')
+    r = cmd("--debug", "repo", "delete", "-f", "jwodder/test")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test
 DELETE https://api.github.com/repos/jwodder/test
 Repository jwodder/test deleted
-'''
+"""
+    )
+
 
 def test_repo_no_delete(cmd):
-    r = cmd('--debug', 'repo', 'delete', 'jwodder/test', input='n\n')
+    r = cmd("--debug", "repo", "delete", "jwodder/test", input="n\n")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test
 Delete repository jwodder/test? [y/N]: n
 Repository not deleted
-'''
+"""
+    )
+
 
 def test_repo_set_topics(cmd):
-    r = cmd('--debug', 'repo', 'set-topics', 'jwodder/test', 'test',
-            'not-a-real-repository')
+    r = cmd(
+        "--debug", "repo", "set-topics", "jwodder/test", "test", "not-a-real-repository"
+    )
     assert r.exit_code == 0, r.output
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 PUT https://api.github.com/repos/jwodder/test/topics
 {
     "names": [
@@ -419,24 +469,31 @@ PUT https://api.github.com/repos/jwodder/test/topics
         "not-a-real-repository"
     ]
 }
-'''
+"""
+    )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_repo_web(cmd, mocker):
-    mocker.patch('webbrowser.open_new')
-    r = cmd('--debug', 'repo', 'web')
+    mocker.patch("webbrowser.open_new")
+    r = cmd("--debug", "repo", "web")
     assert r.exit_code == 0, r.output
-    assert r.output == 'GET https://api.github.com/repos/jwodder/test\n'
-    webbrowser.open_new.assert_called_once_with('https://github.com/jwodder/test')
+    assert r.output == "GET https://api.github.com/repos/jwodder/test\n"
+    webbrowser.open_new.assert_called_once_with("https://github.com/jwodder/test")
+
 
 def test_repo_web_ghutil(cmd, mocker):
-    mocker.patch('webbrowser.open_new')
-    r = cmd('--debug', 'repo', 'web', 'ghutil')
+    mocker.patch("webbrowser.open_new")
+    r = cmd("--debug", "repo", "web", "ghutil")
     assert r.exit_code == 0, r.output
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/user
 GET https://api.github.com/repos/jwodder/ghutil
-'''
-    webbrowser.open_new.assert_called_once_with('https://github.com/jwodder/ghutil')
+"""
+    )
+    webbrowser.open_new.assert_called_once_with("https://github.com/jwodder/ghutil")
+
 
 # `show` with no arguments (symlink with test_repo_web)

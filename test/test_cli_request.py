@@ -1,6 +1,6 @@
 from pathlib import Path
 
-USER_REPOS_PAGE1 = '''\
+USER_REPOS_PAGE1 = """\
 [
     {
         "archive_url": "https://api.github.com/repos/jwodder/advent350/{archive_format}{/ref}",
@@ -3027,9 +3027,9 @@ USER_REPOS_PAGE1 = '''\
         "watchers_count": 0
     }
 ]
-'''
+"""
 
-USER_REPOS_PAGE2 = '''\
+USER_REPOS_PAGE2 = """\
 [
     {
         "archive_url": "https://api.github.com/repos/jwodder/packaging/{archive_format}{/ref}",
@@ -4232,36 +4232,45 @@ USER_REPOS_PAGE2 = '''\
         "watchers_count": 1
     }
 ]
-'''
+"""
+
 
 def test_request_user_repos(cmd):
-    r = cmd('request', '/user/repos')
+    r = cmd("request", "/user/repos")
     assert r.exit_code == 0
     assert r.output == USER_REPOS_PAGE1
 
+
 def test_request_paginate_user_repos(cmd):
-    r = cmd('request', '--paginate', '/user/repos')
+    r = cmd("request", "--paginate", "/user/repos")
     assert r.exit_code == 0
     assert r.output == USER_REPOS_PAGE1 + USER_REPOS_PAGE2
 
+
 def test_request_debug_user_repos(cmd):
-    r = cmd('--debug', 'request', '/user/repos')
+    r = cmd("--debug", "request", "/user/repos")
     assert r.exit_code == 0
-    assert r.output == 'GET https://api.github.com/user/repos\n' \
-                        + USER_REPOS_PAGE1
+    assert r.output == "GET https://api.github.com/user/repos\n" + USER_REPOS_PAGE1
+
 
 def test_request_debug_paginate_user_repos(cmd):
-    r = cmd('--debug', 'request', '--paginate', '/user/repos')
+    r = cmd("--debug", "request", "--paginate", "/user/repos")
     assert r.exit_code == 0
-    assert r.output == 'GET https://api.github.com/user/repos\n' \
-                        + USER_REPOS_PAGE1 \
-                        + 'GET https://api.github.com/user/repos?page=2\n' \
-                        + USER_REPOS_PAGE2
+    assert (
+        r.output
+        == "GET https://api.github.com/user/repos\n"
+        + USER_REPOS_PAGE1
+        + "GET https://api.github.com/user/repos?page=2\n"
+        + USER_REPOS_PAGE2
+    )
+
 
 def test_request_nonjson(cmd):
-    r = cmd('request', 'https://github.com/vinta/awesome-python/pull/875.diff')
+    r = cmd("request", "https://github.com/vinta/awesome-python/pull/875.diff")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 diff --git a/README.md b/README.md
 index 0f63a961..3508e953 100644
 --- a/README.md
@@ -4273,19 +4282,24 @@ index 0f63a961..3508e953 100644
  * [itsdangerous](https://github.com/pallets/itsdangerous) - Various helpers to pass trusted data to untrusted environments.
  * [pluginbase](https://github.com/mitsuhiko/pluginbase) - A simple but flexible plugin system for Python.
 
-'''
+"""
+    )
+
 
 def test_request_post_data(cmd):
     r = cmd(
-        '--debug',
-        'request',
-        '-XPOST',
-        '-H', 'Content-Type: application/json',
+        "--debug",
+        "request",
+        "-XPOST",
+        "-H",
+        "Content-Type: application/json",
         '-d{"name": "Test Label", "color": "FF0000"}',
-        'https://api.github.com/repos/jwodder/test/labels',
+        "https://api.github.com/repos/jwodder/test/labels",
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 POST https://api.github.com/repos/jwodder/test/labels
 {"name": "Test Label", "color": "FF0000"}
 {
@@ -4295,19 +4309,24 @@ POST https://api.github.com/repos/jwodder/test/labels
     "name": "Test Label",
     "url": "https://api.github.com/repos/jwodder/test/labels/Test%20Label"
 }
-'''
+"""
+    )
+
 
 def test_request_post_data_file(cmd):
     r = cmd(
-        '--debug',
-        'request',
-        '-XPOST',
-        '-H', 'Content-Type: application/json',
-        '-d@' + str(Path(__file__).with_name('data')/'files'/'label.json'),
-        'https://api.github.com/repos/jwodder/test/labels',
+        "--debug",
+        "request",
+        "-XPOST",
+        "-H",
+        "Content-Type: application/json",
+        "-d@" + str(Path(__file__).with_name("data") / "files" / "label.json"),
+        "https://api.github.com/repos/jwodder/test/labels",
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 POST https://api.github.com/repos/jwodder/test/labels
 {"name": "Test Label", "color": "FF0000"}
 {
@@ -4317,20 +4336,25 @@ POST https://api.github.com/repos/jwodder/test/labels
     "name": "Test Label",
     "url": "https://api.github.com/repos/jwodder/test/labels/Test%20Label"
 }
-'''
+"""
+    )
+
 
 def test_request_post_data_stdin(cmd):
     r = cmd(
-        '--debug',
-        'request',
-        '-XPOST',
-        '-H', 'Content-Type: application/json',
-        '-d@-',
-        'https://api.github.com/repos/jwodder/test/labels',
+        "--debug",
+        "request",
+        "-XPOST",
+        "-H",
+        "Content-Type: application/json",
+        "-d@-",
+        "https://api.github.com/repos/jwodder/test/labels",
         input='{"name": "Test Label", "color": "FF0000"}',
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 POST https://api.github.com/repos/jwodder/test/labels
 {"name": "Test Label", "color": "FF0000"}
 {
@@ -4340,4 +4364,5 @@ POST https://api.github.com/repos/jwodder/test/labels
     "name": "Test Label",
     "url": "https://api.github.com/repos/jwodder/test/labels/Test%20Label"
 }
-'''
+"""
+    )

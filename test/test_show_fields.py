@@ -52,8 +52,9 @@ INPUT = {
     "home": None,
 }
 
+
 def test_select():
-    assert show_fields(('name', 'alive', 'parent'), INPUT) == {
+    assert show_fields(("name", "alive", "parent"), INPUT) == {
         "name": "Foo",
         "alive": True,
         "parent": {
@@ -61,9 +62,10 @@ def test_select():
             "disappointed": True,
         },
     }
+
 
 def test_select_nonexistent():
-    assert show_fields(('name', 'alive', 'parent', 'nonexistent'), INPUT) == {
+    assert show_fields(("name", "alive", "parent", "nonexistent"), INPUT) == {
         "name": "Foo",
         "alive": True,
         "parent": {
@@ -72,33 +74,38 @@ def test_select_nonexistent():
         },
     }
 
+
 def test_select_subfield():
-    assert show_fields(('name', ('parent', 'name')), INPUT) == {
+    assert show_fields(("name", ("parent", "name")), INPUT) == {
         "name": "Foo",
         "parent": "Bar",
     }
 
+
 def test_select_list_subfield():
-    assert show_fields(('name', ('children', 'name')), INPUT) == {
+    assert show_fields(("name", ("children", "name")), INPUT) == {
         "name": "Foo",
         "children": ["Baz", "Quux", "Glarch"],
     }
 
+
 def test_select_null():
-    assert show_fields(('name', 'home'), INPUT) == {
+    assert show_fields(("name", "home"), INPUT) == {
         "name": "Foo",
         "home": None,
     }
 
+
 def test_select_null_subfield():
-    assert show_fields(('name', ('home', 'name')), INPUT) == {
+    assert show_fields(("name", ("home", "name")), INPUT) == {
         "name": "Foo",
         "home": None,
     }
+
 
 def test_select_callable():
     assert show_fields(
-        ('name', ('resources', lambda r: {k:v for k,v in r.items() if v})),
+        ("name", ("resources", lambda r: {k: v for k, v in r.items() if v})),
         INPUT,
     ) == {
         "name": "Foo",
@@ -110,9 +117,10 @@ def test_select_callable():
         },
     }
 
+
 def test_select_recursive():
     assert show_fields(
-        ('name', ('children', ('name', ('resources', 'food')))),
+        ("name", ("children", ("name", ("resources", "food")))),
         INPUT,
     ) == {
         "name": "Foo",
@@ -129,5 +137,5 @@ def test_select_recursive():
                 "name": "Glarch",
                 "resources": 1,
             },
-        ]
+        ],
     }

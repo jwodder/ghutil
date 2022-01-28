@@ -1,9 +1,10 @@
 import click
-from   ghutil.types import Issue
+from ghutil.types import Issue
+
 
 @click.command()
-@Issue.argument_list('issues')
+@Issue.argument_list("issues")
 def cli(issues):
-    """ Close issues/PRs """
+    """Close issues/PRs"""
     for i in issues:
         i.patch(json={"state": "closed"})

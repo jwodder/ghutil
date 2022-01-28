@@ -1,11 +1,12 @@
 import click
-from   ghutil.types import Issue
+from ghutil.types import Issue
+
 
 @click.command()
-@click.option('-d', '--delete', is_flag=True, help='Remove the given labels')
-@click.option('--set', is_flag=True, help='Replace the current labels')
-@Issue.argument('issue')
-@click.argument('label', nargs=-1)
+@click.option("-d", "--delete", is_flag=True, help="Remove the given labels")
+@click.option("--set", is_flag=True, help="Replace the current labels")
+@Issue.argument("issue")
+@click.argument("label", nargs=-1)
 @click.pass_context
 def cli(ctx, issue, label, delete, set):  # noqa: B002
     """
@@ -20,7 +21,7 @@ def cli(ctx, issue, label, delete, set):  # noqa: B002
     the issue.
     """
     if delete and set:
-        ctx.fail('--delete and --set are mutually exclusive')
+        ctx.fail("--delete and --set are mutually exclusive")
     elif set:
         issue.labels.put(json=label)
     elif delete:

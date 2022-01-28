@@ -1,15 +1,15 @@
 import json
 import os
-from   pathlib import Path
+from pathlib import Path
 import webbrowser
 import click
 import pytest
 
-FILEDIR = Path(__file__).with_name('data') / 'files'
+FILEDIR = Path(__file__).with_name("data") / "files"
 
 LOREM = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n"
 
-READ_ISSUE = '''\
+READ_ISSUE = """\
 Issue:     click plugins / cache / local datastore
 State:     open
 Author:    roscopecoltran
@@ -49,19 +49,22 @@ Author: jwodder
 Date:   2017-06-29 12:31:32 -0400
 
     I do not currently have any plans for supporting plugins, and any such plans would be very far down on my to-do list for this project.
-'''
+"""
+
 
 def test_issue_read_issue(cmd):
-    r = cmd('issue', 'read', 'ghutil/1')
+    r = cmd("issue", "read", "ghutil/1")
     assert r.exit_code == 0
     assert r.output == READ_ISSUE
+
 
 def test_pr_read_issue(cmd):
-    r = cmd('pr', 'read', 'ghutil/1')
+    r = cmd("pr", "read", "ghutil/1")
     assert r.exit_code == 0
     assert r.output == READ_ISSUE
 
-READ_CLOSED_ISSUE = '''\
+
+READ_CLOSED_ISSUE = """\
 Issue:     support git refs in @ syntax
 State:     closed
 Author:    zzzeek
@@ -98,22 +101,27 @@ Author: pradyunsg
 Date:   2016-12-21 11:44:43 -0500  (last updated 2016-12-21 11:44:54 -0500)
 
     @sshnaidm Please use Github reactions. They're meant for exactly this.
-'''
+"""
+
 
 def test_issue_read_closed_issue(cmd):
-    r = cmd('issue', 'read', 'pypa/pip/3876')
+    r = cmd("issue", "read", "pypa/pip/3876")
     assert r.exit_code == 0
     assert r.output == READ_CLOSED_ISSUE
+
 
 def test_pr_read_closed_issue(cmd):
-    r = cmd('pr', 'read', 'pypa/pip/3876')
+    r = cmd("pr", "read", "pypa/pip/3876")
     assert r.exit_code == 0
     assert r.output == READ_CLOSED_ISSUE
 
+
 def test_issue_list_pypa_packaging(cmd):
-    r = cmd('issue', 'list', 'pypa/packaging')
+    r = cmd("issue", "list", "pypa/packaging")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 pypa/packaging/111
 pypa/packaging/109
 pypa/packaging/108
@@ -134,47 +142,67 @@ pypa/packaging/82
 pypa/packaging/81
 pypa/packaging/74
 pypa/packaging/34
-'''
+"""
+    )
+
 
 def test_issue_list_milestone(cmd):
-    r = cmd('issue', 'list', 'pypa/pip', '-m', 'Improve User Experience')
+    r = cmd("issue", "list", "pypa/pip", "-m", "Improve User Experience")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 pypa/pip/4685
 pypa/pip/4649
 pypa/pip/4575
 pypa/pip/1668
-'''
+"""
+    )
+
 
 def test_issue_list_milestone_label(cmd):
     r = cmd(
-        'issue', 'list',
-        'pypa/pip',
-        '-m', 'Improve User Experience',
-        '-l', 'discussion needed',
+        "issue",
+        "list",
+        "pypa/pip",
+        "-m",
+        "Improve User Experience",
+        "-l",
+        "discussion needed",
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 pypa/pip/4685
 pypa/pip/4649
 pypa/pip/4575
-'''
+"""
+    )
+
 
 def test_issue_list_milestone_two_labels(cmd):
     r = cmd(
-        'issue', 'list',
-        'pypa/pip',
-        '-m', 'Improve User Experience',
-        '-l', 'discussion needed',
-        '-l', 'topic - user-scheme',
+        "issue",
+        "list",
+        "pypa/pip",
+        "-m",
+        "Improve User Experience",
+        "-l",
+        "discussion needed",
+        "-l",
+        "topic - user-scheme",
     )
     assert r.exit_code == 0
-    assert r.output == 'pypa/pip/4575\n'
+    assert r.output == "pypa/pip/4575\n"
+
 
 def test_issue_show_issue(cmd):
-    r = cmd('issue', 'show', 'ghutil/1')
+    r = cmd("issue", "show", "ghutil/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 [
     {
         "assignees": [],
@@ -199,12 +227,16 @@ def test_issue_show_issue(cmd):
         "user": "roscopecoltran"
     }
 ]
-'''
+"""
+    )
+
 
 def test_issue_show_pr(cmd):
-    r = cmd('issue', 'show', 'vinta/awesome-python/875')
+    r = cmd("issue", "show", "vinta/awesome-python/875")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 [
     {
         "assignees": [],
@@ -229,9 +261,11 @@ def test_issue_show_pr(cmd):
         "user": "jwodder"
     }
 ]
-'''
+"""
+    )
 
-ISSUE_COMMENTS = '''\
+
+ISSUE_COMMENTS = """\
 [
     {
         "body": "I do not currently have any plans for supporting plugins, and any such plans would be very far down on my to-do list for this project.\\n",
@@ -244,62 +278,71 @@ ISSUE_COMMENTS = '''\
         "user": "jwodder"
     }
 ]
-'''
+"""
+
 
 def test_issue_comments_issue(cmd):
-    r = cmd('issue', 'comments', 'ghutil/1')
+    r = cmd("issue", "comments", "ghutil/1")
     assert r.exit_code == 0
     assert r.output == ISSUE_COMMENTS
+
 
 def test_pr_comments_issue(cmd):
-    r = cmd('pr', 'comments', 'ghutil/1')
+    r = cmd("pr", "comments", "ghutil/1")
     assert r.exit_code == 0
     assert r.output == ISSUE_COMMENTS
 
+
 def test_issue_open(cmd):
-    issues = ['jwodder/test/1', 'test/2']
-    r = cmd('issue', 'open', *issues)
+    issues = ["jwodder/test/1", "test/2"]
+    r = cmd("issue", "open", *issues)
     assert r.exit_code == 0
-    assert r.output == ''
+    assert r.output == ""
     for i in issues:
-        r = cmd('issue', 'show', '-v', i)
+        r = cmd("issue", "show", "-v", i)
         assert r.exit_code == 0
         assert json.loads(r.output)[0]["state"] == "open"
 
+
 def test_issue_close(cmd):
-    issues = ['jwodder/test/1', 'test/2']
-    r = cmd('issue', 'close', *issues)
+    issues = ["jwodder/test/1", "test/2"]
+    r = cmd("issue", "close", *issues)
     assert r.exit_code == 0
-    assert r.output == ''
+    assert r.output == ""
     for i in issues:
-        r = cmd('issue', 'show', '-v', i)
+        r = cmd("issue", "show", "-v", i)
         assert r.exit_code == 0
         assert json.loads(r.output)[0]["state"] == "closed"
 
+
 def test_issue_lock(cmd):
-    issues = ['jwodder/test/1', 'test/2']
-    r = cmd('issue', 'lock', *issues)
+    issues = ["jwodder/test/1", "test/2"]
+    r = cmd("issue", "lock", *issues)
     assert r.exit_code == 0
-    assert r.output == ''
+    assert r.output == ""
     for i in issues:
-        r = cmd('issue', 'show', '-v', i)
+        r = cmd("issue", "show", "-v", i)
         assert r.exit_code == 0
         assert json.loads(r.output)[0]["locked"]
 
+
 def test_issue_unlock(cmd):
-    issues = ['jwodder/test/1', 'test/2']
-    r = cmd('issue', 'unlock', *issues)
+    issues = ["jwodder/test/1", "test/2"]
+    r = cmd("issue", "unlock", *issues)
     assert r.exit_code == 0
-    assert r.output == ''
+    assert r.output == ""
     for i in issues:
-        r = cmd('issue', 'show', '-v', i)
+        r = cmd("issue", "show", "-v", i)
         assert r.exit_code == 0
         assert not json.loads(r.output)[0]["locked"]
 
+
 def test_issue_edit_one_assignee(cmd):
-    r = cmd('--debug', 'issue', 'edit', '--assignee', 'jwodder', 'jwodder/test/1')
+    r = cmd("--debug", "issue", "edit", "--assignee", "jwodder", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
@@ -307,23 +350,31 @@ PATCH https://api.github.com/repos/jwodder/test/issues/1
         "jwodder"
     ]
 }
-'''
+"""
+    )
+
 
 def test_issue_edit_nil_assignee(cmd):
-    r = cmd('--debug', 'issue', 'edit', '--assignee', '', 'jwodder/test/1')
+    r = cmd("--debug", "issue", "edit", "--assignee", "", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
     "assignees": []
 }
-'''
+"""
+    )
+
 
 def test_issue_edit_one_label(cmd):
-    r = cmd('--debug', 'issue', 'edit', '--label', 'invalid', 'jwodder/test/1')
+    r = cmd("--debug", "issue", "edit", "--label", "invalid", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
@@ -331,23 +382,39 @@ PATCH https://api.github.com/repos/jwodder/test/issues/1
         "invalid"
     ]
 }
-'''
+"""
+    )
+
 
 def test_issue_edit_nil_label(cmd):
-    r = cmd('--debug', 'issue', 'edit', '--label', '', 'jwodder/test/1')
+    r = cmd("--debug", "issue", "edit", "--label", "", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
     "labels": []
 }
-'''
+"""
+    )
+
 
 def test_issue_edit_two_labels(cmd):
-    r = cmd('--debug', 'issue', 'edit', '--label', 'invalid', '-lhelp wanted', 'jwodder/test/1')
+    r = cmd(
+        "--debug",
+        "issue",
+        "edit",
+        "--label",
+        "invalid",
+        "-lhelp wanted",
+        "jwodder/test/1",
+    )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
@@ -356,62 +423,84 @@ PATCH https://api.github.com/repos/jwodder/test/issues/1
         "help wanted"
     ]
 }
-'''
+"""
+    )
+
 
 def test_issue_edit_milestone(cmd):
-    r = cmd('--debug', 'issue', 'edit', '--milestone', 'v1.0', 'jwodder/test/1')
+    r = cmd("--debug", "issue", "edit", "--milestone", "v1.0", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 GET https://api.github.com/repos/jwodder/test/milestones?state=all
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
     "milestone": 1
 }
-'''
+"""
+    )
+
 
 def test_issue_edit_int_milestone(cmd):
     r = cmd(
-        '--debug',
-        'issue', 'edit',
-        '--milestone', 'https://github.com/jwodder/test/milestone/1',
-        'jwodder/test/1'
+        "--debug",
+        "issue",
+        "edit",
+        "--milestone",
+        "https://github.com/jwodder/test/milestone/1",
+        "jwodder/test/1",
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
     "milestone": 1
 }
-'''
+"""
+    )
+
 
 def test_issue_edit_nil_milestone(cmd):
-    r = cmd('--debug', 'issue', 'edit', '--milestone', '', 'jwodder/test/1')
+    r = cmd("--debug", "issue", "edit", "--milestone", "", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
     "milestone": null
 }
-'''
+"""
+    )
+
 
 def test_issue_edit_title(cmd):
-    r = cmd('--debug', 'issue', 'edit', '--title', 'API test site', 'jwodder/test/1')
+    r = cmd("--debug", "issue", "edit", "--title", "API test site", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
     "title": "API test site"
 }
-'''
+"""
+    )
+
 
 def test_issue_edit_nil_title(cmd):
-    r = cmd('--debug', 'issue', 'edit', '--title', '', 'jwodder/test/1')
+    r = cmd("--debug", "issue", "edit", "--title", "", "jwodder/test/1")
     assert r.exit_code != 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
@@ -429,110 +518,147 @@ PATCH https://api.github.com/repos/jwodder/test/issues/1
     ],
     "message": "Validation Failed"
 }
-'''
+"""
+    )
+
 
 def test_issue_edit_body(cmd):
-    r = cmd('--debug', 'issue', 'edit', '--body', str(FILEDIR/'life.py'), 'jwodder/test/1')
+    r = cmd(
+        "--debug", "issue", "edit", "--body", str(FILEDIR / "life.py"), "jwodder/test/1"
+    )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
     "body": "from collections import Counter\\n\\ndef life(before):\\n    \\\"\\\"\\\"\\n    Takes as input a state of Conway's Game of Life, represented as an iterable\\n    of ``(int, int)`` pairs giving the coordinates of living cells, and returns\\n    a `set` of ``(int, int)`` pairs representing the next state\\n    \\\"\\\"\\\"\\n    before = set(before)\\n    neighbors = Counter(\\n        (x+i, y+j) for (x,y) in before\\n                   for i in [-1,0,1]\\n                   for j in [-1,0,1]\\n                   if (i,j) != (0,0)\\n    )\\n    return {xy for (xy, n) in neighbors.items()\\n               if n == 3 or (n == 2 and xy in before)}\\n"
 }
-'''
+"""
+    )
+
 
 def test_issue_edit_body_devnull(cmd):
-    r = cmd('--debug', 'issue', 'edit', '--body', os.devnull, 'jwodder/test/1')
+    r = cmd("--debug", "issue", "edit", "--body", os.devnull, "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
     "body": ""
 }
-'''
+"""
+    )
+
 
 def test_issue_edit_open(cmd):
-    r = cmd('--debug', 'issue', 'edit', '--open', 'jwodder/test/1')
+    r = cmd("--debug", "issue", "edit", "--open", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
     "state": "open"
 }
-'''
+"""
+    )
+
 
 def test_issue_edit_closed(cmd):
-    r = cmd('--debug', 'issue', 'edit', '--closed', 'jwodder/test/1')
+    r = cmd("--debug", "issue", "edit", "--closed", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
     "state": "closed"
 }
-'''
+"""
+    )
+
 
 def test_issue_edit_open_close(cmd):
-    r = cmd('--debug', 'issue', 'edit', '--open', '--close', 'jwodder/test/1')
+    r = cmd("--debug", "issue", "edit", "--open", "--close", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
     "state": "closed"
 }
-'''
+"""
+    )
 
-ISSUE_EDIT_MSG = 'Title: Test issue\n' \
-                 'Labels: \n' \
-                 'Assignees: \n' \
-                 'Milestone: \n' \
-                 'Open: yes\n' \
-                 '\n' \
-                 'Here be testing.\n'
+
+ISSUE_EDIT_MSG = (
+    "Title: Test issue\n"
+    "Labels: \n"
+    "Assignees: \n"
+    "Milestone: \n"
+    "Open: yes\n"
+    "\n"
+    "Here be testing.\n"
+)
+
 
 def test_issue_edit_nosave(cmd, mocker):
-    mocker.patch('click.edit', return_value=None)
-    r = cmd('--debug', 'issue', 'edit', 'jwodder/test/1')
+    mocker.patch("click.edit", return_value=None)
+    r = cmd("--debug", "issue", "edit", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 GET https://api.github.com/repos/jwodder/test
 No modifications made; exiting
-'''
+"""
+    )
     click.edit.assert_called_once_with(ISSUE_EDIT_MSG, require_save=True)
 
+
 def test_issue_edit_nochange(cmd, mocker):
-    mocker.patch('click.edit', return_value=ISSUE_EDIT_MSG)
-    r = cmd('--debug', 'issue', 'edit', 'jwodder/test/1')
+    mocker.patch("click.edit", return_value=ISSUE_EDIT_MSG)
+    r = cmd("--debug", "issue", "edit", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 GET https://api.github.com/repos/jwodder/test
 No modifications made; exiting
-'''
+"""
+    )
     click.edit.assert_called_once_with(ISSUE_EDIT_MSG, require_save=True)
+
 
 def test_issue_edit_change_everything(cmd, mocker):
     mocker.patch(
-        'click.edit',
-        return_value='Title: Tests at work\n'
-                     'Labels: help wanted, enhancement\n'
-                     'Assignees: jwodder\n'
-                     'Milestone: v1.0\n'
-                     'Open: false\n'
-                     '\n'
-                     'Once upon a time, there was a little unit test.'
-                     '  He failed, and the project was cancelled before anyone'
-                     ' could figure out why.'
-                     '  The end.\n'
+        "click.edit",
+        return_value="Title: Tests at work\n"
+        "Labels: help wanted, enhancement\n"
+        "Assignees: jwodder\n"
+        "Milestone: v1.0\n"
+        "Open: false\n"
+        "\n"
+        "Once upon a time, there was a little unit test."
+        "  He failed, and the project was cancelled before anyone"
+        " could figure out why."
+        "  The end.\n",
     )
-    r = cmd('--debug', 'issue', 'edit', 'jwodder/test/1')
+    r = cmd("--debug", "issue", "edit", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/issues/1
 GET https://api.github.com/repos/jwodder/test
 GET https://api.github.com/repos/jwodder/test/milestones?state=all
@@ -550,146 +676,191 @@ PATCH https://api.github.com/repos/jwodder/test/issues/1
     "state": "closed",
     "title": "Tests at work"
 }
-'''
+"""
+    )
     click.edit.assert_called_once_with(ISSUE_EDIT_MSG, require_save=True)
 
+
 def test_issue_label_add(cmd):
-    r = cmd('issue', 'show', 'jwodder/test/1')
+    r = cmd("issue", "show", "jwodder/test/1")
     assert r.exit_code == 0
-    assert json.loads(r.output)[0]["labels"] == ['enhancement']
-    r = cmd('--debug', 'issue', 'label', 'jwodder/test/1', 'invalid','question')
+    assert json.loads(r.output)[0]["labels"] == ["enhancement"]
+    r = cmd("--debug", "issue", "label", "jwodder/test/1", "invalid", "question")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 POST https://api.github.com/repos/jwodder/test/issues/1/labels
 [
     "invalid",
     "question"
 ]
-'''
-    r = cmd('issue', 'show', 'jwodder/test/1')
+"""
+    )
+    r = cmd("issue", "show", "jwodder/test/1")
     assert r.exit_code == 0
-    assert sorted(json.loads(r.output)[0]["labels"]) == \
-        ['enhancement', 'invalid', 'question']
+    assert sorted(json.loads(r.output)[0]["labels"]) == [
+        "enhancement",
+        "invalid",
+        "question",
+    ]
+
 
 def test_issue_label_add_redundant(cmd):
-    r = cmd('issue', 'show', 'jwodder/test/1')
+    r = cmd("issue", "show", "jwodder/test/1")
     assert r.exit_code == 0
-    assert sorted(json.loads(r.output)[0]["labels"]) == \
-        ['enhancement', 'invalid', 'question']
-    r = cmd('--debug', 'issue', 'label', 'jwodder/test/1', 'invalid', 'wontfix')
+    assert sorted(json.loads(r.output)[0]["labels"]) == [
+        "enhancement",
+        "invalid",
+        "question",
+    ]
+    r = cmd("--debug", "issue", "label", "jwodder/test/1", "invalid", "wontfix")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 POST https://api.github.com/repos/jwodder/test/issues/1/labels
 [
     "invalid",
     "wontfix"
 ]
-'''
-    r = cmd('issue', 'show', 'jwodder/test/1')
+"""
+    )
+    r = cmd("issue", "show", "jwodder/test/1")
     assert r.exit_code == 0
-    assert sorted(json.loads(r.output)[0]["labels"]) == \
-        ['enhancement', 'invalid', 'question', 'wontfix']
+    assert sorted(json.loads(r.output)[0]["labels"]) == [
+        "enhancement",
+        "invalid",
+        "question",
+        "wontfix",
+    ]
+
 
 def test_issue_label_add_nothing(cmd):
-    r = cmd('issue', 'show', 'jwodder/test/1')
+    r = cmd("issue", "show", "jwodder/test/1")
     assert r.exit_code == 0
-    assert sorted(json.loads(r.output)[0]["labels"]) == \
-        ['enhancement', 'question']
-    r = cmd('--debug', 'issue', 'label', 'jwodder/test/1')
+    assert sorted(json.loads(r.output)[0]["labels"]) == ["enhancement", "question"]
+    r = cmd("--debug", "issue", "label", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 POST https://api.github.com/repos/jwodder/test/issues/1/labels
 []
-'''
-    r = cmd('issue', 'show', 'jwodder/test/1')
+"""
+    )
+    r = cmd("issue", "show", "jwodder/test/1")
     assert r.exit_code == 0
-    assert sorted(json.loads(r.output)[0]["labels"]) == \
-        ['enhancement', 'question']
+    assert sorted(json.loads(r.output)[0]["labels"]) == ["enhancement", "question"]
+
 
 def test_issue_label_delete(cmd):
-    r = cmd('issue', 'show', 'jwodder/test/1')
+    r = cmd("issue", "show", "jwodder/test/1")
     assert r.exit_code == 0
-    assert sorted(json.loads(r.output)[0]["labels"]) == \
-        ['enhancement', 'invalid', 'question', 'wontfix']
-    r = cmd('--debug', 'issue', 'label', '--delete', 'jwodder/test/1',
-            'invalid', 'wontfix')
+    assert sorted(json.loads(r.output)[0]["labels"]) == [
+        "enhancement",
+        "invalid",
+        "question",
+        "wontfix",
+    ]
+    r = cmd(
+        "--debug", "issue", "label", "--delete", "jwodder/test/1", "invalid", "wontfix"
+    )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 DELETE https://api.github.com/repos/jwodder/test/issues/1/labels/invalid
 DELETE https://api.github.com/repos/jwodder/test/issues/1/labels/wontfix
-'''
-    r = cmd('issue', 'show', 'jwodder/test/1')
+"""
+    )
+    r = cmd("issue", "show", "jwodder/test/1")
     assert r.exit_code == 0
-    assert sorted(json.loads(r.output)[0]["labels"]) == \
-        ['enhancement', 'question']
+    assert sorted(json.loads(r.output)[0]["labels"]) == ["enhancement", "question"]
+
 
 def test_issue_label_delete_nothing(cmd):
-    r = cmd('issue', 'show', 'jwodder/test/1')
+    r = cmd("issue", "show", "jwodder/test/1")
     assert r.exit_code == 0
-    assert sorted(json.loads(r.output)[0]["labels"]) == \
-        ['enhancement', 'question']
-    r = cmd('--debug', 'issue', 'label', '--delete', 'jwodder/test/1')
+    assert sorted(json.loads(r.output)[0]["labels"]) == ["enhancement", "question"]
+    r = cmd("--debug", "issue", "label", "--delete", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == ''
-    r = cmd('issue', 'show', 'jwodder/test/1')
+    assert r.output == ""
+    r = cmd("issue", "show", "jwodder/test/1")
     assert r.exit_code == 0
-    assert sorted(json.loads(r.output)[0]["labels"]) == \
-        ['enhancement', 'question']
+    assert sorted(json.loads(r.output)[0]["labels"]) == ["enhancement", "question"]
+
 
 def test_issue_label_set(cmd):
-    r = cmd('issue', 'show', 'jwodder/test/1')
+    r = cmd("issue", "show", "jwodder/test/1")
     assert r.exit_code == 0
-    assert sorted(json.loads(r.output)[0]["labels"]) == \
-        ['enhancement', 'question']
-    r = cmd('--debug', 'issue', 'label', '--set', 'jwodder/test/1',
-            'invalid', 'enhancement')
+    assert sorted(json.loads(r.output)[0]["labels"]) == ["enhancement", "question"]
+    r = cmd(
+        "--debug", "issue", "label", "--set", "jwodder/test/1", "invalid", "enhancement"
+    )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 PUT https://api.github.com/repos/jwodder/test/issues/1/labels
 [
     "invalid",
     "enhancement"
 ]
-'''
-    r = cmd('issue', 'show', 'jwodder/test/1')
+"""
+    )
+    r = cmd("issue", "show", "jwodder/test/1")
     assert r.exit_code == 0
-    assert sorted(json.loads(r.output)[0]["labels"]) == \
-        ['enhancement', 'invalid']
+    assert sorted(json.loads(r.output)[0]["labels"]) == ["enhancement", "invalid"]
+
 
 def test_issue_label_set_nothing(cmd):
-    r = cmd('issue', 'show', 'jwodder/test/1')
+    r = cmd("issue", "show", "jwodder/test/1")
     assert r.exit_code == 0
-    assert sorted(json.loads(r.output)[0]["labels"]) == \
-        ['enhancement', 'invalid']
-    r = cmd('--debug', 'issue', 'label', '--set', 'jwodder/test/1')
+    assert sorted(json.loads(r.output)[0]["labels"]) == ["enhancement", "invalid"]
+    r = cmd("--debug", "issue", "label", "--set", "jwodder/test/1")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 PUT https://api.github.com/repos/jwodder/test/issues/1/labels
 []
-'''
-    r = cmd('issue', 'show', 'jwodder/test/1')
+"""
+    )
+    r = cmd("issue", "show", "jwodder/test/1")
     assert r.exit_code == 0
     assert json.loads(r.output)[0]["labels"] == []
 
+
 def test_issue_label_delete_set_nothing(nullcmd):
     r = nullcmd(
-        'issue', 'label', '--delete', '--set', 'jwodder/test/1', 'bug',
+        "issue",
+        "label",
+        "--delete",
+        "--set",
+        "jwodder/test/1",
+        "bug",
         standalone_mode=False,
     )
     assert r.exit_code != 0
     assert isinstance(r.exception, click.UsageError)
-    assert str(r.exception) == '--delete and --set are mutually exclusive'
+    assert str(r.exception) == "--delete and --set are mutually exclusive"
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_issue_new(cmd):
     r = cmd(
-        '--debug',
-        'issue', 'new',
-        '-TThing is broken',
-        '--body', str(FILEDIR/'lorem.txt'),
+        "--debug",
+        "issue",
+        "new",
+        "-TThing is broken",
+        "--body",
+        str(FILEDIR / "lorem.txt"),
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 POST https://api.github.com/repos/jwodder/test/issues
 {
     "assignees": [],
@@ -717,18 +888,19 @@ POST https://api.github.com/repos/jwodder/test/issues
     "url": "https://api.github.com/repos/jwodder/test/issues/1",
     "user": "jwodder"
 }
-'''
+"""
+    )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_issue_new_edit_body(cmd, mocker):
-    HEADERS = 'Title: Thing is broken\n' \
-              'Labels: \n' \
-              'Assignees: \n' \
-              'Milestone: \n'
-    mocker.patch('click.edit', return_value=HEADERS + '\n' + LOREM)
-    r = cmd('--debug', 'issue', 'new', '-TThing is broken')
+    HEADERS = "Title: Thing is broken\n" "Labels: \n" "Assignees: \n" "Milestone: \n"
+    mocker.patch("click.edit", return_value=HEADERS + "\n" + LOREM)
+    r = cmd("--debug", "issue", "new", "-TThing is broken")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test
 POST https://api.github.com/repos/jwodder/test/issues
 {
@@ -757,19 +929,20 @@ POST https://api.github.com/repos/jwodder/test/issues
     "url": "https://api.github.com/repos/jwodder/test/issues/1",
     "user": "jwodder"
 }
-'''
-    click.edit.assert_called_once_with(HEADERS+'\n', require_save=True)
+"""
+    )
+    click.edit.assert_called_once_with(HEADERS + "\n", require_save=True)
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_issue_new_edit_title(cmd, mocker):
-    HEADERS = 'Title: Thing is broken\n' \
-              'Labels: \n' \
-              'Assignees: \n' \
-              'Milestone: \n'
-    mocker.patch('click.edit', return_value=HEADERS + '\n' + LOREM)
-    r = cmd('--debug', 'issue', 'new', '--body', str(FILEDIR/'lorem.txt'))
+    HEADERS = "Title: Thing is broken\n" "Labels: \n" "Assignees: \n" "Milestone: \n"
+    mocker.patch("click.edit", return_value=HEADERS + "\n" + LOREM)
+    r = cmd("--debug", "issue", "new", "--body", str(FILEDIR / "lorem.txt"))
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test
 POST https://api.github.com/repos/jwodder/test/issues
 {
@@ -798,19 +971,23 @@ POST https://api.github.com/repos/jwodder/test/issues
     "url": "https://api.github.com/repos/jwodder/test/issues/1",
     "user": "jwodder"
 }
-'''
+"""
+    )
     click.edit.assert_called_once_with(
-        'Title: \nLabels: \nAssignees: \nMilestone: \n\n' + LOREM,
+        "Title: \nLabels: \nAssignees: \nMilestone: \n\n" + LOREM,
         require_save=True,
     )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_issue_new_edit_title_no_body(cmd, mocker):
-    EDIT = 'Title: \nLabels: \nAssignees: \nMilestone: \n\n'
-    mocker.patch('click.edit', return_value='Title: Thing is broken\n')
-    r = cmd('--debug', 'issue', 'new')
+    EDIT = "Title: \nLabels: \nAssignees: \nMilestone: \n\n"
+    mocker.patch("click.edit", return_value="Title: Thing is broken\n")
+    r = cmd("--debug", "issue", "new")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test
 POST https://api.github.com/repos/jwodder/test/issues
 {
@@ -838,89 +1015,121 @@ POST https://api.github.com/repos/jwodder/test/issues
     "url": "https://api.github.com/repos/jwodder/test/issues/2",
     "user": "jwodder"
 }
-'''
+"""
+    )
     click.edit.assert_called_once_with(EDIT, require_save=True)
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_issue_new_no_title_no_body(cmd, mocker):
-    EDIT = 'Title: \nLabels: \nAssignees: \nMilestone: \n\n'
-    mocker.patch('click.edit', return_value=EDIT)
-    r = cmd('--debug', 'issue', 'new')
+    EDIT = "Title: \nLabels: \nAssignees: \nMilestone: \n\n"
+    mocker.patch("click.edit", return_value=EDIT)
+    r = cmd("--debug", "issue", "new")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test
 Aborting issue due to empty title
-'''
+"""
+    )
     click.edit.assert_called_once_with(EDIT, require_save=True)
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_issue_new_no_name_no_body_no_save(cmd, mocker):
-    EDIT = 'Title: \nLabels: \nAssignees: \nMilestone: \n\n'
-    mocker.patch('click.edit', return_value=None)
-    r = cmd('--debug', 'issue', 'new')
+    EDIT = "Title: \nLabels: \nAssignees: \nMilestone: \n\n"
+    mocker.patch("click.edit", return_value=None)
+    r = cmd("--debug", "issue", "new")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test
 No changes saved; exiting
-'''
+"""
+    )
     click.edit.assert_called_once_with(EDIT, require_save=True)
 
+
 def test_issue_assign(cmd):
-    r = cmd('--debug', 'issue', 'assign', 'jwodder/test/1', 'jwodder')
+    r = cmd("--debug", "issue", "assign", "jwodder/test/1", "jwodder")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 POST https://api.github.com/repos/jwodder/test/issues/1/assignees
 {
     "assignees": [
         "jwodder"
     ]
 }
-'''
+"""
+    )
+
 
 def test_issue_assign_delete(cmd):
-    r = cmd('--debug', 'issue', 'assign', '-d', 'jwodder/test/1', 'jwodder')
+    r = cmd("--debug", "issue", "assign", "-d", "jwodder/test/1", "jwodder")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 DELETE https://api.github.com/repos/jwodder/test/issues/1/assignees
 {
     "assignees": [
         "jwodder"
     ]
 }
-'''
+"""
+    )
+
 
 def test_issue_assign_set(cmd):
-    r = cmd('--debug', 'issue', 'assign', '--set', 'jwodder/test/1', 'jwodder')
+    r = cmd("--debug", "issue", "assign", "--set", "jwodder/test/1", "jwodder")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 PATCH https://api.github.com/repos/jwodder/test/issues/1
 {
     "assignees": [
         "jwodder"
     ]
 }
-'''
+"""
+    )
+
 
 def test_issue_assign_delete_set(nullcmd):
     r = nullcmd(
-        'issue', 'assign', '-d', '--set', 'jwodder/test/1', 'jwodder',
+        "issue",
+        "assign",
+        "-d",
+        "--set",
+        "jwodder/test/1",
+        "jwodder",
         standalone_mode=False,
     )
     assert r.exit_code != 0
     assert isinstance(r.exception, click.UsageError)
-    assert str(r.exception) == '--delete and --set are mutually exclusive'
+    assert str(r.exception) == "--delete and --set are mutually exclusive"
+
 
 def test_issue_web_issue(cmd, mocker):
-    mocker.patch('webbrowser.open_new')
-    r = cmd('--debug', 'issue', 'web', 'ghutil/1')
+    mocker.patch("webbrowser.open_new")
+    r = cmd("--debug", "issue", "web", "ghutil/1")
     assert r.exit_code == 0, r.output
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/user
 GET https://api.github.com/repos/jwodder/ghutil/issues/1
-'''
-    webbrowser.open_new.assert_called_once_with(
-        'https://github.com/jwodder/ghutil/issues/1'
+"""
     )
+    webbrowser.open_new.assert_called_once_with(
+        "https://github.com/jwodder/ghutil/issues/1"
+    )
+
 
 # issue new
 # - milestones

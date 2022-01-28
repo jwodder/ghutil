@@ -1,6 +1,7 @@
-from   ghutil.regex import API_REPO_RGX, GH_REPO_RGX, GH_USER_RGX, WEB_REPO_RGX
-from   .repo        import Repository
-from   .util        import Resource, cacheable
+from ghutil.regex import API_REPO_RGX, GH_REPO_RGX, GH_USER_RGX, WEB_REPO_RGX
+from .repo import Repository
+from .util import Resource, cacheable
+
 
 class Issue(Resource):
     """
@@ -20,13 +21,13 @@ class Issue(Resource):
     """
 
     URL_REGEXES = [
-        WEB_REPO_RGX + r'/(?:issues|pull)/(?P<i_number>\d+)/?',
-        API_REPO_RGX + r'/(?:issues|pulls)/(?P<i_number>\d+)',
+        WEB_REPO_RGX + r"/(?:issues|pull)/(?P<i_number>\d+)/?",
+        API_REPO_RGX + r"/(?:issues|pulls)/(?P<i_number>\d+)",
     ]
 
     ARGUMENT_REGEXES = [
-        fr'(?:(?:(?P<owner>{GH_USER_RGX})/)?(?P<repo>{GH_REPO_RGX})[/#:])?'
-            r'(?P<i_number>\d+)',
+        fr"(?:(?:(?P<owner>{GH_USER_RGX})/)?(?P<repo>{GH_REPO_RGX})[/#:])?"
+        r"(?P<i_number>\d+)",
     ]
 
     DISPLAY_FIELDS = [
@@ -46,10 +47,12 @@ class Issue(Resource):
         "updated_at",
         "url",
         ("user", "login"),
-        ("reactions", lambda react: {
-            k:v for k,v in react.items()
-                if k not in ('total_count', 'url') and v
-        }),
+        (
+            "reactions",
+            lambda react: {
+                k: v for k, v in react.items() if k not in ("total_count", "url") and v
+            },
+        ),
         "body",
         "body_text",
         "body_html",
@@ -68,16 +71,14 @@ class Issue(Resource):
         return self.data["number"]
 
     def __str__(self):
-        #return f'{self.owner}/{self.repo}/{self.number}'
-        return '{owner}/{repo}/{number}'.format_map(
-            self.parse_url(self.data["url"])
-        )
+        # return f'{self.owner}/{self.repo}/{self.number}'
+        return "{owner}/{repo}/{number}".format_map(self.parse_url(self.data["url"]))
 
     @classmethod
     def params2path(cls, gh, params):
         if params.get("repo") is None:
             params.update(Repository.default_params())
-        return Repository.params2path(gh, params) + ('issues', params["number"])
+        return Repository.params2path(gh, params) + ("issues", params["number"])
 
     default_params = None
 
@@ -89,6 +90,7 @@ PR_REPO_FIELDS = (
     "sha",
     ("user", "login"),
 )
+
 
 class PullRequest(Issue):
     DISPLAY_FIELDS = [
@@ -143,4 +145,4 @@ class PullRequest(Issue):
     def params2path(cls, gh, params):
         if params.get("repo") is None:
             params.update(Repository.default_params())
-        return Repository.params2path(gh, params) + ('pulls', params["number"])
+        return Repository.params2path(gh, params) + ("pulls", params["number"])

@@ -1,5 +1,6 @@
 import click
-from   ghutil.util import default_command, package_group
+from ghutil.util import default_command, package_group
+
 
 @package_group(__package__, __file__, invoke_without_command=True)
 @click.pass_context
@@ -21,4 +22,4 @@ def cli(ctx):
         ./path/to/local/clone
         ../path/to/local/clone
     """
-    default_command(ctx, 'list')
+    default_command(ctx, "list")

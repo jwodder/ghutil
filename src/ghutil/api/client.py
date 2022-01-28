@@ -1,26 +1,28 @@
 import platform
 import click
 import requests
-from   ghutil      import __url__, __version__
-from   ghutil      import types
-from   ghutil.util import cacheable, search_query
-from   .endpoint   import GHEndpoint
-from   .util       import die
+from ghutil import __url__, __version__, types
+from ghutil.util import cacheable, search_query
+from .endpoint import GHEndpoint
+from .util import die
 
-ACCEPT = ','.join([
-    'application/vnd.github.mercy-preview',          # Topics
-    'application/vnd.github.squirrel-girl-preview',  # Reactions
-    'application/vnd.github.symmetra-preview+json',  # Label descriptions
-    'application/vnd.github.v3+json',
-])
+ACCEPT = ",".join(
+    [
+        "application/vnd.github.mercy-preview",  # Topics
+        "application/vnd.github.squirrel-girl-preview",  # Reactions
+        "application/vnd.github.symmetra-preview+json",  # Label descriptions
+        "application/vnd.github.v3+json",
+    ]
+)
 
-USER_AGENT = 'ghutil/{} ({}) requests/{} {}/{}'.format(
+USER_AGENT = "ghutil/{} ({}) requests/{} {}/{}".format(
     __version__,
     __url__,
     requests.__version__,
     platform.python_implementation(),
     platform.python_version(),
 )
+
 
 class GitHub:
     def __init__(self, session=None):
@@ -40,7 +42,7 @@ class GitHub:
         return self.user.get()["login"]
 
     def search(self, objtype, *terms, **params):
-        r = self['search'][objtype].get(
+        r = self["search"][objtype].get(
             decode=False,
             params=dict(params, q=search_query(*terms)),
         )
@@ -54,7 +56,7 @@ class GitHub:
             if not r.ok:
                 die(r)
             yield r.json()
-            url = r.links.get('next', {}).get('url')
+            url = r.links.get("next", {}).get("url")
             if url is None:
                 break
             r = self[url].get(decode=False)

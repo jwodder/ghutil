@@ -1,5 +1,6 @@
 import click
-from   ghutil.util import default_command, package_group
+from ghutil.util import default_command, package_group
+
 
 @package_group(__package__, __file__, invoke_without_command=True)
 @click.pass_context
@@ -17,4 +18,4 @@ def cli(ctx):
         https://github.com/$OWNER/$REPO/issues/$NUMBER
         https://api.github.com/repos/$OWNER/$REPO/issues/$NUMBER
     """
-    default_command(ctx, 'list')
+    default_command(ctx, "list")

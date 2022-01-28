@@ -1,11 +1,12 @@
-from   ghutil.regex import API_REPO_RGX, WEB_REPO_RGX
-from   .repo        import Repository
-from   .util        import Resource, cacheable
+from ghutil.regex import API_REPO_RGX, WEB_REPO_RGX
+from .repo import Repository
+from .util import Resource, cacheable
+
 
 class Milestone(Resource):
     URL_REGEXES = [
-        WEB_REPO_RGX + r'/milestone/(?P<i_number>\d+)/?',
-        API_REPO_RGX + r'/milestones/(?P<i_number>\d+)',
+        WEB_REPO_RGX + r"/milestone/(?P<i_number>\d+)/?",
+        API_REPO_RGX + r"/milestones/(?P<i_number>\d+)",
     ]
 
     ARGUMENT_REGEXES = [
@@ -51,7 +52,6 @@ class Milestone(Resource):
     def params2path(cls, gh, params):
         if params.get("repo") is None:
             params.update(Repository.default_params())
-        return Repository.params2path(gh, params) + \
-            ('milestones', params["number"])
+        return Repository.params2path(gh, params) + ("milestones", params["number"])
 
     default_params = None

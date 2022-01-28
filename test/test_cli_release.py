@@ -1,31 +1,35 @@
-from   pathlib import Path
+from pathlib import Path
 import webbrowser
 import click
 import pytest
-from   ghutil  import git
+from ghutil import git
 
-FILEDIR = Path(__file__).with_name('data') / 'files'
+FILEDIR = Path(__file__).with_name("data") / "files"
 
 LOREM = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n"
 
+
 def test_release_none(cmd, mocker):
     mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='git@github.com:jwodder/ghutil.git',
+        "ghutil.git.get_remote_url",
+        return_value="git@github.com:jwodder/ghutil.git",
     )
-    r = cmd('release', 'list')
+    r = cmd("release", "list")
     assert r.exit_code == 0
-    assert r.output == ''
+    assert r.output == ""
     git.get_remote_url.assert_called_once_with()
+
 
 def test_release_mockdir(cmd, mocker):
     mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/stedolan/jq.git',
+        "ghutil.git.get_remote_url",
+        return_value="https://github.com/stedolan/jq.git",
     )
-    r = cmd('release', 'list')
+    r = cmd("release", "list")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 stedolan/jq:jq-1.5
 stedolan/jq:jq-1.1
 stedolan/jq:jq-1.0
@@ -34,29 +38,37 @@ stedolan/jq:jq-1.3
 stedolan/jq:jq-1.4
 stedolan/jq:jq-1.5rc2
 stedolan/jq:jq-1.5rc1
-'''
+"""
+    )
     git.get_remote_url.assert_called_once_with()
 
+
 def test_release_list_qypi(cmd):
-    r = cmd('release', 'list', 'qypi')
+    r = cmd("release", "list", "qypi")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 jwodder/qypi:v0.4.1
 jwodder/qypi:v0.4.0
 jwodder/qypi:v0.3.0
 jwodder/qypi:v0.2.0
 jwodder/qypi:v0.1.0.post1
 jwodder/qypi:v0.1.0
-'''
+"""
+    )
+
 
 def test_release_show(cmd, mocker):
     mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/stedolan/jq.git',
+        "ghutil.git.get_remote_url",
+        return_value="https://github.com/stedolan/jq.git",
     )
-    r = cmd('release', 'show')
+    r = cmd("release", "show")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 [
     {
         "assets": [
@@ -189,24 +201,29 @@ def test_release_show(cmd, mocker):
         "zipball_url": "https://api.github.com/repos/stedolan/jq/zipball/jq-1.5"
     }
 ]
-'''
+"""
+    )
     git.get_remote_url.assert_called_once_with()
+
 
 def test_release_show_a_bunch(cmd, mocker):
     mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='git@github.com:jwodder/daemail.git',
+        "ghutil.git.get_remote_url",
+        return_value="git@github.com:jwodder/daemail.git",
     )
     r = cmd(
-        'release', 'show',
-        ':v0.5.0',
-        'qypi:',
-        'stedolan/jq:',
-        'TomasTomecek/sen:0.5.0',
-        'https://github.com/nlohmann/json/releases/tag/v2.0.10',
+        "release",
+        "show",
+        ":v0.5.0",
+        "qypi:",
+        "stedolan/jq:",
+        "TomasTomecek/sen:0.5.0",
+        "https://github.com/nlohmann/json/releases/tag/v2.0.10",
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 [
     {
         "assets": [],
@@ -436,26 +453,30 @@ def test_release_show_a_bunch(cmd, mocker):
         "zipball_url": "https://api.github.com/repos/nlohmann/json/zipball/v2.0.10"
     }
 ]
-'''
+"""
+    )
     git.get_remote_url.assert_called_once_with()
+
 
 def test_release_show_bad_implicit_repo(nullcmd, mocker):
     mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='/home/jwodder/git/private.git',
+        "ghutil.git.get_remote_url",
+        return_value="/home/jwodder/git/private.git",
     )
-    r = nullcmd('release', 'show', standalone_mode=False)
+    r = nullcmd("release", "show", standalone_mode=False)
     assert r.exit_code != 0
     assert isinstance(r.exception, click.UsageError)
-    assert str(r.exception) \
-        == 'Not a GitHub remote: /home/jwodder/git/private.git'
+    assert str(r.exception) == "Not a GitHub remote: /home/jwodder/git/private.git"
     git.get_remote_url.assert_called_once_with()
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_show_latest(cmd):
-    r = cmd('release', 'show', 'latest')
+    r = cmd("release", "show", "latest")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 [
     {
         "assets": [],
@@ -475,13 +496,17 @@ def test_release_show_latest(cmd):
         "zipball_url": "https://api.github.com/repos/jwodder/test/zipball/v100.1"
     }
 ]
-'''
+"""
+    )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_show_colon_latest(cmd):
-    r = cmd('release', 'show', ':latest')
+    r = cmd("release", "show", ":latest")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 [
     {
         "assets": [],
@@ -501,13 +526,17 @@ def test_release_show_colon_latest(cmd):
         "zipball_url": "https://api.github.com/repos/jwodder/test/zipball/latest"
     }
 ]
-'''
+"""
+    )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_attach_text(cmd):
-    r = cmd('--debug', 'release', 'attach', 'latest', str(FILEDIR/'lorem.txt'))
+    r = cmd("--debug", "release", "attach", "latest", str(FILEDIR / "lorem.txt"))
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/releases/latest
 POST https://uploads.github.com/repos/jwodder/test/releases/7620310/assets?name=lorem.txt
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -526,18 +555,24 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
     "uploader": "jwodder",
     "url": "https://api.github.com/repos/jwodder/test/releases/assets/4737049"
 }
-'''
+"""
+    )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_attach_named_text(cmd):
     r = cmd(
-        'release', 'attach',
-        '-n', 'lorem.html',
-        'latest',
-        str(FILEDIR/'lorem.txt'),
+        "release",
+        "attach",
+        "-n",
+        "lorem.html",
+        "latest",
+        str(FILEDIR / "lorem.txt"),
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "browser_download_url": "https://github.com/jwodder/test/releases/download/v0.0.0/lorem.html",
     "content_type": "text/html",
@@ -552,19 +587,26 @@ def test_release_attach_named_text(cmd):
     "uploader": "jwodder",
     "url": "https://api.github.com/repos/jwodder/test/releases/assets/4737064"
 }
-'''
+"""
+    )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_attach_named_typed_text(cmd):
     r = cmd(
-        'release', 'attach',
-        '-n', 'lorem.html',
-        '--content-type', 'text/plain',
-        'latest',
-        str(FILEDIR/'lorem.txt'),
+        "release",
+        "attach",
+        "-n",
+        "lorem.html",
+        "--content-type",
+        "text/plain",
+        "latest",
+        str(FILEDIR / "lorem.txt"),
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "browser_download_url": "https://github.com/jwodder/test/releases/download/v0.0.0/lorem.html",
     "content_type": "text/plain",
@@ -579,19 +621,24 @@ def test_release_attach_named_typed_text(cmd):
     "uploader": "jwodder",
     "url": "https://api.github.com/repos/jwodder/test/releases/assets/4737162"
 }
-'''
+"""
+    )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_attach_labelled_text(cmd):
     r = cmd(
-        '--debug',
-        'release', 'attach',
-        '-lAbout',
-        'latest',
-        str(FILEDIR/'lorem.txt'),
+        "--debug",
+        "release",
+        "attach",
+        "-lAbout",
+        "latest",
+        str(FILEDIR / "lorem.txt"),
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/releases/latest
 POST https://uploads.github.com/repos/jwodder/test/releases/7620310/assets?name=lorem.txt&label=About
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -610,13 +657,17 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
     "uploader": "jwodder",
     "url": "https://api.github.com/repos/jwodder/test/releases/assets/4737174"
 }
-'''
+"""
+    )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_attach_binary(cmd):
-    r = cmd('release', 'attach', 'latest', str(FILEDIR/'blob.png'))
+    r = cmd("release", "attach", "latest", str(FILEDIR / "blob.png"))
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "browser_download_url": "https://github.com/jwodder/test/releases/download/v0.0.0/blob.png",
     "content_type": "image/png",
@@ -631,13 +682,17 @@ def test_release_attach_binary(cmd):
     "uploader": "jwodder",
     "url": "https://api.github.com/repos/jwodder/test/releases/assets/4737084"
 }
-'''
+"""
+    )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_attach_unknown_type(cmd):
-    r = cmd('release', 'attach', 'latest', str(FILEDIR/'lorem'))
+    r = cmd("release", "attach", "latest", str(FILEDIR / "lorem"))
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "browser_download_url": "https://github.com/jwodder/test/releases/download/v0.0.0/lorem",
     "content_type": "application/octet-stream",
@@ -652,29 +707,39 @@ def test_release_attach_unknown_type(cmd):
     "uploader": "jwodder",
     "url": "https://api.github.com/repos/jwodder/test/releases/assets/4737189"
 }
-'''
+"""
+    )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_unattach(cmd):
-    r = cmd('--debug', 'release', 'unattach', '--force', 'latest', 'lorem.txt')
+    r = cmd("--debug", "release", "unattach", "--force", "latest", "lorem.txt")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/releases/latest
 DELETE https://api.github.com/repos/jwodder/test/releases/assets/4737049
 Asset lorem.txt deleted
-'''
+"""
+    )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_new(cmd):
     r = cmd(
-        '--debug',
-        'release', 'new',
-        '-nInit',
-        '--body', str(FILEDIR/'lorem.txt'),
-        'v0.0.0',
+        "--debug",
+        "release",
+        "new",
+        "-nInit",
+        "--body",
+        str(FILEDIR / "lorem.txt"),
+        "v0.0.0",
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 POST https://api.github.com/repos/jwodder/test/releases
 {
     "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n",
@@ -700,23 +765,25 @@ POST https://api.github.com/repos/jwodder/test/releases
     "url": "https://api.github.com/repos/jwodder/test/releases/7871180",
     "zipball_url": "https://api.github.com/repos/jwodder/test/zipball/v0.0.0"
 }
-'''
+"""
+    )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_new_edit_body(cmd, mocker):
-    HEADERS = 'Tag-Name: v0.0.0\n' \
-              'Name: Init\n' \
-              'Draft: no\n' \
-              'Prerelease: no\n'
-    mocker.patch('click.edit', return_value=HEADERS + '\n' + LOREM)
+    HEADERS = "Tag-Name: v0.0.0\n" "Name: Init\n" "Draft: no\n" "Prerelease: no\n"
+    mocker.patch("click.edit", return_value=HEADERS + "\n" + LOREM)
     r = cmd(
-        '--debug',
-        'release', 'new',
-        '-nInit',
-        'v0.0.0',
+        "--debug",
+        "release",
+        "new",
+        "-nInit",
+        "v0.0.0",
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 POST https://api.github.com/repos/jwodder/test/releases
 {
     "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n",
@@ -742,24 +809,27 @@ POST https://api.github.com/repos/jwodder/test/releases
     "url": "https://api.github.com/repos/jwodder/test/releases/7871180",
     "zipball_url": "https://api.github.com/repos/jwodder/test/zipball/v0.0.0"
 }
-'''
-    click.edit.assert_called_once_with(HEADERS+'\n', require_save=True)
+"""
+    )
+    click.edit.assert_called_once_with(HEADERS + "\n", require_save=True)
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_new_edit_name(cmd, mocker):
-    HEADERS = 'Tag-Name: v0.0.0\n' \
-              'Name: Init\n' \
-              'Draft: no\n' \
-              'Prerelease: no\n'
-    mocker.patch('click.edit', return_value=HEADERS + '\n' + LOREM)
+    HEADERS = "Tag-Name: v0.0.0\n" "Name: Init\n" "Draft: no\n" "Prerelease: no\n"
+    mocker.patch("click.edit", return_value=HEADERS + "\n" + LOREM)
     r = cmd(
-        '--debug',
-        'release', 'new',
-        '--body', str(FILEDIR/'lorem.txt'),
-        'v0.0.0',
+        "--debug",
+        "release",
+        "new",
+        "--body",
+        str(FILEDIR / "lorem.txt"),
+        "v0.0.0",
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 POST https://api.github.com/repos/jwodder/test/releases
 {
     "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n",
@@ -785,22 +855,23 @@ POST https://api.github.com/repos/jwodder/test/releases
     "url": "https://api.github.com/repos/jwodder/test/releases/7871180",
     "zipball_url": "https://api.github.com/repos/jwodder/test/zipball/v0.0.0"
 }
-'''
+"""
+    )
     click.edit.assert_called_once_with(
-        'Tag-Name: v0.0.0\nName: \nDraft: no\nPrerelease: no\n\n' + LOREM,
+        "Tag-Name: v0.0.0\nName: \nDraft: no\nPrerelease: no\n\n" + LOREM,
         require_save=True,
     )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_new_no_name_no_body(cmd, mocker):
-    EDIT = 'Tag-Name: v0.0.0\n' \
-           'Name: \n' \
-           'Draft: no\n' \
-           'Prerelease: no\n\n'
-    mocker.patch('click.edit', return_value=EDIT)
-    r = cmd('--debug', 'release', 'new', 'v0.0.0')
+    EDIT = "Tag-Name: v0.0.0\n" "Name: \n" "Draft: no\n" "Prerelease: no\n\n"
+    mocker.patch("click.edit", return_value=EDIT)
+    r = cmd("--debug", "release", "new", "v0.0.0")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 POST https://api.github.com/repos/jwodder/test/releases
 {
     "body": "",
@@ -826,176 +897,216 @@ POST https://api.github.com/repos/jwodder/test/releases
     "url": "https://api.github.com/repos/jwodder/test/releases/7895578",
     "zipball_url": "https://api.github.com/repos/jwodder/test/zipball/v0.0.0"
 }
-'''
+"""
+    )
     click.edit.assert_called_once_with(EDIT, require_save=True)
+
 
 def test_release_new_no_name_no_body_no_save(nullcmd, mocker):
-    EDIT = 'Tag-Name: v0.0.0\n' \
-           'Name: \n' \
-           'Draft: no\n' \
-           'Prerelease: no\n\n'
-    mocker.patch('click.edit', return_value=None)
-    r = nullcmd('--debug', 'release', 'new', 'v0.0.0')
+    EDIT = "Tag-Name: v0.0.0\n" "Name: \n" "Draft: no\n" "Prerelease: no\n\n"
+    mocker.patch("click.edit", return_value=None)
+    r = nullcmd("--debug", "release", "new", "v0.0.0")
     assert r.exit_code == 0
-    assert r.output == 'No changes saved; exiting\n'
+    assert r.output == "No changes saved; exiting\n"
     click.edit.assert_called_once_with(EDIT, require_save=True)
+
 
 def test_release_new_delete_tag_name(nullcmd, mocker):
-    EDIT = 'Tag-Name: v0.0.0\n' \
-           'Name: \n' \
-           'Draft: no\n' \
-           'Prerelease: no\n\n'
-    mocker.patch('click.edit', return_value='Tag-name: \n')
-    r = nullcmd('--debug', 'release', 'new', 'v0.0.0')
+    EDIT = "Tag-Name: v0.0.0\n" "Name: \n" "Draft: no\n" "Prerelease: no\n\n"
+    mocker.patch("click.edit", return_value="Tag-name: \n")
+    r = nullcmd("--debug", "release", "new", "v0.0.0")
     assert r.exit_code == 0
-    assert r.output == 'Aborting release due to empty tag name\n'
+    assert r.output == "Aborting release due to empty tag name\n"
     click.edit.assert_called_once_with(EDIT, require_save=True)
 
-@pytest.mark.usefixtures('test_repo')
-def test_release_edit_name(cmd):
-    r = cmd('--debug', 'release', 'edit', '--name=Initial Release', 'v0.0.0')
-    assert r.exit_code == 0
-    assert r.output == '''\
-GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
-PATCH https://api.github.com/repos/jwodder/test/releases/7871180
-{
-    "name": "Initial Release"
-}
-'''
 
-@pytest.mark.usefixtures('test_repo')
-def test_release_edit_name_editor(cmd, mocker):
-    mocker.patch('click.edit', return_value="Name: Initial Release\n")
-    r = cmd('--debug', 'release', 'edit', 'v0.0.0')
+@pytest.mark.usefixtures("test_repo")
+def test_release_edit_name(cmd):
+    r = cmd("--debug", "release", "edit", "--name=Initial Release", "v0.0.0")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
 PATCH https://api.github.com/repos/jwodder/test/releases/7871180
 {
     "name": "Initial Release"
 }
-'''
+"""
+    )
+
+
+@pytest.mark.usefixtures("test_repo")
+def test_release_edit_name_editor(cmd, mocker):
+    mocker.patch("click.edit", return_value="Name: Initial Release\n")
+    r = cmd("--debug", "release", "edit", "v0.0.0")
+    assert r.exit_code == 0
+    assert (
+        r.output
+        == """\
+GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
+PATCH https://api.github.com/repos/jwodder/test/releases/7871180
+{
+    "name": "Initial Release"
+}
+"""
+    )
     click.edit.assert_called_once_with(
-        'Tag-Name: v0.0.0\n'
-        'Name: Init\n'
-        'Draft: no\n'
-        'Prerelease: no\n'
-        '\n' + LOREM,
+        "Tag-Name: v0.0.0\n"
+        "Name: Init\n"
+        "Draft: no\n"
+        "Prerelease: no\n"
+        "\n" + LOREM,
         require_save=True,
     )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_edit_body(cmd):
     r = cmd(
-        '--debug',
-        'release', 'edit',
-        '--body=' + str(FILEDIR/'label.json'),
-        'v0.0.0',
+        "--debug",
+        "release",
+        "edit",
+        "--body=" + str(FILEDIR / "label.json"),
+        "v0.0.0",
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
 PATCH https://api.github.com/repos/jwodder/test/releases/7871180
 {
     "body": "{\\"name\\": \\"Test Label\\", \\"color\\": \\"FF0000\\"}"
 }
-'''
+"""
+    )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_edit_body_editor(cmd, mocker):
-    HEADERS = 'Tag-Name: v0.0.0\n' \
-              'Name: Initial Release\n' \
-              'Draft: no\n' \
-              'Prerelease: no\n'
-    mocker.patch(
-        'click.edit',
-        return_value=HEADERS + '\n{"name": "Test Label", "color": "FF0000"}'
+    HEADERS = (
+        "Tag-Name: v0.0.0\n" "Name: Initial Release\n" "Draft: no\n" "Prerelease: no\n"
     )
-    r = cmd('--debug', 'release', 'edit', 'v0.0.0')
+    mocker.patch(
+        "click.edit",
+        return_value=HEADERS + '\n{"name": "Test Label", "color": "FF0000"}',
+    )
+    r = cmd("--debug", "release", "edit", "v0.0.0")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
 PATCH https://api.github.com/repos/jwodder/test/releases/7871180
 {
     "body": "{\\"name\\": \\"Test Label\\", \\"color\\": \\"FF0000\\"}"
 }
-'''
-    click.edit.assert_called_once_with(HEADERS+'\n'+LOREM, require_save=True)
+"""
+    )
+    click.edit.assert_called_once_with(HEADERS + "\n" + LOREM, require_save=True)
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_edit_nochange(cmd, mocker):
-    RELEASE = 'Tag-Name: v0.0.0\n' \
-              'Name: Init\n' \
-              'Draft: no\n' \
-              'Prerelease: no\n' \
-              '\n' + LOREM
-    mocker.patch('click.edit', return_value=RELEASE)
-    r = cmd('--debug', 'release', 'edit', 'v0.0.0')
+    RELEASE = (
+        "Tag-Name: v0.0.0\n"
+        "Name: Init\n"
+        "Draft: no\n"
+        "Prerelease: no\n"
+        "\n" + LOREM
+    )
+    mocker.patch("click.edit", return_value=RELEASE)
+    r = cmd("--debug", "release", "edit", "v0.0.0")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
 No modifications made; exiting
-'''
+"""
+    )
     click.edit.assert_called_once_with(RELEASE, require_save=True)
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_delete_noforce(cmd):
-    r = cmd('--debug', 'release', 'delete', 'v0.0.0', input='y\n')
+    r = cmd("--debug", "release", "delete", "v0.0.0", input="y\n")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
 Delete release jwodder/test:v0.0.0? [y/N]: y
 DELETE https://api.github.com/repos/jwodder/test/releases/7871180
 Release jwodder/test:v0.0.0 deleted
-'''
+"""
+    )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_delete_force(cmd):
-    r = cmd('--debug', 'release', 'delete', '-f', 'v0.0.0')
+    r = cmd("--debug", "release", "delete", "-f", "v0.0.0")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
 DELETE https://api.github.com/repos/jwodder/test/releases/7871180
 Release jwodder/test:v0.0.0 deleted
-'''
+"""
+    )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_no_delete(cmd):
-    r = cmd('--debug', 'release', 'delete', 'v0.0.0', input='n\n')
+    r = cmd("--debug", "release", "delete", "v0.0.0", input="n\n")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/releases/tags/v0.0.0
 Delete release jwodder/test:v0.0.0? [y/N]: n
 Release not deleted
-'''
+"""
+    )
+
 
 def test_release_web(cmd, mocker):
     mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='https://github.com/stedolan/jq.git',
+        "ghutil.git.get_remote_url",
+        return_value="https://github.com/stedolan/jq.git",
     )
-    mocker.patch('webbrowser.open_new')
-    r = cmd('--debug', 'release', 'web')
+    mocker.patch("webbrowser.open_new")
+    r = cmd("--debug", "release", "web")
     assert r.exit_code == 0, r.output
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/stedolan/jq/releases/latest
-'''
+"""
+    )
     git.get_remote_url.assert_called_once_with()
     webbrowser.open_new.assert_called_once_with(
-        'https://github.com/stedolan/jq/releases/tag/jq-1.5'
+        "https://github.com/stedolan/jq/releases/tag/jq-1.5"
     )
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_release_web_colon_latest(cmd, mocker):
-    mocker.patch('webbrowser.open_new')
-    r = cmd('--debug', 'release', 'web', ':latest')
+    mocker.patch("webbrowser.open_new")
+    r = cmd("--debug", "release", "web", ":latest")
     assert r.exit_code == 0, r.output
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/releases/tags/latest
-'''
-    webbrowser.open_new.assert_called_once_with(
-        'https://github.com/jwodder/test/releases/tag/latest'
+"""
     )
+    webbrowser.open_new.assert_called_once_with(
+        "https://github.com/jwodder/test/releases/tag/latest"
+    )
+
 
 # new: --draft, --published
 # new: --prerelease, --full-release

@@ -1,11 +1,12 @@
 import click
-from   ghutil.showing import print_json
-from   ghutil.types   import Repository
+from ghutil.showing import print_json
+from ghutil.types import Repository
+
 
 @click.command()
-@click.option('-v', '--verbose', is_flag=True, help='Show full response body')
-@Repository.argument('repo', implicit=False)
+@click.option("-v", "--verbose", is_flag=True, help="Show full response body")
+@Repository.argument("repo", implicit=False)
 @click.pass_obj
 def cli(gh, repo, verbose):
-    """ Fork a repository """
+    """Fork a repository"""
     print_json(gh.repository(repo.forks.post()), verbose)

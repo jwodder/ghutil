@@ -1,21 +1,34 @@
 import click
-from   ghutil.edit    import edit_as_mail
-from   ghutil.showing import print_json
-from   ghutil.types   import Repository
+from ghutil.edit import edit_as_mail
+from ghutil.showing import print_json
+from ghutil.types import Repository
+
 
 @click.command()
-@click.option('-a', '--assignee', multiple=True, metavar='USER',
-              help='Assign the issue to a user.'
-                   '  May be specified multiple times.')
-@click.option('-b', '--body', type=click.File(),
-              help='File containing issue body')
-@click.option('-l', '--label', multiple=True, metavar='LABEL',
-              help='Add a label to the issue.  May be specified multiple times.')
-@click.option('-m', '--milestone', metavar='URL|TITLE',
-              help='Associate the issue with a milestone')
-@click.option('-T', '--title', help='Issue title')
-@click.option('-v', '--verbose', is_flag=True, help='Show full response body')
-@Repository.argument('repo')
+@click.option(
+    "-a",
+    "--assignee",
+    multiple=True,
+    metavar="USER",
+    help="Assign the issue to a user." "  May be specified multiple times.",
+)
+@click.option("-b", "--body", type=click.File(), help="File containing issue body")
+@click.option(
+    "-l",
+    "--label",
+    multiple=True,
+    metavar="LABEL",
+    help="Add a label to the issue.  May be specified multiple times.",
+)
+@click.option(
+    "-m",
+    "--milestone",
+    metavar="URL|TITLE",
+    help="Associate the issue with a milestone",
+)
+@click.option("-T", "--title", help="Issue title")
+@click.option("-v", "--verbose", is_flag=True, help="Show full response body")
+@Repository.argument("repo")
 @click.pass_context
 def cli(ctx, repo, title, body, label, assignee, milestone, verbose):
     """
@@ -37,16 +50,16 @@ def cli(ctx, repo, title, body, label, assignee, milestone, verbose):
     }
     if title is None or body is None:
         if repo.data["permissions"]["push"]:
-            fields = 'title labels assignees milestone'
+            fields = "title labels assignees milestone"
         else:
-            fields = 'title'
-        edited = edit_as_mail(data, fields, 'body')
+            fields = "title"
+        edited = edit_as_mail(data, fields, "body")
         if edited is None:
-            click.echo('No changes saved; exiting')
+            click.echo("No changes saved; exiting")
             return
         data.update(edited)
         if data["title"] is None:  # or body is None?
-            click.echo('Aborting issue due to empty title')
+            click.echo("Aborting issue due to empty title")
             return
         if data["body"] is None:
             del data["body"]

@@ -1,22 +1,46 @@
 import click
 
+
 @click.command()
 @click.option(
-    '--affiliation',
+    "--affiliation",
     help='Comma-separated list of "owner", "collaborator", and/or'
-         ' "organization_member"',
+    ' "organization_member"',
 )
-@click.option('-A', '--asc', '--ascending', 'direction', flag_value='asc',
-              help='Sort in ascending order')
-@click.option('-D', '--desc', '--descending', 'direction', flag_value='desc',
-              help='Sort in descending order')
-@click.option('-S', '--sort', help='What to sort results by',
-              type=click.Choice(['created', 'updated', 'pushed', 'full_name']))
-@click.option('-t', '--type', help='Filter by repository type/affiliation',
-              type=click.Choice(['all','owner','public','private','member']))
-@click.option('--visibility', help='Filter by repository visibility',
-              type=click.Choice(['all', 'public', 'private']))
-@click.argument('user', required=False)
+@click.option(
+    "-A",
+    "--asc",
+    "--ascending",
+    "direction",
+    flag_value="asc",
+    help="Sort in ascending order",
+)
+@click.option(
+    "-D",
+    "--desc",
+    "--descending",
+    "direction",
+    flag_value="desc",
+    help="Sort in descending order",
+)
+@click.option(
+    "-S",
+    "--sort",
+    help="What to sort results by",
+    type=click.Choice(["created", "updated", "pushed", "full_name"]),
+)
+@click.option(
+    "-t",
+    "--type",
+    help="Filter by repository type/affiliation",
+    type=click.Choice(["all", "owner", "public", "private", "member"]),
+)
+@click.option(
+    "--visibility",
+    help="Filter by repository visibility",
+    type=click.Choice(["all", "public", "private"]),
+)
+@click.argument("user", required=False)
 @click.pass_obj
 def cli(gh, user, **params):
     """

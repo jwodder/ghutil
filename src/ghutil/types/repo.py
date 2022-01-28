@@ -1,9 +1,15 @@
 import re
 import click
-from   ghutil       import git  # Import module to keep mocking easy
-from   ghutil.regex import API_REPO_RGX, GH_REPO_RGX, GH_USER_RGX, \
-                            OWNER_REPO_RGX, WEB_REPO_RGX
-from   .util        import Resource, cacheable
+from ghutil import git  # Import module to keep mocking easy
+from ghutil.regex import (
+    API_REPO_RGX,
+    GH_REPO_RGX,
+    GH_USER_RGX,
+    OWNER_REPO_RGX,
+    WEB_REPO_RGX,
+)
+from .util import Resource, cacheable
+
 
 class Repository(Resource):
     """
@@ -22,13 +28,13 @@ class Repository(Resource):
     """
 
     URL_REGEXES = [
-        WEB_REPO_RGX + r'(?:\.git)?/?',
+        WEB_REPO_RGX + r"(?:\.git)?/?",
         API_REPO_RGX,
-        fr'git(?:://github\.com/|@github\.com:){OWNER_REPO_RGX}(?:\.git)?/?',
+        fr"git(?:://github\.com/|@github\.com:){OWNER_REPO_RGX}(?:\.git)?/?",
     ]
 
     ARGUMENT_REGEXES = [
-        fr'(?:(?P<owner>{GH_USER_RGX})/)?(?P<repo>{GH_REPO_RGX})',
+        fr"(?:(?P<owner>{GH_USER_RGX})/)?(?P<repo>{GH_REPO_RGX})",
     ]
 
     DISPLAY_FIELDS = [
@@ -72,14 +78,14 @@ class Repository(Resource):
         return self.data["name"]
 
     def __str__(self):
-        #return f'{self.owner}/{self.repo}'
+        # return f'{self.owner}/{self.repo}'
         return self.data["full_name"]
 
     @classmethod
     def params2path(cls, gh, params):
         if params.get("owner") is None:
             params["owner"] = gh.me
-        return ('repos', params["owner"], params["repo"])
+        return ("repos", params["owner"], params["repo"])
 
     @classmethod
     def default_params(cls):
@@ -91,7 +97,7 @@ class Repository(Resource):
 
     @classmethod
     def parse_arg(cls, arg):
-        if arg.startswith('/') or re.match(r'^\.\.?(/|$)', arg):
+        if arg.startswith("/") or re.match(r"^\.\.?(/|$)", arg):
             # Filepath pointing to a local repository
             remote = git.get_remote_url(chdir=arg)
             try:
@@ -103,6 +109,7 @@ class Repository(Resource):
 
     def milestone(self, arg):
         from .milestone import Milestone
+
         try:
             ms = Milestone.from_url(self._gh, arg)
         except ValueError:
@@ -113,8 +120,9 @@ class Repository(Resource):
                 raise click.UsageError("Unknown milestone: " + arg)
         else:
             if self != {"owner": ms.owner, "repo": ms.repo}:
-                raise click.UsageError('Milestone belongs to different'
-                                       ' repository: ' + arg)
+                raise click.UsageError(
+                    "Milestone belongs to different" " repository: " + arg
+                )
             return ms
 
     @cacheable

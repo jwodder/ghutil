@@ -1,6 +1,6 @@
 import webbrowser
 
-READ_PR = '''\
+READ_PR = """\
 PR:        Add attrs
 State:     open
 Author:    jwodder
@@ -67,19 +67,22 @@ Author: ibewatuwant
 Date:   2017-05-20 19:16:50 -0400
 
     Awesoms
-'''
+"""
+
 
 def test_issue_read_pr(cmd):
-    r = cmd('issue', 'read', 'vinta/awesome-python/875')
+    r = cmd("issue", "read", "vinta/awesome-python/875")
     assert r.exit_code == 0
     assert r.output == READ_PR
+
 
 def test_pr_read_pr(cmd):
-    r = cmd('pr', 'read', 'vinta/awesome-python/875')
+    r = cmd("pr", "read", "vinta/awesome-python/875")
     assert r.exit_code == 0
     assert r.output == READ_PR
 
-READ_CLOSED_PR = '''\
+
+READ_CLOSED_PR = """\
 PR:        Support installing from Git refs
 State:     closed
 Author:    di
@@ -94,22 +97,27 @@ comment 292708848
 Author: xavfernandez
 Date:   2017-04-08 06:21:11 -0400
 
-    Thanks 👍 \n'''
+    Thanks 👍 \n"""
+
 
 def test_issue_read_closed_pr(cmd):
-    r = cmd('issue', 'read', 'pypa/pip/4429')
+    r = cmd("issue", "read", "pypa/pip/4429")
     assert r.exit_code == 0
     assert r.output == READ_CLOSED_PR
+
 
 def test_pr_read_closed_pr(cmd):
-    r = cmd('pr', 'read', 'pypa/pip/4429')
+    r = cmd("pr", "read", "pypa/pip/4429")
     assert r.exit_code == 0
     assert r.output == READ_CLOSED_PR
 
+
 def test_pr_list_pypa_packaging(cmd):
-    r = cmd('pr', 'list', 'pypa/packaging')
+    r = cmd("pr", "list", "pypa/packaging")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 pypa/packaging/109
 pypa/packaging/108
 pypa/packaging/101
@@ -118,12 +126,16 @@ pypa/packaging/92
 pypa/packaging/88
 pypa/packaging/87
 pypa/packaging/82
-'''
+"""
+    )
+
 
 def test_pr_show_pr(cmd):
-    r = cmd('pr', 'show', 'vinta/awesome-python/875')
+    r = cmd("pr", "show", "vinta/awesome-python/875")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 [
     {
         "additions": 1,
@@ -173,9 +185,11 @@ def test_pr_show_pr(cmd):
         "user": "jwodder"
     }
 ]
-'''
+"""
+    )
 
-PR_COMMENTS = '''\
+
+PR_COMMENTS = """\
 [
     {
         "body": " :+1:",
@@ -198,27 +212,34 @@ PR_COMMENTS = '''\
         "user": "ibewatuwant"
     }
 ]
-'''
+"""
+
 
 def test_issue_comments_pr(cmd):
-    r = cmd('issue', 'comments', 'vinta/awesome-python/875')
+    r = cmd("issue", "comments", "vinta/awesome-python/875")
     assert r.exit_code == 0
     assert r.output == PR_COMMENTS
+
 
 def test_pr_comments_pr(cmd):
-    r = cmd('pr', 'comments', 'vinta/awesome-python/875')
+    r = cmd("pr", "comments", "vinta/awesome-python/875")
     assert r.exit_code == 0
     assert r.output == PR_COMMENTS
 
+
 def test_pr_web_pr(cmd, mocker):
-    mocker.patch('webbrowser.open_new')
-    r = cmd('--debug', 'pr', 'web', 'vinta/awesome-python/875')
+    mocker.patch("webbrowser.open_new")
+    r = cmd("--debug", "pr", "web", "vinta/awesome-python/875")
     assert r.exit_code == 0, r.output
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/vinta/awesome-python/issues/875
-'''
-    webbrowser.open_new.assert_called_once_with(
-        'https://github.com/vinta/awesome-python/pull/875'
+"""
     )
+    webbrowser.open_new.assert_called_once_with(
+        "https://github.com/vinta/awesome-python/pull/875"
+    )
+
 
 # pr show <issue> = error

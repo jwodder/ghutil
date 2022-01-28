@@ -1,12 +1,12 @@
-from   io      import BytesIO
-from   pathlib import Path
+from io import BytesIO
+from pathlib import Path
 import webbrowser
 import click
-from   ghutil  import git
+from ghutil import git
 
-FILEDIR = Path(__file__).with_name('data') / 'files'
+FILEDIR = Path(__file__).with_name("data") / "files"
 
-GIST_LIST = '''\
+GIST_LIST = """\
 8b229cd59365b98ab5172b9d1e0904f6
 4bf350e2d72b547b22dc9de52148ccbe
 7b00ad691ecbfe9fa3ff40388bae6e23
@@ -24,22 +24,27 @@ f1091e01d3fbe9c02e7f
 d9ee213119fff3f46aa2
 b5ad97a344999ccbf0a2
 961599
-'''
+"""
+
 
 def test_gist_list(cmd):
-    r = cmd('gist', 'list')
+    r = cmd("gist", "list")
     assert r.exit_code == 0
     assert r.output == GIST_LIST
+
 
 def test_gist(cmd):
-    r = cmd('gist')
+    r = cmd("gist")
     assert r.exit_code == 0
     assert r.output == GIST_LIST
 
+
 def test_gist_show_fork(cmd):
-    r = cmd('gist', 'show', '4bf350e2d72b547b22dc9de52148ccbe')
+    r = cmd("gist", "show", "4bf350e2d72b547b22dc9de52148ccbe")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 [
     {
         "comments": 0,
@@ -66,12 +71,16 @@ def test_gist_show_fork(cmd):
         "url": "https://api.github.com/gists/4bf350e2d72b547b22dc9de52148ccbe"
     }
 ]
-'''
+"""
+    )
+
 
 def test_gist_show_forked(cmd):
-    r = cmd('gist', 'show', '89ffe32783f89f403bba96bd7bcd1263')
+    r = cmd("gist", "show", "89ffe32783f89f403bba96bd7bcd1263")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 [
     {
         "comments": 6,
@@ -108,30 +117,39 @@ def test_gist_show_forked(cmd):
         "url": "https://api.github.com/gists/89ffe32783f89f403bba96bd7bcd1263"
     }
 ]
-'''
+"""
+    )
+
 
 def test_gist_starred(cmd):
-    r = cmd('gist', 'starred')
+    r = cmd("gist", "starred")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 89ffe32783f89f403bba96bd7bcd1263
 19317d3e4b9a58f2355e7643040d483a
 4f100a9592b05e9b4d63
 5823693
 3331384
 674099
-'''
+"""
+    )
+
 
 def test_gist_new_noargs(nullcmd):
-    r = nullcmd('gist', 'new', standalone_mode=False)
+    r = nullcmd("gist", "new", standalone_mode=False)
     assert r.exit_code != 0
     assert isinstance(r.exception, click.UsageError)
-    assert str(r.exception) == 'No files specified'
+    assert str(r.exception) == "No files specified"
+
 
 def test_gist_new_unnamed(cmd):
-    r = cmd('gist', 'new', '-d', 'A file', str(FILEDIR/'lorem.txt'))
+    r = cmd("gist", "new", "-d", "A file", str(FILEDIR / "lorem.txt"))
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "comments": 0,
     "created_at": "2017-08-02T18:23:41Z",
@@ -155,16 +173,23 @@ def test_gist_new_unnamed(cmd):
     "updated_at": "2017-08-02T18:23:41Z",
     "url": "https://api.github.com/gists/db3b6873d3c9f7c7cab76cc3f2d1cd93"
 }
-'''
+"""
+    )
+
 
 def test_gist_new_two_unnamed(cmd):
     r = cmd(
-        'gist', 'new', '-d', 'Two files',
-        str(FILEDIR/'lorem.txt'),
-        str(FILEDIR/'life.py'),
+        "gist",
+        "new",
+        "-d",
+        "Two files",
+        str(FILEDIR / "lorem.txt"),
+        str(FILEDIR / "life.py"),
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "comments": 0,
     "created_at": "2017-08-02T18:23:42Z",
@@ -196,15 +221,24 @@ def test_gist_new_two_unnamed(cmd):
     "updated_at": "2017-08-02T18:23:42Z",
     "url": "https://api.github.com/gists/46b547788a193f706ca66b9519780e58"
 }
-'''
+"""
+    )
+
 
 def test_gist_new_named(cmd):
     r = cmd(
-        'gist', 'new', '-d', 'A named file',
-        '-f', 'not-lorem.txt', str(FILEDIR/'lorem.txt'),
+        "gist",
+        "new",
+        "-d",
+        "A named file",
+        "-f",
+        "not-lorem.txt",
+        str(FILEDIR / "lorem.txt"),
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "comments": 0,
     "created_at": "2017-08-02T18:23:43Z",
@@ -228,16 +262,23 @@ def test_gist_new_named(cmd):
     "updated_at": "2017-08-02T18:23:43Z",
     "url": "https://api.github.com/gists/51d9d530c04470c6edc18a80418a8cae"
 }
-'''
+"""
+    )
+
 
 def test_gist_new_named_unnamed(cmd):
     r = cmd(
-        'gist', 'new',
-        '-f', 'lorem2.txt', str(FILEDIR/'subdir'/'lorem.txt'),
-        str(FILEDIR/'lorem.txt'),
+        "gist",
+        "new",
+        "-f",
+        "lorem2.txt",
+        str(FILEDIR / "subdir" / "lorem.txt"),
+        str(FILEDIR / "lorem.txt"),
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "comments": 0,
     "created_at": "2017-08-02T18:23:44Z",
@@ -269,16 +310,23 @@ def test_gist_new_named_unnamed(cmd):
     "updated_at": "2017-08-02T18:23:44Z",
     "url": "https://api.github.com/gists/4729d6a1d2ea65be4e471d8683620e2d"
 }
-'''
+"""
+    )
+
 
 def test_gist_new_unnamed_named(cmd):
     r = cmd(
-        'gist', 'new',
-        str(FILEDIR/'lorem.txt'),
-        '-f', 'lorem2.txt', str(FILEDIR/'subdir'/'lorem.txt'),
+        "gist",
+        "new",
+        str(FILEDIR / "lorem.txt"),
+        "-f",
+        "lorem2.txt",
+        str(FILEDIR / "subdir" / "lorem.txt"),
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "comments": 0,
     "created_at": "2017-08-02T18:23:44Z",
@@ -310,14 +358,18 @@ def test_gist_new_unnamed_named(cmd):
     "updated_at": "2017-08-02T18:23:44Z",
     "url": "https://api.github.com/gists/4729d6a1d2ea65be4e471d8683620e2d"
 }
-'''
+"""
+    )
+
 
 def test_gist_new_stdin(cmd):
-    fp = BytesIO(b'This is stdin.')
-    fp.name = '<stdin>'  # or else we get an AttributeError
-    r = cmd('gist', 'new', '-', input=fp)
+    fp = BytesIO(b"This is stdin.")
+    fp.name = "<stdin>"  # or else we get an AttributeError
+    r = cmd("gist", "new", "-", input=fp)
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "comments": 0,
     "created_at": "2017-08-02T18:44:30Z",
@@ -341,12 +393,16 @@ def test_gist_new_stdin(cmd):
     "updated_at": "2017-08-02T18:44:30Z",
     "url": "https://api.github.com/gists/7577ef3391fd07516aa207eef5f626be"
 }
-'''
+"""
+    )
+
 
 def test_gist_new_named_stdin(cmd):
-    r = cmd('gist', 'new', '-f', 'standard input', '-', input='This is stdin.')
+    r = cmd("gist", "new", "-f", "standard input", "-", input="This is stdin.")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "comments": 0,
     "created_at": "2017-08-02T18:23:47Z",
@@ -370,16 +426,21 @@ def test_gist_new_named_stdin(cmd):
     "updated_at": "2017-08-02T18:23:47Z",
     "url": "https://api.github.com/gists/5a302aefacbd11c7c7b1fc1684bea669"
 }
-'''
+"""
+    )
+
 
 def test_gist_new_duped_names(cmd):
     r = cmd(
-        'gist', 'new',
-        str(FILEDIR/'lorem.txt'),
-        str(FILEDIR/'subdir'/'lorem.txt'),
+        "gist",
+        "new",
+        str(FILEDIR / "lorem.txt"),
+        str(FILEDIR / "subdir" / "lorem.txt"),
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "comments": 0,
     "created_at": "2017-08-02T18:23:48Z",
@@ -403,16 +464,25 @@ def test_gist_new_duped_names(cmd):
     "updated_at": "2017-08-02T18:23:48Z",
     "url": "https://api.github.com/gists/0a577c9ccb01dadf1a3952ffaf3fc8f5"
 }
-'''
+"""
+    )
+
 
 def test_gist_new_unduped_names(cmd):
     r = cmd(
-        'gist', 'new',
-        '-f', 'lorem1.txt', str(FILEDIR/'lorem.txt'),
-        '-f', 'lorem2.txt', str(FILEDIR/'subdir'/'lorem.txt'),
+        "gist",
+        "new",
+        "-f",
+        "lorem1.txt",
+        str(FILEDIR / "lorem.txt"),
+        "-f",
+        "lorem2.txt",
+        str(FILEDIR / "subdir" / "lorem.txt"),
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "comments": 0,
     "created_at": "2017-08-02T18:23:50Z",
@@ -444,16 +514,25 @@ def test_gist_new_unduped_names(cmd):
     "updated_at": "2017-08-02T18:23:50Z",
     "url": "https://api.github.com/gists/77eb2255b2fee9ee88ab331586596779"
 }
-'''
+"""
+    )
+
 
 def test_gist_new_forced_dupe(cmd):
     r = cmd(
-        'gist', 'new',
-        '-f', 'duped.dat', str(FILEDIR/'lorem.txt'),
-        '-f', 'duped.dat', str(FILEDIR/'life.py'),
+        "gist",
+        "new",
+        "-f",
+        "duped.dat",
+        str(FILEDIR / "lorem.txt"),
+        "-f",
+        "duped.dat",
+        str(FILEDIR / "life.py"),
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "comments": 0,
     "created_at": "2017-08-02T18:23:51Z",
@@ -477,41 +556,47 @@ def test_gist_new_forced_dupe(cmd):
     "updated_at": "2017-08-02T18:23:51Z",
     "url": "https://api.github.com/gists/493ee12c1af8825cb706735f95b34bad"
 }
-'''
+"""
+    )
+
 
 def test_gist_show_bad_implicit_repo(nullcmd, mocker):
     mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='git@github.com:jwodder/ghutil.git',
+        "ghutil.git.get_remote_url",
+        return_value="git@github.com:jwodder/ghutil.git",
     )
-    r = nullcmd('gist', 'show', standalone_mode=False)
+    r = nullcmd("gist", "show", standalone_mode=False)
     assert r.exit_code != 0
     assert isinstance(r.exception, click.UsageError)
-    assert str(r.exception) \
-        == 'Not a gist remote: git@github.com:jwodder/ghutil.git'
+    assert str(r.exception) == "Not a gist remote: git@github.com:jwodder/ghutil.git"
     git.get_remote_url.assert_called_once_with()
+
 
 def test_gist_show_bad_explicit_repo(nullcmd, mocker):
     mocker.patch(
-        'ghutil.git.get_remote_url',
-        return_value='git@github.com:jwodder/ghutil.git',
+        "ghutil.git.get_remote_url",
+        return_value="git@github.com:jwodder/ghutil.git",
     )
-    r = nullcmd('gist', 'show', '/some/path', standalone_mode=False)
+    r = nullcmd("gist", "show", "/some/path", standalone_mode=False)
     assert r.exit_code != 0
     assert isinstance(r.exception, click.UsageError)
-    assert str(r.exception) \
-        == 'Not a gist remote: git@github.com:jwodder/ghutil.git'
-    git.get_remote_url.assert_called_once_with(chdir='/some/path')
+    assert str(r.exception) == "Not a gist remote: git@github.com:jwodder/ghutil.git"
+    git.get_remote_url.assert_called_once_with(chdir="/some/path")
+
 
 def test_gist_web_fork(cmd, mocker):
-    mocker.patch('webbrowser.open_new')
-    r = cmd('--debug', 'gist', 'web', '4bf350e2d72b547b22dc9de52148ccbe')
+    mocker.patch("webbrowser.open_new")
+    r = cmd("--debug", "gist", "web", "4bf350e2d72b547b22dc9de52148ccbe")
     assert r.exit_code == 0, r.output
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/gists/4bf350e2d72b547b22dc9de52148ccbe
-'''
-    webbrowser.open_new.assert_called_once_with(
-        'https://gist.github.com/4bf350e2d72b547b22dc9de52148ccbe'
+"""
     )
+    webbrowser.open_new.assert_called_once_with(
+        "https://gist.github.com/4bf350e2d72b547b22dc9de52148ccbe"
+    )
+
 
 # `show` and `web` with no arguments

@@ -1,11 +1,13 @@
-from   ghutil.regex import API_REPO_RGX  #, WEB_REPO_RGX
-from   .repo        import Repository
-from   .util        import Resource, cacheable
+from ghutil.regex import API_REPO_RGX  # , WEB_REPO_RGX
+from .repo import Repository
+from .util import Resource, cacheable
+
 
 class Asset(Resource):
     URL_REGEXES = [
-        #WEB_REPO_RGX + ???
-        API_REPO_RGX + r'/releases/assets/(?P<i_id>\d+)',
+        # WEB_REPO_RGX + ???
+        API_REPO_RGX
+        + r"/releases/assets/(?P<i_id>\d+)",
     ]
 
     ARGUMENT_REGEXES = [
@@ -46,7 +48,6 @@ class Asset(Resource):
     def params2path(cls, gh, params):
         if params.get("repo") is None:
             params.update(Repository.default_params())
-        return Repository.params2path(gh, params) + \
-            ('releases', 'assets', params["id"])
+        return Repository.params2path(gh, params) + ("releases", "assets", params["id"])
 
     default_params = None

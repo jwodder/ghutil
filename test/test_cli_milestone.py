@@ -2,39 +2,50 @@ import webbrowser
 import click
 import pytest
 
+
 def test_milestone_empty(cmd):
-    r = cmd('milestone', 'list', '-R', 'jwodder/ghutil')
+    r = cmd("milestone", "list", "-R", "jwodder/ghutil")
     assert r.exit_code == 0
-    assert r.output == ''
+    assert r.output == ""
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_milestone(cmd):
-    r = cmd('milestone')
+    r = cmd("milestone")
     assert r.exit_code == 0
-    assert r.output == 'v1.0\n'
+    assert r.output == "v1.0\n"
 
-@pytest.mark.usefixtures('test_repo')
+
+@pytest.mark.usefixtures("test_repo")
 def test_milestone_list(cmd):
-    r = cmd('milestone', 'list')
+    r = cmd("milestone", "list")
     assert r.exit_code == 0
-    assert r.output == 'v1.0\n'
+    assert r.output == "v1.0\n"
+
 
 def test_milestone_list_repo(cmd):
-    r = cmd('milestone', 'list', '-R', 'jwodder/test')
+    r = cmd("milestone", "list", "-R", "jwodder/test")
     assert r.exit_code == 0
-    assert r.output == 'v1.0\n'
+    assert r.output == "v1.0\n"
+
 
 def test_milestone_new(cmd):
     r = cmd(
-        'milestone', 'new',
-        '-R', 'jwodder/test',
-        '-d', 'Test all the milestones',
-        'Test milestone',
-        '--due', '2038-01-19T03:14:08Z',
-        '--open',
+        "milestone",
+        "new",
+        "-R",
+        "jwodder/test",
+        "-d",
+        "Test all the milestones",
+        "Test milestone",
+        "--due",
+        "2038-01-19T03:14:08Z",
+        "--open",
     )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 {
     "closed_at": null,
     "closed_issues": 0,
@@ -51,163 +62,229 @@ def test_milestone_new(cmd):
     "updated_at": "2017-08-27T18:49:18Z",
     "url": "https://api.github.com/repos/jwodder/test/milestones/2"
 }
-'''
+"""
+    )
+
 
 def test_milestone_edit_title(cmd):
-    r = cmd('--debug', 'milestone', 'edit', '-R', 'jwodder/test',
-            'Test milestone', '--title=Test')
+    r = cmd(
+        "--debug",
+        "milestone",
+        "edit",
+        "-R",
+        "jwodder/test",
+        "Test milestone",
+        "--title=Test",
+    )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/milestones?state=all
 PATCH https://api.github.com/repos/jwodder/test/milestones/2
 {
     "title": "Test"
 }
-'''
+"""
+    )
+
 
 def test_milestone_edit_title_by_number(cmd):
-    r = cmd('--debug', 'milestone', 'edit', '-R', 'jwodder/test',
-            'https://github.com/jwodder/test/milestone/2',
-            '--title=Test Milestone')
+    r = cmd(
+        "--debug",
+        "milestone",
+        "edit",
+        "-R",
+        "jwodder/test",
+        "https://github.com/jwodder/test/milestone/2",
+        "--title=Test Milestone",
+    )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 PATCH https://api.github.com/repos/jwodder/test/milestones/2
 {
     "title": "Test Milestone"
 }
-'''
+"""
+    )
+
 
 def test_milestone_edit_title_editor(cmd, mocker):
-    mocker.patch('click.edit', return_value='Title: Test')
-    r = cmd('--debug', 'milestone', 'edit', '-R', 'jwodder/test',
-            'Test milestone')
+    mocker.patch("click.edit", return_value="Title: Test")
+    r = cmd("--debug", "milestone", "edit", "-R", "jwodder/test", "Test milestone")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/milestones?state=all
 PATCH https://api.github.com/repos/jwodder/test/milestones/2
 {
     "title": "Test"
 }
-'''
+"""
+    )
     click.edit.assert_called_once_with(
-        'Title: Test milestone\n'
-        'Description: Test all the milestones\n'
-        'Open: yes\n'
-        'Due-On: 2038-01-18T08:00:00Z\n',
+        "Title: Test milestone\n"
+        "Description: Test all the milestones\n"
+        "Open: yes\n"
+        "Due-On: 2038-01-18T08:00:00Z\n",
         require_save=True,
     )
+
 
 def test_milestone_edit_nop_editor(cmd, mocker):
-    mocker.patch('click.edit', return_value='')
-    r = cmd('--debug', 'milestone', 'edit', '-R', 'jwodder/test',
-            'Test Milestone')
+    mocker.patch("click.edit", return_value="")
+    r = cmd("--debug", "milestone", "edit", "-R", "jwodder/test", "Test Milestone")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/milestones?state=all
 No modifications made; exiting
-'''
+"""
+    )
     click.edit.assert_called_once_with(
-        'Title: Test Milestone\n'
-        'Description: Test all the milestones\n'
-        'Open: yes\n'
-        'Due-On: 2038-01-18T08:00:00Z\n',
+        "Title: Test Milestone\n"
+        "Description: Test all the milestones\n"
+        "Open: yes\n"
+        "Due-On: 2038-01-18T08:00:00Z\n",
         require_save=True,
     )
+
 
 def test_milestone_edit_unset_due_date(cmd):
-    r = cmd('--debug', 'milestone', 'edit', '-R', 'jwodder/test',
-            'Test Milestone', '--due=')
+    r = cmd(
+        "--debug", "milestone", "edit", "-R", "jwodder/test", "Test Milestone", "--due="
+    )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/milestones?state=all
 PATCH https://api.github.com/repos/jwodder/test/milestones/2
 {
     "due_on": null
 }
-'''
+"""
+    )
+
 
 def test_milestone_edit_unset_due_date_editor(cmd, mocker):
-    mocker.patch('click.edit', return_value='Due-On:')
-    r = cmd('--debug', 'milestone', 'edit', '-R', 'jwodder/test',
-            'Test Milestone')
+    mocker.patch("click.edit", return_value="Due-On:")
+    r = cmd("--debug", "milestone", "edit", "-R", "jwodder/test", "Test Milestone")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/milestones?state=all
 PATCH https://api.github.com/repos/jwodder/test/milestones/2
 {
     "due_on": null
 }
-'''
+"""
+    )
     click.edit.assert_called_once_with(
-        'Title: Test Milestone\n'
-        'Description: Test all the milestones\n'
-        'Open: yes\n'
-        'Due-On: 2038-01-18T08:00:00Z\n',
+        "Title: Test Milestone\n"
+        "Description: Test all the milestones\n"
+        "Open: yes\n"
+        "Due-On: 2038-01-18T08:00:00Z\n",
         require_save=True,
     )
 
+
 def test_milestone_edit_open(cmd):
-    r = cmd('--debug', 'milestone', 'edit', '--open', '-R', 'jwodder/test',
-            'Test Milestone')
+    r = cmd(
+        "--debug", "milestone", "edit", "--open", "-R", "jwodder/test", "Test Milestone"
+    )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/milestones?state=all
 PATCH https://api.github.com/repos/jwodder/test/milestones/2
 {
     "state": "open"
 }
-'''
+"""
+    )
+
 
 def test_milestone_open(cmd):
-    r = cmd('--debug', 'milestone', 'open', '-R', 'jwodder/test',
-            'Test Milestone')
+    r = cmd("--debug", "milestone", "open", "-R", "jwodder/test", "Test Milestone")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/milestones?state=all
 PATCH https://api.github.com/repos/jwodder/test/milestones/2
 {
     "state": "open"
 }
-'''
+"""
+    )
+
 
 def test_milestone_edit_close(cmd):
-    r = cmd('--debug', 'milestone', 'edit', '--closed', '-R', 'jwodder/test',
-            'Test Milestone')
+    r = cmd(
+        "--debug",
+        "milestone",
+        "edit",
+        "--closed",
+        "-R",
+        "jwodder/test",
+        "Test Milestone",
+    )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/milestones?state=all
 PATCH https://api.github.com/repos/jwodder/test/milestones/2
 {
     "state": "closed"
 }
-'''
+"""
+    )
+
 
 def test_milestone_close(cmd):
-    r = cmd('--debug', 'milestone', 'close', '-R', 'jwodder/test',
-            'Test Milestone')
+    r = cmd("--debug", "milestone", "close", "-R", "jwodder/test", "Test Milestone")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/milestones?state=all
 PATCH https://api.github.com/repos/jwodder/test/milestones/2
 {
     "state": "closed"
 }
-'''
+"""
+    )
+
 
 def test_milestone_delete(cmd):
-    r = cmd('--debug', 'milestone', 'delete', '-R', 'jwodder/test', '-f',
-            'Test Milestone')
+    r = cmd(
+        "--debug", "milestone", "delete", "-R", "jwodder/test", "-f", "Test Milestone"
+    )
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/milestones?state=all
 DELETE https://api.github.com/repos/jwodder/test/milestones/2
 Milestone 'Test Milestone' deleted
-'''
+"""
+    )
+
 
 def test_milestone_show(cmd):
-    r = cmd('milestone', 'show', '-R', 'jwodder/test', 'v1.0')
+    r = cmd("milestone", "show", "-R", "jwodder/test", "v1.0")
     assert r.exit_code == 0
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 [
     {
         "closed_at": null,
@@ -226,15 +303,20 @@ def test_milestone_show(cmd):
         "url": "https://api.github.com/repos/jwodder/test/milestones/2"
     }
 ]
-'''
+"""
+    )
+
 
 def test_milestone_web(cmd, mocker):
-    mocker.patch('webbrowser.open_new')
-    r = cmd('--debug', 'milestone', 'web', '-R', 'jwodder/test', 'v1.0')
+    mocker.patch("webbrowser.open_new")
+    r = cmd("--debug", "milestone", "web", "-R", "jwodder/test", "v1.0")
     assert r.exit_code == 0, r.output
-    assert r.output == '''\
+    assert (
+        r.output
+        == """\
 GET https://api.github.com/repos/jwodder/test/milestones?state=all
-'''
+"""
+    )
     webbrowser.open_new.assert_called_once_with(
-        'https://github.com/jwodder/test/milestone/2'
+        "https://github.com/jwodder/test/milestone/2"
     )

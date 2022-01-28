@@ -1,18 +1,24 @@
 import click
-from   ghutil.types import Repository
+from ghutil.types import Repository
+
 
 @click.command()
-@Repository.option('-R', '--repo', '--repository', 'repo',
-                   help='Repository to which the milestone belongs')
-@click.option('-f', '--force', is_flag=True, help='Delete without prompting')
-@click.argument('milestone')
+@Repository.option(
+    "-R",
+    "--repo",
+    "--repository",
+    "repo",
+    help="Repository to which the milestone belongs",
+)
+@click.option("-f", "--force", is_flag=True, help="Delete without prompting")
+@click.argument("milestone")
 def cli(repo, milestone, force):
-    """ Delete a milestone """
+    """Delete a milestone"""
     ms = repo.milestone(milestone)
     if force or click.confirm(
-        'Delete milestone {!r} (#{}) from {}?'.format(str(ms), int(ms), repo)
+        "Delete milestone {!r} (#{}) from {}?".format(str(ms), int(ms), repo)
     ):
         ms.delete()
-        click.echo('Milestone {!r} deleted'.format(str(ms)))
+        click.echo("Milestone {!r} deleted".format(str(ms)))
     else:
-        click.echo('Milestone not deleted')
+        click.echo("Milestone not deleted")

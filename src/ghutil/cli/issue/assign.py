@@ -1,11 +1,12 @@
 import click
-from   ghutil.types import Issue
+from ghutil.types import Issue
+
 
 @click.command()
-@click.option('-d', '--delete', is_flag=True, help='Remove the given assignees')
-@click.option('--set', is_flag=True, help='Replace the current assignees')
-@Issue.argument('issue')
-@click.argument('user', nargs=-1)
+@click.option("-d", "--delete", is_flag=True, help="Remove the given assignees")
+@click.option("--set", is_flag=True, help="Replace the current assignees")
+@Issue.argument("issue")
+@click.argument("user", nargs=-1)
 @click.pass_context
 def cli(ctx, issue, user, delete, set):  # noqa: B002
     """
@@ -20,7 +21,7 @@ def cli(ctx, issue, user, delete, set):  # noqa: B002
     from the issue.
     """
     if delete and set:
-        ctx.fail('--delete and --set are mutually exclusive')
+        ctx.fail("--delete and --set are mutually exclusive")
     elif set:
         issue.patch(json={"assignees": user})
     elif delete:

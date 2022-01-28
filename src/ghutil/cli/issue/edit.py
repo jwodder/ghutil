@@ -1,23 +1,40 @@
-from   operator     import itemgetter
+from operator import itemgetter
 import click
-from   ghutil.edit  import edit_as_mail
-from   ghutil.types import Issue, Repository
-from   ghutil.util  import optional
+from ghutil.edit import edit_as_mail
+from ghutil.types import Issue, Repository
+from ghutil.util import optional
+
 
 @click.command()
-@optional('-a', '--assignee', 'assignees', multiple=True, metavar='USER',
-          help='Assign the issue to a user.  May be specified multiple times.',
-          nilstr=True)
-@optional('-b', '--body', type=click.File(),
-          help='File containing new issue body')
-@optional('-l', '--label', 'labels', multiple=True, metavar='LABEL',
-          help='Set issue label.  May be specified multiple times.',
-          nilstr=True)
-@optional('-m', '--milestone', metavar='URL|TITLE', nilstr=True,
-          help='Associate the issue with a milestone')
-@optional('--open/--closed', ' /--close', help='Open/close the issue')
-@optional('-T', '--title', help='New issue title')
-@Issue.argument('issue')
+@optional(
+    "-a",
+    "--assignee",
+    "assignees",
+    multiple=True,
+    metavar="USER",
+    help="Assign the issue to a user.  May be specified multiple times.",
+    nilstr=True,
+)
+@optional("-b", "--body", type=click.File(), help="File containing new issue body")
+@optional(
+    "-l",
+    "--label",
+    "labels",
+    multiple=True,
+    metavar="LABEL",
+    help="Set issue label.  May be specified multiple times.",
+    nilstr=True,
+)
+@optional(
+    "-m",
+    "--milestone",
+    metavar="URL|TITLE",
+    nilstr=True,
+    help="Associate the issue with a milestone",
+)
+@optional("--open/--closed", " /--close", help="Open/close the issue")
+@optional("-T", "--title", help="New issue title")
+@Issue.argument("issue")
 @click.pass_obj
 def cli(gh, issue, **edited):
     """
@@ -42,26 +59,26 @@ def cli(gh, issue, **edited):
     repo = Repository.from_url(gh, issue.data["repository_url"])
     if not edited:
         if repo.data["permissions"]["push"]:
-            fields = 'title labels assignees milestone open'
+            fields = "title labels assignees milestone open"
         else:
-            fields = 'title open'
+            fields = "title open"
         data = issue.data.copy()
-        data['open'] = data['state'] == 'open'
-        if data['milestone'] is not None:
-            data['milestone'] = data['milestone']['title']
+        data["open"] = data["state"] == "open"
+        if data["milestone"] is not None:
+            data["milestone"] = data["milestone"]["title"]
         data["labels"] = list(map(itemgetter("name"), data["labels"]))
         data["assignees"] = list(map(itemgetter("login"), data["assignees"]))
-        edited = edit_as_mail(data, fields, 'body')
+        edited = edit_as_mail(data, fields, "body")
         if not edited:
-            click.echo('No modifications made; exiting')
+            click.echo("No modifications made; exiting")
             return
-    elif 'body' in edited:
-        edited['body'] = edited['body'].read()
-    if 'milestone' in edited:
-        if edited['milestone']:
+    elif "body" in edited:
+        edited["body"] = edited["body"].read()
+    if "milestone" in edited:
+        if edited["milestone"]:
             edited["milestone"] = int(repo.milestone(edited["milestone"]))
         else:
-            edited['milestone'] = None
-    if 'open' in edited:
-        edited['state'] = 'open' if edited.pop('open') else 'closed'
+            edited["milestone"] = None
+    if "open" in edited:
+        edited["state"] = "open" if edited.pop("open") else "closed"
     issue.patch(json=edited)
