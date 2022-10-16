@@ -27,7 +27,7 @@ are present may have their interface modified at any time.
 
 Installation
 ============
-``ghutil`` requires Python 3.6 or higher to run and `pip
+``ghutil`` requires Python 3.7 or higher to run and `pip
 <https://pip.pypa.io>`_ 19.0 or higher to install.  You can install ``ghutil``
 and its dependencies by running::
 

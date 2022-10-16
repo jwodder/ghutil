@@ -4,7 +4,7 @@ import sys
 
 def cmdline(*args, **kwargs):
     try:
-        return check_output(args, universal_newlines=True, **kwargs).strip()
+        return check_output(args, text=True, **kwargs).strip()
     except CalledProcessError as e:
         sys.exit(e.returncode)
 
