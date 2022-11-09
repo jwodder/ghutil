@@ -1,7 +1,8 @@
-.. image:: http://www.repostatus.org/badges/latest/wip.svg
-    :target: http://www.repostatus.org/#wip
-    :alt: Project Status: WIP — Initial development is in progress, but there
-          has not yet been a stable, usable release suitable for the public.
+.. image:: https://www.repostatus.org/badges/latest/abandoned.svg
+    :target: https://www.repostatus.org/#abandoned
+    :alt: Project Status: Abandoned – Initial development has started, but
+          there has not yet been a stable, usable release; the project has been
+          abandoned and the author(s) do not intend on continuing development.
 
 .. image:: https://github.com/jwodder/ghutil/workflows/Test/badge.svg?branch=master
     :target: https://github.com/jwodder/ghutil/actions?workflow=Test
