@@ -41,11 +41,10 @@ Basic Usage
 Authentication
 --------------
 
-Create a ``~/.config/ghutil.cfg`` file and store a GitHub OAuth2 token in it
-like so::
+Create a ``~/.config/ghutil.cfg`` file and store a GitHub token in it like so::
 
     [api.auth]
-    token = YOUR_OAUTH_TOKEN_HERE
+    token = YOUR_GITHUB_TOKEN_HERE
 
 Commands
 --------
