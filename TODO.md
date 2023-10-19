@@ -192,11 +192,15 @@ Interface Improvements
     - Give `new` an option for setting the local repository's origin to the new
       repository and pushing everything to it
     - Give `fork` (and `new`?) an option for cloning the new repository
+    - Give `fork` an option for waiting for the fork to be ready (checked by
+      repeatedly polling the default branch's endpoint)
     - Come up with a better name for "`list-forks`"
     - Let `fans` take more than one repository at a time?
     - Let `list-forks` take more than one repository at a time?
     - Let `web` take more than one repository at a time?
     - Show repositories' `"organization"` field?
+    - `clone`: Determine what protocol to use by default based on whether the
+      user has push permission (checked via `repo.data["permissions"]["push"]`)
 
 - `ghutil request`:
     - Add a `--param key=value` option for setting query parameters (and/or
